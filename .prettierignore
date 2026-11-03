@@ -1,0 +1,14 @@
+node_modules
+.venv
+dist
+coverage
+pnpm-lock.yaml
+uv.lock
+LICENSE
+.http-cache
+# recorded real responses and evidence: byte-exact, never reformat
+**/fixtures/**
+**/__fixtures__/**
+**/data/evidence/**
+# Python, handled by ruff
+packages/core

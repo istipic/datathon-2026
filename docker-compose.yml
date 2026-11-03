@@ -10,12 +10,12 @@ services:
     environment:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}
     ports:
-      - "127.0.0.1:5432:5432" # local access only
+      - '127.0.0.1:5432:5432' # local access only
     volumes:
       - pgdata:/var/lib/postgresql/data
     healthcheck:
       # 127.0.0.1 (TCP) so the check does not pass on the temporary init-time server
-      test: ["CMD-SHELL", "pg_isready -U postgres -h 127.0.0.1 -d nabavaradar"]
+      test: ['CMD-SHELL', 'pg_isready -U postgres -h 127.0.0.1 -d nabavaradar']
       interval: 3s
       timeout: 3s
       retries: 30
@@ -25,10 +25,10 @@ services:
   mailpit:
     image: axllent/mailpit:latest
     ports:
-      - "127.0.0.1:1025:1025" # SMTP
-      - "127.0.0.1:8025:8025" # web UI
+      - '127.0.0.1:1025:1025' # SMTP
+      - '127.0.0.1:8025:8025' # web UI
     healthcheck:
-      test: ["CMD", "/mailpit", "readyz"]
+      test: ['CMD', '/mailpit', 'readyz']
       interval: 3s
       timeout: 3s
       retries: 20

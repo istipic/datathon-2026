@@ -1,0 +1,320 @@
+/* Component styles for @dt/ui (plain CSS using tokens.css; no Tailwind needed). */
+
+html {
+  font-family: var(--font-sans);
+  font-size: 100%;
+  line-height: var(--leading-normal);
+  color: rgb(var(--fg));
+  background: rgb(var(--bg));
+}
+
+body {
+  margin: 0;
+}
+
+/* Numbers: IBM Plex Mono, tabular */
+.num,
+.dt-num {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Visible keyboard focus everywhere */
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+.dt-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Skip link */
+.dt-skip-link {
+  position: absolute;
+  left: var(--space-2);
+  top: -100px;
+  z-index: 1000;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-md);
+  background: rgb(var(--neutral-900));
+  color: rgb(var(--white));
+  font-weight: 600;
+  text-decoration: none;
+}
+.dt-skip-link:focus {
+  top: var(--space-2);
+}
+
+/* App shell */
+.dt-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.dt-header {
+  background: rgb(var(--brand-700));
+  color: rgb(var(--white));
+}
+.dt-header__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4);
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: var(--space-3) var(--space-4);
+}
+.dt-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: inherit;
+  text-decoration: none;
+}
+.dt-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.dt-nav a {
+  display: inline-block;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  color: inherit;
+  text-decoration: none;
+}
+.dt-nav a:hover {
+  background: rgb(var(--white) / 0.16);
+}
+.dt-nav a[aria-current='page'] {
+  background: rgb(var(--white));
+  color: rgb(var(--brand-700));
+  font-weight: 600;
+}
+.dt-header :where(a, button):focus-visible {
+  outline-color: rgb(var(--white));
+}
+.dt-main {
+  flex: 1;
+  width: 100%;
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: var(--space-6) var(--space-4);
+  box-sizing: border-box;
+}
+.dt-main:focus {
+  outline: none;
+}
+.dt-footer {
+  background: rgb(var(--neutral-100));
+  border-top: 1px solid rgb(var(--border));
+  color: rgb(var(--fg-muted));
+  font-size: var(--text-sm);
+}
+.dt-footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-6);
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: var(--space-4);
+}
+.dt-footer a,
+.dt-link {
+  color: rgb(var(--link));
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Chips and badges (always carry text + glyph, never colour alone) */
+.dt-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 2px var(--space-2);
+  border: 1px solid transparent;
+  border-radius: var(--radius-full);
+  font-size: var(--text-sm);
+  line-height: var(--leading-tight);
+  white-space: nowrap;
+}
+.dt-chip--success {
+  background: rgb(var(--success-bg));
+  color: rgb(var(--success-fg));
+  border-color: rgb(var(--success-border));
+}
+.dt-chip--warning {
+  background: rgb(var(--warning-bg));
+  color: rgb(var(--warning-fg));
+  border-color: rgb(var(--warning-border));
+}
+.dt-chip--danger {
+  background: rgb(var(--danger-bg));
+  color: rgb(var(--danger-fg));
+  border-color: rgb(var(--danger-border));
+}
+.dt-chip--neutral {
+  background: rgb(var(--neutral-100));
+  color: rgb(var(--neutral-700));
+  border-color: rgb(var(--neutral-400));
+}
+
+/* Source badge */
+.dt-source {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-2);
+  align-items: baseline;
+  font-size: var(--text-sm);
+  color: rgb(var(--fg-muted));
+}
+
+/* Map */
+.dt-map {
+  position: relative;
+  width: 100%;
+  min-height: 20rem;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+.dt-map__canvas {
+  position: absolute;
+  inset: 0;
+}
+.dt-map__notice {
+  position: absolute;
+  left: var(--space-2);
+  top: var(--space-2);
+  z-index: 2;
+  max-width: 70%;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  background: rgb(var(--warning-bg));
+  color: rgb(var(--warning-fg));
+  font-size: var(--text-sm);
+}
+
+/* States */
+.dt-state {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2);
+  padding: var(--space-6);
+  border: 1px solid rgb(var(--border));
+  border-radius: var(--radius-lg);
+  background: rgb(var(--bg-subtle));
+}
+.dt-state--error {
+  border-color: rgb(var(--danger-border));
+  background: rgb(var(--danger-bg));
+  color: rgb(var(--danger-fg));
+}
+.dt-state__title {
+  margin: 0;
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+.dt-state__body {
+  margin: 0;
+}
+.dt-button {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.5rem;
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  background: rgb(var(--brand-600));
+  color: rgb(var(--white));
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+.dt-button:hover {
+  background: rgb(var(--brand-700));
+}
+
+/* Skeleton */
+.dt-skeleton__line {
+  height: 1rem;
+  margin: var(--space-2) 0;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(
+    90deg,
+    rgb(var(--neutral-200)) 25%,
+    rgb(var(--neutral-100)) 50%,
+    rgb(var(--neutral-200)) 75%
+  );
+  background-size: 200% 100%;
+  animation: dt-shimmer 1.4s ease-in-out infinite;
+}
+@keyframes dt-shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+/* Table */
+.dt-table-wrap {
+  overflow-x: auto;
+}
+.dt-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+.dt-table caption {
+  padding: var(--space-2) 0;
+  text-align: left;
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+.dt-table th,
+.dt-table td {
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid rgb(var(--border));
+  text-align: left;
+  vertical-align: top;
+}
+.dt-table th {
+  background: rgb(var(--neutral-100));
+  font-weight: 600;
+}
+
+h1 {
+  font-size: var(--text-2xl);
+  line-height: var(--leading-tight);
+}
+h2 {
+  font-size: var(--text-xl);
+}
+
+/* Respect reduced motion: no animations or smooth transitions */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

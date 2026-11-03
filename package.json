@@ -1,0 +1,27 @@
+{
+  "name": "datathon-2026",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Monorepo for blizu, otporno and nabavaradar (Datathon Portala otvorenih podataka 2026)",
+  "license": "EUPL-1.2",
+  "packageManager": "pnpm@9.15.9",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "pnpm -r build",
+    "test": "pnpm -r test",
+    "lint": "pnpm -r lint && prettier --check .",
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.64.1",
+    "eslint": "^10.14.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "globals": "^17.14.0",
+    "prettier": "^3.9.10",
+    "typescript": "5",
+    "typescript-eslint": "^8.72.1"
+  }
+}
