@@ -1,0 +1,12 @@
+# Extend the default rules. Only paths that are gitignored (never committed) are allowlisted so a
+# local `gitleaks dir .` is meaningful; CI scans the git history, where these paths do not exist.
+[extend]
+useDefault = true
+
+[allowlist]
+description = "gitignored local paths"
+paths = [
+  '''(^|/)\.venv/''',
+  '''(^|/)node_modules/''',
+  '''(^|/)\.env$''',
+]

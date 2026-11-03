@@ -1,0 +1,122 @@
+# Production stack: db, three APIs, one-shot SPA publishers and Caddy.
+#   docker compose -f docker-compose.prod.yml --env-file .env up -d --build
+# Requires the app tasks to have added apps/<app>/api and apps/<app>/web (see infra/*.Dockerfile).
+name: datathon-2026-prod
+
+x-api: &api-defaults
+  restart: unless-stopped
+  depends_on:
+    db:
+      condition: service_healthy
+  environment: &api-env
+    ENV: prod
+    LOG_LEVEL: ${LOG_LEVEL:-INFO}
+    CONTACT_EMAIL: ${CONTACT_EMAIL:?set CONTACT_EMAIL in .env}
+    SMTP_HOST: ${SMTP_HOST:-}
+    SMTP_PORT: ${SMTP_PORT:-587}
+    SMTP_USER: ${SMTP_USER:-}
+    SMTP_PASSWORD: ${SMTP_PASSWORD:-}
+    SMTP_FROM: ${SMTP_FROM:-}
+    GIT_SHA: ${GIT_SHA:-unknown}
+
+services:
+  db:
+    build: ./infra/db
+    image: datathon-2026-db:prod
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres -h 127.0.0.1 -d nabavaradar']
+      interval: 5s
+      timeout: 3s
+      retries: 30
+      start_period: 10s
+    restart: unless-stopped
+
+  blizu-api:
+    <<: *api-defaults
+    build:
+      context: .
+      dockerfile: infra/python-api.Dockerfile
+      args: { APP: blizu }
+    image: datathon-2026-blizu-api:prod
+    environment:
+      <<: *api-env
+      APP_NAME: blizu
+      DATABASE_URL: postgresql+psycopg://postgres:${POSTGRES_PASSWORD}@db:5432/blizu
+      PUBLIC_BASE_URL: https://${BLIZU_HOST:?set BLIZU_HOST in .env}
+
+  otporno-api:
+    <<: *api-defaults
+    build:
+      context: .
+      dockerfile: infra/python-api.Dockerfile
+      args: { APP: otporno }
+    image: datathon-2026-otporno-api:prod
+    environment:
+      <<: *api-env
+      APP_NAME: otporno
+      DATABASE_URL: postgresql+psycopg://postgres:${POSTGRES_PASSWORD}@db:5432/otporno
+      PUBLIC_BASE_URL: https://${OTPORNO_HOST:?set OTPORNO_HOST in .env}
+
+  nabavaradar-api:
+    <<: *api-defaults
+    build:
+      context: .
+      dockerfile: infra/python-api.Dockerfile
+      args: { APP: nabavaradar }
+    image: datathon-2026-nabavaradar-api:prod
+    environment:
+      <<: *api-env
+      APP_NAME: nabavaradar
+      DATABASE_URL: postgresql+psycopg://postgres:${POSTGRES_PASSWORD}@db:5432/nabavaradar
+      PUBLIC_BASE_URL: https://${NABAVA_HOST:?set NABAVA_HOST in .env}
+
+  # One-shot publishers: copy the built SPA into the shared "srv" volume, then exit.
+  blizu-web:
+    build: { context: ., dockerfile: infra/web.Dockerfile, args: { APP: blizu } }
+    image: datathon-2026-blizu-web:prod
+    volumes: ['srv:/srv']
+    restart: 'no'
+  otporno-web:
+    build: { context: ., dockerfile: infra/web.Dockerfile, args: { APP: otporno } }
+    image: datathon-2026-otporno-web:prod
+    volumes: ['srv:/srv']
+    restart: 'no'
+  nabavaradar-web:
+    build: { context: ., dockerfile: infra/web.Dockerfile, args: { APP: nabavaradar } }
+    image: datathon-2026-nabavaradar-web:prod
+    volumes: ['srv:/srv']
+    restart: 'no'
+
+  caddy:
+    image: caddy:2
+    ports:
+      - '80:80'
+      - '443:443'
+      - '443:443/udp'
+    environment:
+      BLIZU_HOST: ${BLIZU_HOST:?set BLIZU_HOST in .env}
+      OTPORNO_HOST: ${OTPORNO_HOST:?set OTPORNO_HOST in .env}
+      NABAVA_HOST: ${NABAVA_HOST:?set NABAVA_HOST in .env}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - srv:/srv:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      blizu-web: { condition: service_completed_successfully }
+      otporno-web: { condition: service_completed_successfully }
+      nabavaradar-web: { condition: service_completed_successfully }
+      blizu-api: { condition: service_started }
+      otporno-api: { condition: service_started }
+      nabavaradar-api: { condition: service_started }
+    restart: unless-stopped
+
+volumes:
+  pgdata:
+  srv:
+  caddy_data:
+  caddy_config:

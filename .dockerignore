@@ -1,0 +1,16 @@
+.git
+.env
+.env.*
+!.env.example
+.venv
+**/node_modules
+**/dist
+.http-cache
+.pytest_cache
+.mypy_cache
+.ruff_cache
+.coverage
+htmlcov
+backups
+**/__pycache__
+packages/core/tests

@@ -1,0 +1,51 @@
+# Production reverse proxy: serves the built SPAs from /srv/<app> and proxies the API.
+# Host names come from the environment: BLIZU_HOST, OTPORNO_HOST, NABAVA_HOST.
+# Caddy obtains TLS certificates automatically for public host names.
+#
+# CSP = the policy from the foundation spec plus two additions MapLibre needs to work at all:
+#   worker-src 'self' blob:   (MapLibre runs its tile workers from a blob: URL)
+#   connect-src ... https://tile.openstreetmap.org  (the raster fallback fetches tiles via fetch())
+
+(spa_security) {
+	header {
+		Content-Security-Policy "default-src 'self'; img-src 'self' data: https://*.openfreemap.org https://tile.openstreetmap.org; connect-src 'self' https://tiles.openfreemap.org https://tile.openstreetmap.org; style-src 'self' 'unsafe-inline'; worker-src 'self' blob:; frame-ancestors 'none'"
+		X-Content-Type-Options "nosniff"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		Permissions-Policy "geolocation=(self)"
+		-Server
+	}
+	encode zstd gzip
+}
+
+(spa) {
+	# {args[0]} = app folder under /srv, {args[1]} = upstream api service
+	import spa_security
+
+	handle /api/* {
+		reverse_proxy {args[1]}:8000
+	}
+	handle /health {
+		reverse_proxy {args[1]}:8000
+	}
+	handle {
+		root * /srv/{args[0]}
+		@assets path /assets/*
+		header @assets Cache-Control "public, max-age=31536000, immutable"
+		@html not path /assets/*
+		header @html Cache-Control "no-cache"
+		try_files {path} /index.html
+		file_server
+	}
+}
+
+{$BLIZU_HOST} {
+	import spa blizu blizu-api
+}
+
+{$OTPORNO_HOST} {
+	import spa otporno otporno-api
+}
+
+{$NABAVA_HOST} {
+	import spa nabavaradar nabavaradar-api
+}
