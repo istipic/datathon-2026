@@ -17,6 +17,7 @@ class BlizuSettings(CoreSettings):
     app_name: str = "blizu"
     data_dir: Path = Path("apps/blizu/data")
     hf_home: str | None = None
+    semantic_search: bool = True  # /search uses the e5 model when the extra is installed
     osm_feature_source: Literal["auto", "overpass", "geofabrik"] = "auto"
     cors_origins: str = Field(
         default="http://localhost:5173,http://127.0.0.1:5173",

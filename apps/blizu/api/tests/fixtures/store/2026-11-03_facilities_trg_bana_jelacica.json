@@ -1,0 +1,7584 @@
+[
+ {
+  "id": 1,
+  "category": "prijevoz",
+  "name": "Trg bana J. Jelačića",
+  "address": null,
+  "source_id": "zet-gtfs",
+  "tier": "official",
+  "lon": 15.976898,
+  "lat": 45.812963,
+  "attrs": {
+   "ref_date": "2026-11-04",
+   "dep_per_hour": 106.0
+  }
+ },
+ {
+  "id": 2,
+  "category": "prijevoz",
+  "name": "Frankopanska",
+  "address": null,
+  "source_id": "zet-gtfs",
+  "tier": "official",
+  "lon": 15.969278,
+  "lat": 45.812886,
+  "attrs": {
+   "ref_date": "2026-11-04",
+   "dep_per_hour": 104.5
+  }
+ },
+ {
+  "id": 3,
+  "category": "prijevoz",
+  "name": "Vodnikova",
+  "address": null,
+  "source_id": "zet-gtfs",
+  "tier": "official",
+  "lon": 15.967076,
+  "lat": 45.805766,
+  "attrs": {
+   "ref_date": "2026-11-04",
+   "dep_per_hour": 100.0
+  }
+ },
+ {
+  "id": 4,
+  "category": "prijevoz",
+  "name": "Držićeva",
+  "address": null,
+  "source_id": "zet-gtfs",
+  "tier": "official",
+  "lon": 15.995423,
+  "lat": 45.801132,
+  "attrs": {
+   "ref_date": "2026-11-04",
+   "dep_per_hour": 96.5
+  }
+ },
+ {
+  "id": 6,
+  "category": "prijevoz",
+  "name": "Šubićeva",
+  "address": null,
+  "source_id": "zet-gtfs",
+  "tier": "official",
+  "lon": 15.993348,
+  "lat": 45.810432,
+  "attrs": {
+   "ref_date": "2026-11-04",
+   "dep_per_hour": 79.0
+  }
+ },
+ {
+  "id": 8,
+  "category": "prijevoz",
+  "name": "Draškovićeva",
+  "address": null,
+  "source_id": "zet-gtfs",
+  "tier": "official",
+  "lon": 15.983464,
+  "lat": 45.813091,
+  "attrs": {
+   "ref_date": "2026-11-04",
+   "dep_per_hour": 79.0
+  }
+ },
+ {
+  "id": 10,
+  "category": "prijevoz",
+  "name": "Autobusni kol.",
+  "address": null,
+  "source_id": "zet-gtfs",
+  "tier": "official",
+  "lon": 15.993777,
+  "lat": 45.804055,
+  "attrs": {
+   "ref_date": "2026-11-04",
+   "dep_per_hour": 77.5
+  }
+ },
+ {
+  "id": 14,
+  "category": "prijevoz",
+  "name": "Glavni kolodvor",
+  "address": null,
+  "source_id": "zet-gtfs",
+  "tier": "official",
+  "lon": 15.978869,
+  "lat": 45.805224,
+  "attrs": {
+   "ref_date": "2026-11-04",
+   "dep_per_hour": 69.0
+  }
+ },
+ {
+  "id": 18,
+  "category": "prijevoz",
+  "name": "Studentski centar",
+  "address": null,
+  "source_id": "zet-gtfs",
+  "tier": "official",
+  "lon": 15.964442,
+  "lat": 45.802692,
+  "attrs": {
+   "ref_date": "2026-11-04",
+   "dep_per_hour": 64.0
+  }
+ },
+ {
+  "id": 25,
+  "category": "prijevoz",
+  "name": "Trg Rep. Hrvatske",
+  "address": null,
+  "source_id": "zet-gtfs",
+  "tier": "official",
+  "lon": 15.968495,
+  "lat": 45.808613,
+  "attrs": {
+   "ref_date": "2026-11-04",
+   "dep_per_hour": 58.5
+  }
+ },
+ {
+  "id": 26,
+  "category": "prijevoz",
+  "name": "Branimir centar",
+  "address": null,
+  "source_id": "zet-gtfs",
+  "tier": "official",
+  "lon": 15.984107,
+  "lat": 45.805505,
+  "attrs": {
+   "ref_date": "2026-11-04",
+   "dep_per_hour": 58.5
+  }
+ },
+ {
+  "id": 44,
+  "category": "prijevoz",
+  "name": "Petrova",
+  "address": null,
+  "source_id": "zet-gtfs",
+  "tier": "official",
+  "lon": 15.991378,
+  "lat": 45.813844,
+  "attrs": {
+   "ref_date": "2026-11-04",
+   "dep_per_hour": 49.5
+  }
+ },
+ {
+  "id": 45,
+  "category": "prijevoz",
+  "name": "Vončinina",
+  "address": null,
+  "source_id": "zet-gtfs",
+  "tier": "official",
+  "lon": 15.986646,
+  "lat": 45.813777,
+  "attrs": {
+   "ref_date": "2026-11-04",
+   "dep_per_hour": 49.0
+  }
+ },
+ {
+  "id": 46,
+  "category": "prijevoz",
+  "name": "Branim. tržnica",
+  "address": null,
+  "source_id": "zet-gtfs",
+  "tier": "official",
+  "lon": 15.991709,
+  "lat": 45.806136,
+  "attrs": {
+   "ref_date": "2026-11-04",
+   "dep_per_hour": 49.0
+  }
+ },
+ {
+  "id": 48,
+  "category": "prijevoz",
+  "name": "Sheraton",
+  "address": null,
+  "source_id": "zet-gtfs",
+  "tier": "official",
+  "lon": 15.983936,
+  "lat": 45.807714,
+  "attrs": {
+   "ref_date": "2026-11-04",
+   "dep_per_hour": 48.0
+  }
+ },
+ {
+  "id": 50,
+  "category": "prijevoz",
+  "name": "Trg žrt. fašizma",
+  "address": null,
+  "source_id": "zet-gtfs",
+  "tier": "official",
+  "lon": 15.988003,
+  "lat": 45.80973,
+  "attrs": {
+   "ref_date": "2026-11-04",
+   "dep_per_hour": 47.5
+  }
+ },
+ {
+  "id": 51,
+  "category": "prijevoz",
+  "name": "Britanski trg",
+  "address": null,
+  "source_id": "zet-gtfs",
+  "tier": "official",
+  "lon": 15.96391,
+  "lat": 45.812372,
+  "attrs": {
+   "ref_date": "2026-11-04",
+   "dep_per_hour": 47.5
+  }
+ },
+ {
+  "id": 55,
+  "category": "prijevoz",
+  "name": "Botanički vrt",
+  "address": null,
+  "source_id": "zet-gtfs",
+  "tier": "official",
+  "lon": 15.973914,
+  "lat": 45.805558,
+  "attrs": {
+   "ref_date": "2026-11-04",
+   "dep_per_hour": 40.5
+  }
+ },
+ {
+  "id": 58,
+  "category": "prijevoz",
+  "name": "Badalićeva",
+  "address": null,
+  "source_id": "zet-gtfs",
+  "tier": "official",
+  "lon": 15.959487,
+  "lat": 45.801828,
+  "attrs": {
+   "ref_date": "2026-11-04",
+   "dep_per_hour": 40.0
+  }
+ },
+ {
+  "id": 65,
+  "category": "prijevoz",
+  "name": "Tržnica Kvatrić",
+  "address": null,
+  "source_id": "zet-gtfs",
+  "tier": "official",
+  "lon": 15.995659,
+  "lat": 45.813163,
+  "attrs": {
+   "ref_date": "2026-11-04",
+   "dep_per_hour": 38.5
+  }
+ },
+ {
+  "id": 70,
+  "category": "prijevoz",
+  "name": "Tehnički muzej",
+  "address": null,
+  "source_id": "zet-gtfs",
+  "tier": "official",
+  "lon": 15.963914,
+  "lat": 45.803364,
+  "attrs": {
+   "ref_date": "2026-11-04",
+   "dep_per_hour": 35.5
+  }
+ },
+ {
+  "id": 85,
+  "category": "prijevoz",
+  "name": "Glavni kolodvor",
+  "address": null,
+  "source_id": "zet-gtfs",
+  "tier": "official",
+  "lon": 15.977845,
+  "lat": 45.80335,
+  "attrs": {
+   "ref_date": "2026-11-04",
+   "dep_per_hour": 32.5
+  }
+ },
+ {
+  "id": 94,
+  "category": "prijevoz",
+  "name": "Sveučilišna al.",
+  "address": null,
+  "source_id": "zet-gtfs",
+  "tier": "official",
+  "lon": 15.970253,
+  "lat": 45.799802,
+  "attrs": {
+   "ref_date": "2026-11-04",
+   "dep_per_hour": 31.0
+  }
+ },
+ {
+  "id": 97,
+  "category": "prijevoz",
+  "name": "Trg P. Krešimira",
+  "address": null,
+  "source_id": "zet-gtfs",
+  "tier": "official",
+  "lon": 15.991699,
+  "lat": 45.807852,
+  "attrs": {
+   "ref_date": "2026-11-04",
+   "dep_per_hour": 30.5
+  }
+ },
+ {
+  "id": 98,
+  "category": "prijevoz",
+  "name": "Miramarska",
+  "address": null,
+  "source_id": "zet-gtfs",
+  "tier": "official",
+  "lon": 15.974592,
+  "lat": 45.800006,
+  "attrs": {
+   "ref_date": "2026-11-04",
+   "dep_per_hour": 30.5
+  }
+ },
+ {
+  "id": 99,
+  "category": "prijevoz",
+  "name": "Kruge",
+  "address": null,
+  "source_id": "zet-gtfs",
+  "tier": "official",
+  "lon": 15.985175,
+  "lat": 45.800591,
+  "attrs": {
+   "ref_date": "2026-11-04",
+   "dep_per_hour": 30.5
+  }
+ },
+ {
+  "id": 102,
+  "category": "prijevoz",
+  "name": "Lisinski",
+  "address": null,
+  "source_id": "zet-gtfs",
+  "tier": "official",
+  "lon": 15.979006,
+  "lat": 45.800258,
+  "attrs": {
+   "ref_date": "2026-11-04",
+   "dep_per_hour": 30.0
+  }
+ },
+ {
+  "id": 103,
+  "category": "prijevoz",
+  "name": "Strojarska",
+  "address": null,
+  "source_id": "zet-gtfs",
+  "tier": "official",
+  "lon": 15.989235,
+  "lat": 45.80078,
+  "attrs": {
+   "ref_date": "2026-11-04",
+   "dep_per_hour": 30.0
+  }
+ },
+ {
+  "id": 104,
+  "category": "prijevoz",
+  "name": "Grškovićeva",
+  "address": null,
+  "source_id": "zet-gtfs",
+  "tier": "official",
+  "lon": 15.979336,
+  "lat": 45.819962,
+  "attrs": {
+   "ref_date": "2026-11-04",
+   "dep_per_hour": 29.0
+  }
+ },
+ {
+  "id": 105,
+  "category": "prijevoz",
+  "name": "Belostenčeva",
+  "address": null,
+  "source_id": "zet-gtfs",
+  "tier": "official",
+  "lon": 15.979843,
+  "lat": 45.82244,
+  "attrs": {
+   "ref_date": "2026-11-04",
+   "dep_per_hour": 29.0
+  }
+ },
+ {
+  "id": 111,
+  "category": "prijevoz",
+  "name": "Zrinjevac",
+  "address": null,
+  "source_id": "zet-gtfs",
+  "tier": "official",
+  "lon": 15.977739,
+  "lat": 45.809338,
+  "attrs": {
+   "ref_date": "2026-11-04",
+   "dep_per_hour": 29.0
+  }
+ },
+ {
+  "id": 127,
+  "category": "prijevoz",
+  "name": "Traumatologija",
+  "address": null,
+  "source_id": "zet-gtfs",
+  "tier": "official",
+  "lon": 15.983665,
+  "lat": 45.810202,
+  "attrs": {
+   "ref_date": "2026-11-04",
+   "dep_per_hour": 26.5
+  }
+ },
+ {
+  "id": 130,
+  "category": "prijevoz",
+  "name": "Trg hr. velikana",
+  "address": null,
+  "source_id": "zet-gtfs",
+  "tier": "official",
+  "lon": 15.98435,
+  "lat": 45.811664,
+  "attrs": {
+   "ref_date": "2026-11-04",
+   "dep_per_hour": 25.5
+  }
+ },
+ {
+  "id": 143,
+  "category": "prijevoz",
+  "name": "Bijenička",
+  "address": null,
+  "source_id": "zet-gtfs",
+  "tier": "official",
+  "lon": 15.985024,
+  "lat": 45.825035,
+  "attrs": {
+   "ref_date": "2026-11-04",
+   "dep_per_hour": 22.5
+  }
+ },
+ {
+  "id": 145,
+  "category": "prijevoz",
+  "name": "Medveščak",
+  "address": null,
+  "source_id": "zet-gtfs",
+  "tier": "official",
+  "lon": 15.979196,
+  "lat": 45.819077,
+  "attrs": {
+   "ref_date": "2026-11-04",
+   "dep_per_hour": 21.5
+  }
+ },
+ {
+  "id": 148,
+  "category": "prijevoz",
+  "name": "Rockefellerova",
+  "address": null,
+  "source_id": "zet-gtfs",
+  "tier": "official",
+  "lon": 15.981843,
+  "lat": 45.823112,
+  "attrs": {
+   "ref_date": "2026-11-04",
+   "dep_per_hour": 21.0
+  }
+ },
+ {
+  "id": 183,
+  "category": "prijevoz",
+  "name": "Vrbik",
+  "address": null,
+  "source_id": "zet-gtfs",
+  "tier": "official",
+  "lon": 15.967661,
+  "lat": 45.7997,
+  "attrs": {
+   "ref_date": "2026-11-04",
+   "dep_per_hour": 15.5
+  }
+ },
+ {
+  "id": 184,
+  "category": "prijevoz",
+  "name": "HNK 2 - Adžijina",
+  "address": null,
+  "source_id": "zet-gtfs",
+  "tier": "official",
+  "lon": 15.961814,
+  "lat": 45.80769,
+  "attrs": {
+   "ref_date": "2026-11-04",
+   "dep_per_hour": 15.5
+  }
+ },
+ {
+  "id": 240,
+  "category": "prijevoz",
+  "name": "Kaptol",
+  "address": null,
+  "source_id": "zet-gtfs",
+  "tier": "official",
+  "lon": 15.97855,
+  "lat": 45.81561,
+  "attrs": {
+   "ref_date": "2026-11-04",
+   "dep_per_hour": 12.5
+  }
+ },
+ {
+  "id": 272,
+  "category": "prijevoz",
+  "name": "Ilirski trg",
+  "address": null,
+  "source_id": "zet-gtfs",
+  "tier": "official",
+  "lon": 15.975178,
+  "lat": 45.819287,
+  "attrs": {
+   "ref_date": "2026-11-04",
+   "dep_per_hour": 11.5
+  }
+ },
+ {
+  "id": 326,
+  "category": "prijevoz",
+  "name": "Britanski trg",
+  "address": null,
+  "source_id": "zet-gtfs",
+  "tier": "official",
+  "lon": 15.964151,
+  "lat": 45.813954,
+  "attrs": {
+   "ref_date": "2026-11-04",
+   "dep_per_hour": 10.0
+  }
+ },
+ {
+  "id": 380,
+  "category": "prijevoz",
+  "name": "Bolnica Srebrnjak",
+  "address": null,
+  "source_id": "zet-gtfs",
+  "tier": "official",
+  "lon": 15.992949,
+  "lat": 45.824873,
+  "attrs": {
+   "ref_date": "2026-11-04",
+   "dep_per_hour": 8.0
+  }
+ },
+ {
+  "id": 381,
+  "category": "prijevoz",
+  "name": "Bolnica Vuk Vrhovac",
+  "address": null,
+  "source_id": "zet-gtfs",
+  "tier": "official",
+  "lon": 15.995428,
+  "lat": 45.819965,
+  "attrs": {
+   "ref_date": "2026-11-04",
+   "dep_per_hour": 8.0
+  }
+ },
+ {
+  "id": 382,
+  "category": "prijevoz",
+  "name": "Mlinarska",
+  "address": null,
+  "source_id": "zet-gtfs",
+  "tier": "official",
+  "lon": 15.975573,
+  "lat": 45.822326,
+  "attrs": {
+   "ref_date": "2026-11-04",
+   "dep_per_hour": 8.0
+  }
+ },
+ {
+  "id": 411,
+  "category": "prijevoz",
+  "name": "Srebrnjak 10",
+  "address": null,
+  "source_id": "zet-gtfs",
+  "tier": "official",
+  "lon": 15.996337,
+  "lat": 45.817885,
+  "attrs": {
+   "ref_date": "2026-11-04",
+   "dep_per_hour": 7.5
+  }
+ },
+ {
+  "id": 421,
+  "category": "prijevoz",
+  "name": "Zamenhofova",
+  "address": null,
+  "source_id": "zet-gtfs",
+  "tier": "official",
+  "lon": 15.967083,
+  "lat": 45.815913,
+  "attrs": {
+   "ref_date": "2026-11-04",
+   "dep_per_hour": 7.5
+  }
+ },
+ {
+  "id": 422,
+  "category": "prijevoz",
+  "name": "Dječji dom Nazorova",
+  "address": null,
+  "source_id": "zet-gtfs",
+  "tier": "official",
+  "lon": 15.966631,
+  "lat": 45.817733,
+  "attrs": {
+   "ref_date": "2026-11-04",
+   "dep_per_hour": 7.5
+  }
+ },
+ {
+  "id": 423,
+  "category": "prijevoz",
+  "name": "Tuškanac",
+  "address": null,
+  "source_id": "zet-gtfs",
+  "tier": "official",
+  "lon": 15.969016,
+  "lat": 45.821238,
+  "attrs": {
+   "ref_date": "2026-11-04",
+   "dep_per_hour": 7.5
+  }
+ },
+ {
+  "id": 424,
+  "category": "prijevoz",
+  "name": "Paunovac",
+  "address": null,
+  "source_id": "zet-gtfs",
+  "tier": "official",
+  "lon": 15.970589,
+  "lat": 45.825005,
+  "attrs": {
+   "ref_date": "2026-11-04",
+   "dep_per_hour": 7.5
+  }
+ },
+ {
+  "id": 427,
+  "category": "prijevoz",
+  "name": "Muzej grada Zagreba",
+  "address": null,
+  "source_id": "zet-gtfs",
+  "tier": "official",
+  "lon": 15.974668,
+  "lat": 45.818188,
+  "attrs": {
+   "ref_date": "2026-11-04",
+   "dep_per_hour": 7.5
+  }
+ },
+ {
+  "id": 428,
+  "category": "prijevoz",
+  "name": "Kamenita vrata",
+  "address": null,
+  "source_id": "zet-gtfs",
+  "tier": "official",
+  "lon": 15.975571,
+  "lat": 45.815862,
+  "attrs": {
+   "ref_date": "2026-11-04",
+   "dep_per_hour": 7.5
+  }
+ },
+ {
+  "id": 431,
+  "category": "prijevoz",
+  "name": "HNK 2 - Adžijina",
+  "address": null,
+  "source_id": "zet-gtfs",
+  "tier": "official",
+  "lon": 15.960206,
+  "lat": 45.807501,
+  "attrs": {
+   "ref_date": "2026-11-04",
+   "dep_per_hour": 7.0
+  }
+ },
+ {
+  "id": 445,
+  "category": "prijevoz",
+  "name": "Trg Mažuranića",
+  "address": null,
+  "source_id": "zet-gtfs",
+  "tier": "official",
+  "lon": 15.969354,
+  "lat": 45.807993,
+  "attrs": {
+   "ref_date": "2026-11-04",
+   "dep_per_hour": 7.0
+  }
+ },
+ {
+  "id": 468,
+  "category": "prijevoz",
+  "name": "HNK 2 - Adžijina",
+  "address": null,
+  "source_id": "zet-gtfs",
+  "tier": "official",
+  "lon": 15.96087,
+  "lat": 45.80774,
+  "attrs": {
+   "ref_date": "2026-11-04",
+   "dep_per_hour": 6.5
+  }
+ },
+ {
+  "id": 525,
+  "category": "prijevoz",
+  "name": "Pavlinovićeva",
+  "address": null,
+  "source_id": "zet-gtfs",
+  "tier": "official",
+  "lon": 15.96102,
+  "lat": 45.817019,
+  "attrs": {
+   "ref_date": "2026-11-04",
+   "dep_per_hour": 6.0
+  }
+ },
+ {
+  "id": 526,
+  "category": "prijevoz",
+  "name": "Pantovčak 82",
+  "address": null,
+  "source_id": "zet-gtfs",
+  "tier": "official",
+  "lon": 15.960507,
+  "lat": 45.819534,
+  "attrs": {
+   "ref_date": "2026-11-04",
+   "dep_per_hour": 6.0
+  }
+ },
+ {
+  "id": 527,
+  "category": "prijevoz",
+  "name": "OŠ Pantovčak",
+  "address": null,
+  "source_id": "zet-gtfs",
+  "tier": "official",
+  "lon": 15.960095,
+  "lat": 45.82227,
+  "attrs": {
+   "ref_date": "2026-11-04",
+   "dep_per_hour": 6.0
+  }
+ },
+ {
+  "id": 528,
+  "category": "prijevoz",
+  "name": "Goljak",
+  "address": null,
+  "source_id": "zet-gtfs",
+  "tier": "official",
+  "lon": 15.961174,
+  "lat": 45.82485,
+  "attrs": {
+   "ref_date": "2026-11-04",
+   "dep_per_hour": 6.0
+  }
+ },
+ {
+  "id": 532,
+  "category": "prijevoz",
+  "name": "Bolnica Goljak",
+  "address": null,
+  "source_id": "zet-gtfs",
+  "tier": "official",
+  "lon": 15.963916,
+  "lat": 45.818493,
+  "attrs": {
+   "ref_date": "2026-11-04",
+   "dep_per_hour": 6.0
+  }
+ },
+ {
+  "id": 533,
+  "category": "prijevoz",
+  "name": "Park Zelengaj",
+  "address": null,
+  "source_id": "zet-gtfs",
+  "tier": "official",
+  "lon": 15.965563,
+  "lat": 45.821176,
+  "attrs": {
+   "ref_date": "2026-11-04",
+   "dep_per_hour": 6.0
+  }
+ },
+ {
+  "id": 2619,
+  "category": "vrtic",
+  "name": "BUDUĆNOST",
+  "address": "Mihanovićeva ulica 30/2",
+  "source_id": "zg-vrtici",
+  "tier": "official",
+  "lon": 15.972934,
+  "lat": 45.8061451,
+  "attrs": {
+   "web": "www.vrtic.buducnost.zagreb.hr",
+   "telefon": "01 485 6713",
+   "vr_vrtica": "Gradski vrtić",
+   "grad_cetvr": "DONJI GRAD",
+   "gradjevina": "namjenska građevina",
+   "strani_jez": "engleski",
+   "tip_vrtica": "CENTRALNI"
+  }
+ },
+ {
+  "id": 2620,
+  "category": "vrtic",
+  "name": "BUDUĆNOST",
+  "address": "Haulikova ulica 6",
+  "source_id": "zg-vrtici",
+  "tier": "official",
+  "lon": 15.9749784,
+  "lat": 45.8059999,
+  "attrs": {
+   "web": null,
+   "telefon": "01 457 7336",
+   "vr_vrtica": "Gradski vrtić",
+   "grad_cetvr": "DONJI GRAD",
+   "gradjevina": "namjenska građevina",
+   "strani_jez": null,
+   "tip_vrtica": "PODRUČNI"
+  }
+ },
+ {
+  "id": 2664,
+  "category": "vrtic",
+  "name": "KRIJESNICE",
+  "address": "Krajiška ulica 7A",
+  "source_id": "zg-vrtici",
+  "tier": "official",
+  "lon": 15.9591398,
+  "lat": 45.8124168,
+  "attrs": {
+   "web": "www.vrtic.krijesnice.zagreb.hr",
+   "telefon": "01 377 0933",
+   "vr_vrtica": "Gradski vrtić",
+   "grad_cetvr": "DONJI GRAD",
+   "gradjevina": "namjenska građevina",
+   "strani_jez": "engleski",
+   "tip_vrtica": "CENTRALNI"
+  }
+ },
+ {
+  "id": 2665,
+  "category": "vrtic",
+  "name": "KRIJESNICE",
+  "address": "Kordunska ulica 1",
+  "source_id": "zg-vrtici",
+  "tier": "official",
+  "lon": 15.9601112,
+  "lat": 45.8114511,
+  "attrs": {
+   "web": null,
+   "telefon": "01 377 1497",
+   "vr_vrtica": "Gradski vrtić",
+   "grad_cetvr": "DONJI GRAD",
+   "gradjevina": "namjenska građevina",
+   "strani_jez": null,
+   "tip_vrtica": "PODRUČNI"
+  }
+ },
+ {
+  "id": 2666,
+  "category": "vrtic",
+  "name": "KRIJESNICE",
+  "address": "Kordunska ulica 7",
+  "source_id": "zg-vrtici",
+  "tier": "official",
+  "lon": 15.9596802,
+  "lat": 45.8114769,
+  "attrs": {
+   "web": null,
+   "telefon": "01 370 4802",
+   "vr_vrtica": "Gradski vrtić",
+   "grad_cetvr": "DONJI GRAD",
+   "gradjevina": "namjenska građevina",
+   "strani_jez": null,
+   "tip_vrtica": "PODRUČNI"
+  }
+ },
+ {
+  "id": 2694,
+  "category": "vrtic",
+  "name": "MEDVEŠČAK",
+  "address": "Voćarska cesta 69",
+  "source_id": "zg-vrtici",
+  "tier": "official",
+  "lon": 15.9878665,
+  "lat": 45.8178683,
+  "attrs": {
+   "web": "www.vrtic-medvescak.zagreb.hr",
+   "telefon": "01 461 6247",
+   "vr_vrtica": "Gradski vrtić",
+   "grad_cetvr": "GORNJI GRAD-MEDVEŠČAK",
+   "gradjevina": "namjenska građevina",
+   "strani_jez": "engleski",
+   "tip_vrtica": "CENTRALNI"
+  }
+ },
+ {
+  "id": 2695,
+  "category": "vrtic",
+  "name": "MEDVEŠČAK",
+  "address": "Vlaška ulica 97",
+  "source_id": "zg-vrtici",
+  "tier": "official",
+  "lon": 15.9919831,
+  "lat": 45.8140456,
+  "attrs": {
+   "web": null,
+   "telefon": "01 463 5161",
+   "vr_vrtica": "Gradski vrtić",
+   "grad_cetvr": "GORNJI GRAD-MEDVEŠČAK",
+   "gradjevina": "namjenska građevina",
+   "strani_jez": null,
+   "tip_vrtica": "PODRUČNI"
+  }
+ },
+ {
+  "id": 2696,
+  "category": "vrtic",
+  "name": "MEDVEŠČAK",
+  "address": "Ulica Koste Vojnovića 15",
+  "source_id": "zg-vrtici",
+  "tier": "official",
+  "lon": 15.9913317,
+  "lat": 45.812149,
+  "attrs": {
+   "web": null,
+   "telefon": "01 455 5124",
+   "vr_vrtica": "Gradski vrtić",
+   "grad_cetvr": "DONJI GRAD",
+   "gradjevina": "prenamijenjeni stan",
+   "strani_jez": null,
+   "tip_vrtica": "PODRUČNI"
+  }
+ },
+ {
+  "id": 2697,
+  "category": "vrtic",
+  "name": "MEDVEŠČAK",
+  "address": "Ulica Koste Vojnovića 19",
+  "source_id": "zg-vrtici",
+  "tier": "official",
+  "lon": 15.9913552,
+  "lat": 45.8118697,
+  "attrs": {
+   "web": null,
+   "telefon": "01 455 4944",
+   "vr_vrtica": "Gradski vrtić",
+   "grad_cetvr": "DONJI GRAD",
+   "gradjevina": "prenamijenjeni stan",
+   "strani_jez": null,
+   "tip_vrtica": "PODRUČNI"
+  }
+ },
+ {
+  "id": 2698,
+  "category": "vrtic",
+  "name": "MEDVEŠČAK",
+  "address": "Martićeva ulica 14B",
+  "source_id": "zg-vrtici",
+  "tier": "official",
+  "lon": 15.9878969,
+  "lat": 45.8121808,
+  "attrs": {
+   "web": null,
+   "telefon": "01 461 5050",
+   "vr_vrtica": "Gradski vrtić",
+   "grad_cetvr": "DONJI GRAD",
+   "gradjevina": "namjenska građevina",
+   "strani_jez": "engleski",
+   "tip_vrtica": "PODRUČNI"
+  }
+ },
+ {
+  "id": 2699,
+  "category": "vrtic",
+  "name": "MEDVEŠČAK",
+  "address": "Jurkovićeva ulica 14",
+  "source_id": "zg-vrtici",
+  "tier": "official",
+  "lon": 15.9905494,
+  "lat": 45.8158802,
+  "attrs": {
+   "web": null,
+   "telefon": "01 463 3140",
+   "vr_vrtica": "Gradski vrtić",
+   "grad_cetvr": "GORNJI GRAD-MEDVEŠČAK",
+   "gradjevina": "prenamiijenjena kuća",
+   "strani_jez": "engleski",
+   "tip_vrtica": "PODRUČNI"
+  }
+ },
+ {
+  "id": 2723,
+  "category": "vrtic",
+  "name": "RAZLIČAK",
+  "address": "Wellerov vrt 1",
+  "source_id": "zg-vrtici",
+  "tier": "official",
+  "lon": 15.9806111,
+  "lat": 45.810287,
+  "attrs": {
+   "web": "www.vrtic-razlicak.zagreb.hr",
+   "telefon": "01 487 3283",
+   "vr_vrtica": "Gradski vrtić",
+   "grad_cetvr": "DONJI GRAD",
+   "gradjevina": "namjenska građevina",
+   "strani_jez": null,
+   "tip_vrtica": "CENTRALNI"
+  }
+ },
+ {
+  "id": 2725,
+  "category": "vrtic",
+  "name": "RAZLIČAK",
+  "address": "Kaptol 16",
+  "source_id": "zg-vrtici",
+  "tier": "official",
+  "lon": 15.9776702,
+  "lat": 45.8185081,
+  "attrs": {
+   "web": null,
+   "telefon": "01 481 7457",
+   "vr_vrtica": "Gradski vrtić",
+   "grad_cetvr": "GORNJI GRAD-MEDVEŠČAK",
+   "gradjevina": "namjenska građevina",
+   "strani_jez": "engleski",
+   "tip_vrtica": "PODRUČNI"
+  }
+ },
+ {
+  "id": 2726,
+  "category": "vrtic",
+  "name": "RAZLIČAK",
+  "address": "Jurišićeva ulica 24/2",
+  "source_id": "zg-vrtici",
+  "tier": "official",
+  "lon": 15.9824361,
+  "lat": 45.811692,
+  "attrs": {
+   "web": null,
+   "telefon": "01 481 0636",
+   "vr_vrtica": "Gradski vrtić",
+   "grad_cetvr": "DONJI GRAD",
+   "gradjevina": "namjenska građevina",
+   "strani_jez": null,
+   "tip_vrtica": "PODRUČNI"
+  }
+ },
+ {
+  "id": 2727,
+  "category": "vrtic",
+  "name": "RAZLIČAK",
+  "address": "Nova Ves 36",
+  "source_id": "zg-vrtici",
+  "tier": "official",
+  "lon": 15.9784305,
+  "lat": 45.8220818,
+  "attrs": {
+   "web": null,
+   "telefon": "01 466 6766",
+   "vr_vrtica": "Gradski vrtić",
+   "grad_cetvr": "GORNJI GRAD-MEDVEŠČAK",
+   "gradjevina": "prenamijenjeni stan",
+   "strani_jez": "engleski",
+   "tip_vrtica": "PODRUČNI"
+  }
+ },
+ {
+  "id": 2728,
+  "category": "vrtic",
+  "name": "RAZLIČAK",
+  "address": "Ulica Milana Amruša 10/1",
+  "source_id": "zg-vrtici",
+  "tier": "official",
+  "lon": 15.9811312,
+  "lat": 45.8115976,
+  "attrs": {
+   "web": null,
+   "telefon": "01 492 2708",
+   "vr_vrtica": "Gradski vrtić",
+   "grad_cetvr": "DONJI GRAD",
+   "gradjevina": "namjenska građevina",
+   "strani_jez": null,
+   "tip_vrtica": "PODRUČNI"
+  }
+ },
+ {
+  "id": 2768,
+  "category": "vrtic",
+  "name": "TATJANE MARINIĆ",
+  "address": "Ulica Mihovila Pavlinovića 8",
+  "source_id": "zg-vrtici",
+  "tier": "official",
+  "lon": 15.9606988,
+  "lat": 45.8153999,
+  "attrs": {
+   "web": "www.vrtic-tatjanemarinic.zagreb.hr",
+   "telefon": "01 376 0133",
+   "vr_vrtica": "Gradski vrtić",
+   "grad_cetvr": "GORNJI GRAD-MEDVEŠČAK",
+   "gradjevina": "namjenska građevina",
+   "strani_jez": "engleski, njemački",
+   "tip_vrtica": "CENTRALNI"
+  }
+ },
+ {
+  "id": 2769,
+  "category": "vrtic",
+  "name": "TATJANE MARINIĆ",
+  "address": "Ulica Antuna G. Matoša 7",
+  "source_id": "zg-vrtici",
+  "tier": "official",
+  "lon": 15.9722805,
+  "lat": 45.815589,
+  "attrs": {
+   "web": null,
+   "telefon": "01 485 1085",
+   "vr_vrtica": "Gradski vrtić",
+   "grad_cetvr": "GORNJI GRAD-MEDVEŠČAK",
+   "gradjevina": "namjenska građevina",
+   "strani_jez": "njemački",
+   "tip_vrtica": "PODRUČNI"
+  }
+ },
+ {
+  "id": 2770,
+  "category": "vrtic",
+  "name": "TATJANE MARINIĆ",
+  "address": "Ulica Ivana Gorana Kovačića 31",
+  "source_id": "zg-vrtici",
+  "tier": "official",
+  "lon": 15.9689408,
+  "lat": 45.8199095,
+  "attrs": {
+   "web": null,
+   "telefon": "01 483 4552",
+   "vr_vrtica": "Gradski vrtić",
+   "grad_cetvr": "GORNJI GRAD-MEDVEŠČAK",
+   "gradjevina": "prenamiijenjena kuća",
+   "strani_jez": "engleski",
+   "tip_vrtica": "PODRUČNI"
+  }
+ },
+ {
+  "id": 2782,
+  "category": "vrtic",
+  "name": "TREŠNJEVKA",
+  "address": "Ulica Huga Badalića 24",
+  "source_id": "zg-vrtici",
+  "tier": "official",
+  "lon": 15.9586398,
+  "lat": 45.8029489,
+  "attrs": {
+   "web": "www.vrtic-tresnjevka.zagreb.hr",
+   "telefon": "01 382 0247",
+   "vr_vrtica": "Gradski vrtić",
+   "grad_cetvr": "TREŠNJEVKA-SJEVER",
+   "gradjevina": "namjenska građevina",
+   "strani_jez": "engleski",
+   "tip_vrtica": "CENTRALNI"
+  }
+ },
+ {
+  "id": 2794,
+  "category": "vrtic",
+  "name": "VEDRI DANI",
+  "address": "Ulica Kneza Borne 11A",
+  "source_id": "zg-vrtici",
+  "tier": "official",
+  "lon": 15.9877952,
+  "lat": 45.8079764,
+  "attrs": {
+   "web": null,
+   "telefon": "01 461 1743",
+   "vr_vrtica": "Gradski vrtić",
+   "grad_cetvr": "DONJI GRAD",
+   "gradjevina": "prenamiijenjena kuća",
+   "strani_jez": null,
+   "tip_vrtica": "PODRUČNI"
+  }
+ },
+ {
+  "id": 2796,
+  "category": "vrtic",
+  "name": "VEDRI DANI",
+  "address": "Trg žrtava fašizma 11",
+  "source_id": "zg-vrtici",
+  "tier": "official",
+  "lon": 15.9873908,
+  "lat": 45.8093161,
+  "attrs": {
+   "web": null,
+   "telefon": "01 461 1751",
+   "vr_vrtica": "Gradski vrtić",
+   "grad_cetvr": "DONJI GRAD",
+   "gradjevina": "namjenska građevina",
+   "strani_jez": "engleski",
+   "tip_vrtica": "PODRUČNI"
+  }
+ },
+ {
+  "id": 2797,
+  "category": "vrtic",
+  "name": "VEDRI DANI",
+  "address": "Ulica Pavla Šubića 12/1",
+  "source_id": "zg-vrtici",
+  "tier": "official",
+  "lon": 15.9934107,
+  "lat": 45.8096846,
+  "attrs": {
+   "web": null,
+   "telefon": "01 465 5549",
+   "vr_vrtica": "Gradski vrtić",
+   "grad_cetvr": "DONJI GRAD",
+   "gradjevina": "namjenska građevina",
+   "strani_jez": "engleski",
+   "tip_vrtica": "PODRUČNI"
+  }
+ },
+ {
+  "id": 2798,
+  "category": "vrtic",
+  "name": "VEDRI DANI",
+  "address": "Ulica Ljudevita Posavskog 24",
+  "source_id": "zg-vrtici",
+  "tier": "official",
+  "lon": 15.99611,
+  "lat": 45.8085268,
+  "attrs": {
+   "web": null,
+   "telefon": "01 464 7452",
+   "vr_vrtica": "Gradski vrtić",
+   "grad_cetvr": "DONJI GRAD",
+   "gradjevina": "prenamiijenjena kuća",
+   "strani_jez": "engleski",
+   "tip_vrtica": "PODRUČNI"
+  }
+ },
+ {
+  "id": 2801,
+  "category": "vrtic",
+  "name": "VJEVERICA",
+  "address": "Ulica Milana Šufflaya 4",
+  "source_id": "zg-vrtici",
+  "tier": "official",
+  "lon": 15.98427,
+  "lat": 45.8248129,
+  "attrs": {
+   "web": null,
+   "telefon": "01 468 3795",
+   "vr_vrtica": "Gradski vrtić",
+   "grad_cetvr": "GORNJI GRAD-MEDVEŠČAK",
+   "gradjevina": "prenamijenjeni stan",
+   "strani_jez": "engleski, njemački",
+   "tip_vrtica": "PODRUČNI"
+  }
+ },
+ {
+  "id": 2802,
+  "category": "vrtic",
+  "name": "VJEVERICA",
+  "address": "Šalata 13",
+  "source_id": "zg-vrtici",
+  "tier": "official",
+  "lon": 15.9859986,
+  "lat": 45.8181599,
+  "attrs": {
+   "web": null,
+   "telefon": "01 492 0032",
+   "vr_vrtica": "Gradski vrtić",
+   "grad_cetvr": "GORNJI GRAD-MEDVEŠČAK",
+   "gradjevina": "prenamijenjeni stan",
+   "strani_jez": "engleski",
+   "tip_vrtica": "PODRUČNI"
+  }
+ },
+ {
+  "id": 2805,
+  "category": "vrtic",
+  "name": "VLADIMIRA NAZORA",
+  "address": "Supilova ulica 5",
+  "source_id": "zg-vrtici",
+  "tier": "official",
+  "lon": 15.9955723,
+  "lat": 45.8037444,
+  "attrs": {
+   "web": null,
+   "telefon": "01 618 4196",
+   "vr_vrtica": "Gradski vrtić",
+   "grad_cetvr": "TRNJE",
+   "gradjevina": "namjenska građevina",
+   "strani_jez": null,
+   "tip_vrtica": "PODRUČNI"
+  }
+ },
+ {
+  "id": 2827,
+  "category": "vrtic",
+  "name": "IZVOR",
+  "address": "Prilaz Gjure Deželića 30",
+  "source_id": "zg-vrtici",
+  "tier": "official",
+  "lon": 15.9649795,
+  "lat": 45.8106248,
+  "attrs": {
+   "web": "www.vrtic.izvor.zagreb.hr",
+   "telefon": "01 484 6062",
+   "vr_vrtica": "Gradski vrtić",
+   "grad_cetvr": "DONJI GRAD",
+   "gradjevina": "namjenska građevina",
+   "strani_jez": "engleski",
+   "tip_vrtica": "CENTRALNI"
+  }
+ },
+ {
+  "id": 2870,
+  "category": "vrtic",
+  "name": "MIRJAM WEILLER",
+  "address": "Palmotićeva ulica 16",
+  "source_id": "zg-vrtici",
+  "tier": "official",
+  "lon": 15.9815888,
+  "lat": 45.8115391,
+  "attrs": {
+   "web": "http://www.zoz.hr/home.php?content=content&term=27&key=26&key1=27",
+   "telefon": "01 486 2750, 098 286 929",
+   "vr_vrtica": "Vjerski vrtić",
+   "grad_cetvr": "DONJI GRAD",
+   "gradjevina": null,
+   "strani_jez": "hebrejski",
+   "tip_vrtica": "CENTRALNI"
+  }
+ },
+ {
+  "id": 2872,
+  "category": "vrtic",
+  "name": "SV. ANĐELA MERICI",
+  "address": "Vlaška ulica 75",
+  "source_id": "zg-vrtici",
+  "tier": "official",
+  "lon": 15.9868426,
+  "lat": 45.8138533,
+  "attrs": {
+   "web": "http://www.ursulinke.hr/index5.php?pIDm1=5&pIDm2=5",
+   "telefon": "01 455 4338",
+   "vr_vrtica": "Vjerski vrtić",
+   "grad_cetvr": "DONJI GRAD",
+   "gradjevina": null,
+   "strani_jez": "engleski",
+   "tip_vrtica": "CENTRALNI"
+  }
+ },
+ {
+  "id": 2873,
+  "category": "vrtic",
+  "name": "SV. VINKA",
+  "address": "Frankopanska ulica 17",
+  "source_id": "zg-vrtici",
+  "tier": "official",
+  "lon": 15.9694095,
+  "lat": 45.8110479,
+  "attrs": {
+   "web": "http://dv-svetog-vinka.hr/",
+   "telefon": "01 483 1107",
+   "vr_vrtica": "Vjerski vrtić",
+   "grad_cetvr": "DONJI GRAD",
+   "gradjevina": null,
+   "strani_jez": "engleski",
+   "tip_vrtica": "CENTRALNI"
+  }
+ },
+ {
+  "id": 2874,
+  "category": "vrtic",
+  "name": "BRAT SUNCE",
+  "address": "Pantovčak 72A",
+  "source_id": "zg-vrtici",
+  "tier": "official",
+  "lon": 15.9610783,
+  "lat": 45.8187214,
+  "attrs": {
+   "web": "www.vrtic-sunce.zagreb.hr",
+   "telefon": "01 482 2455",
+   "vr_vrtica": "Vjerski vrtić",
+   "grad_cetvr": "GORNJI GRAD-MEDVEŠČAK",
+   "gradjevina": null,
+   "strani_jez": null,
+   "tip_vrtica": "CENTRALNI"
+  }
+ },
+ {
+  "id": 2875,
+  "category": "vrtic",
+  "name": "CVJETNJAK",
+  "address": "Nova Ves 55",
+  "source_id": "zg-vrtici",
+  "tier": "official",
+  "lon": 15.9788366,
+  "lat": 45.82439,
+  "attrs": {
+   "web": "http://www.ssmi.hr/zagreb/podstranica/vrtici",
+   "telefon": "01 466 8321, 098 187 7910",
+   "vr_vrtica": "Vjerski vrtić",
+   "grad_cetvr": "GORNJI GRAD-MEDVEŠČAK",
+   "gradjevina": null,
+   "strani_jez": null,
+   "tip_vrtica": "CENTRALNI"
+  }
+ },
+ {
+  "id": 2880,
+  "category": "vrtic",
+  "name": "DOBRO DRVO",
+  "address": "Strojarska cesta 26",
+  "source_id": "zg-vrtici",
+  "tier": "official",
+  "lon": 15.9901915,
+  "lat": 45.8032109,
+  "attrs": {
+   "web": "http://www.dvdd.hr/",
+   "telefon": "01 889 7928, 091 936 3465",
+   "vr_vrtica": "Privatni vrtić",
+   "grad_cetvr": "TRNJE",
+   "gradjevina": null,
+   "strani_jez": "engleski",
+   "tip_vrtica": "CENTRALNI"
+  }
+ },
+ {
+  "id": 2881,
+  "category": "vrtic",
+  "name": "VITICA",
+  "address": "Ulica grada Vukovara 229",
+  "source_id": "zg-vrtici",
+  "tier": "official",
+  "lon": 15.9849939,
+  "lat": 45.8009837,
+  "attrs": {
+   "web": "www.vitica.hr",
+   "telefon": "01 613 7817",
+   "vr_vrtica": "Privatni vrtić",
+   "grad_cetvr": "TRNJE",
+   "gradjevina": null,
+   "strani_jez": null,
+   "tip_vrtica": "CENTRALNI"
+  }
+ },
+ {
+  "id": 2900,
+  "category": "vrtic",
+  "name": "SRČEKO",
+  "address": "Pantovčak 115",
+  "source_id": "zg-vrtici",
+  "tier": "official",
+  "lon": 15.960964,
+  "lat": 45.8249208,
+  "attrs": {
+   "web": "http://srceko.com/",
+   "telefon": "01 483 5351, 091 483 5351",
+   "vr_vrtica": "Privatni vrtić",
+   "grad_cetvr": "GORNJI GRAD-MEDVEŠČAK",
+   "gradjevina": null,
+   "strani_jez": "engleski, njemački",
+   "tip_vrtica": "CENTRALNI"
+  }
+ },
+ {
+  "id": 2901,
+  "category": "vrtic",
+  "name": "SRČEKO",
+  "address": "Pantovčak 117",
+  "source_id": "zg-vrtici",
+  "tier": "official",
+  "lon": 15.9611126,
+  "lat": 45.8250657,
+  "attrs": {
+   "web": null,
+   "telefon": "091 483 5351",
+   "vr_vrtica": "Privatni vrtić",
+   "grad_cetvr": "GORNJI GRAD-MEDVEŠČAK",
+   "gradjevina": null,
+   "strani_jez": null,
+   "tip_vrtica": "PODRUČNI"
+  }
+ },
+ {
+  "id": 2902,
+  "category": "vrtic",
+  "name": "ŠARENA LOPTICA",
+  "address": "Nova Ves 3",
+  "source_id": "zg-vrtici",
+  "tier": "official",
+  "lon": 15.9778309,
+  "lat": 45.8191001,
+  "attrs": {
+   "web": "http://dv-sarenaloptica.hr/",
+   "telefon": "01 466 8600, 095 517 5732",
+   "vr_vrtica": "Privatni vrtić",
+   "grad_cetvr": "GORNJI GRAD-MEDVEŠČAK",
+   "gradjevina": null,
+   "strani_jez": null,
+   "tip_vrtica": "CENTRALNI"
+  }
+ },
+ {
+  "id": 2903,
+  "category": "vrtic",
+  "name": "OSNOVNA ŠKOLA LAUDER-HUGO KON",
+  "address": "Trg Katarine Zrinske 2",
+  "source_id": "zg-vrtici",
+  "tier": "official",
+  "lon": 15.9736171,
+  "lat": 45.8149325,
+  "attrs": {
+   "web": "www.os-lauder-hugo-kon.skole.hr",
+   "telefon": "01 333 3891",
+   "vr_vrtica": "Vjerski vrtić",
+   "grad_cetvr": "GORNJI GRAD-MEDVEŠČAK",
+   "gradjevina": null,
+   "strani_jez": null,
+   "tip_vrtica": "CENTRALNI"
+  }
+ },
+ {
+  "id": 2908,
+  "category": "vrtic",
+  "name": "BUDUĆNOST",
+  "address": "Ulica Jurja Žerjavića 5/1",
+  "source_id": "zg-vrtici",
+  "tier": "official",
+  "lon": 15.9732828,
+  "lat": 45.8070694,
+  "attrs": {
+   "web": null,
+   "telefon": null,
+   "vr_vrtica": "Gradski vrtić",
+   "grad_cetvr": "DONJI GRAD",
+   "gradjevina": "prenamijenjena kuća",
+   "strani_jez": null,
+   "tip_vrtica": "PODRUČNI"
+  }
+ },
+ {
+  "id": 2922,
+  "category": "vrtic",
+  "name": "ŠARENA LOPTICA",
+  "address": "Nova Ves 5A",
+  "source_id": "zg-vrtici",
+  "tier": "official",
+  "lon": 15.9778399,
+  "lat": 45.8193619,
+  "attrs": {
+   "web": null,
+   "telefon": "01 466 8600, 095 517 5732",
+   "vr_vrtica": "Privatni vrtić",
+   "grad_cetvr": "GORNJI GRAD-MEDVEŠČAK",
+   "gradjevina": null,
+   "strani_jez": null,
+   "tip_vrtica": "PODRUČNI"
+  }
+ },
+ {
+  "id": 2924,
+  "category": "vrtic",
+  "name": "DOBRO DRVO",
+  "address": "Ulica kneza Borne 26/1",
+  "source_id": "zg-vrtici",
+  "tier": "official",
+  "lon": 15.9876399,
+  "lat": 45.8073571,
+  "attrs": {
+   "web": null,
+   "telefon": null,
+   "vr_vrtica": "Privatni vrtić",
+   "grad_cetvr": "DONJI GRAD",
+   "gradjevina": null,
+   "strani_jez": null,
+   "tip_vrtica": "PODRUČNI"
+  }
+ },
+ {
+  "id": 2928,
+  "category": "skola",
+  "name": "Osnovna škola Poliklinike SUVAG",
+  "address": null,
+  "source_id": "zg-skole",
+  "tier": "official",
+  "lon": 15.993488,
+  "lat": 45.8081525,
+  "attrs": {
+   "inspire_id": "id7f9d6b07-8dff-47d2-8697-b66901987f61",
+   "name_source": "osm",
+   "service_type": "primaryEducation",
+   "name_hint_distance_m": 12.0
+  }
+ },
+ {
+  "id": 2929,
+  "category": "skola",
+  "name": "Centar za odgoj i obrazovanje Goljak",
+  "address": null,
+  "source_id": "zg-skole",
+  "tier": "official",
+  "lon": 15.963887,
+  "lat": 45.8188992,
+  "attrs": {
+   "inspire_id": "idf4d6993a-abf2-4872-b520-97ff5c12c277",
+   "name_source": "osm",
+   "service_type": "primaryEducation",
+   "name_hint_distance_m": 32.3
+  }
+ },
+ {
+  "id": 2930,
+  "category": "skola",
+  "name": "NaN",
+  "address": null,
+  "source_id": "zg-skole",
+  "tier": "official",
+  "lon": 15.9809136,
+  "lat": 45.8195403,
+  "attrs": {
+   "inspire_id": "id0108efdd-4fe3-48a5-85c1-a46f09d07e9c",
+   "service_type": "primaryEducation"
+  }
+ },
+ {
+  "id": 2933,
+  "category": "skola",
+  "name": "Centar za odgoj i obrazovanje Tuškanac",
+  "address": null,
+  "source_id": "zg-skole",
+  "tier": "official",
+  "lon": 15.9703905,
+  "lat": 45.8253159,
+  "attrs": {
+   "inspire_id": "id7378ae65-8f29-4dcd-8655-9260d41405f8",
+   "name_source": "osm",
+   "service_type": "primaryEducation",
+   "name_hint_distance_m": 20.4
+  }
+ },
+ {
+  "id": 2942,
+  "category": "skola",
+  "name": "Osnovna škola Ivana Gundulića",
+  "address": null,
+  "source_id": "zg-skole",
+  "tier": "official",
+  "lon": 15.972905,
+  "lat": 45.8099407,
+  "attrs": {
+   "inspire_id": "id037e1dfa-002e-41c2-95fe-593a80d46daf",
+   "name_source": "osm",
+   "service_type": "primaryEducation",
+   "name_hint_distance_m": 13.0
+  }
+ },
+ {
+  "id": 2943,
+  "category": "skola",
+  "name": "Osnovna škola Izidora Kršnjavoga",
+  "address": null,
+  "source_id": "zg-skole",
+  "tier": "official",
+  "lon": 15.9666358,
+  "lat": 45.8076541,
+  "attrs": {
+   "inspire_id": "id22b0b935-16c6-45bc-adc2-52315a68f262",
+   "name_source": "osm",
+   "service_type": "primaryEducation",
+   "name_hint_distance_m": 5.9
+  }
+ },
+ {
+  "id": 2944,
+  "category": "skola",
+  "name": "Osnovna škola Josipa Jurja Strossmayera",
+  "address": null,
+  "source_id": "zg-skole",
+  "tier": "official",
+  "lon": 15.9706375,
+  "lat": 45.8118841,
+  "attrs": {
+   "inspire_id": "idae38feb3-435d-4677-92b0-d674be8bbd0b",
+   "name_source": "osm",
+   "service_type": "primaryEducation",
+   "name_hint_distance_m": 13.6
+  }
+ },
+ {
+  "id": 2945,
+  "category": "skola",
+  "name": "Osnovna škola Petra Zrinskog",
+  "address": null,
+  "source_id": "zg-skole",
+  "tier": "official",
+  "lon": 15.9588106,
+  "lat": 45.8119261,
+  "attrs": {
+   "inspire_id": "idf80d13f6-6e24-4490-86eb-1f5c9057ca04",
+   "name_source": "osm",
+   "service_type": "primaryEducation",
+   "name_hint_distance_m": 48.6
+  }
+ },
+ {
+  "id": 2946,
+  "category": "skola",
+  "name": "Osnovna škola Matka Laginje",
+  "address": null,
+  "source_id": "zg-skole",
+  "tier": "official",
+  "lon": 15.9928093,
+  "lat": 45.8130003,
+  "attrs": {
+   "inspire_id": "id5b640a48-4e35-4676-98c9-db7295b58627",
+   "name_source": "osm",
+   "service_type": "primaryEducation",
+   "name_hint_distance_m": 23.8
+  }
+ },
+ {
+  "id": 2947,
+  "category": "skola",
+  "name": "Osnovna škola dr. Ivan Merz",
+  "address": null,
+  "source_id": "zg-skole",
+  "tier": "official",
+  "lon": 15.9843119,
+  "lat": 45.8112914,
+  "attrs": {
+   "inspire_id": "id83a9d528-c487-4d3b-b869-3267528a08f5",
+   "name_source": "osm",
+   "service_type": "primaryEducation",
+   "name_hint_distance_m": 15.1
+  }
+ },
+ {
+  "id": 2949,
+  "category": "skola",
+  "name": "Osnovna škola Jabukovac",
+  "address": null,
+  "source_id": "zg-skole",
+  "tier": "official",
+  "lon": 15.9708081,
+  "lat": 45.8238905,
+  "attrs": {
+   "inspire_id": "ideb555012-075f-4c8c-8744-b1c410bd981d",
+   "name_source": "osm",
+   "service_type": "primaryEducation",
+   "name_hint_distance_m": 36.1
+  }
+ },
+ {
+  "id": 2950,
+  "category": "skola",
+  "name": "Osnovna škola Miroslava Krleže",
+  "address": null,
+  "source_id": "zg-skole",
+  "tier": "official",
+  "lon": 15.9776702,
+  "lat": 45.8185081,
+  "attrs": {
+   "inspire_id": "id19f38d6c-2811-47f3-884e-c15551d8c880",
+   "name_source": "osm",
+   "service_type": "primaryEducation",
+   "name_hint_distance_m": 13.4
+  }
+ },
+ {
+  "id": 2951,
+  "category": "skola",
+  "name": "Osnovna škola Pantovčak",
+  "address": null,
+  "source_id": "zg-skole",
+  "tier": "official",
+  "lon": 15.9592722,
+  "lat": 45.8216992,
+  "attrs": {
+   "inspire_id": "ida6da53a3-ff9f-471e-b861-398d024182b6",
+   "name_source": "osm",
+   "service_type": "primaryEducation",
+   "name_hint_distance_m": 25.8
+  }
+ },
+ {
+  "id": 2952,
+  "category": "skola",
+  "name": "Osnovna škola Ksavera Šandora Gjalskoga",
+  "address": null,
+  "source_id": "zg-skole",
+  "tier": "official",
+  "lon": 15.9770393,
+  "lat": 45.8262694,
+  "attrs": {
+   "inspire_id": "id2f77fdcb-c001-4a22-b58c-a1dd9d836f35",
+   "name_source": "osm",
+   "service_type": "primaryEducation",
+   "name_hint_distance_m": 24.4
+  }
+ },
+ {
+  "id": 2953,
+  "category": "skola",
+  "name": "Osnovna škola Ivana Gorana Kovačića",
+  "address": null,
+  "source_id": "zg-skole",
+  "tier": "official",
+  "lon": 15.9845327,
+  "lat": 45.8232741,
+  "attrs": {
+   "inspire_id": "id78044a09-e18c-4e29-bbbb-7b3abb8f06e5",
+   "name_source": "osm",
+   "service_type": "primaryEducation",
+   "name_hint_distance_m": 5.9
+  }
+ },
+ {
+  "id": 2957,
+  "category": "skola",
+  "name": "Osnovna škola Tina Ujevića",
+  "address": null,
+  "source_id": "zg-skole",
+  "tier": "official",
+  "lon": 15.9647737,
+  "lat": 45.802177,
+  "attrs": {
+   "inspire_id": "id90c5cedc-1e9a-4001-a8f4-a15d1b301654",
+   "name_source": "osm",
+   "service_type": "primaryEducation",
+   "name_hint_distance_m": 49.6
+  }
+ },
+ {
+  "id": 3070,
+  "category": "skola",
+  "name": "NaN",
+  "address": null,
+  "source_id": "zg-skole",
+  "tier": "official",
+  "lon": 15.9859524,
+  "lat": 45.8233493,
+  "attrs": {
+   "inspire_id": "idf90c5e7c-7358-4378-bf14-da2cf4ee0b8e",
+   "service_type": "primaryEducation"
+  }
+ },
+ {
+  "id": 3071,
+  "category": "skola",
+  "name": "Osnovna škola Matka Laginje",
+  "address": null,
+  "source_id": "zg-skole",
+  "tier": "official",
+  "lon": 15.9928093,
+  "lat": 45.8130003,
+  "attrs": {
+   "inspire_id": "id6377962d-17ca-4c2c-bc08-614ec2931a24",
+   "name_source": "osm",
+   "service_type": "primaryEducation",
+   "name_hint_distance_m": 23.8
+  }
+ },
+ {
+  "id": 3072,
+  "category": "skola",
+  "name": "NaN",
+  "address": null,
+  "source_id": "zg-skole",
+  "tier": "official",
+  "lon": 15.971912,
+  "lat": 45.8126157,
+  "attrs": {
+   "inspire_id": "id3f8b319c-c7bf-4742-9f79-9579a6884e04",
+   "service_type": "primaryEducation"
+  }
+ },
+ {
+  "id": 3073,
+  "category": "skola",
+  "name": "NaN",
+  "address": null,
+  "source_id": "zg-skole",
+  "tier": "official",
+  "lon": 15.9882704,
+  "lat": 45.809564,
+  "attrs": {
+   "inspire_id": "id238f546f-a030-4eaa-8571-cdd58002eb0c",
+   "service_type": "primaryEducation"
+  }
+ },
+ {
+  "id": 3074,
+  "category": "skola",
+  "name": "NaN",
+  "address": null,
+  "source_id": "zg-skole",
+  "tier": "official",
+  "lon": 15.9778301,
+  "lat": 45.8067875,
+  "attrs": {
+   "inspire_id": "id8c8976e9-13ce-445b-b2cb-08539f2e0f5a",
+   "service_type": "primaryEducation"
+  }
+ },
+ {
+  "id": 3075,
+  "category": "skola",
+  "name": "NaN",
+  "address": null,
+  "source_id": "zg-skole",
+  "tier": "official",
+  "lon": 15.9770059,
+  "lat": 45.8255049,
+  "attrs": {
+   "inspire_id": "ida2f9493c-f310-4dcb-9f00-b461dad0426e",
+   "service_type": "primaryEducation"
+  }
+ },
+ {
+  "id": 3076,
+  "category": "skola",
+  "name": "NaN",
+  "address": null,
+  "source_id": "zg-skole",
+  "tier": "official",
+  "lon": 15.9642568,
+  "lat": 45.8133465,
+  "attrs": {
+   "inspire_id": "idf125d983-1e23-4f78-8fbd-1363d58a8c50",
+   "service_type": "primaryEducation"
+  }
+ },
+ {
+  "id": 3077,
+  "category": "skola",
+  "name": "NaN",
+  "address": null,
+  "source_id": "zg-skole",
+  "tier": "official",
+  "lon": 15.9800524,
+  "lat": 45.8159305,
+  "attrs": {
+   "inspire_id": "idbcc426f0-ffc9-45b4-925e-6cd3b83ad398",
+   "service_type": "primaryEducation"
+  }
+ },
+ {
+  "id": 3080,
+  "category": "skola",
+  "name": "Osnovna škola Hugo Kon",
+  "address": null,
+  "source_id": "zg-skole",
+  "tier": "official",
+  "lon": 15.9736171,
+  "lat": 45.8149325,
+  "attrs": {
+   "inspire_id": "iddad0c6c0-7f93-4d7b-b30f-fd1b7b9a3d13",
+   "name_source": "osm",
+   "service_type": "primaryEducation",
+   "name_hint_distance_m": 11.6
+  }
+ },
+ {
+  "id": 3081,
+  "category": "skola",
+  "name": "NaN",
+  "address": null,
+  "source_id": "zg-skole",
+  "tier": "official",
+  "lon": 15.9946438,
+  "lat": 45.8225086,
+  "attrs": {
+   "inspire_id": "id7bb003dc-c8de-4a92-91e5-da6132d0a72d",
+   "service_type": "primaryEducation"
+  }
+ },
+ {
+  "id": 3092,
+  "category": "skola",
+  "name": "NaN",
+  "address": null,
+  "source_id": "zg-skole",
+  "tier": "official",
+  "lon": 15.9754307,
+  "lat": 45.819214,
+  "attrs": {
+   "inspire_id": "id32f0a217-b1df-429e-bff5-a8a0c9f477ee",
+   "service_type": "primaryEducation"
+  }
+ },
+ {
+  "id": 3105,
+  "category": "lijecnik",
+  "name": "Poliklinika za reumatske bolesti, fizikalnu medicinu i rehabilitaciju Dr. Drago Čop",
+  "address": "Mihanovićeva ulica 3",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9747292,
+  "lat": 45.8052317,
+  "attrs": {
+   "amenity": "clinic",
+   "osm_url": "https://www.openstreetmap.org/node/457899022",
+   "website": "https://www.prfr.hr",
+   "wheelchair": "no"
+  }
+ },
+ {
+  "id": 3109,
+  "category": "lijecnik",
+  "name": "Dom zdravlja Zagreb - Centar",
+  "address": "Ulica kneza Branimira 65",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9908537,
+  "lat": 45.8061488,
+  "attrs": {
+   "amenity": "doctors",
+   "osm_url": "https://www.openstreetmap.org/node/1037868999"
+  }
+ },
+ {
+  "id": 3111,
+  "category": "lijecnik",
+  "name": "Dom zdravlja",
+  "address": "Ulica Frana Vrbanića 6",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9955617,
+  "lat": 45.8092997,
+  "attrs": {
+   "amenity": "doctors",
+   "osm_url": "https://www.openstreetmap.org/node/1765965511"
+  }
+ },
+ {
+  "id": 3112,
+  "category": "lijecnik",
+  "name": "Dom zdravlja Zagreb - Centar",
+  "address": "Ulica kneza Borne 3",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9852927,
+  "lat": 45.807906,
+  "attrs": {
+   "amenity": "doctors",
+   "osm_url": "https://www.openstreetmap.org/node/1768873350"
+  }
+ },
+ {
+  "id": 3113,
+  "category": "lijecnik",
+  "name": "DermaCare",
+  "address": "Ulica Nikole Tesle 14",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9750433,
+  "lat": 45.8113732,
+  "attrs": {
+   "amenity": "doctors",
+   "osm_url": "https://www.openstreetmap.org/node/1874503038",
+   "opening_hours": "Mo-Fr 09:00-20:00; Sa 09:00-15:00; Su off"
+  }
+ },
+ {
+  "id": 3115,
+  "category": "lijecnik",
+  "name": "Poliklinika Medikol",
+  "address": "Voćarska cesta 106",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9874597,
+  "lat": 45.8229864,
+  "attrs": {
+   "amenity": "clinic",
+   "osm_url": "https://www.openstreetmap.org/node/2214145113",
+   "website": "https://medikol.hr/",
+   "opening_hours": "Mo-Fr 07:00-20:00; Sa 07:00-13:00"
+  }
+ },
+ {
+  "id": 3119,
+  "category": "lijecnik",
+  "name": "Dom zdravlja Zagreb - Centar",
+  "address": "Nova Ves 36",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9785308,
+  "lat": 45.8221213,
+  "attrs": {
+   "amenity": "doctors",
+   "osm_url": "https://www.openstreetmap.org/node/2313292126",
+   "wheelchair": "no"
+  }
+ },
+ {
+  "id": 3127,
+  "category": "lijecnik",
+  "name": "Dom zdravlja",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9842141,
+  "lat": 45.8243295,
+  "attrs": {
+   "amenity": "doctors",
+   "osm_url": "https://www.openstreetmap.org/node/3136103989"
+  }
+ },
+ {
+  "id": 3137,
+  "category": "lijecnik",
+  "name": "Poliklinika Srčana",
+  "address": "Draškovićeva ulica 13",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9837892,
+  "lat": 45.8125424,
+  "attrs": {
+   "amenity": "clinic",
+   "osm_url": "https://www.openstreetmap.org/node/4887675566",
+   "website": "https://www.srcana.hr/"
+  }
+ },
+ {
+  "id": 3138,
+  "category": "lijecnik",
+  "name": "Poliklinika Ginecej",
+  "address": "Strojarska cesta 28",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9902038,
+  "lat": 45.8029203,
+  "attrs": {
+   "amenity": "doctors",
+   "osm_url": "https://www.openstreetmap.org/node/5249134531",
+   "website": "https://poliklinika-ginecej.hr/"
+  }
+ },
+ {
+  "id": 3140,
+  "category": "lijecnik",
+  "name": "Dom zdravlja centar, Ulica Grgura Ninskog",
+  "address": "Ulica Grgura Ninskog 3",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9753813,
+  "lat": 45.8045958,
+  "attrs": {
+   "amenity": "clinic",
+   "osm_url": "https://www.openstreetmap.org/node/5455306458"
+  }
+ },
+ {
+  "id": 3145,
+  "category": "lijecnik",
+  "name": "poliklinika Amruševa",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9801132,
+  "lat": 45.8115813,
+  "attrs": {
+   "amenity": "clinic",
+   "osm_url": "https://www.openstreetmap.org/node/6297976383",
+   "website": "https://www.amruseva.hr/"
+  }
+ },
+ {
+  "id": 3147,
+  "category": "lijecnik",
+  "name": "Dom zdravlja Zagreb - Centar",
+  "address": "Trg kralja Petra Krešimira IV. 6",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9908742,
+  "lat": 45.8066037,
+  "attrs": {
+   "amenity": "doctors",
+   "osm_url": "https://www.openstreetmap.org/node/6612291427"
+  }
+ },
+ {
+  "id": 3148,
+  "category": "lijecnik",
+  "name": "Ataraksija",
+  "address": "Ulica grada Vukovara 239",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9926573,
+  "lat": 45.8014591,
+  "attrs": {
+   "amenity": "doctors",
+   "osm_url": "https://www.openstreetmap.org/node/7273931300",
+   "website": "https://ataraksija.hr/"
+  }
+ },
+ {
+  "id": 3151,
+  "category": "lijecnik",
+  "name": "Poliklinuku za medicinsku mikrobiologiju s parazitologijom",
+  "address": "Petrova ulica 48a",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.996231,
+  "lat": 45.8170455,
+  "attrs": {
+   "amenity": "doctors",
+   "osm_url": "https://www.openstreetmap.org/node/7724213655",
+   "opening_hours": "Mo-Fr 08:00-20:00; Sa 09:00-13:00"
+  }
+ },
+ {
+  "id": 3157,
+  "category": "lijecnik",
+  "name": "Derma Plus",
+  "address": "Kaptol 25",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9787017,
+  "lat": 45.816403,
+  "attrs": {
+   "amenity": "clinic",
+   "osm_url": "https://www.openstreetmap.org/node/8926670691",
+   "website": "https://poliklinika-dermaplus.com/",
+   "opening_hours": "Mo-Fr 08:00-16:00; Sa-Su off"
+  }
+ },
+ {
+  "id": 3158,
+  "category": "lijecnik",
+  "name": "Poliklinika Kardioton",
+  "address": "Kaptol 26",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9788566,
+  "lat": 45.8161662,
+  "attrs": {
+   "amenity": "clinic",
+   "osm_url": "https://www.openstreetmap.org/node/8926705288",
+   "website": "https://www.poliklinika-kardioton.hr/",
+   "opening_hours": "Mo-Fr 09:00-13:00; Mo-Fr 16:00-19:00; Sa 09:00-13:00; Su off"
+  }
+ },
+ {
+  "id": 3161,
+  "category": "lijecnik",
+  "name": "Ingrid Kakarigi",
+  "address": "Ulica Eugena Kumičića 8",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.973807,
+  "lat": 45.8059785,
+  "attrs": {
+   "amenity": "doctors",
+   "osm_url": "https://www.openstreetmap.org/node/9870891099",
+   "website": "https://drkakarigi.hr/"
+  }
+ },
+ {
+  "id": 3167,
+  "category": "lijecnik",
+  "name": "Poliklinika za zaštitu djece i mladih grada Zagreba",
+  "address": "Ulica Ignjata Đorđića 26",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9847902,
+  "lat": 45.8105699,
+  "attrs": {
+   "amenity": "clinic",
+   "osm_url": "https://www.openstreetmap.org/node/11332739084",
+   "website": "https://www.poliklinika-djeca.hr/",
+   "wheelchair": "limited",
+   "opening_hours": "Mo-Fr 07:30-20:00"
+  }
+ },
+ {
+  "id": 3171,
+  "category": "lijecnik",
+  "name": "Poliklinika Neuron",
+  "address": "Šalata 12",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9853977,
+  "lat": 45.8219018,
+  "attrs": {
+   "amenity": "clinic",
+   "osm_url": "https://www.openstreetmap.org/node/11542769512",
+   "website": "https://neuron.hr"
+  }
+ },
+ {
+  "id": 3179,
+  "category": "lijecnik",
+  "name": "Dom zdravlja Runjaninova",
+  "address": "Ulica Josipa Runjanina 4",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9691085,
+  "lat": 45.8046725,
+  "attrs": {
+   "amenity": "doctors",
+   "osm_url": "https://www.openstreetmap.org/node/11637431519"
+  }
+ },
+ {
+  "id": 3200,
+  "category": "lijecnik",
+  "name": "NaN",
+  "address": "Ulica Vladimira Nazora 49",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9661211,
+  "lat": 45.8177475,
+  "attrs": {
+   "amenity": "doctors",
+   "osm_url": "https://www.openstreetmap.org/node/11681648135"
+  }
+ },
+ {
+  "id": 3211,
+  "category": "lijecnik",
+  "name": "Klinika za stomatologiju",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9722204,
+  "lat": 45.8123751,
+  "attrs": {
+   "amenity": "clinic",
+   "osm_url": "https://www.openstreetmap.org/node/11764804948",
+   "website": "https://www.kbc-zagreb.hr/klinika-za-stomatologiju.aspx"
+  }
+ },
+ {
+  "id": 3212,
+  "category": "lijecnik",
+  "name": "Ambulanta za djecu sa smetnjama u razvoju - Nazorova",
+  "address": "Ulica Vladimira Nazora 49",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.965995,
+  "lat": 45.8177013,
+  "attrs": {
+   "amenity": "clinic",
+   "osm_url": "https://www.openstreetmap.org/node/11764853535",
+   "website": "https://www.kbc-zagreb.hr/ambulanta-za-djecu-sa-smetnjama-u-razvoju-nazorova.aspx"
+  }
+ },
+ {
+  "id": 3215,
+  "category": "lijecnik",
+  "name": "Kinematika",
+  "address": "Ulica Matka Laginje 16",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9919145,
+  "lat": 45.812817,
+  "attrs": {
+   "amenity": "doctors",
+   "osm_url": "https://www.openstreetmap.org/node/11869466795",
+   "website": "https://www.kinematika.hr/",
+   "opening_hours": "Mo,We 14:00-19:00; Tu,Th-Fr 08:00-14:00; Sa-Su off"
+  }
+ },
+ {
+  "id": 3217,
+  "category": "lijecnik",
+  "name": "Poliklinika Đurić",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9871295,
+  "lat": 45.8121113,
+  "attrs": {
+   "amenity": "doctors",
+   "osm_url": "https://www.openstreetmap.org/node/11895298211",
+   "website": "https://www.poliklinika-djuric.hr/"
+  }
+ },
+ {
+  "id": 3219,
+  "category": "lijecnik",
+  "name": "Dom zdravlja MUP-a",
+  "address": "Šarengradska ulica 3",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9603232,
+  "lat": 45.8004527,
+  "attrs": {
+   "amenity": "clinic",
+   "osm_url": "https://www.openstreetmap.org/node/11927801432",
+   "website": "https://dzmup.hr"
+  }
+ },
+ {
+  "id": 3220,
+  "category": "lijecnik",
+  "name": "Manoto",
+  "address": "Ulica Silvija Strahimira Kranjčevića 3A",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9614323,
+  "lat": 45.8033805,
+  "attrs": {
+   "amenity": "doctors",
+   "osm_url": "https://www.openstreetmap.org/node/11953425637",
+   "website": "https://manoto.hr/"
+  }
+ },
+ {
+  "id": 3224,
+  "category": "lijecnik",
+  "name": "Poliklinika Optical Express",
+  "address": "Strojarska cesta 18",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9892875,
+  "lat": 45.8031785,
+  "attrs": {
+   "amenity": "doctors",
+   "osm_url": "https://www.openstreetmap.org/node/12040325104",
+   "opening_hours": "Mo-Fr 08:00-20:00; Sa-Su 09:00-14:00"
+  }
+ },
+ {
+  "id": 3226,
+  "category": "lijecnik",
+  "name": "Poliklinika Glavić",
+  "address": "Ulica Marijana Derenčina 3",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.993668,
+  "lat": 45.81352,
+  "attrs": {
+   "amenity": "clinic",
+   "osm_url": "https://www.openstreetmap.org/node/12231647566",
+   "website": "https://www.poliklinika-glavic.hr/poliklinika-zagreb",
+   "opening_hours": "Mo-Fr 08:00-16:00"
+  }
+ },
+ {
+  "id": 3245,
+  "category": "lijecnik",
+  "name": "Poliklinika Milojević",
+  "address": "Nova Ves 17",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9767043,
+  "lat": 45.8204529,
+  "attrs": {
+   "amenity": "doctors",
+   "osm_url": "https://www.openstreetmap.org/node/13585356248",
+   "opening_hours": "Mo-Fr 08:00-20:00; Sa 09:00-14:00; Su off"
+  }
+ },
+ {
+  "id": 3247,
+  "category": "lijecnik",
+  "name": "Poliklinika Klinike za ortopediju",
+  "address": "Šalata 7",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9842347,
+  "lat": 45.8203002,
+  "attrs": {
+   "amenity": "clinic",
+   "osm_url": "https://www.openstreetmap.org/node/13730699935"
+  }
+ },
+ {
+  "id": 3252,
+  "category": "lijecnik",
+  "name": "Poliklinika GynaeArs",
+  "address": "Ulica Nikole Tomašića 11",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9876819,
+  "lat": 45.8114139,
+  "attrs": {
+   "amenity": "clinic",
+   "osm_url": "https://www.openstreetmap.org/node/14281899201",
+   "website": "http://poliklinika-gynaears.hr",
+   "opening_hours": "Mo-Fr 08:00-20:00"
+  }
+ },
+ {
+  "id": 3254,
+  "category": "lijecnik",
+  "name": "Poliklinika IVF",
+  "address": "Voćarska 14",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9943201,
+  "lat": 45.8175373,
+  "attrs": {
+   "amenity": "doctors",
+   "osm_url": "https://www.openstreetmap.org/way/59920121"
+  }
+ },
+ {
+  "id": 3260,
+  "category": "lijecnik",
+  "name": "Dom zdravlja Martićeva",
+  "address": "Martićeva ulica 63A",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9929881,
+  "lat": 45.8126393,
+  "attrs": {
+   "amenity": "doctors",
+   "osm_url": "https://www.openstreetmap.org/way/188046667",
+   "website": "https://www.dzz-centar.hr/"
+  }
+ },
+ {
+  "id": 3261,
+  "category": "lijecnik",
+  "name": "Dom zdravlja Laginjina",
+  "address": "Ulica Matka Laginje 16",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9921688,
+  "lat": 45.8128676,
+  "attrs": {
+   "amenity": "doctors",
+   "osm_url": "https://www.openstreetmap.org/way/188046693",
+   "website": "https://www.dzz-centar.hr/",
+   "opening_hours": "Mo-Fr 07:30-18:00"
+  }
+ },
+ {
+  "id": 3268,
+  "category": "lijecnik",
+  "name": "Hrvatski zavod za transfuzijsku medicinu",
+  "address": "Petrova ulica 3",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9915128,
+  "lat": 45.8159249,
+  "attrs": {
+   "amenity": "clinic",
+   "osm_url": "https://www.openstreetmap.org/way/417002408",
+   "website": "https://www.hztm.hr/",
+   "opening_hours": "Mo-Fr 07:30-19:00; Sa 07:30-15:00"
+  }
+ },
+ {
+  "id": 3270,
+  "category": "lijecnik",
+  "name": "Poliklinika za rehabilitaciju slušanja i govora SUVAG",
+  "address": "Ulica Ljudevita Posavskog 10",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9935388,
+  "lat": 45.8077711,
+  "attrs": {
+   "amenity": "clinic",
+   "osm_url": "https://www.openstreetmap.org/way/467743554",
+   "website": "http://www.suvag.hr"
+  }
+ },
+ {
+  "id": 3278,
+  "category": "lijecnik",
+  "name": "Poliklinika za dječje bolesti Helena",
+  "address": "Ulica kneza Branimira 71",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9931366,
+  "lat": 45.8067722,
+  "attrs": {
+   "amenity": "clinic",
+   "osm_url": "https://www.openstreetmap.org/way/1266088250",
+   "website": "https://www.poliklinika-helena.hr/"
+  }
+ },
+ {
+  "id": 3280,
+  "category": "lijecnik",
+  "name": "Dom zdravlja Črnomerec",
+  "address": "Ulica Vjekoslava Klaića 44/1",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9615087,
+  "lat": 45.8098179,
+  "attrs": {
+   "amenity": "doctors",
+   "osm_url": "https://www.openstreetmap.org/way/1331577724"
+  }
+ },
+ {
+  "id": 3287,
+  "category": "ljekarna",
+  "name": "Gradska ljekarna Zagreb",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9740475,
+  "lat": 45.8113304,
+  "attrs": {
+   "amenity": "pharmacy",
+   "osm_url": "https://www.openstreetmap.org/node/325724815",
+   "wheelchair": "no",
+   "opening_hours": "Mo-Fr 07:00-20:00; Sa 07:30-15:00; Su off"
+  }
+ },
+ {
+  "id": 3291,
+  "category": "ljekarna",
+  "name": "Ljekarna Centar",
+  "address": "Trg bana Josipa Jelačića 3",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9762461,
+  "lat": 45.8135635,
+  "attrs": {
+   "amenity": "pharmacy",
+   "osm_url": "https://www.openstreetmap.org/node/443433799",
+   "wheelchair": "yes",
+   "opening_hours": "24/7"
+  }
+ },
+ {
+  "id": 3292,
+  "category": "ljekarna",
+  "name": "Farmacia ljekarne",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9791104,
+  "lat": 45.8125507,
+  "attrs": {
+   "amenity": "pharmacy",
+   "osm_url": "https://www.openstreetmap.org/node/443433812",
+   "wheelchair": "yes",
+   "opening_hours": "Mo-Fr 07:00-20:00; Sa 08:00-13:00; Su off"
+  }
+ },
+ {
+  "id": 3293,
+  "category": "ljekarna",
+  "name": "Gradska ljekarna Zagreb",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9882733,
+  "lat": 45.809813,
+  "attrs": {
+   "amenity": "pharmacy",
+   "osm_url": "https://www.openstreetmap.org/node/457904447",
+   "wheelchair": "limited",
+   "opening_hours": "Mo-Fr 07:00-20:00; Sa 07:30-15:00"
+  }
+ },
+ {
+  "id": 3294,
+  "category": "ljekarna",
+  "name": "Zu ljekarna Pablo",
+  "address": "Zelinska ulica 3",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9730132,
+  "lat": 45.8023849,
+  "attrs": {
+   "amenity": "pharmacy",
+   "osm_url": "https://www.openstreetmap.org/node/457941466",
+   "wheelchair": "yes",
+   "opening_hours": "Mo-Fr 07:00-20:00; Sa 08:00-13:00"
+  }
+ },
+ {
+  "id": 3296,
+  "category": "ljekarna",
+  "name": "Mandis pharm",
+  "address": "Ulica kneza Branimira 65",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9909915,
+  "lat": 45.8061594,
+  "attrs": {
+   "amenity": "pharmacy",
+   "osm_url": "https://www.openstreetmap.org/node/493171153",
+   "wheelchair": "no",
+   "opening_hours": "Mo-Fr 07:00-20:00; Sa 07:30-15:00"
+  }
+ },
+ {
+  "id": 3308,
+  "category": "ljekarna",
+  "name": "Ljekarna Zagreb",
+  "address": "Ilica 43",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.969123,
+  "lat": 45.8131744,
+  "attrs": {
+   "amenity": "pharmacy",
+   "osm_url": "https://www.openstreetmap.org/node/722185501",
+   "wheelchair": "no",
+   "opening_hours": "Mo-Fr 07:00-20:00; Sa 07:30-15:00"
+  }
+ },
+ {
+  "id": 3313,
+  "category": "ljekarna",
+  "name": "Ljekarne Farmacia",
+  "address": "Avenija Marina Držića 4",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.993519,
+  "lat": 45.8037899,
+  "attrs": {
+   "amenity": "pharmacy",
+   "osm_url": "https://www.openstreetmap.org/node/838604426",
+   "wheelchair": "yes",
+   "opening_hours": "Mo-Fr 07:00-20:00; Sa 08:00-13:00; Su off"
+  }
+ },
+ {
+  "id": 3317,
+  "category": "ljekarna",
+  "name": "Gradska ljekarna Zagreb",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9837312,
+  "lat": 45.8124641,
+  "attrs": {
+   "amenity": "pharmacy",
+   "osm_url": "https://www.openstreetmap.org/node/921218033",
+   "wheelchair": "limited",
+   "opening_hours": "Mo-Fr 07:00-20:00; Sa 07:30-15:00; Su off"
+  }
+ },
+ {
+  "id": 3320,
+  "category": "ljekarna",
+  "name": "NaN",
+  "address": "Prilaz Gjure Deželića 38",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9639806,
+  "lat": 45.8106813,
+  "attrs": {
+   "amenity": "pharmacy",
+   "osm_url": "https://www.openstreetmap.org/node/935229982"
+  }
+ },
+ {
+  "id": 3324,
+  "category": "ljekarna",
+  "name": "Ljekarne Hanžić",
+  "address": "Draškovićeva ulica 44",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9835543,
+  "lat": 45.8093112,
+  "attrs": {
+   "amenity": "pharmacy",
+   "osm_url": "https://www.openstreetmap.org/node/1326688200",
+   "wheelchair": "yes",
+   "opening_hours": "Mo-Fr 07:00-20:00; Sa 08:00-13:00; Su off"
+  }
+ },
+ {
+  "id": 3331,
+  "category": "ljekarna",
+  "name": "Gradska ljekarna Zagreb",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9747197,
+  "lat": 45.8076065,
+  "attrs": {
+   "amenity": "pharmacy",
+   "osm_url": "https://www.openstreetmap.org/node/1473270457",
+   "wheelchair": "no",
+   "opening_hours": "Mo-Fr 07:00-20:00; Sa 07:30-15:00"
+  }
+ },
+ {
+  "id": 3334,
+  "category": "ljekarna",
+  "name": "Gradska ljekarna Zagreb",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9909231,
+  "lat": 45.8137555,
+  "attrs": {
+   "amenity": "pharmacy",
+   "osm_url": "https://www.openstreetmap.org/node/1514371307",
+   "wheelchair": "no",
+   "opening_hours": "Mo-Fr 07:00-20:00; Sa 07:30-15:00; Su off"
+  }
+ },
+ {
+  "id": 3350,
+  "category": "ljekarna",
+  "name": "Palac",
+  "address": "Martićeva ulica 51",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9913277,
+  "lat": 45.8125443,
+  "attrs": {
+   "amenity": "pharmacy",
+   "osm_url": "https://www.openstreetmap.org/node/1693572403",
+   "wheelchair": "yes",
+   "opening_hours": "Mo-Fr 07:00-20:00; Sa 08:00-14:00; PH,Su off"
+  }
+ },
+ {
+  "id": 3353,
+  "category": "ljekarna",
+  "name": "NaN",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.978241,
+  "lat": 45.8183918,
+  "attrs": {
+   "amenity": "pharmacy",
+   "osm_url": "https://www.openstreetmap.org/node/1776366585"
+  }
+ },
+ {
+  "id": 3354,
+  "category": "ljekarna",
+  "name": "Ljekarna",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.963632,
+  "lat": 45.8121636,
+  "attrs": {
+   "amenity": "pharmacy",
+   "osm_url": "https://www.openstreetmap.org/node/1927391510"
+  }
+ },
+ {
+  "id": 3366,
+  "category": "ljekarna",
+  "name": "Prima Pharme",
+  "address": "Savska cesta 30",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9639505,
+  "lat": 45.8025706,
+  "attrs": {
+   "amenity": "pharmacy",
+   "osm_url": "https://www.openstreetmap.org/node/2073270096",
+   "opening_hours": "Mo-Fr 08:30-15:30; Sa 08:00-13:00; Su off"
+  }
+ },
+ {
+  "id": 3370,
+  "category": "ljekarna",
+  "name": "Vaše zdravlje",
+  "address": "Gundulićeva ulica 15",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9722754,
+  "lat": 45.8110915,
+  "attrs": {
+   "amenity": "pharmacy",
+   "osm_url": "https://www.openstreetmap.org/node/2188595136",
+   "opening_hours": "Mo-Fr 07:00-20:00; Sa 07:30-15:00; Su off"
+  }
+ },
+ {
+  "id": 3375,
+  "category": "ljekarna",
+  "name": "Farmacia ljekarna",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9732403,
+  "lat": 45.8130278,
+  "attrs": {
+   "amenity": "pharmacy",
+   "osm_url": "https://www.openstreetmap.org/node/2216865260",
+   "wheelchair": "yes"
+  }
+ },
+ {
+  "id": 3378,
+  "category": "ljekarna",
+  "name": "Farmacia ljekarna",
+  "address": "Paromlinska cesta 2A",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9774576,
+  "lat": 45.8047015,
+  "attrs": {
+   "amenity": "pharmacy",
+   "osm_url": "https://www.openstreetmap.org/node/2271776401",
+   "opening_hours": "Mo-Fr 07:00-20:00; Sa 08:00-17:00"
+  }
+ },
+ {
+  "id": 3379,
+  "category": "ljekarna",
+  "name": "Centralna ljekarna Pablo",
+  "address": "Pod zidom 10",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9778486,
+  "lat": 45.8136152,
+  "attrs": {
+   "amenity": "pharmacy",
+   "osm_url": "https://www.openstreetmap.org/node/2280719230",
+   "opening_hours": "Mo-Fr 07:00-16:00; Sa 07:30-14:00; Su off"
+  }
+ },
+ {
+  "id": 3382,
+  "category": "ljekarna",
+  "name": "Gradska ljekarna Zagreb",
+  "address": "Ulica Josipa Runjanina 4",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9692428,
+  "lat": 45.8045982,
+  "attrs": {
+   "amenity": "pharmacy",
+   "osm_url": "https://www.openstreetmap.org/node/2303266391",
+   "opening_hours": "Mo-Fr 07:00-20:00; Sa 07:30-15:00"
+  }
+ },
+ {
+  "id": 3383,
+  "category": "ljekarna",
+  "name": "Vaše zdravlje",
+  "address": "Martićeva ulica 60",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9956563,
+  "lat": 45.8124916,
+  "attrs": {
+   "amenity": "pharmacy",
+   "osm_url": "https://www.openstreetmap.org/node/2312810184",
+   "wheelchair": "yes",
+   "opening_hours": "Mo-Fr 07:00-20:00; Sa 07:30-15:00; Su 07:30-13:00"
+  }
+ },
+ {
+  "id": 3384,
+  "category": "ljekarna",
+  "name": "biljna apoteka",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.96687,
+  "lat": 45.8058263,
+  "attrs": {
+   "amenity": "pharmacy",
+   "osm_url": "https://www.openstreetmap.org/node/2342132248",
+   "opening_hours": "Mo-Fr 07:30-20:00; Sa 08:00-15:00"
+  }
+ },
+ {
+  "id": 3401,
+  "category": "ljekarna",
+  "name": "Gradska ljekarna Zagreb",
+  "address": "Ilica 79",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9640875,
+  "lat": 45.812237,
+  "attrs": {
+   "amenity": "pharmacy",
+   "osm_url": "https://www.openstreetmap.org/node/2864060647",
+   "website": "https://www.gljz.hr/ljekarne/ilica-79"
+  }
+ },
+ {
+  "id": 3406,
+  "category": "ljekarna",
+  "name": "Gradska ljekarna Zagreb",
+  "address": "Trg kralja Tomislava 13",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9778871,
+  "lat": 45.8058265,
+  "attrs": {
+   "amenity": "pharmacy",
+   "osm_url": "https://www.openstreetmap.org/node/3015523536",
+   "opening_hours": "Mo-Fr 07:00-20:00; Sa 07:30-15:00"
+  }
+ },
+ {
+  "id": 3407,
+  "category": "ljekarna",
+  "name": "K crnom orlu",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9748367,
+  "lat": 45.8157386,
+  "attrs": {
+   "amenity": "pharmacy",
+   "osm_url": "https://www.openstreetmap.org/node/3016235150"
+  }
+ },
+ {
+  "id": 3408,
+  "category": "ljekarna",
+  "name": "K Zrinjskom",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9773153,
+  "lat": 45.8112913,
+  "attrs": {
+   "amenity": "pharmacy",
+   "osm_url": "https://www.openstreetmap.org/node/3016236371"
+  }
+ },
+ {
+  "id": 3411,
+  "category": "ljekarna",
+  "name": "Gradska ljekarna Zagreb",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9894887,
+  "lat": 45.8028631,
+  "attrs": {
+   "amenity": "pharmacy",
+   "osm_url": "https://www.openstreetmap.org/node/3323637161",
+   "wheelchair": "yes",
+   "opening_hours": "Mo-Fr 07:00-20:00; Sa 07:30-15:00"
+  }
+ },
+ {
+  "id": 3427,
+  "category": "ljekarna",
+  "name": "Mandispharm",
+  "address": "Trg Republike Hrvatske 8",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9688907,
+  "lat": 45.8087838,
+  "attrs": {
+   "amenity": "pharmacy",
+   "osm_url": "https://www.openstreetmap.org/node/4998407276",
+   "wheelchair": "no",
+   "opening_hours": "Mo-Fr 07:00-20:00; Sa 07:30-15:00"
+  }
+ },
+ {
+  "id": 3428,
+  "category": "ljekarna",
+  "name": "Vaše zdravlje",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9852747,
+  "lat": 45.8120833,
+  "attrs": {
+   "amenity": "pharmacy",
+   "osm_url": "https://www.openstreetmap.org/node/4998407277",
+   "wheelchair": "yes",
+   "opening_hours": "Mo-Fr 07:00-20:00; Sa 07:30-15:00; Su off"
+  }
+ },
+ {
+  "id": 3429,
+  "category": "ljekarna",
+  "name": "Mondo pharm",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9959656,
+  "lat": 45.8119062,
+  "attrs": {
+   "amenity": "pharmacy",
+   "osm_url": "https://www.openstreetmap.org/node/5020620052",
+   "wheelchair": "limited"
+  }
+ },
+ {
+  "id": 3431,
+  "category": "ljekarna",
+  "name": "Pablo",
+  "address": "Šarengradska ulica 1",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9603428,
+  "lat": 45.8000346,
+  "attrs": {
+   "amenity": "pharmacy",
+   "osm_url": "https://www.openstreetmap.org/node/5822585955",
+   "opening_hours": "Mo-Fr 07:00-20:00; Sa 08:00-13:00; Su off"
+  }
+ },
+ {
+  "id": 3438,
+  "category": "ljekarna",
+  "name": "NaN",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9843851,
+  "lat": 45.8243306,
+  "attrs": {
+   "amenity": "pharmacy",
+   "osm_url": "https://www.openstreetmap.org/node/8007492283"
+  }
+ },
+ {
+  "id": 3439,
+  "category": "ljekarna",
+  "name": "NaN",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9706893,
+  "lat": 45.8135539,
+  "attrs": {
+   "amenity": "pharmacy",
+   "osm_url": "https://www.openstreetmap.org/node/8279850407"
+  }
+ },
+ {
+  "id": 3452,
+  "category": "ljekarna",
+  "name": "Ljekarna Prima Pharme",
+  "address": "Nova Ves 17",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9767679,
+  "lat": 45.8202501,
+  "attrs": {
+   "amenity": "pharmacy",
+   "osm_url": "https://www.openstreetmap.org/node/9330595485",
+   "wheelchair": "yes",
+   "opening_hours": "Mo-Sa 08:00-21:00; Su 09:00-15:00"
+  }
+ },
+ {
+  "id": 3467,
+  "category": "ljekarna",
+  "name": "Ljekarna Frebel",
+  "address": "Dolac 1",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9768092,
+  "lat": 45.8141348,
+  "attrs": {
+   "amenity": "pharmacy",
+   "osm_url": "https://www.openstreetmap.org/node/11681621984",
+   "website": "https://ljekarna-frebel.business.site/",
+   "opening_hours": "Mo-Fr 07:00-20:00; Sa 08:00-14:00; Su off"
+  }
+ },
+ {
+  "id": 3469,
+  "category": "ljekarna",
+  "name": "Ljekarne Elena Matas, Mirna Matas",
+  "address": "Ulica kneza Borne 24",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.987069,
+  "lat": 45.8076119,
+  "attrs": {
+   "amenity": "pharmacy",
+   "osm_url": "https://www.openstreetmap.org/node/11922934997",
+   "wheelchair": "yes",
+   "opening_hours": "Mo-Fr 07:00-20:00; Sa 08:00-13:00; Su off"
+  }
+ },
+ {
+  "id": 3470,
+  "category": "ljekarna",
+  "name": "Imuno protect",
+  "address": "Savska cesta 28",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9631118,
+  "lat": 45.8031794,
+  "attrs": {
+   "amenity": "pharmacy",
+   "osm_url": "https://www.openstreetmap.org/node/11991565922",
+   "website": "https://imuno-protect.eu"
+  }
+ },
+ {
+  "id": 3478,
+  "category": "ljekarna",
+  "name": "Aromatica",
+  "address": "Vlaška ulica 15",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9801817,
+  "lat": 45.813408,
+  "attrs": {
+   "amenity": "pharmacy",
+   "osm_url": "https://www.openstreetmap.org/node/12588128396",
+   "website": "https://www.aromatica.hr",
+   "wheelchair": "no",
+   "opening_hours": "Mo-Fr 09:00-21:00; Sa 08:00-15:00; Su off"
+  }
+ },
+ {
+  "id": 3482,
+  "category": "ljekarna",
+  "name": "Bioterra",
+  "address": "Vlaška ulica 7",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9794596,
+  "lat": 45.8136433,
+  "attrs": {
+   "amenity": "pharmacy",
+   "osm_url": "https://www.openstreetmap.org/node/13460940291",
+   "website": "https://bioterra.hr",
+   "wheelchair": "no",
+   "opening_hours": "Mo-Fr 08:00-20:00; Sa 08:00-15:00; Su off"
+  }
+ },
+ {
+  "id": 3493,
+  "category": "knjiznica",
+  "name": "Knjižnica Bogdan Ogrizović",
+  "address": "Preradovićeva ulica 5",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9743715,
+  "lat": 45.8115866,
+  "attrs": {
+   "amenity": "library",
+   "osm_url": "https://www.openstreetmap.org/node/325718689",
+   "opening_hours": "Mo-Fr 08:00-20:00; Sa 08:00-14:00; Su off"
+  }
+ },
+ {
+  "id": 3497,
+  "category": "knjiznica",
+  "name": "Dječja knjižnica Marina Držića",
+  "address": "Avenija Marina Držića 10",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.994443,
+  "lat": 45.8018868,
+  "attrs": {
+   "amenity": "library",
+   "osm_url": "https://www.openstreetmap.org/node/838557845",
+   "website": "https://www.kgz.hr/hr/knjiznice/djecja-knjiznica-marina-drzica/59",
+   "wheelchair": "yes",
+   "opening_hours": "Mo, We, Fr 08:00-14:00; Sa[1,3] 08:00-14:00; Tu, Th 14:00-20:00"
+  }
+ },
+ {
+  "id": 3499,
+  "category": "knjiznica",
+  "name": "Knjižnica Marina Držića",
+  "address": "Ulica grada Vukovara 222",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9871667,
+  "lat": 45.8000688,
+  "attrs": {
+   "amenity": "library",
+   "osm_url": "https://www.openstreetmap.org/node/920423897",
+   "website": "https://www.kgz.hr/hr/knjiznice/knjiznica-marina-drzica/79",
+   "opening_hours": "Mo,We-Fr 08:00-20:00; Sa 08:00-14:00"
+  }
+ },
+ {
+  "id": 3501,
+  "category": "knjiznica",
+  "name": "Knjižnica Medveščak",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.988361,
+  "lat": 45.8101597,
+  "attrs": {
+   "amenity": "library",
+   "osm_url": "https://www.openstreetmap.org/node/930286250",
+   "website": "https://www.kgz.hr/hr/knjiznice/knjiznica-medvescak/80",
+   "wheelchair": "no",
+   "opening_hours": "Mo-Fr 08:00-20:00; Sa 08:00-14:00"
+  }
+ },
+ {
+  "id": 3502,
+  "category": "knjiznica",
+  "name": "Knjižnica Ivana Gorana Kovačića",
+  "address": "Ulica grada Vukovara 35",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9661876,
+  "lat": 45.8000511,
+  "attrs": {
+   "amenity": "library",
+   "osm_url": "https://www.openstreetmap.org/node/990591716",
+   "website": "https://www.kgz.hr/default.aspx?id=73",
+   "opening_hours": "Mo-Fr 08:00-20:00; Sa 08:00-14:00"
+  }
+ },
+ {
+  "id": 3511,
+  "category": "knjiznica",
+  "name": "Knjižnica Marija Jurić Zagorka",
+  "address": "Krvavi most 2",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9759145,
+  "lat": 45.8146807,
+  "attrs": {
+   "amenity": "library",
+   "osm_url": "https://www.openstreetmap.org/node/1962380400",
+   "website": "https://www.kgz.hr/hr/knjiznice/knjiznica-marije-juric-zagorke/78",
+   "wheelchair": "no",
+   "opening_hours": "Mo-Fr 08:00-20:00;Sa 08:00-14:00"
+  }
+ },
+ {
+  "id": 3513,
+  "category": "knjiznica",
+  "name": "Knjižnica Božidara Adžije",
+  "address": "Trg kralja Petra Krešimira IV. 2",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9920007,
+  "lat": 45.8085087,
+  "attrs": {
+   "amenity": "library",
+   "osm_url": "https://www.openstreetmap.org/node/2066819614",
+   "opening_hours": "8:00-20:00"
+  }
+ },
+ {
+  "id": 3520,
+  "category": "knjiznica",
+  "name": "Državni arhiv u Zagrebu",
+  "address": "Opatička ulica 29",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9743049,
+  "lat": 45.818407,
+  "attrs": {
+   "amenity": "library",
+   "osm_url": "https://www.openstreetmap.org/node/4281801989",
+   "website": "https://daz.hr/",
+   "opening_hours": "Mo-Su 09:00-14:00"
+  }
+ },
+ {
+  "id": 3524,
+  "category": "knjiznica",
+  "name": "Gradska knjižnica",
+  "address": "Trg Ante Starčevića 6",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9776533,
+  "lat": 45.805843,
+  "attrs": {
+   "amenity": "library",
+   "osm_url": "https://www.openstreetmap.org/node/7900158957"
+  }
+ },
+ {
+  "id": 3528,
+  "category": "knjiznica",
+  "name": "Talijanski institut za kulturu",
+  "address": "Ulica Sv. Preobraženja 4",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9737173,
+  "lat": 45.8128288,
+  "attrs": {
+   "amenity": "library",
+   "osm_url": "https://www.openstreetmap.org/node/9194664996",
+   "website": "https://iiczagabria.esteri.it/iic_zagabria/hr/istituto/chi_siamo/"
+  }
+ },
+ {
+  "id": 3529,
+  "category": "knjiznica",
+  "name": "Gradska knjižnica - odjel za djecu i mladež",
+  "address": "Trg Ante Starčevića 4",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9771855,
+  "lat": 45.8057954,
+  "attrs": {
+   "amenity": "library",
+   "osm_url": "https://www.openstreetmap.org/node/9332987265",
+   "opening_hours": "Mo-Fr 08:00-20:00; Sa 08:00-14:00"
+  }
+ },
+ {
+  "id": 3530,
+  "category": "knjiznica",
+  "name": "Hrvatska knjižnica za slijepe",
+  "address": "Ulica Augusta Šenoe 34",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9836575,
+  "lat": 45.8063629,
+  "attrs": {
+   "amenity": "library",
+   "osm_url": "https://www.openstreetmap.org/node/9905752912",
+   "website": "https://www.hkzasl.hr/",
+   "opening_hours": "Mo-Fr 08:00-16:00"
+  }
+ },
+ {
+  "id": 3532,
+  "category": "knjiznica",
+  "name": "Dječja knjižnica \"M2\"",
+  "address": "71 Medvešćak",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9800829,
+  "lat": 45.8242292,
+  "attrs": {
+   "amenity": "library",
+   "osm_url": "https://www.openstreetmap.org/node/10872785903",
+   "website": "https://www.kgz.hr/hr/knjiznice/djecja-knjiznica-m2/64",
+   "opening_hours": "Mo-We 13:00-19:30; Th, Fr 08:00-14:00; Sa[1,3] 08:00-14:00"
+  }
+ },
+ {
+  "id": 3533,
+  "category": "knjiznica",
+  "name": "Knjižnica Medveščak, odjel za djecu i odjel za mladež",
+  "address": "Ulica kralja Zvonimira 17",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9911705,
+  "lat": 45.8103021,
+  "attrs": {
+   "amenity": "library",
+   "osm_url": "https://www.openstreetmap.org/node/10931434375",
+   "website": "https://www.kgz.hr/hr/knjiznice/knjiznica-medvescak/80",
+   "opening_hours": "Mo-Fr 08:00-20:00; Sa 08:00-14:00; Su off"
+  }
+ },
+ {
+  "id": 3537,
+  "category": "knjiznica",
+  "name": "Knjižnica Hrvatske akademije znanosti i umjetnosti",
+  "address": "Trg Josipa Jurja Strossmayera 14",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9786025,
+  "lat": 45.8080364,
+  "attrs": {
+   "amenity": "library",
+   "osm_url": "https://www.openstreetmap.org/node/11886735143",
+   "website": "https://knjiznica.hazu.hr/"
+  }
+ },
+ {
+  "id": 3546,
+  "category": "posta",
+  "name": "10126 Zagreb",
+  "address": "Ulica grada Vukovara 35",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9664253,
+  "lat": 45.8000405,
+  "attrs": {
+   "amenity": "post_office",
+   "osm_url": "https://www.openstreetmap.org/node/321511882",
+   "opening_hours": "Mar-Jun: Mo-Fr 08:00-18:00; Mar-Jun: Sa 08:00-12:00;Jul-Aug: Mo-Fr 10:00-17:00;Sep-Nov: Mo-Fr 08:00-18:00; Sep-Nov: Sa 08:00-12:00;Dec-Feb: Mo-Fr 07:00-17:00; Dec-Feb: Sa 08:00-13:00"
+  }
+ },
+ {
+  "id": 3555,
+  "category": "posta",
+  "name": "10112 Zagreb",
+  "address": "Nova Ves 57",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9786506,
+  "lat": 45.8246753,
+  "attrs": {
+   "amenity": "post_office",
+   "osm_url": "https://www.openstreetmap.org/node/1274545529",
+   "wheelchair": "yes"
+  }
+ },
+ {
+  "id": 3559,
+  "category": "posta",
+  "name": "10116 Zagreb",
+  "address": "Ulica grada Vukovara 86",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9816714,
+  "lat": 45.799944,
+  "attrs": {
+   "amenity": "post_office",
+   "osm_url": "https://www.openstreetmap.org/node/1732006460",
+   "website": "https://www.posta.hr/pretrazivanje-postanskih-ureda/263?uredi=10",
+   "opening_hours": "Mo-Fr 08:00-17:00"
+  }
+ },
+ {
+  "id": 3577,
+  "category": "posta",
+  "name": "NaN",
+  "address": "Ulica Nikole Tesle 6",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9760923,
+  "lat": 45.8114081,
+  "attrs": {
+   "amenity": "post_office",
+   "osm_url": "https://www.openstreetmap.org/node/9106120977"
+  }
+ },
+ {
+  "id": 3578,
+  "category": "posta",
+  "name": "DPD",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9723335,
+  "lat": 45.8102589,
+  "attrs": {
+   "amenity": "post_office",
+   "osm_url": "https://www.openstreetmap.org/node/9654001666",
+   "opening_hours": "Mo-Fr 08:00-20:00;Sa 08:00-13:00"
+  }
+ },
+ {
+  "id": 3579,
+  "category": "posta",
+  "name": "10151 Zagreb",
+  "address": "Avenija Marina Držića 4",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9930632,
+  "lat": 45.8043262,
+  "attrs": {
+   "amenity": "post_office",
+   "osm_url": "https://www.openstreetmap.org/node/10230383204",
+   "opening_hours": "Mo-Fr 08:00-19:00; Sa 08:00-13:00"
+  }
+ },
+ {
+  "id": 3583,
+  "category": "posta",
+  "name": "Pošta",
+  "address": "Jurišićeva ulica 5",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9797049,
+  "lat": 45.8125172,
+  "attrs": {
+   "amenity": "post_office",
+   "osm_url": "https://www.openstreetmap.org/node/11554674714",
+   "wheelchair": "no",
+   "opening_hours": "Mo-Fr 08:00-20:00; Sa 08:00-13:00; Su off"
+  }
+ },
+ {
+  "id": 3585,
+  "category": "posta",
+  "name": "NaN",
+  "address": "Trg Drage Iblera 10",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9849155,
+  "lat": 45.8134136,
+  "attrs": {
+   "amenity": "post_office",
+   "osm_url": "https://www.openstreetmap.org/node/11895348144",
+   "opening_hours": "Mo-Fr 08:00-20:00; Sa 08:00-13:00; Su off"
+  }
+ },
+ {
+  "id": 3606,
+  "category": "posta",
+  "name": "10115 Zagreb",
+  "address": "Savska cesta 17",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9668857,
+  "lat": 45.8057503,
+  "attrs": {
+   "amenity": "post_office",
+   "osm_url": "https://www.openstreetmap.org/way/583975623",
+   "website": "https://www.posta.hr/pretrazivanje-postanskih-ureda/263?uredi=9",
+   "opening_hours": "Mo-Fr 07:00-20:00; Sa 08:00-15:00"
+  }
+ },
+ {
+  "id": 3614,
+  "category": "posta",
+  "name": "10103 Zagreb",
+  "address": "Ulica Đure Basaričeka 11",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9739856,
+  "lat": 45.8175337,
+  "attrs": {
+   "amenity": "post_office",
+   "osm_url": "https://www.openstreetmap.org/way/588351458",
+   "website": "https://www.posta.hr/pretrazivanje-postanskih-ureda/263?uredi=8",
+   "opening_hours": "Mo-Fr 08:00-15:00"
+  }
+ },
+ {
+  "id": 3615,
+  "category": "posta",
+  "name": "10000 Zagreb",
+  "address": "Ulica kneza Branimira 4",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9810389,
+  "lat": 45.8050086,
+  "attrs": {
+   "amenity": "post_office",
+   "osm_url": "https://www.openstreetmap.org/relation/8415112",
+   "website": "https://www.posta.hr/pretrazivanje-postanskih-ureda/263?uredi=1",
+   "opening_hours": "Mo-Su 07:00-24:00"
+  }
+ },
+ {
+  "id": 3627,
+  "category": "park",
+  "name": "NaN",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9772715,
+  "lat": 45.8052885,
+  "attrs": {
+   "area_m2": 5634,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/29356801",
+   "access_points": [
+    [
+     15.977271497415412,
+     45.80528854865236
+    ],
+    [
+     15.97669370504136,
+     45.805395356357266
+    ],
+    [
+     15.977141303102472,
+     45.804983984110194
+    ],
+    [
+     15.97766878676059,
+     45.80517206929217
+    ],
+    [
+     15.97748321484126,
+     45.805608625925785
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3669,
+  "category": "park",
+  "name": "Martinovka",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9729967,
+  "lat": 45.8014553,
+  "attrs": {
+   "area_m2": 4811,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/50000348",
+   "access_points": [
+    [
+     15.972996678395413,
+     45.80145527555382
+    ],
+    [
+     15.972490142724666,
+     45.801595814961026
+    ],
+    [
+     15.97286709184289,
+     45.80121165749592
+    ],
+    [
+     15.97349171421965,
+     45.8014361501511
+    ],
+    [
+     15.973094413812499,
+     45.80178502090996
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3677,
+  "category": "park",
+  "name": "88 stabala za druga Tita",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9877021,
+  "lat": 45.8003613,
+  "attrs": {
+   "area_m2": 4552,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/78456263",
+   "access_points": [
+    [
+     15.98770209153329,
+     45.80036126692883
+    ],
+    [
+     15.986832339422511,
+     45.800302313913434
+    ],
+    [
+     15.987797454075078,
+     45.800242336052364
+    ],
+    [
+     15.988630985945967,
+     45.80051040929923
+    ],
+    [
+     15.987621363704124,
+     45.80053165862297
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3678,
+  "category": "park",
+  "name": "NaN",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9841078,
+  "lat": 45.8132739,
+  "attrs": {
+   "area_m2": 1304,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/78500753",
+   "access_points": [
+    [
+     15.984107831475503,
+     45.813273881239596
+    ],
+    [
+     15.983910109964445,
+     45.81308037427004
+    ],
+    [
+     15.98425256328036,
+     45.8130306514062
+    ],
+    [
+     15.98430009796222,
+     45.81331880263644
+    ],
+    [
+     15.983932544952406,
+     45.8134059324236
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3680,
+  "category": "park",
+  "name": "Rokov perivoj",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9685102,
+  "lat": 45.8145188,
+  "attrs": {
+   "area_m2": 13257,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/83132136",
+   "access_points": [
+    [
+     15.968510245879502,
+     45.81451879635008
+    ],
+    [
+     15.966235927940458,
+     45.81367215077713
+    ],
+    [
+     15.968290882097916,
+     45.81443854545592
+    ],
+    [
+     15.968901355921073,
+     45.81478247482897
+    ],
+    [
+     15.967164754393096,
+     45.814757272810965
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3681,
+  "category": "park",
+  "name": "Park 5. studenoga",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9642875,
+  "lat": 45.8017027,
+  "attrs": {
+   "area_m2": 6007,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/85456770",
+   "access_points": [
+    [
+     15.964287498280392,
+     45.80170267012339
+    ],
+    [
+     15.96384583308005,
+     45.801026936139536
+    ],
+    [
+     15.964638987388112,
+     45.80133862998137
+    ],
+    [
+     15.964441373829564,
+     45.8021089618783
+    ],
+    [
+     15.963922876148334,
+     45.80156354089601
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3683,
+  "category": "park",
+  "name": "Park Elze Kučere",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9672147,
+  "lat": 45.8000148,
+  "attrs": {
+   "area_m2": 3813,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/85456790",
+   "access_points": [
+    [
+     15.96721473695482,
+     45.800014766514195
+    ],
+    [
+     15.965681330769145,
+     45.79990563859424
+    ],
+    [
+     15.967040498459996,
+     45.799885753534674
+    ],
+    [
+     15.967385970121516,
+     45.80015705629583
+    ],
+    [
+     15.96606422672949,
+     45.799982378240635
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3686,
+  "category": "park",
+  "name": "NaN",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9833233,
+  "lat": 45.817335,
+  "attrs": {
+   "area_m2": 11645,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/88369442",
+   "access_points": [
+    [
+     15.983323348240702,
+     45.81733502937669
+    ],
+    [
+     15.982474756614174,
+     45.8171759004308
+    ],
+    [
+     15.983472010480366,
+     45.81695138766828
+    ],
+    [
+     15.98419446962277,
+     45.81731440037288
+    ],
+    [
+     15.983182335800299,
+     45.817750700181676
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3687,
+  "category": "park",
+  "name": "Park Bele IV.",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9727828,
+  "lat": 45.8146977,
+  "attrs": {
+   "area_m2": 2106,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/97092409",
+   "access_points": [
+    [
+     15.97278279742445,
+     45.814697686277924
+    ],
+    [
+     15.97236707335799,
+     45.81452568164899
+    ],
+    [
+     15.973015027480765,
+     45.8146070982436
+    ],
+    [
+     15.97314384010687,
+     45.81484998875976
+    ],
+    [
+     15.972481152037766,
+     45.81487376579455
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3690,
+  "category": "park",
+  "name": "NaN",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9959338,
+  "lat": 45.8025966,
+  "attrs": {
+   "area_m2": 2097,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/105467744",
+   "access_points": [
+    [
+     15.99593380752889,
+     45.802596641402154
+    ],
+    [
+     15.995563936692536,
+     45.802917233856
+    ],
+    [
+     15.99581968092674,
+     45.802476568890455
+    ],
+    [
+     15.996117322832019,
+     45.802597722056376
+    ],
+    [
+     15.995947496153688,
+     45.80291546626254
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3691,
+  "category": "park",
+  "name": "Perivoj biskupa Stjepana II.",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9770471,
+  "lat": 45.8173488,
+  "attrs": {
+   "area_m2": 7187,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/105494237",
+   "access_points": [
+    [
+     15.977047084548314,
+     45.81734878651311
+    ],
+    [
+     15.976647218579958,
+     45.81750576473212
+    ],
+    [
+     15.976978040404223,
+     45.81674657913378
+    ],
+    [
+     15.977416221245404,
+     45.81723983983783
+    ],
+    [
+     15.977223442597854,
+     45.81797878730007
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3692,
+  "category": "park",
+  "name": "NaN",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9591279,
+  "lat": 45.803917,
+  "attrs": {
+   "area_m2": 1261,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/114100522",
+   "access_points": [
+    [
+     15.959127902138441,
+     45.80391703371204
+    ],
+    [
+     15.958704451217939,
+     45.80396064887847
+    ],
+    [
+     15.959146391216123,
+     45.80382677284746
+    ],
+    [
+     15.95952412391394,
+     45.80393547721701
+    ],
+    [
+     15.959056508198534,
+     45.80401878162574
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3703,
+  "category": "park",
+  "name": "NaN",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9701195,
+  "lat": 45.8080177,
+  "attrs": {
+   "area_m2": 10158,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/141581857",
+   "access_points": [
+    [
+     15.970119459482596,
+     45.80801770443591
+    ],
+    [
+     15.969369292073281,
+     45.80764310724676
+    ],
+    [
+     15.97049726830917,
+     45.80747234912843
+    ],
+    [
+     15.970756981180337,
+     45.808256325767445
+    ],
+    [
+     15.969630729961716,
+     45.80834892427454
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3704,
+  "category": "park",
+  "name": "Park kralja Petra Svačića",
+  "address": "Trg kralja Petra Svačića",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.974424,
+  "lat": 45.8070472,
+  "attrs": {
+   "area_m2": 5858,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/142371952",
+   "access_points": [
+    [
+     15.974424038708436,
+     45.80704721692884
+    ],
+    [
+     15.974006726000937,
+     45.80717848915923
+    ],
+    [
+     15.974110269825099,
+     45.806542935505085
+    ],
+    [
+     15.974890426521052,
+     45.806710509549134
+    ],
+    [
+     15.97473458790636,
+     45.80737780042195
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3706,
+  "category": "park",
+  "name": "Park Ribnjak",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9803835,
+  "lat": 45.8164002,
+  "attrs": {
+   "area_m2": 42119,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/142842421",
+   "access_points": [
+    [
+     15.980383501517892,
+     45.81640021412739
+    ],
+    [
+     15.979009912725441,
+     45.81746608882984
+    ],
+    [
+     15.98020830646571,
+     45.81543464876941
+    ],
+    [
+     15.981634640642923,
+     45.8149411033089
+    ],
+    [
+     15.980406990481542,
+     45.81732289562393
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3709,
+  "category": "park",
+  "name": "NaN",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9908598,
+  "lat": 45.8081063,
+  "attrs": {
+   "area_m2": 7514,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/147021985",
+   "access_points": [
+    [
+     15.990859773481864,
+     45.80810630995868
+    ],
+    [
+     15.990094637494018,
+     45.808237638107954
+    ],
+    [
+     15.991018200672949,
+     45.80770240249053
+    ],
+    [
+     15.991402962264186,
+     45.80809784587187
+    ],
+    [
+     15.990739548395513,
+     45.80850027833561
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3710,
+  "category": "park",
+  "name": "NaN",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9902965,
+  "lat": 45.8075911,
+  "attrs": {
+   "area_m2": 13636,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/147021986",
+   "access_points": [
+    [
+     15.990296544341808,
+     45.80759108465188
+    ],
+    [
+     15.989640715443416,
+     45.80793891592387
+    ],
+    [
+     15.989708146968923,
+     45.806814946447844
+    ],
+    [
+     15.99081657068782,
+     45.80696867522378
+    ],
+    [
+     15.99055796374598,
+     45.80783544523995
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3712,
+  "category": "park",
+  "name": "NaN",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9899514,
+  "lat": 45.8011988,
+  "attrs": {
+   "area_m2": 2958,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/158522720",
+   "access_points": [
+    [
+     15.989951356276318,
+     45.80119876513783
+    ],
+    [
+     15.989362264702512,
+     45.801183349956965
+    ],
+    [
+     15.98995829495072,
+     45.8010484539508
+    ],
+    [
+     15.99054044909189,
+     45.80121549393098
+    ],
+    [
+     15.989926157492803,
+     45.801342399373
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3713,
+  "category": "park",
+  "name": "NaN",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.991025,
+  "lat": 45.7998399,
+  "attrs": {
+   "area_m2": 2229,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/158523469",
+   "access_points": [
+    [
+     15.991025024161932,
+     45.7998399028705
+    ],
+    [
+     15.990818437173917,
+     45.80004174609406
+    ],
+    [
+     15.990865376961569,
+     45.79954410920525
+    ],
+    [
+     15.991248955994209,
+     45.799666207113816
+    ],
+    [
+     15.991275004695527,
+     45.800118238801375
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3714,
+  "category": "park",
+  "name": "NaN",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9902722,
+  "lat": 45.8000288,
+  "attrs": {
+   "area_m2": 2753,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/158523471",
+   "access_points": [
+    [
+     15.990272190987408,
+     45.80002878287816
+    ],
+    [
+     15.990010288449598,
+     45.80024929916928
+    ],
+    [
+     15.990067841492602,
+     45.79968609579048
+    ],
+    [
+     15.990459555074041,
+     45.799658550108006
+    ],
+    [
+     15.990490954645846,
+     45.80015316668883
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3715,
+  "category": "park",
+  "name": "Park Stjepana Srkulja",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9760825,
+  "lat": 45.8004987,
+  "attrs": {
+   "area_m2": 11088,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/158525101",
+   "access_points": [
+    [
+     15.97608248246366,
+     45.80049871149672
+    ],
+    [
+     15.974742942090133,
+     45.800525894233175
+    ],
+    [
+     15.976129674014425,
+     45.800318944848094
+    ],
+    [
+     15.977410063715856,
+     45.80066008761983
+    ],
+    [
+     15.975972203706709,
+     45.800860290209904
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3716,
+  "category": "park",
+  "name": "Park Adolfa Mošinskog",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9756348,
+  "lat": 45.8016447,
+  "attrs": {
+   "area_m2": 6220,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/158525103",
+   "access_points": [
+    [
+     15.97563484827662,
+     45.8016446816619
+    ],
+    [
+     15.974780895221194,
+     45.80185172221331
+    ],
+    [
+     15.975401773632969,
+     45.80143669423496
+    ],
+    [
+     15.976227793651853,
+     45.801704889618904
+    ],
+    [
+     15.975517270742737,
+     45.80200152292883
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3717,
+  "category": "park",
+  "name": "NaN",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9749109,
+  "lat": 45.8011414,
+  "attrs": {
+   "area_m2": 1702,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/158525291",
+   "access_points": [
+    [
+     15.97491087662505,
+     45.801141371294456
+    ],
+    [
+     15.974671871246986,
+     45.801232047741024
+    ],
+    [
+     15.974786607561786,
+     45.8009244655061
+    ],
+    [
+     15.9751452485081,
+     45.80105203400992
+    ],
+    [
+     15.975036220554758,
+     45.80135966438938
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3721,
+  "category": "park",
+  "name": "NaN",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9858933,
+  "lat": 45.8008076,
+  "attrs": {
+   "area_m2": 1128,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/158555540",
+   "access_points": [
+    [
+     15.985893278353435,
+     45.80080760933086
+    ],
+    [
+     15.985382821615243,
+     45.80072132893374
+    ],
+    [
+     15.98595637177822,
+     45.80073892189287
+    ],
+    [
+     15.986388348446422,
+     45.80087180772078
+    ],
+    [
+     15.98580213690862,
+     45.80085902793258
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3722,
+  "category": "park",
+  "name": "NaN",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9878417,
+  "lat": 45.8009208,
+  "attrs": {
+   "area_m2": 2902,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/158555548",
+   "access_points": [
+    [
+     15.987841732576928,
+     45.800920750338676
+    ],
+    [
+     15.98677553357033,
+     45.800809434188565
+    ],
+    [
+     15.988128813856285,
+     45.80085111432375
+    ],
+    [
+     15.988821138931252,
+     45.801026113911256
+    ],
+    [
+     15.987464450336518,
+     45.80095702891419
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3724,
+  "category": "park",
+  "name": "NaN",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9846582,
+  "lat": 45.8007454,
+  "attrs": {
+   "area_m2": 728,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/159160190",
+   "access_points": [
+    [
+     15.98465821030145,
+     45.80074541452999
+    ],
+    [
+     15.984329474189764,
+     45.80072072858693
+    ],
+    [
+     15.984681303223823,
+     45.800681715571436
+    ],
+    [
+     15.98498965127527,
+     45.80077339170934
+    ],
+    [
+     15.984633142267697,
+     45.80080679805838
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3729,
+  "category": "park",
+  "name": "NaN",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9934335,
+  "lat": 45.8011841,
+  "attrs": {
+   "area_m2": 3563,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/185591857",
+   "access_points": [
+    [
+     15.993433477286993,
+     45.80118409724932
+    ],
+    [
+     15.992285476943623,
+     45.801056057612236
+    ],
+    [
+     15.99377351533698,
+     45.80113220790908
+    ],
+    [
+     15.994679462238915,
+     45.801326521587036
+    ],
+    [
+     15.993191430624904,
+     45.801250587551614
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3732,
+  "category": "park",
+  "name": "Zrinjevac",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9782057,
+  "lat": 45.8108475,
+  "attrs": {
+   "area_m2": 20056,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/203987011",
+   "access_points": [
+    [
+     15.978205671683465,
+     45.81084745900125
+    ],
+    [
+     15.977600823715377,
+     45.811006770003615
+    ],
+    [
+     15.977802995870668,
+     45.809621883482805
+    ],
+    [
+     15.979024508294154,
+     45.809798762186766
+    ],
+    [
+     15.978714631871739,
+     45.81117388310192
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3733,
+  "category": "park",
+  "name": "NaN",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9860586,
+  "lat": 45.8003745,
+  "attrs": {
+   "area_m2": 1696,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/209582571",
+   "access_points": [
+    [
+     15.986058566499372,
+     45.800374515063055
+    ],
+    [
+     15.985440815970618,
+     45.800291448724806
+    ],
+    [
+     15.986018916023802,
+     45.80031305822132
+    ],
+    [
+     15.986773209986062,
+     45.80042175732517
+    ],
+    [
+     15.98593899899487,
+     45.800460685476736
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3734,
+  "category": "park",
+  "name": "Strossmayerov trg",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9785729,
+  "lat": 45.8086709,
+  "attrs": {
+   "area_m2": 9094,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/210980637",
+   "access_points": [
+    [
+     15.978572873081733,
+     45.80867094897158
+    ],
+    [
+     15.977944744830436,
+     45.80898706142369
+    ],
+    [
+     15.978524304116066,
+     45.808205898609145
+    ],
+    [
+     15.979137186951966,
+     45.80888360766271
+    ],
+    [
+     15.97863356832269,
+     45.80893659487917
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3735,
+  "category": "park",
+  "name": "NaN",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9787001,
+  "lat": 45.8066981,
+  "attrs": {
+   "area_m2": 20575,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/210980638",
+   "access_points": [
+    [
+     15.978700142636248,
+     45.806698095138906
+    ],
+    [
+     15.978098548491552,
+     45.807120884780666
+    ],
+    [
+     15.978152714398108,
+     45.805696823211285
+    ],
+    [
+     15.979328879075547,
+     45.80582176569137
+    ],
+    [
+     15.979258556717049,
+     45.8072454820389
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3756,
+  "category": "park",
+  "name": "Park Rock 'n' rolla",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9814225,
+  "lat": 45.8074813,
+  "attrs": {
+   "area_m2": 403,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/239805068",
+   "access_points": [
+    [
+     15.981422549997326,
+     45.80748125019769
+    ],
+    [
+     15.981212468785403,
+     45.80748143560248
+    ],
+    [
+     15.981418092316199,
+     45.80742559044067
+    ],
+    [
+     15.981632631233847,
+     45.807481064106845
+    ],
+    [
+     15.98142700765633,
+     45.807536909944425
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3771,
+  "category": "park",
+  "name": "NaN",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.989739,
+  "lat": 45.8031639,
+  "attrs": {
+   "area_m2": 1690,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/285693936",
+   "access_points": [
+    [
+     15.989738973432159,
+     45.80316390271047
+    ],
+    [
+     15.989440552102288,
+     45.80327297977127
+    ],
+    [
+     15.9896349499773,
+     45.803020547810114
+    ],
+    [
+     15.990028700374502,
+     45.80313254346245
+    ],
+    [
+     15.989835216170102,
+     45.80338479704071
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3774,
+  "category": "park",
+  "name": "Park međunarodnog priznanja Republike Hrvatske",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9789147,
+  "lat": 45.8134203,
+  "attrs": {
+   "area_m2": 739,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/289863172",
+   "access_points": [
+    [
+     15.978914734175097,
+     45.81342027999623
+    ],
+    [
+     15.97867049994973,
+     45.81346155828427
+    ],
+    [
+     15.97897490832506,
+     45.81333255793945
+    ],
+    [
+     15.979167290661039,
+     45.813466643283384
+    ],
+    [
+     15.978810787814776,
+     45.81352426189664
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3775,
+  "category": "park",
+  "name": "Park kneza Zdeslava",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9939489,
+  "lat": 45.8107456,
+  "attrs": {
+   "area_m2": 670,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/290537720",
+   "access_points": [
+    [
+     15.993948927822132,
+     45.810745589703956
+    ],
+    [
+     15.993743282843269,
+     45.81053163462285
+    ],
+    [
+     15.994055440528223,
+     45.81060780003123
+    ],
+    [
+     15.994020256133004,
+     45.8108413903847
+    ],
+    [
+     15.993824636509018,
+     45.81072302597087
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3777,
+  "category": "park",
+  "name": "Park Glogovac",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9812347,
+  "lat": 45.8238941,
+  "attrs": {
+   "area_m2": 5660,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/292167810",
+   "access_points": [
+    [
+     15.981234732046245,
+     45.82389412860514
+    ],
+    [
+     15.980842528924292,
+     45.82374922419635
+    ],
+    [
+     15.981757506052558,
+     45.82365047602778
+    ],
+    [
+     15.981792186951049,
+     45.82399134773189
+    ],
+    [
+     15.981122998537716,
+     45.82401907878016
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3781,
+  "category": "park",
+  "name": "NaN",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9765735,
+  "lat": 45.8170712,
+  "attrs": {
+   "area_m2": 1518,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/297726112",
+   "access_points": [
+    [
+     15.97657352202225,
+     45.81707123777543
+    ],
+    [
+     15.976357458570964,
+     45.81710277734163
+    ],
+    [
+     15.976556262287387,
+     45.81677078814001
+    ],
+    [
+     15.97669802564731,
+     45.81690094830347
+    ],
+    [
+     15.976726185813988,
+     45.81723367374317
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3782,
+  "category": "park",
+  "name": "NaN",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9762244,
+  "lat": 45.8168253,
+  "attrs": {
+   "area_m2": 403,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/297726114",
+   "access_points": [
+    [
+     15.97622444657824,
+     45.816825269086465
+    ],
+    [
+     15.976111253658134,
+     45.816901103702754
+    ],
+    [
+     15.97616179713463,
+     45.816719113740774
+    ],
+    [
+     15.97631142745219,
+     45.816796927817116
+    ],
+    [
+     15.976298874435376,
+     45.816969223542266
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3801,
+  "category": "park",
+  "name": "Park Josipa Vanište",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9618235,
+  "lat": 45.8081857,
+  "attrs": {
+   "area_m2": 1597,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/406672072",
+   "access_points": [
+    [
+     15.961823531312977,
+     45.80818574516379
+    ],
+    [
+     15.961515879392348,
+     45.808110797348355
+    ],
+    [
+     15.962165843514123,
+     45.80797815369514
+    ],
+    [
+     15.962035878509464,
+     45.80823993770937
+    ],
+    [
+     15.961508449644642,
+     45.80831495530558
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3802,
+  "category": "park",
+  "name": "NaN",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9869314,
+  "lat": 45.7997347,
+  "attrs": {
+   "area_m2": 1568,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/413315685",
+   "access_points": [
+    [
+     15.986931411820306,
+     45.799734681736986
+    ],
+    [
+     15.98664001153432,
+     45.79983047917394
+    ],
+    [
+     15.98683195179177,
+     45.7995878684928
+    ],
+    [
+     15.98721776954092,
+     45.79969772676031
+    ],
+    [
+     15.987027752571292,
+     45.79993689583754
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3807,
+  "category": "park",
+  "name": "NaN",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9704473,
+  "lat": 45.8113251,
+  "attrs": {
+   "area_m2": 4430,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/435637069",
+   "access_points": [
+    [
+     15.97044733435931,
+     45.81132513809738
+    ],
+    [
+     15.970263342917065,
+     45.81097439107938
+    ],
+    [
+     15.970784743780843,
+     45.811216748386265
+    ],
+    [
+     15.97066089465718,
+     45.811704578332055
+    ],
+    [
+     15.970059542746075,
+     45.811451864403345
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3808,
+  "category": "park",
+  "name": "Art park",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9719548,
+  "lat": 45.8140448,
+  "attrs": {
+   "area_m2": 2144,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/445251213",
+   "access_points": [
+    [
+     15.971954776609168,
+     45.8140448168728
+    ],
+    [
+     15.971665776043205,
+     45.814154514618934
+    ],
+    [
+     15.971899493462974,
+     45.81382971408681
+    ],
+    [
+     15.972207007528723,
+     45.8140405436252
+    ],
+    [
+     15.972067919771572,
+     45.8143404428439
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3813,
+  "category": "park",
+  "name": "NaN",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9634819,
+  "lat": 45.8118618,
+  "attrs": {
+   "area_m2": 638,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/469079879",
+   "access_points": [
+    [
+     15.96348190773194,
+     45.81186178323683
+    ],
+    [
+     15.963395728197964,
+     45.81178822440153
+    ],
+    [
+     15.963643362150503,
+     45.81186311152794
+    ],
+    [
+     15.963557046479394,
+     45.812048272333385
+    ],
+    [
+     15.963383417469034,
+     45.81193217639781
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3818,
+  "category": "park",
+  "name": "NaN",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9865402,
+  "lat": 45.8114446,
+  "attrs": {
+   "area_m2": 934,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/483674593",
+   "access_points": [
+    [
+     15.98654016389898,
+     45.81144460190176
+    ],
+    [
+     15.9862563585573,
+     45.81159981906623
+    ],
+    [
+     15.986466478272883,
+     45.81134669828439
+    ],
+    [
+     15.986664208110321,
+     45.81125720442947
+    ],
+    [
+     15.986567513358718,
+     45.81163029415819
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3825,
+  "category": "park",
+  "name": "Park fra Grge Martića",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9889558,
+  "lat": 45.8122125,
+  "attrs": {
+   "area_m2": 886,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/515373787",
+   "access_points": [
+    [
+     15.988955796811302,
+     45.81221250090976
+    ],
+    [
+     15.988505262995291,
+     45.81215415250872
+    ],
+    [
+     15.989014242167428,
+     45.812158714220764
+    ],
+    [
+     15.98940633140665,
+     45.81227073983836
+    ],
+    [
+     15.988897210246071,
+     45.81226622940708
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3829,
+  "category": "park",
+  "name": "NaN",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9922492,
+  "lat": 45.8130073,
+  "attrs": {
+   "area_m2": 920,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/527506509",
+   "access_points": [
+    [
+     15.992249153876791,
+     45.8130072507428
+    ],
+    [
+     15.991916239592168,
+     45.812981006418
+    ],
+    [
+     15.992303770938477,
+     45.81294638846203
+    ],
+    [
+     15.992579253146943,
+     45.81307051022628
+    ],
+    [
+     15.992196814893934,
+     45.8131086172446
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3835,
+  "category": "park",
+  "name": "Park Zelengaj",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.964964,
+  "lat": 45.8194179,
+  "attrs": {
+   "area_m2": 4283,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/544642822",
+   "access_points": [
+    [
+     15.964964009732803,
+     45.81941789530713
+    ],
+    [
+     15.964477494772765,
+     45.818630215082955
+    ],
+    [
+     15.965170052426986,
+     45.81954351639048
+    ],
+    [
+     15.965200204781535,
+     45.82021216016299
+    ],
+    [
+     15.964709116703276,
+     45.81921414904595
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3838,
+  "category": "park",
+  "name": "Park Zvjezdarnica",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9753261,
+  "lat": 45.8188973,
+  "attrs": {
+   "area_m2": 1427,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/556969521",
+   "access_points": [
+    [
+     15.975326117023688,
+     45.81889729452432
+    ],
+    [
+     15.974777792569633,
+     45.81887698438186
+    ],
+    [
+     15.975277910043744,
+     45.818825082530616
+    ],
+    [
+     15.975453000527551,
+     45.81887864323854
+    ],
+    [
+     15.974943208855263,
+     45.81913757595794
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3845,
+  "category": "park",
+  "name": "Park Envera Čolakovića",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9884367,
+  "lat": 45.8124884,
+  "attrs": {
+   "area_m2": 365,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/relation/12230111",
+   "access_points": [
+    [
+     15.988436650008529,
+     45.81248835002491
+    ],
+    [
+     15.98836452909857,
+     45.81253292612711
+    ],
+    [
+     15.98837541422253,
+     45.81240683156873
+    ],
+    [
+     15.988508770924247,
+     45.812443773738885
+    ],
+    [
+     15.988497885966286,
+     45.81256986843955
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3855,
+  "category": "park",
+  "name": "Park 100. brigade Hrvatske vojske",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9920593,
+  "lat": 45.8114476,
+  "attrs": {
+   "area_m2": 2321,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/667570113",
+   "access_points": [
+    [
+     15.99205933562537,
+     45.81144761575389
+    ],
+    [
+     15.991641272003179,
+     45.811574323287566
+    ],
+    [
+     15.991891085038482,
+     45.81119658828892
+    ],
+    [
+     15.992470567136534,
+     45.811347827772316
+    ],
+    [
+     15.99199064194859,
+     45.8115491494216
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3856,
+  "category": "park",
+  "name": "NaN",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9940553,
+  "lat": 45.8116512,
+  "attrs": {
+   "area_m2": 880,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/667571030",
+   "access_points": [
+    [
+     15.994055328327153,
+     45.81165118423918
+    ],
+    [
+     15.993872807217274,
+     45.81166792797897
+    ],
+    [
+     15.994090525199743,
+     45.81149126245392
+    ],
+    [
+     15.994324476353547,
+     45.811753761271476
+    ],
+    [
+     15.994073236782837,
+     45.81182728286614
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3857,
+  "category": "park",
+  "name": "NaN",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9911381,
+  "lat": 45.8137114,
+  "attrs": {
+   "area_m2": 155,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/667874271",
+   "access_points": [
+    [
+     15.991138100001335,
+     45.81371135003541
+    ],
+    [
+     15.991049662034102,
+     45.81373253350011
+    ],
+    [
+     15.99110738898644,
+     45.81365948239797
+    ],
+    [
+     15.991226537974615,
+     45.81369016638825
+    ],
+    [
+     15.99116881106742,
+     45.813763217660615
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3861,
+  "category": "park",
+  "name": "NaN",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9933742,
+  "lat": 45.8059113,
+  "attrs": {
+   "area_m2": 1811,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/680729417",
+   "access_points": [
+    [
+     15.993374182230657,
+     45.80591129829002
+    ],
+    [
+     15.993088045852721,
+     45.805891892381524
+    ],
+    [
+     15.99355216647276,
+     45.80568479835561
+    ],
+    [
+     15.993697820426362,
+     45.80595910461836
+    ],
+    [
+     15.993451965211767,
+     45.806082924258924
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3871,
+  "category": "park",
+  "name": "NaN",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9742855,
+  "lat": 45.814501,
+  "attrs": {
+   "area_m2": 704,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/735313539",
+   "access_points": [
+    [
+     15.974285484685453,
+     45.81450095587205
+    ],
+    [
+     15.974127179345633,
+     45.814430661404536
+    ],
+    [
+     15.974404634178494,
+     45.814392030293305
+    ],
+    [
+     15.974463189226901,
+     45.814556685038404
+    ],
+    [
+     15.974069931997251,
+     45.814663216121424
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3872,
+  "category": "park",
+  "name": "NaN",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9791912,
+  "lat": 45.8148379,
+  "attrs": {
+   "area_m2": 198,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/735346964",
+   "access_points": [
+    [
+     15.979191238963281,
+     45.81483788359533
+    ],
+    [
+     15.979127636068549,
+     45.81478641061221
+    ],
+    [
+     15.97926968337195,
+     45.81479498483211
+    ],
+    [
+     15.979259942830629,
+     45.81489408894067
+    ],
+    [
+     15.979107227997176,
+     45.814886378884964
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3878,
+  "category": "park",
+  "name": "Park mira i prijateljstva",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9766767,
+  "lat": 45.8017456,
+  "attrs": {
+   "area_m2": 4738,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/782621329",
+   "access_points": [
+    [
+     15.976676702140875,
+     45.8017455902946
+    ],
+    [
+     15.976222965639208,
+     45.80189343416277
+    ],
+    [
+     15.976487065189229,
+     45.80145562851642
+    ],
+    [
+     15.977134671767756,
+     45.80162702793046
+    ],
+    [
+     15.976881817763912,
+     45.802079995416655
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3879,
+  "category": "park",
+  "name": "NaN",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9636776,
+  "lat": 45.8147634,
+  "attrs": {
+   "area_m2": 1554,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/810202763",
+   "access_points": [
+    [
+     15.963677638251946,
+     45.814763412119746
+    ],
+    [
+     15.963399923073418,
+     45.81495944591203
+    ],
+    [
+     15.96367853124735,
+     45.81458463880748
+    ],
+    [
+     15.963941649101013,
+     45.81459894106802
+    ],
+    [
+     15.96368126422591,
+     45.81498186425404
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3880,
+  "category": "park",
+  "name": "NaN",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9632138,
+  "lat": 45.8165365,
+  "attrs": {
+   "area_m2": 1170,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/810202767",
+   "access_points": [
+    [
+     15.963213799096035,
+     45.81653654322765
+    ],
+    [
+     15.963064558096004,
+     45.81675479233238
+    ],
+    [
+     15.963118389529825,
+     45.81639882221145
+    ],
+    [
+     15.96334712337522,
+     45.81640445629937
+    ],
+    [
+     15.96331633811179,
+     45.81676134991198
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3893,
+  "category": "park",
+  "name": "NaN",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9898124,
+  "lat": 45.8145261,
+  "attrs": {
+   "area_m2": 1143,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/864136740",
+   "access_points": [
+    [
+     15.989812356771889,
+     45.81452605822977
+    ],
+    [
+     15.989630033726861,
+     45.81463523471481
+    ],
+    [
+     15.989671368334973,
+     45.81432177355276
+    ],
+    [
+     15.98999239684033,
+     45.81441841113223
+    ],
+    [
+     15.989956342394295,
+     45.81473165935899
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3900,
+  "category": "park",
+  "name": "NaN",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9585387,
+  "lat": 45.8060039,
+  "attrs": {
+   "area_m2": 2226,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/871865116",
+   "access_points": [
+    [
+     15.958538707701328,
+     45.80600386867546
+    ],
+    [
+     15.95778409307619,
+     45.805643643322306
+    ],
+    [
+     15.958589125630933,
+     45.80592368751793
+    ],
+    [
+     15.959245474299935,
+     45.8062906375719
+    ],
+    [
+     15.95834617046303,
+     45.80600630434341
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3902,
+  "category": "park",
+  "name": "Grič",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9716081,
+  "lat": 45.8146085,
+  "attrs": {
+   "area_m2": 2397,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/873058797",
+   "access_points": [
+    [
+     15.97160812915275,
+     45.81460853619926
+    ],
+    [
+     15.971293199088885,
+     45.81440173762892
+    ],
+    [
+     15.971823621055647,
+     45.81442341304219
+    ],
+    [
+     15.971938308318556,
+     45.81483475413084
+    ],
+    [
+     15.971438710891299,
+     45.81481801065688
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3912,
+  "category": "park",
+  "name": "NaN",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9660714,
+  "lat": 45.8022629,
+  "attrs": {
+   "area_m2": 665,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/938408149",
+   "access_points": [
+    [
+     15.966071400109842,
+     45.80226285015515
+    ],
+    [
+     15.965907719443324,
+     45.80231523253324
+    ],
+    [
+     15.966015190992476,
+     45.80210421403019
+    ],
+    [
+     15.966235080913986,
+     45.802210467073465
+    ],
+    [
+     15.966127609463005,
+     45.80242148610664
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3924,
+  "category": "park",
+  "name": "NaN",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.98461,
+  "lat": 45.8245705,
+  "attrs": {
+   "area_m2": 972,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/1022538048",
+   "access_points": [
+    [
+     15.984610035205447,
+     45.82457048464511
+    ],
+    [
+     15.984265828730345,
+     45.8244654473588
+    ],
+    [
+     15.984736420504412,
+     45.82447626199115
+    ],
+    [
+     15.984787689807451,
+     45.824661157294585
+    ],
+    [
+     15.984462970905243,
+     45.8246220531471
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3929,
+  "category": "park",
+  "name": "NaN",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9701617,
+  "lat": 45.8063686,
+  "attrs": {
+   "area_m2": 9727,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/relation/14183357",
+   "access_points": [
+    [
+     15.970161738756996,
+     45.806368604597196
+    ],
+    [
+     15.969483858956012,
+     45.806365433669555
+    ],
+    [
+     15.970209401693177,
+     45.805609266943726
+    ],
+    [
+     15.970836131463441,
+     45.80642429882293
+    ],
+    [
+     15.970101222590259,
+     45.807173329464746
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3961,
+  "category": "park",
+  "name": "NaN",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9830206,
+  "lat": 45.8088082,
+  "attrs": {
+   "area_m2": 1316,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/1160660876",
+   "access_points": [
+    [
+     15.98302059414025,
+     45.8088081645171
+    ],
+    [
+     15.98267027592208,
+     45.80864271086026
+    ],
+    [
+     15.983126156846792,
+     45.80863475740374
+    ],
+    [
+     15.983145378288452,
+     45.80895710826211
+    ],
+    [
+     15.98292235236198,
+     45.80891427012511
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3962,
+  "category": "park",
+  "name": "NaN",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9826469,
+  "lat": 45.8090999,
+  "attrs": {
+   "area_m2": 211,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/1160660883",
+   "access_points": [
+    [
+     15.982646862825137,
+     45.809099855766036
+    ],
+    [
+     15.982529132882236,
+     45.8091433027601
+    ],
+    [
+     15.982641166670295,
+     45.80906497409109
+    ],
+    [
+     15.982756099640097,
+     45.809104887105654
+    ],
+    [
+     15.982650441198158,
+     45.80917357012514
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3977,
+  "category": "park",
+  "name": "NaN",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9628678,
+  "lat": 45.8100804,
+  "attrs": {
+   "area_m2": 2754,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/1222335311",
+   "access_points": [
+    [
+     15.962867843776555,
+     45.81008039159895
+    ],
+    [
+     15.962362692044518,
+     45.810083120848454
+    ],
+    [
+     15.962819903280081,
+     45.80988650912193
+    ],
+    [
+     15.963366998899225,
+     45.81002061875759
+    ],
+    [
+     15.96288670086138,
+     45.81020458119741
+    ]
+   ]
+  }
+ },
+ {
+  "id": 3990,
+  "category": "park",
+  "name": "NaN",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.984614,
+  "lat": 45.8196049,
+  "attrs": {
+   "area_m2": 4857,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/1317953502",
+   "access_points": [
+    [
+     15.984613958303433,
+     45.819604861382636
+    ],
+    [
+     15.98417642311696,
+     45.819468047655825
+    ],
+    [
+     15.984893037074897,
+     45.819253544494735
+    ],
+    [
+     15.985260417808806,
+     45.819714471931185
+    ],
+    [
+     15.984352341789553,
+     45.819794779817514
+    ]
+   ]
+  }
+ },
+ {
+  "id": 4005,
+  "category": "park",
+  "name": "Park Drage Galića",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9734657,
+  "lat": 45.8005462,
+  "attrs": {
+   "area_m2": 5467,
+   "leisure": "park",
+   "osm_url": "https://www.openstreetmap.org/way/1361174944",
+   "access_points": [
+    [
+     15.97346570568775,
+     45.80054619782339
+    ],
+    [
+     15.972692340356987,
+     45.80045972466399
+    ],
+    [
+     15.973623619931555,
+     45.80031354287014
+    ],
+    [
+     15.974305936518519,
+     45.800609828093876
+    ],
+    [
+     15.973413997640371,
+     45.800791987212776
+    ]
+   ]
+  }
+ },
+ {
+  "id": 4031,
+  "category": "namirnice",
+  "name": "Konzum",
+  "address": "Britanski trg 12",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9652537,
+  "lat": 45.8127603,
+  "attrs": {
+   "shop": "supermarket",
+   "osm_url": "https://www.openstreetmap.org/node/443433718",
+   "opening_hours": "Mo-Sa 07:00-21:00; Su 08:00-15:00"
+  }
+ },
+ {
+  "id": 4032,
+  "category": "namirnice",
+  "name": "Studenac",
+  "address": "Ilica 102",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9630538,
+  "lat": 45.8124084,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/443433733",
+   "opening_hours": "Mo-Fr 07:00-21:00"
+  }
+ },
+ {
+  "id": 4033,
+  "category": "namirnice",
+  "name": "Konzum",
+  "address": "Ilica 117A",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9580113,
+  "lat": 45.8130397,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/443433749",
+   "opening_hours": "Mo-Sa 07:00-20:00"
+  }
+ },
+ {
+  "id": 4042,
+  "category": "namirnice",
+  "name": "Diona",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9960862,
+  "lat": 45.8145498,
+  "attrs": {
+   "shop": "supermarket",
+   "osm_url": "https://www.openstreetmap.org/node/552469561",
+   "opening_hours": "Mo-Fr 07:00-14:00; Sa 07:00-12:00"
+  }
+ },
+ {
+  "id": 4051,
+  "category": "namirnice",
+  "name": "Studenac",
+  "address": "Kačićeva ulica 21",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9640467,
+  "lat": 45.8092968,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/719418212",
+   "wheelchair": "no",
+   "opening_hours": "Mo-Sa 06:30-21:00; Su off"
+  }
+ },
+ {
+  "id": 4053,
+  "category": "namirnice",
+  "name": "Studenac",
+  "address": "Ulica kralja Zvonimira 26",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9935067,
+  "lat": 45.8101665,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/761956670",
+   "website": "https://www.studenac.hr/trgovine/955/t1126-zagreb",
+   "opening_hours": "Mo-Sa 06:30-21:00"
+  }
+ },
+ {
+  "id": 4058,
+  "category": "namirnice",
+  "name": "Konzum",
+  "address": "Avenija Marina Držića 4",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9935472,
+  "lat": 45.8037091,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/838604463",
+   "wheelchair": "yes",
+   "opening_hours": "Mo-Sa 07:00-21:00; Su 08:00-15:00"
+  }
+ },
+ {
+  "id": 4065,
+  "category": "namirnice",
+  "name": "Konzum",
+  "address": "Praška ulica 10",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9771901,
+  "lat": 45.8114535,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/990289383",
+   "wheelchair": "limited",
+   "opening_hours": "Mo-Sa 07:00-21:00; Su 08:00-13:00"
+  }
+ },
+ {
+  "id": 4066,
+  "category": "namirnice",
+  "name": "Studenac",
+  "address": "Ulica kneza Trpimira 31",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9855201,
+  "lat": 45.8056959,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/1037852018",
+   "wheelchair": "no",
+   "opening_hours": "Mo-Fr 07:00-22:00; Sa-Su 08:00-21:00"
+  }
+ },
+ {
+  "id": 4072,
+  "category": "namirnice",
+  "name": "Prehrana",
+  "address": "Palmotićeva ulica 59",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9822689,
+  "lat": 45.8056471,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/1215350984",
+   "website": "https://prehrana.hr",
+   "wheelchair": "limited",
+   "opening_hours": "Mo-Fr 07:00-20:00; Sa 07:00-15:00; Su off"
+  }
+ },
+ {
+  "id": 4083,
+  "category": "namirnice",
+  "name": "Prehrana",
+  "address": "Ulica Petra i Tome Erdödyja 12A",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9881227,
+  "lat": 45.8066988,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/1326676644",
+   "website": "https://prehrana.hr",
+   "opening_hours": "Mo-Sa 07:00-21:00; Su 08:00-13:00; PH closed"
+  }
+ },
+ {
+  "id": 4092,
+  "category": "namirnice",
+  "name": "Konzum",
+  "address": "Ribnjak 54",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9798727,
+  "lat": 45.8187579,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/1377829247",
+   "wheelchair": "limited",
+   "opening_hours": "Mo-Sa 07:00-20:00"
+  }
+ },
+ {
+  "id": 4097,
+  "category": "namirnice",
+  "name": "Prehrana",
+  "address": "Strojarska cesta 2",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.990404,
+  "lat": 45.8018067,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/1494674009",
+   "website": "https://prehrana.hr",
+   "opening_hours": "Mo-Sa 07:00-20:00; Su off"
+  }
+ },
+ {
+  "id": 4106,
+  "category": "namirnice",
+  "name": "Konzum",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9928559,
+  "lat": 45.8085077,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/1551864439",
+   "opening_hours": "Mo-Sa 07:00-20:00"
+  }
+ },
+ {
+  "id": 4107,
+  "category": "namirnice",
+  "name": "Konzum",
+  "address": "Draškovićeva ulica 15",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9837547,
+  "lat": 45.812245,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/1551864442",
+   "wheelchair": "yes",
+   "opening_hours": "Mo-Sa 07:00-21:00; Su 08:00-15:00"
+  }
+ },
+ {
+  "id": 4118,
+  "category": "namirnice",
+  "name": "Gavranović market",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9941636,
+  "lat": 45.817149,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/1616483917",
+   "wheelchair": "no"
+  }
+ },
+ {
+  "id": 4139,
+  "category": "namirnice",
+  "name": "Gavranović",
+  "address": "Ulica grada Vukovara 224",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9880634,
+  "lat": 45.8000877,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/1775166875",
+   "website": "https://ntl.hr/ntl-grupa/prodajna-mjesta?m=&t=Gavranovi%C4%87",
+   "opening_hours": "Mo-Sa 07:00-20:00; Su 07:00-13:00"
+  }
+ },
+ {
+  "id": 4140,
+  "category": "namirnice",
+  "name": "Diona",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9787774,
+  "lat": 45.8227584,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/1776366545",
+   "wheelchair": "limited"
+  }
+ },
+ {
+  "id": 4145,
+  "category": "namirnice",
+  "name": "Tommy",
+  "address": "Ulica Frana Supila 7",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9961932,
+  "lat": 45.8038774,
+  "attrs": {
+   "shop": "supermarket",
+   "osm_url": "https://www.openstreetmap.org/node/1823333036",
+   "opening_hours": "07:00-21:00"
+  }
+ },
+ {
+  "id": 4156,
+  "category": "namirnice",
+  "name": "Konzum",
+  "address": "Masarykova ulica 16",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9728186,
+  "lat": 45.8108542,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/1917293950",
+   "wheelchair": "no",
+   "opening_hours": "Mo-Sa 07:00-21:00; Su 08:00-13:00"
+  }
+ },
+ {
+  "id": 4157,
+  "category": "namirnice",
+  "name": "Konzum",
+  "address": "Ilica 120",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9611799,
+  "lat": 45.8127984,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/1927405200",
+   "wheelchair": "no",
+   "opening_hours": "Mo-Fr 07:00-14:00; Sa 08:00-13:00; Su off"
+  }
+ },
+ {
+  "id": 4161,
+  "category": "namirnice",
+  "name": "Studenac",
+  "address": "Martićeva ulica 14",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9872656,
+  "lat": 45.8121231,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/1951002456",
+   "wheelchair": "no",
+   "opening_hours": "Mo-Sa 06:30-21:00; Su,PH 08:00-13:00"
+  }
+ },
+ {
+  "id": 4164,
+  "category": "namirnice",
+  "name": "Studenac",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9663129,
+  "lat": 45.8050065,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/1969745615",
+   "wheelchair": "no",
+   "opening_hours": "Mo-Sa 07:00-20:00"
+  }
+ },
+ {
+  "id": 4166,
+  "category": "namirnice",
+  "name": "Prehrana",
+  "address": "Prilaz Gjure Deželića 37",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9641549,
+  "lat": 45.8104068,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/1990298643",
+   "website": "https://prehrana.hr",
+   "opening_hours": "Mo-Sa 06:30-20:00; Su 08:00-13:00"
+  }
+ },
+ {
+  "id": 4169,
+  "category": "namirnice",
+  "name": "Prehrana",
+  "address": "Ulica Vjekoslava Klaića 38",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9624203,
+  "lat": 45.8093925,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/2016350172",
+   "website": "https://www.prehrana.hr",
+   "wheelchair": "no",
+   "opening_hours": "Mo-Sa 07:00-21:00; Su 08:00-15:00"
+  }
+ },
+ {
+  "id": 4170,
+  "category": "namirnice",
+  "name": "Studenac",
+  "address": "Prilaz Gjure Deželića 83",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9589933,
+  "lat": 45.810681,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/2016355506",
+   "website": "https://www.studenac.hr/trgovine/1375/t1509-zagreb"
+  }
+ },
+ {
+  "id": 4185,
+  "category": "namirnice",
+  "name": "Diona",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9761274,
+  "lat": 45.8134921,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/2126560555",
+   "wheelchair": "no",
+   "opening_hours": "Mo-Sa 07:00-14:00; Su off"
+  }
+ },
+ {
+  "id": 4191,
+  "category": "namirnice",
+  "name": "Spar",
+  "address": "Vlaška ulica 44",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9837401,
+  "lat": 45.8137041,
+  "attrs": {
+   "shop": "supermarket",
+   "osm_url": "https://www.openstreetmap.org/node/2156309023",
+   "website": "https://www.spar.hr/lokacije/spar-supermarket-zagreb-10000-vlaka-44",
+   "wheelchair": "no",
+   "opening_hours": "Mo-Sa 07:00-21:00"
+  }
+ },
+ {
+  "id": 4197,
+  "category": "namirnice",
+  "name": "Konzum",
+  "address": "Ulica kneza Mislava 13",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9857178,
+  "lat": 45.8091232,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/2166393095",
+   "wheelchair": "no",
+   "opening_hours": "Mo-Fr 07:00-19:00; Sa 07:00-15:00; Su off"
+  }
+ },
+ {
+  "id": 4199,
+  "category": "namirnice",
+  "name": "Konzum",
+  "address": "Britanski trg",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9646821,
+  "lat": 45.8136479,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/2181987150"
+  }
+ },
+ {
+  "id": 4201,
+  "category": "namirnice",
+  "name": "Studenac",
+  "address": "Ulica Andrije Hebranga 27",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9723646,
+  "lat": 45.8088947,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/2188577447",
+   "wheelchair": "no",
+   "opening_hours": "Mo-Sa 06:30-20:00; Su 08:00-13:00"
+  }
+ },
+ {
+  "id": 4202,
+  "category": "namirnice",
+  "name": "Diona Ultra",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9700325,
+  "lat": 45.8131967,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/2188595138",
+   "opening_hours": "Mo-Sa 06:30-21:00; Su 08:00-13:00"
+  }
+ },
+ {
+  "id": 4203,
+  "category": "namirnice",
+  "name": "Prehrana",
+  "address": "Petrinjska ulica 11",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9799854,
+  "lat": 45.8110252,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/2195958245",
+   "website": "https://prehrana.hr",
+   "wheelchair": "no",
+   "opening_hours": "Mo-Fr 06:30-21:00; Sa 07:00-15:00; Su off"
+  }
+ },
+ {
+  "id": 4204,
+  "category": "namirnice",
+  "name": "Prehrana",
+  "address": "Gajeva ulica 15",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.976658,
+  "lat": 45.8105859,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/2195964361",
+   "website": "https://prehrana.hr",
+   "opening_hours": "Mo-Fr 07:00-20:00; Sa 07:00-15:00; Su off"
+  }
+ },
+ {
+  "id": 4205,
+  "category": "namirnice",
+  "name": "Prehrana",
+  "address": "Preradovićeva ulica 3",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9743648,
+  "lat": 45.8117429,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/2195981856",
+   "website": "https://prehrana.hr",
+   "wheelchair": "no",
+   "opening_hours": "Mo-Sa 07:00-21:00; Su off"
+  }
+ },
+ {
+  "id": 4206,
+  "category": "namirnice",
+  "name": "Prehrana",
+  "address": "Savska cesta 1",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9677797,
+  "lat": 45.8070303,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/2195984906",
+   "website": "https://prehrana.hr",
+   "wheelchair": "yes",
+   "opening_hours": "Mo-Fr 06:30-20:00; Sa-Su off"
+  }
+ },
+ {
+  "id": 4212,
+  "category": "namirnice",
+  "name": "Studenac",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9736105,
+  "lat": 45.815829,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/2216933039",
+   "wheelchair": "no",
+   "opening_hours": "Mo-Sa 07:00-21:00"
+  }
+ },
+ {
+  "id": 4213,
+  "category": "namirnice",
+  "name": "Diona",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.976915,
+  "lat": 45.8134501,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/2216965089",
+   "opening_hours": "Mo-Fr 07:00-14:00; Sa 08:00-13:00; Su off"
+  }
+ },
+ {
+  "id": 4215,
+  "category": "namirnice",
+  "name": "Studenac",
+  "address": "Draškovićeva ulica 40",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9835329,
+  "lat": 45.8096421,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/2225238074",
+   "wheelchair": "yes",
+   "opening_hours": "Mo-Sa 06:30-21:00; Su off"
+  }
+ },
+ {
+  "id": 4227,
+  "category": "namirnice",
+  "name": "Konzum",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9950638,
+  "lat": 45.8204256,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/2288077140"
+  }
+ },
+ {
+  "id": 4241,
+  "category": "namirnice",
+  "name": "Studenac",
+  "address": "Ulica kneza Domagoja 14",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9861681,
+  "lat": 45.8068767,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/2437313697",
+   "opening_hours": "Mo-Sa 07:00-22:00"
+  }
+ },
+ {
+  "id": 4242,
+  "category": "namirnice",
+  "name": "Prehrana",
+  "address": "Koranska ulica 1B",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9680796,
+  "lat": 45.8021538,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/2439251075",
+   "website": "https://www.prehrana.hr",
+   "opening_hours": "PH,Su 08:00-15:00; Mo-Sa 07:00-21:00"
+  }
+ },
+ {
+  "id": 4283,
+  "category": "namirnice",
+  "name": "Konzum",
+  "address": "Strojarska cesta 24",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9901917,
+  "lat": 45.8035926,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/3176519661",
+   "wheelchair": "yes",
+   "opening_hours": "Mo-Sa 07:00-21:00; Su 08:00-13:00"
+  }
+ },
+ {
+  "id": 4310,
+  "category": "namirnice",
+  "name": "Prehrana",
+  "address": "Ulica Konstantina Vojnovića 22",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.991014,
+  "lat": 45.8122205,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/3947371371",
+   "website": "https://prehrana.hr",
+   "opening_hours": "Mo-Sa 07:00-20:00; Su 08:00-13:00"
+  }
+ },
+ {
+  "id": 4313,
+  "category": "namirnice",
+  "name": "Prehrana",
+  "address": "Petrinjska ulica 79",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9804632,
+  "lat": 45.8064737,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/3956581938",
+   "website": "https://prehrana.hr",
+   "wheelchair": "no",
+   "opening_hours": "Mo-Sa 07:00-21:00; Su off"
+  }
+ },
+ {
+  "id": 4317,
+  "category": "namirnice",
+  "name": "Prehrana",
+  "address": "Kamaufova ulica 1",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9934756,
+  "lat": 45.8141108,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/3959200383",
+   "website": "https://prehrana.hr",
+   "opening_hours": "Mo-Sa 07:00-21:00, Sa 07:00-21:00"
+  }
+ },
+ {
+  "id": 4325,
+  "category": "namirnice",
+  "name": "Konzum",
+  "address": "Radnički dol 23",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9635516,
+  "lat": 45.8169934,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/4034516088",
+   "website": "https://www.konzum.hr/"
+  }
+ },
+ {
+  "id": 4331,
+  "category": "namirnice",
+  "name": "Konzum",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9720527,
+  "lat": 45.8028394,
+  "attrs": {
+   "shop": "supermarket",
+   "osm_url": "https://www.openstreetmap.org/node/4074847994",
+   "wheelchair": "yes",
+   "opening_hours": "Mo-Sa 07:00-21:00; Su 08:00-13:00"
+  }
+ },
+ {
+  "id": 4335,
+  "category": "namirnice",
+  "name": "Konzum",
+  "address": "Savska cesta 28",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9637268,
+  "lat": 45.8029441,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/4162700507",
+   "opening_hours": "Mo-Fr 07:00-19:00; Sa 08:00-15:00; Su off"
+  }
+ },
+ {
+  "id": 4337,
+  "category": "namirnice",
+  "name": "Konzum",
+  "address": "Tratinska ulica 41",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9597155,
+  "lat": 45.8017976,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/4173502209",
+   "opening_hours": "Mo-Fr 07:00-21:00; Sa 07:00-17:00; Su off"
+  }
+ },
+ {
+  "id": 4351,
+  "category": "namirnice",
+  "name": "Konzum",
+  "address": "Trg Ante Starčevića 1",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9775929,
+  "lat": 45.8050394,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/4505134134",
+   "opening_hours": "Mo-Sa 06:00-21:00; Su off"
+  }
+ },
+ {
+  "id": 4358,
+  "category": "namirnice",
+  "name": "Stridon",
+  "address": "Ulica Bartula Kašića 6",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9958839,
+  "lat": 45.8121008,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/5020620047",
+   "website": "http://www.stridon.hr/hr/distribucija/maloprodaja-4",
+   "opening_hours": "Mo-Fr 08:00-15:00; Sa 08:00-13:00"
+  }
+ },
+ {
+  "id": 4359,
+  "category": "namirnice",
+  "name": "Konzum",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.980623,
+  "lat": 45.8131524,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/5051988350",
+   "wheelchair": "no",
+   "opening_hours": "Mo-Sa 08:00-21:00; Su 08:00-13:00"
+  }
+ },
+ {
+  "id": 4363,
+  "category": "namirnice",
+  "name": "Spar",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9882838,
+  "lat": 45.8104439,
+  "attrs": {
+   "shop": "supermarket",
+   "osm_url": "https://www.openstreetmap.org/node/5678570227",
+   "wheelchair": "yes",
+   "opening_hours": "Mo-Sa 07:00-21:00; Su 08:00-14:00"
+  }
+ },
+ {
+  "id": 4372,
+  "category": "namirnice",
+  "name": "Asia store",
+  "address": "Ilica 52",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9681586,
+  "lat": 45.8133075,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/6317918098",
+   "website": "https://asiastore.com.hr/",
+   "wheelchair": "no",
+   "opening_hours": "Mo-Fr 08:00-20:00; Sa 08:00-15:00"
+  }
+ },
+ {
+  "id": 4374,
+  "category": "namirnice",
+  "name": "Studenac",
+  "address": "Ilica 138",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9589033,
+  "lat": 45.81322,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/6343941214",
+   "website": "https://www.studenac.hr/trgovine/726/t776-zagreb",
+   "wheelchair": "no",
+   "opening_hours": "Mo-Sa 07:00-22:00; Su 08:00-22:00"
+  }
+ },
+ {
+  "id": 4376,
+  "category": "namirnice",
+  "name": "Studenac",
+  "address": "Tratinska ulica 51",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9586411,
+  "lat": 45.8012737,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/6408302119",
+   "wheelchair": "yes",
+   "opening_hours": "Mo-Sa 07:00-22:00; Su 08:00-21:00"
+  }
+ },
+ {
+  "id": 4379,
+  "category": "namirnice",
+  "name": "Trgostil",
+  "address": "Koturaška cesta 49",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9684791,
+  "lat": 45.8027913,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/6563209132",
+   "opening_hours": "07:00-14:00; PH off"
+  }
+ },
+ {
+  "id": 4381,
+  "category": "namirnice",
+  "name": "Studenac",
+  "address": "Ulica Grgura Ninskog",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9775235,
+  "lat": 45.8047054,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/6624495349",
+   "opening_hours": "Mo-Sa 06:30-21:00; Su 07:00-21:00; PH 07:00-21:00"
+  }
+ },
+ {
+  "id": 4393,
+  "category": "namirnice",
+  "name": "Ceker",
+  "address": "Nova Ves 73a",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9788289,
+  "lat": 45.8264898,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/7142485486"
+  }
+ },
+ {
+  "id": 4394,
+  "category": "namirnice",
+  "name": "Studenac",
+  "address": "Ulica kneza Mislava 3",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9845249,
+  "lat": 45.8083248,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/7142491486",
+   "opening_hours": "Mo-Sa 07:00-22:00; Su 08:00-20:00"
+  }
+ },
+ {
+  "id": 4411,
+  "category": "namirnice",
+  "name": "Konzum",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9730943,
+  "lat": 45.8124098,
+  "attrs": {
+   "shop": "supermarket",
+   "osm_url": "https://www.openstreetmap.org/node/8116724724",
+   "opening_hours": "Mo-Sa 08:00-22:00; Su 08:00-19:00; PH off"
+  }
+ },
+ {
+  "id": 4415,
+  "category": "namirnice",
+  "name": "Diskont",
+  "address": "Koturaška cesta 69",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9663831,
+  "lat": 45.8023453,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/8659294782",
+   "opening_hours": "Mo-Fr 08:00-20:00;Sa 08:00-15:00"
+  }
+ },
+ {
+  "id": 4423,
+  "category": "namirnice",
+  "name": "Studenac",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9775328,
+  "lat": 45.8096038,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/9044693594"
+  }
+ },
+ {
+  "id": 4425,
+  "category": "namirnice",
+  "name": "Konzum",
+  "address": "Hercegovačka ulica 111",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9580399,
+  "lat": 45.8202876,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/9277319081",
+   "opening_hours": "Mo-Sa 07:00-21:00; Su 08:00-13:00"
+  }
+ },
+ {
+  "id": 4429,
+  "category": "namirnice",
+  "name": "Konzum",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9772628,
+  "lat": 45.8203863,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/9330595483",
+   "opening_hours": "Mo-Sa 08:00-21:00; Su 08:00-15:00"
+  }
+ },
+ {
+  "id": 4430,
+  "category": "namirnice",
+  "name": "Studenac",
+  "address": "Ulica Ivana Šveara 9",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9885766,
+  "lat": 45.8078225,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/9450519233",
+   "opening_hours": "Mo-Sa 07:00-21:00; Su off"
+  }
+ },
+ {
+  "id": 4440,
+  "category": "namirnice",
+  "name": "Market Igalan",
+  "address": "Zelinska ulica 5",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9723198,
+  "lat": 45.8014492,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/10094714868",
+   "opening_hours": "Mo-Fr 07:00-18:00; Sa 07:00-14:00"
+  }
+ },
+ {
+  "id": 4442,
+  "category": "namirnice",
+  "name": "Studenac",
+  "address": "Ilica 53A",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9675117,
+  "lat": 45.8130695,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/10121206773"
+  }
+ },
+ {
+  "id": 4448,
+  "category": "namirnice",
+  "name": "Žabac food outlet",
+  "address": "Tržnica Dolac 2",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9773364,
+  "lat": 45.8138025,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/10276013570",
+   "website": "https://zabacfoodoutlet.hr",
+   "opening_hours": "Mo-Sa 07:00-14:00"
+  }
+ },
+ {
+  "id": 4473,
+  "category": "namirnice",
+  "name": "Kathmandu mart",
+  "address": "Ulica kneza Branimira 45",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9885343,
+  "lat": 45.8058816,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/11069718898",
+   "wheelchair": "no",
+   "opening_hours": "Mo-Sa 10:00-21:00; Su off"
+  }
+ },
+ {
+  "id": 4479,
+  "category": "namirnice",
+  "name": "Vindija",
+  "address": "Martićeva ulica 25",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9873349,
+  "lat": 45.8123999,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/11203076043",
+   "wheelchair": "no",
+   "opening_hours": "Mo-Fr 07:00-17:00; Sa 07:00-14:00; Su 08:00-13:00"
+  }
+ },
+ {
+  "id": 4483,
+  "category": "namirnice",
+  "name": "Studenac",
+  "address": "Vlaška ulica 83",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9889574,
+  "lat": 45.8139811,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/11358795977",
+   "wheelchair": "no",
+   "opening_hours": "Mo-Fr 07:00-21:00"
+  }
+ },
+ {
+  "id": 4486,
+  "category": "namirnice",
+  "name": "Vindija",
+  "address": "Jurišićeva ulica 25",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9830869,
+  "lat": 45.8122896,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/11403674824",
+   "wheelchair": "no",
+   "opening_hours": "Sa 07:00-14:00; Mo-Fr 06:00-13:00; Su off"
+  }
+ },
+ {
+  "id": 4487,
+  "category": "namirnice",
+  "name": "Korean Mart",
+  "address": "Ulica Stjepana Širole 8",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.995108,
+  "lat": 45.8071757,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/11634103405"
+  }
+ },
+ {
+  "id": 4489,
+  "category": "namirnice",
+  "name": "Studenac",
+  "address": "Petrinjska ulica 26A",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9799669,
+  "lat": 45.809268,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/11663486470",
+   "wheelchair": "no",
+   "opening_hours": "Mo-Sa 07:00-21:00; Su off"
+  }
+ },
+ {
+  "id": 4503,
+  "category": "namirnice",
+  "name": "Tisak plus",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9658444,
+  "lat": 45.8129488,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/12001077580"
+  }
+ },
+ {
+  "id": 4520,
+  "category": "namirnice",
+  "name": "Tvornica zdrave hrane",
+  "address": "NaN",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9963976,
+  "lat": 45.8149155,
+  "attrs": {
+   "shop": "supermarket",
+   "osm_url": "https://www.openstreetmap.org/node/12197479694",
+   "opening_hours": "Mo-Sa 08:00-21:00; Su off"
+  }
+ },
+ {
+  "id": 4531,
+  "category": "namirnice",
+  "name": "Prehrana",
+  "address": "Srebrnjak 102",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9927535,
+  "lat": 45.8257413,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/12216181221",
+   "website": "https://prehrana.hr",
+   "opening_hours": "Mo-Fr 06:00-20:00; Sa 07:00-20:00; Su 08:00-13:00"
+  }
+ },
+ {
+  "id": 4552,
+  "category": "namirnice",
+  "name": "Spar",
+  "address": "Jurišićeva ulica 2a",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9785252,
+  "lat": 45.812405,
+  "attrs": {
+   "shop": "supermarket",
+   "osm_url": "https://www.openstreetmap.org/node/12588206717"
+  }
+ },
+ {
+  "id": 4554,
+  "category": "namirnice",
+  "name": "Kathmandu life",
+  "address": "Draškovićeva ulica 62",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9836898,
+  "lat": 45.8079234,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/node/12688332128"
+  }
+ },
+ {
+  "id": 4566,
+  "category": "namirnice",
+  "name": "Spar",
+  "address": "Horvatovac 58",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9912524,
+  "lat": 45.8217147,
+  "attrs": {
+   "shop": "supermarket",
+   "osm_url": "https://www.openstreetmap.org/node/13063310605",
+   "website": "https://www.spar.hr/lokacije/spar-supermarket-zagreb-10000-horvatovac-58",
+   "wheelchair": "yes",
+   "opening_hours": "Mo-Sa 08:00-20:00; Su 08:00-14:00"
+  }
+ },
+ {
+  "id": 4630,
+  "category": "namirnice",
+  "name": "Spar",
+  "address": "Ulica Jurja Žerjavića 2",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9734972,
+  "lat": 45.8079628,
+  "attrs": {
+   "shop": "supermarket",
+   "osm_url": "https://www.openstreetmap.org/way/249392099",
+   "wheelchair": "yes",
+   "opening_hours": "Mo-Sa 07:00-23:00; Su 07:00-22:00"
+  }
+ },
+ {
+  "id": 4636,
+  "category": "namirnice",
+  "name": "Spar",
+  "address": "Martićeva ulica 13/1",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9861269,
+  "lat": 45.8130483,
+  "attrs": {
+   "shop": "supermarket",
+   "osm_url": "https://www.openstreetmap.org/way/290030351",
+   "website": "https://www.spar.hr/lokacije/spar-supermarket-zagreb-10000-martieva-13",
+   "opening_hours": "Mo-Sa 07:00-21:00; Su 07:00-21:00"
+  }
+ },
+ {
+  "id": 4640,
+  "category": "namirnice",
+  "name": "Spar",
+  "address": "Bijenička cesta 5",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.984626,
+  "lat": 45.8247748,
+  "attrs": {
+   "shop": "supermarket",
+   "osm_url": "https://www.openstreetmap.org/way/296965250",
+   "opening_hours": "Mo-Sa 07:00-21:00; Su 08:00-18:00"
+  }
+ },
+ {
+  "id": 4641,
+  "category": "namirnice",
+  "name": "Gavranović",
+  "address": "Avenija Marina Držića 12",
+  "source_id": "osm-zagreb",
+  "tier": "community",
+  "lon": 15.9951113,
+  "lat": 45.8005578,
+  "attrs": {
+   "shop": "convenience",
+   "osm_url": "https://www.openstreetmap.org/way/311563370",
+   "website": "https://ntl.hr/ntl-grupa/prodajna-mjesta?m=&t=Gavranovi%C4%87",
+   "wheelchair": "no",
+   "opening_hours": "Mo-Fr 06:30-20:00; Sa 08:00-20:00; Su,PH off"
+  }
+ }
+]

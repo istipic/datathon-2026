@@ -11,7 +11,9 @@ from sqlalchemy.orm import Session
 
 from blizu_api import service
 from blizu_api.constants import ZAGREB_VIEWBOX
+from blizu_api.names import fuzzy_join
 from blizu_api.planner import Planner
+from blizu_api.search import CategorySearch
 from blizu_api.settings import BlizuSettings
 from blizu_api.store import DataStore
 from opendata_core import geocode as core_geocode
@@ -76,6 +78,75 @@ def get_planner(request: Request) -> Planner:
     return request.app.state.planner  # type: ignore[no-any-return]
 
 
+def get_search(request: Request) -> CategorySearch:
+    """Dependency: the category search."""
+    return request.app.state.search  # type: ignore[no-any-return]
+
+
+def free_places_response(store: DataStore) -> dict[str, Any]:
+    """Join the free-places table to the kindergarten register by fuzzy name match (>= 90)."""
+    fp = store.free_places
+    if fp.empty:
+        raise HTTPException(
+            503, "Podaci o slobodnim mjestima nisu učitani (pokrenite `blizu ingest facilities`)."
+        )
+    reg = store.facilities[store.facilities["category"] == "vrtic"]
+    reg_names = sorted({str(n) for n in reg["name"].dropna()})
+    matches = fuzzy_join(fp["name"].tolist(), reg_names)
+    matched, unmatched, used = [], [], set()
+    for row, match in zip(fp.itertuples(index=False), matches, strict=True):
+        base = {
+            "name": row.name,
+            "district": row.district,
+            "branches": row.branches,
+            "jaslice_free": int(row.jaslice_free),
+            "vrtic_free": int(row.vrtic_free),
+            "total_free": int(row.total_free),
+        }
+        if match.right_index is None:
+            unmatched.append(base)
+            continue
+        reg_name = reg_names[match.right_index]
+        used.add(reg_name)
+        objects = reg[reg["name"] == reg_name]
+        matched.append(
+            {
+                **base,
+                "register_name": reg_name,
+                "match_score": round(match.score, 1),
+                "facilities": [
+                    {
+                        "id": int(f.id),
+                        "address": f.address,
+                        "lon": float(f.lon),
+                        "lat": float(f.lat),
+                    }
+                    for f in objects.itertuples(index=False)
+                ],
+            }
+        )
+    snapshot = (
+        str(fp["snapshot_date"].iloc[0])
+        if "snapshot_date" in fp and fp["snapshot_date"].iloc[0]
+        else None
+    )
+    source = store.sources.get("zg-vrtici-mjesta", {})
+    return {
+        "snapshot_date": snapshot,
+        "source": {
+            "id": "zg-vrtici-mjesta",
+            "title": source.get("title"),
+            "publisher": source.get("publisher"),
+            "url": source.get("url"),
+            "retrieved_at": source.get("retrieved_at"),
+        },
+        "join_rule": "rapidfuzz token_sort_ratio >= 90 na normaliziranim nazivima",
+        "matched": matched,
+        "unmatched_free_places": unmatched,
+        "register_without_free_places": len(set(reg_names) - used),
+    }
+
+
 def make_router(get_session: Callable[..., Any], settings: BlizuSettings) -> APIRouter:
     """Build the router; ``get_session`` is the shared DB session dependency."""
     router = APIRouter(prefix="/api/v1", tags=["blizu"])
@@ -136,6 +207,23 @@ def make_router(get_session: Callable[..., Any], settings: BlizuSettings) -> API
     def scoring(store: DataStore = Depends(get_store)) -> dict[str, Any]:  # noqa: B008
         """The versioned scoring configuration (scoring.yaml) used by every calculation."""
         return dict(store.cfg.raw)
+
+    @router.get("/search")
+    def search(
+        q: Annotated[str, Query(min_length=2, max_length=120)],
+        search: CategorySearch = Depends(get_search),  # noqa: B008
+        store: DataStore = Depends(get_store),  # noqa: B008
+    ) -> dict[str, Any]:
+        """Which service categories does the query mean? (top 3 by similarity)."""
+        result = search.search(q)
+        for item in result["results"]:
+            item["label"] = store.cfg.categories[item["category"]].label
+        return result
+
+    @router.get("/kindergartens/free-places")
+    def kindergarten_free_places(store: DataStore = Depends(get_store)) -> dict[str, Any]:  # noqa: B008
+        """Free places in city kindergartens joined to the register; unmatched rows listed apart."""
+        return free_places_response(store)
 
     @router.get("/compare")
     def compare(

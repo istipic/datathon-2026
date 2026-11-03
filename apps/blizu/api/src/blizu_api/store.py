@@ -47,6 +47,7 @@ class DataStore:
     sources: dict[str, dict[str, Any]]
     has_age_groups: bool
     manifest: dict[str, Any] = field(default_factory=dict)
+    free_places: pd.DataFrame = field(default_factory=pd.DataFrame)
 
     def __post_init__(self) -> None:
         self.tree = cKDTree(np.column_stack([self.graph.x, self.graph.y]))
@@ -175,12 +176,31 @@ def load_boundary(derived: Path, manifest: Manifest) -> PreparedGeometry | None:
     return prep(unary_union(geoms))
 
 
+def check_access_consistency(
+    arrays: dict[tuple[str, str], tuple[np.ndarray, np.ndarray]], facility_ids: set[int]
+) -> None:
+    """Fail fast if the access arrays refer to facility ids that are no longer in the database.
+
+    Re-loading facilities issues new ids; the arrays must then be regenerated.
+    """
+    for (variant, category), (_dist, fac) in arrays.items():
+        used = {int(i) for i in np.unique(fac) if i >= 0}
+        missing = used - facility_ids
+        if missing:
+            raise RuntimeError(
+                f"access arrays ({variant}/{category}) refer to {len(missing)} facility ids that are "
+                "not in the database: the facilities were reloaded after `blizu ingest access`. "
+                "Run `blizu ingest access` (and `grid`) again."
+            )
+
+
 def load_store(session: Session, settings: BlizuSettings) -> DataStore:
     """Build the :class:`DataStore` from the manifest files and the database."""
     manifest = Manifest(settings.derived_dir)
     graph = load_graph(manifest.path_of("graph"))
     arrays = load_access_arrays(settings.derived_dir, manifest)
     facilities = load_facility_frame(session).set_index("id", drop=False)
+    check_access_consistency(arrays, {int(i) for i in facilities.index})
     cells_raw = session.execute(
         text(
             "select grd_id, st_asgeojson(geom, 6) as geojson, pop_total, pop_u15, pop_65p from cell order by grd_id"
@@ -203,6 +223,20 @@ def load_store(session: Session, settings: BlizuSettings) -> DataStore:
         .mappings()
         .all()
     )
+    try:
+        free_places = pd.DataFrame(
+            session.execute(
+                text(
+                    "select id, snapshot_date, district, name, branches, jaslice_free, vrtic_free, "
+                    "total_free, resource_name from vrtic_free_places order by id"
+                )
+            )
+            .mappings()
+            .all()
+        )
+    except Exception:  # table missing: free places were never ingested
+        session.rollback()
+        free_places = pd.DataFrame()
     summary = {s["id"]: s for s in sources_summary(session)}
     has_age = bool(cells["pop_65p"].notna().any()) if len(cells) else False
     store = DataStore(
@@ -216,6 +250,7 @@ def load_store(session: Session, settings: BlizuSettings) -> DataStore:
         sources=summary,
         has_age_groups=has_age,
         manifest=manifest.read(),
+        free_places=free_places,
     )
     log.info(
         "store_loaded",

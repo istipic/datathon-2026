@@ -28,6 +28,7 @@ from blizu_api.constants import (
 )
 from blizu_api.db import Facility
 from blizu_api.ingest import osm_pbf
+from blizu_api.ingest.free_places import ingest_free_places
 from blizu_api.ingest.overpass import with_overpass_retry
 from blizu_api.manifest import Manifest, sha256_file
 from blizu_api.settings import BlizuSettings
@@ -311,12 +312,14 @@ def download_skole(
     return path, sha256_file(path), str(fetched.url)
 
 
-def _overpass_features(settings: BlizuSettings, max_attempts: int) -> dict[str, pd.DataFrame]:
+def _overpass_features(
+    settings: BlizuSettings, max_attempts: int, timeout_s: int
+) -> dict[str, pd.DataFrame]:
     """features_from_place per category (+ school names used only as hints) via Overpass."""
     import osmnx as ox
 
     ox.settings.http_user_agent = f"blizu/0.1 (+mailto:{settings.contact_email}) datathon-2026"
-    ox.settings.requests_timeout = 300
+    ox.settings.requests_timeout = timeout_s
     ox.settings.cache_folder = str(settings.data_dir / "cache" / "osmnx")
     ox.settings.log_console = False
     out: dict[str, pd.DataFrame] = {}
@@ -378,14 +381,19 @@ def _pbf_features(
 def download_osm_features(
     settings: BlizuSettings, client: Any, today: str
 ) -> tuple[dict[str, pd.DataFrame], dict[str, Any]]:
-    """OSM features: Overpass first (``auto``: 3 attempts), else the Geofabrik extract.
+    """OSM features: Overpass first (``auto``: 2 quick attempts), else the Geofabrik extract.
 
     Returns the per-category frames and a dict describing how/when they were obtained.
     """
     mode = settings.osm_feature_source
     if mode in ("auto", "overpass"):
         try:
-            frames = _overpass_features(settings, max_attempts=3 if mode == "auto" else 10)
+            # auto: fail fast (2 attempts, 90 s) and use the extract; overpass: be patient
+            frames = _overpass_features(
+                settings,
+                max_attempts=2 if mode == "auto" else 10,
+                timeout_s=90 if mode == "auto" else 300,
+            )
             return frames, {
                 "via": "overpass",
                 "url": "Overpass API (osmnx features_from_place)",
@@ -473,10 +481,14 @@ def ingest_facilities(session: Session, settings: BlizuSettings) -> dict[str, in
             run_v.rows = int(counts.get(SRC_VRTICI, 0))
             run_s.rows = int(counts.get(SRC_SKOLE, 0))
             run_o.rows = int(counts.get(SRC_OSM, 0))
+        free_rows = ingest_free_places(session, settings, ckan, today)
     Manifest(settings.derived_dir).set(
         "facilities",
         date=today,
         counts={k: int(v) for k, v in counts.items()},
         dropped_osm_duplicates=dropped,
+        free_places=free_rows,
+        osm_via=osm_info["via"],
+        osm_snapshot=osm_info["snapshot"].isoformat() if osm_info["snapshot"] else None,
     )
     return {k: int(v) for k, v in counts.items()} | {SRC_GTFS: 0}

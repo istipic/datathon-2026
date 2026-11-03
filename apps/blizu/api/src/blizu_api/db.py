@@ -69,6 +69,23 @@ class CellAccess(Base):
     mean_minutes: Mapped[float] = mapped_column(Float)
 
 
+class VrticFreePlaces(Base):
+    """Free places per city kindergarten (snapshot from the Zagreb open-data table)."""
+
+    __tablename__ = "vrtic_free_places"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    snapshot_date: Mapped[str | None] = mapped_column(String(10), nullable=True)
+    district: Mapped[str] = mapped_column(Text)
+    name: Mapped[str] = mapped_column(Text)
+    branches: Mapped[str | None] = mapped_column(Text, nullable=True)
+    jaslice_free: Mapped[int] = mapped_column(Integer)
+    vrtic_free: Mapped[int] = mapped_column(Integer)
+    total_free: Mapped[int] = mapped_column(Integer)
+    resource_name: Mapped[str | None] = mapped_column(Text, nullable=True)
+    attrs: Mapped[Any] = mapped_column(_JSON, default=dict)
+
+
 def make_session_factory(settings: BlizuSettings) -> sessionmaker[Session]:
     """Session factory bound to ``settings.database_url``."""
     return sessionmaker(make_engine(settings), expire_on_commit=False)
