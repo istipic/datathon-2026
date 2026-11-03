@@ -1,0 +1,64 @@
+[project]
+name = "datathon-2026"
+version = "0.1.0"
+description = "Monorepo for blizu, otporno and nabavaradar (Datathon Portala otvorenih podataka 2026)"
+requires-python = ">=3.12,<3.13"
+readme = "README.md"
+license = { text = "EUPL-1.2" }
+dependencies = ["opendata-core"]
+
+[tool.uv]
+package = false
+
+[tool.uv.workspace]
+members = ["packages/core"]
+
+[tool.uv.sources]
+opendata-core = { workspace = true }
+
+[dependency-groups]
+dev = [
+  "pytest>=8",
+  "pytest-cov>=5",
+  "respx>=0.21",
+  "ruff>=0.6",
+  "mypy>=1.11",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+extend-exclude = ["node_modules", ".venv"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "S", "C4", "PT"]
+ignore = ["S101"]
+
+[tool.ruff.lint.per-file-ignores]
+"**/tests/**" = ["S", "B011"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["opendata_core"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+plugins = ["pydantic.mypy"]
+exclude = ['/tests/', '/.venv/']
+
+[[tool.mypy.overrides]]
+module = [
+  "geopandas.*",
+  "pandas.*",
+  "pgvector.*",
+  "shapely.*",
+  "scipy.*",
+  "pyproj.*",
+  "geoalchemy2.*",
+  "slowapi.*",
+  "sentence_transformers.*",
+  "rapidfuzz.*",
+  "openpyxl.*",
+  "osmnx.*",
+]
+ignore_missing_imports = true
