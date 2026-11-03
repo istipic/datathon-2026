@@ -1,0 +1,55 @@
+{
+  "url": "https://sudreg-data-test.gov.hr/api/javni/subjekti?snapshot_id=1&limit=3",
+  "status": 200,
+  "headers": {
+    "x-snapshot-id": "1",
+    "x-timestamp": "2024-06-16T20:57:57",
+    "x-total-count": "177698",
+    "x-seconds-elapsed": "0.088087",
+    "x-rows-returned": "3",
+    "x-log-id": "477681"
+  },
+  "body": [
+    {
+      "mbs": 10000074,
+      "status": 1,
+      "sud_id_nadlezan": 1,
+      "sud_id_sluzba": 1,
+      "postupak": 1,
+      "oib": 76860791838,
+      "mb": 1080300,
+      "ino_podruznica": 0,
+      "stecajna_masa": 0,
+      "likvidacijska_masa": 0,
+      "datum_osnivanja": "1995-05-11T00:00:00"
+    },
+    {
+      "mbs": 10000162,
+      "status": 1,
+      "sud_id_nadlezan": 1,
+      "sud_id_sluzba": 1,
+      "postupak": 1,
+      "oib": 92803032010,
+      "mb": 3038203,
+      "ino_podruznica": 0,
+      "stecajna_masa": 0,
+      "likvidacijska_masa": 0,
+      "glavna_djelatnost": 1072,
+      "datum_osnivanja": "1992-12-31T00:00:00"
+    },
+    {
+      "mbs": 10000283,
+      "status": 1,
+      "sud_id_nadlezan": 1,
+      "sud_id_sluzba": 1,
+      "postupak": 1,
+      "oib": 91853331754,
+      "mb": 1104730,
+      "ino_podruznica": 0,
+      "stecajna_masa": 0,
+      "likvidacijska_masa": 0,
+      "glavna_djelatnost": 6010,
+      "datum_osnivanja": "1995-06-09T00:00:00"
+    }
+  ]
+}

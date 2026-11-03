@@ -1,0 +1,29 @@
+{
+  "url": "https://sudreg-data-test.gov.hr/api/javni/predmeti_poslovanja?snapshot_id=1&limit=3&expand_relations=true",
+  "status": 200,
+  "headers": {
+    "x-snapshot-id": "1",
+    "x-timestamp": "2024-06-16T20:57:57",
+    "x-total-count": "3702936",
+    "x-seconds-elapsed": "0.07541",
+    "x-rows-returned": "3",
+    "x-log-id": "477685"
+  },
+  "body": [
+    {
+      "mbs": 10000074,
+      "djelatnost_rbr": 20,
+      "djelatnost_tekst": "Provodi specifičnu preventivnu zdravstvenu zaštitu djece i mladeži, osobito u osnovnim i srednjim školama, te fakultetima na svom području"
+    },
+    {
+      "mbs": 10000074,
+      "djelatnost_rbr": 21,
+      "djelatnost_tekst": "Prati, proučava, evaluira i izvješćuje o zdravstvenim potrebama i funkcionalnoj onesposobljenosti starijih ljudi te predlaže zdravstvene mjere za svoje područje"
+    },
+    {
+      "mbs": 10000074,
+      "djelatnost_rbr": 22,
+      "djelatnost_tekst": "Prikuplja, kontrolira i analizira statistička izvješća iz područja zdravstva uključujući bolesti ovisnosti, na svom području za potrebe Hrvatskog zavoda za javno zdravstvo"
+    }
+  ]
+}

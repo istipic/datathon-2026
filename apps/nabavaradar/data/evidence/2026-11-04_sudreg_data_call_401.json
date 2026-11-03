@@ -1,0 +1,34 @@
+{
+  "note": "Probe 2026-11-04: OAuth2 token request succeeds, but every data call is rejected. Matches the documented symptom of an account whose e-mail has not been verified (task: 'an unconfirmed account yields a token but 401 on data calls'). The portal page still showed the 'Verifikacija' notice. Human action needed: confirm the e-mail (or use the resend button on the portal), then re-run the probe.",
+  "token_request": {
+    "url": "https://sudreg-data.gov.hr/api/oauth/token",
+    "auth": "HTTP Basic (client_id:client_secret), form grant_type=client_credentials",
+    "status": 200,
+    "body": {
+      "access_token": "<redacted>",
+      "token_type": "bearer",
+      "expires_in": 21600
+    }
+  },
+  "data_request": {
+    "url": "https://sudreg-data.gov.hr/api/javni/snapshots",
+    "headers": {
+      "Authorization": "Bearer <redacted>",
+      "Accept": "application/json"
+    },
+    "status": 401,
+    "content_type": "application/problem+json",
+    "body": {
+      "code": "Unauthorized",
+      "message": "Unauthorized",
+      "type": "tag:oracle.com,2020:error/Unauthorized",
+      "instance": "tag:oracle.com,2020:ecid/<varies>"
+    }
+  },
+  "test_environment_probe": {
+    "host": "https://sudreg-data-test.gov.hr",
+    "documented_in": "Upute za razvojne inzenjere v3.0.0, section 'Registracija korisnika' (separate registration for test)",
+    "token_request_status": 401,
+    "note": "The production credentials are not accepted by the test host (it needs its own registration)."
+  }
+}

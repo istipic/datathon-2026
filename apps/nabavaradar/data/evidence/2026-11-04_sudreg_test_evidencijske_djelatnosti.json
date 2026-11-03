@@ -1,0 +1,29 @@
+{
+  "url": "https://sudreg-data-test.gov.hr/api/javni/evidencijske_djelatnosti?snapshot_id=1&limit=3",
+  "status": 200,
+  "headers": {
+    "x-snapshot-id": "1",
+    "x-timestamp": "2024-06-16T20:57:57",
+    "x-total-count": "2608392",
+    "x-seconds-elapsed": "0.017899",
+    "x-rows-returned": "3",
+    "x-log-id": "477686"
+  },
+  "body": [
+    {
+      "mbs": 10000363,
+      "djelatnost_rbr": 1,
+      "djelatnost_tekst": "Umnožavanje snimljenih zapisa"
+    },
+    {
+      "mbs": 10000363,
+      "djelatnost_rbr": 2,
+      "djelatnost_tekst": "Proizvodnja aparata za kućanstvo"
+    },
+    {
+      "mbs": 10000363,
+      "djelatnost_rbr": 3,
+      "djelatnost_tekst": "Proizvodnja uredskih strojeva i računala"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "url": "https://sudreg-data-test.gov.hr/api/javni/pretezite_djelatnosti?snapshot_id=1&limit=3",
+  "status": 200,
+  "headers": {
+    "x-snapshot-id": "1",
+    "x-timestamp": "2024-06-16T20:57:57",
+    "x-total-count": "59737",
+    "x-seconds-elapsed": "0.012487",
+    "x-rows-returned": "3",
+    "x-log-id": "477684"
+  },
+  "body": [
+    {
+      "mbs": 10002640,
+      "nacionalna_klasifikacija_djelatnosti_id": 4701
+    },
+    {
+      "mbs": 10003152,
+      "nacionalna_klasifikacija_djelatnosti_id": 4263
+    },
+    {
+      "mbs": 10003370,
+      "nacionalna_klasifikacija_djelatnosti_id": 4340
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "status": 200,
+  "headers": {
+    "date": "Tue, 03 Nov 2026 23:44:48 GMT",
+    "content-type": "application/json"
+  },
+  "body": {
+    "access_token": "<redacted>",
+    "token_type": "bearer",
+    "expires_in": 21600
+  }
+}

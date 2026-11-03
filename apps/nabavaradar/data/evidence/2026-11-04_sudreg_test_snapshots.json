@@ -1,0 +1,17 @@
+{
+  "url": "https://sudreg-data-test.gov.hr/api/javni/snapshots",
+  "status": 200,
+  "headers": {
+    "x-seconds-elapsed": "0.01058",
+    "x-rows-returned": "1",
+    "x-log-id": "477679"
+  },
+  "body": [
+    {
+      "id": 1,
+      "timestamp": "2024-06-16T20:57:57.667074",
+      "available_until": "2024-06-18T20:57:57",
+      "staleness": 1
+    }
+  ]
+}

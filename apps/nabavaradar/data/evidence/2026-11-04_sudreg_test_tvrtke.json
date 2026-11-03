@@ -1,0 +1,29 @@
+{
+  "url": "https://sudreg-data-test.gov.hr/api/javni/tvrtke?snapshot_id=1&limit=3",
+  "status": 200,
+  "headers": {
+    "x-snapshot-id": "1",
+    "x-timestamp": "2024-06-16T20:57:57",
+    "x-total-count": "177698",
+    "x-seconds-elapsed": "0.009397",
+    "x-rows-returned": "3",
+    "x-log-id": "477682"
+  },
+  "body": [
+    {
+      "mbs": 10000074,
+      "ime": "ZAVOD ZA JAVNO ZDRAVSTVO SVETI ROK VIROVITIČKO-PODRAVSKE ŽUPANIJE",
+      "naznaka_imena": "SVETI ROK"
+    },
+    {
+      "mbs": 10000162,
+      "ime": "KOESTLIN dioničko društvo,tvornica keksa i vafla",
+      "naznaka_imena": "KOESTLIN"
+    },
+    {
+      "mbs": 10000283,
+      "ime": "RADIO KRIŽEVCI društvo s ograničenom odgovornošću za radijsku i televizijsku djelatnost",
+      "naznaka_imena": "RADIO KRIŽEVCI"
+    }
+  ]
+}

@@ -1,0 +1,158 @@
+{
+  "url": "https://sudreg-data-test.gov.hr/api/javni/counts?snapshot_id=1",
+  "status": 200,
+  "headers": {
+    "x-snapshot-id": "1",
+    "x-timestamp": "2024-06-16T20:57:57",
+    "x-total-count": "69",
+    "x-seconds-elapsed": "0.284233",
+    "x-rows-returned": "36",
+    "x-log-id": "477680"
+  },
+  "body": [
+    {
+      "table_name": "SRC_BRIS_PRAVNI_OBLICI",
+      "count_aktivni": 0
+    },
+    {
+      "table_name": "SRC_BRIS_REGISTRI",
+      "count_aktivni": 0
+    },
+    {
+      "table_name": "SRC_DJELATNOSTI_PODRUZNICA",
+      "count_aktivni": 59926
+    },
+    {
+      "table_name": "SRC_DRZAVE",
+      "count_aktivni": 0
+    },
+    {
+      "table_name": "SRC_EMAIL_ADRESE",
+      "count_aktivni": 125999
+    },
+    {
+      "table_name": "SRC_EMAIL_ADRESE_PODRUZNICA",
+      "count_aktivni": 48
+    },
+    {
+      "table_name": "SRC_EVIDENCIJSKE_DJELATNOSTI",
+      "count_aktivni": 2608392
+    },
+    {
+      "table_name": "SRC_GFI",
+      "count_aktivni": 0
+    },
+    {
+      "table_name": "SRC_INOZEMNI_REGISTRI",
+      "count_aktivni": 672
+    },
+    {
+      "table_name": "SRC_JEZICI",
+      "count_aktivni": 0
+    },
+    {
+      "table_name": "SRC_NACIONALNA_KLASIFIKACIJA_DJELATNOSTI",
+      "count_aktivni": 0
+    },
+    {
+      "table_name": "SRC_NAZIVI_PODRUZNICA",
+      "count_aktivni": 3396
+    },
+    {
+      "table_name": "SRC_OBJAVE_PRIOPCENJA",
+      "count_aktivni": 15270
+    },
+    {
+      "table_name": "SRC_PARTNERI_STATUSNIH_POSTUPAKA",
+      "count_aktivni": 3
+    },
+    {
+      "table_name": "SRC_POSTUPCI",
+      "count_aktivni": 177698
+    },
+    {
+      "table_name": "SRC_PRAVNI_OBLICI",
+      "count_aktivni": 177698
+    },
+    {
+      "table_name": "SRC_PREDMETI_POSLOVANJA",
+      "count_aktivni": 3702936
+    },
+    {
+      "table_name": "SRC_PRETEZITE_DJELATNOSTI",
+      "count_aktivni": 59737
+    },
+    {
+      "table_name": "SRC_PRIJEVODI_SKRACENIH_TVRTKI",
+      "count_aktivni": 6118
+    },
+    {
+      "table_name": "SRC_PRIJEVODI_TVRTKI",
+      "count_aktivni": 6308
+    },
+    {
+      "table_name": "SRC_PROMJENE",
+      "count_aktivni": 0
+    },
+    {
+      "table_name": "SRC_SJEDISTA",
+      "count_aktivni": 177698
+    },
+    {
+      "table_name": "SRC_SJEDISTA_PODRUZNICA",
+      "count_aktivni": 3396
+    },
+    {
+      "table_name": "SRC_SKRACENE_TVRTKE",
+      "count_aktivni": 172833
+    },
+    {
+      "table_name": "SRC_SKRACENI_NAZIVI_PODRUZNICA",
+      "count_aktivni": 1352
+    },
+    {
+      "table_name": "SRC_STATUSI",
+      "count_aktivni": 0
+    },
+    {
+      "table_name": "SRC_STATUSNI_POSTUPCI",
+      "count_aktivni": 453317
+    },
+    {
+      "table_name": "SRC_SUBJEKTI",
+      "count_aktivni": 177698
+    },
+    {
+      "table_name": "SRC_SUDOVI",
+      "count_aktivni": 0
+    },
+    {
+      "table_name": "SRC_TEMELJNI_KAPITALI",
+      "count_aktivni": 169641
+    },
+    {
+      "table_name": "SRC_TVRTKE",
+      "count_aktivni": 177698
+    },
+    {
+      "table_name": "SRC_VALUTE",
+      "count_aktivni": 0
+    },
+    {
+      "table_name": "SRC_VRSTE_GFI_DOKUMENATA",
+      "count_aktivni": 0
+    },
+    {
+      "table_name": "SRC_VRSTE_POSTUPAKA",
+      "count_aktivni": 0
+    },
+    {
+      "table_name": "SRC_VRSTE_PRAVNIH_OBLIKA",
+      "count_aktivni": 0
+    },
+    {
+      "table_name": "SRC_VRSTE_STATUSNIH_POSTUPAKA",
+      "count_aktivni": 0
+    }
+  ]
+}

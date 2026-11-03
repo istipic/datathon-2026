@@ -1,0 +1,97 @@
+{
+  "url": "https://sudreg-data-test.gov.hr/api/javni/nacionalna_klasifikacija_djelatnosti?snapshot_id=1",
+  "status": 200,
+  "total_rows": 4666,
+  "first_rows": [
+    {
+      "id": 785,
+      "sifra": "74.50",
+      "puni_naziv": "Agencije za zapošljav. i posred. radne snage",
+      "verzija": "NKD 1994"
+    },
+    {
+      "id": 786,
+      "sifra": "74.6",
+      "puni_naziv": "Istražne i zaštitne djelatnosti",
+      "verzija": "NKD 1994"
+    },
+    {
+      "id": 787,
+      "sifra": "74.60",
+      "puni_naziv": "Istražne i zaštitne djelatnosti",
+      "verzija": "NKD 1994"
+    },
+    {
+      "id": 788,
+      "sifra": "74.7",
+      "puni_naziv": "Čišćenje svih vrsta objekata",
+      "verzija": "NKD 1994"
+    },
+    {
+      "id": 789,
+      "sifra": "74.70",
+      "puni_naziv": "Čišćenje svih vrsta objekata",
+      "verzija": "NKD 1994"
+    },
+    {
+      "id": 790,
+      "sifra": "74.8",
+      "puni_naziv": "Ostale poslovne djelatnosti, d. n.",
+      "verzija": "NKD 1994"
+    },
+    {
+      "id": 791,
+      "sifra": "74.81",
+      "puni_naziv": "Fotografske djelatnosti",
+      "verzija": "NKD 1994"
+    },
+    {
+      "id": 792,
+      "sifra": "74.82",
+      "puni_naziv": "Djelatnosti pakiranja",
+      "verzija": "NKD 1994"
+    },
+    {
+      "id": 793,
+      "sifra": "74.83",
+      "puni_naziv": "Tajničke i prevoditeljske djelatnosti",
+      "verzija": "NKD 1994"
+    },
+    {
+      "id": 794,
+      "sifra": "74.84",
+      "puni_naziv": "Ostale poslovne djelatnosti, d. n.",
+      "verzija": "NKD 1994"
+    },
+    {
+      "id": 795,
+      "sifra": "75",
+      "puni_naziv": "Javna uprava, obrana; obvezno soc. osiguranje",
+      "verzija": "NKD 1994"
+    },
+    {
+      "id": 796,
+      "sifra": "75.1",
+      "puni_naziv": "Državna uprava, ekonomska i soc. politika",
+      "verzija": "NKD 1994"
+    },
+    {
+      "id": 797,
+      "sifra": "75.11",
+      "puni_naziv": "Djelatnost općih javnih službi",
+      "verzija": "NKD 1994"
+    },
+    {
+      "id": 798,
+      "sifra": "75.11.1",
+      "puni_naziv": "Zakonodavna izvršna i druga tijela RH",
+      "verzija": "NKD 1994"
+    },
+    {
+      "id": 799,
+      "sifra": "75.11.2",
+      "puni_naziv": "Županijska predstavnička i izvršna tijela",
+      "verzija": "NKD 1994"
+    }
+  ]
+}

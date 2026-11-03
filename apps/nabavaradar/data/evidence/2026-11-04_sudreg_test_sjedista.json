@@ -1,0 +1,51 @@
+{
+  "url": "https://sudreg-data-test.gov.hr/api/javni/sjedista?snapshot_id=1&limit=3",
+  "status": 200,
+  "headers": {
+    "x-snapshot-id": "1",
+    "x-timestamp": "2024-06-16T20:57:57",
+    "x-total-count": "177698",
+    "x-seconds-elapsed": "0.026302",
+    "x-rows-returned": "3",
+    "x-log-id": "477683"
+  },
+  "body": [
+    {
+      "mbs": 10000074,
+      "sifra_zupanije": 10,
+      "naziv_zupanije": "Virovitičko-podravska županija",
+      "sifra_opcine": 4910,
+      "naziv_opcine": "Virovitica",
+      "sifra_naselja": 69361,
+      "naziv_naselja": "Virovitica",
+      "sifra_ulice": 693610023,
+      "ulica": "Ulica Ljudevita Gaja",
+      "kucni_broj": 21
+    },
+    {
+      "mbs": 10000162,
+      "sifra_zupanije": 7,
+      "naziv_zupanije": "Bjelovarsko-bilogorska županija",
+      "sifra_opcine": 248,
+      "naziv_opcine": "Bjelovar",
+      "sifra_naselja": 3239,
+      "naziv_naselja": "Bjelovar",
+      "sifra_ulice": 32390164,
+      "ulica": "Slavonska cesta",
+      "kucni_broj": 2,
+      "kucni_podbroj": "a"
+    },
+    {
+      "mbs": 10000283,
+      "sifra_zupanije": 6,
+      "naziv_zupanije": "Koprivničko-križevačka županija",
+      "sifra_opcine": 2143,
+      "naziv_opcine": "Križevci",
+      "sifra_naselja": 32379,
+      "naziv_naselja": "Križevci",
+      "sifra_ulice": 323790071,
+      "ulica": "Ulica Antuna Gustava Matoša",
+      "kucni_broj": 3
+    }
+  ]
+}

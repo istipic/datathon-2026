@@ -1,0 +1,116 @@
+{
+  "url": "https://sudreg-data-test.gov.hr/api/javni/detalji_subjekta?tip_identifikatora=oib&identifikator=92803032010&snapshot_id=1&expand_relations=true",
+  "status": 200,
+  "headers": {
+    "x-snapshot-id": "1",
+    "x-timestamp": "2024-06-16T20:57:57"
+  },
+  "redaction": "Removed e-mail addresses, GFI documents, share capital and change log (not needed). The public service returns no natural persons; none were present.",
+  "body": {
+    "mbs": 10000162,
+    "status": 1,
+    "oib": 92803032010,
+    "mb": 3038203,
+    "potpuni_mbs": "010000162",
+    "potpuni_oib": "92803032010",
+    "ino_podruznica": 0,
+    "stecajna_masa": 0,
+    "likvidacijska_masa": 0,
+    "glavna_djelatnost": 1072,
+    "datum_osnivanja": "1992-12-31T00:00:00",
+    "vrijeme_zadnje_izmjene": "2024-05-02T20:00:08",
+    "postupak": {
+      "postupak": {
+        "znacenje": "Bez postupka"
+      }
+    },
+    "tvrtka": {
+      "ime": "KOESTLIN dioničko društvo,tvornica keksa i vafla",
+      "naznaka_imena": "KOESTLIN"
+    },
+    "skracena_tvrtka": {
+      "ime": "KOESTLIN d.d."
+    },
+    "sjediste": {
+      "sifra_zupanije": 7,
+      "naziv_zupanije": "Bjelovarsko-bilogorska županija",
+      "sifra_opcine": 248,
+      "naziv_opcine": "Bjelovar",
+      "sifra_naselja": 3239,
+      "naziv_naselja": "Bjelovar",
+      "sifra_ulice": 32390164,
+      "ulica": "Slavonska cesta",
+      "kucni_broj": 2,
+      "kucni_podbroj": "a"
+    },
+    "pravni_oblik": {
+      "vrsta_pravnog_oblika": {
+        "sifra": 4,
+        "naziv": "dioničko društvo",
+        "kratica": "d.d."
+      }
+    },
+    "predmeti_poslovanja": [
+      {
+        "djelatnost_rbr": 1,
+        "nacionalna_klasifikacija_djelatnosti": {
+          "sifra": "15.8",
+          "puni_naziv": "Proizvodnja ostalih prehrambenih proizvoda",
+          "verzija": "NKD 1994"
+        }
+      },
+      {
+        "djelatnost_rbr": 2,
+        "nacionalna_klasifikacija_djelatnosti": {
+          "sifra": "51",
+          "puni_naziv": "Trgovina na veliko i posredovanje u trgovini, osim trgovine motornim vozilima i motociklima",
+          "verzija": "NKD 1994"
+        }
+      },
+      {
+        "djelatnost_rbr": 3,
+        "nacionalna_klasifikacija_djelatnosti": {
+          "sifra": "52",
+          "puni_naziv": "Trg. na malo; popravak predmeta za kućanstvo",
+          "verzija": "NKD 1994"
+        }
+      },
+      {
+        "djelatnost_rbr": 4,
+        "nacionalna_klasifikacija_djelatnosti": {
+          "sifra": "55.3",
+          "puni_naziv": "Restorani",
+          "verzija": "NKD 1994"
+        }
+      },
+      {
+        "djelatnost_rbr": 5,
+        "nacionalna_klasifikacija_djelatnosti": {
+          "sifra": "55.5",
+          "puni_naziv": "Kantine i opskrbljivanje pripremljenom hranom",
+          "verzija": "NKD 1994"
+        }
+      },
+      {
+        "djelatnost_rbr": 6,
+        "nacionalna_klasifikacija_djelatnosti": {
+          "sifra": "60.24",
+          "puni_naziv": "Prijevoz robe (tereta) cestom",
+          "verzija": "NKD 1994"
+        }
+      },
+      {
+        "djelatnost_rbr": 7,
+        "djelatnost_tekst": "Pružanje usluga u nautičkom, seljačkom, zdravstvenom, kongresnom, sportskom, lovnom i drugim oblicima turizma, pružanje ostalih turističkih usluga"
+      },
+      {
+        "djelatnost_rbr": 8,
+        "djelatnost_tekst": "Iznajmljivanje plovnih objekata (čarter)"
+      },
+      {
+        "djelatnost_rbr": 9,
+        "djelatnost_tekst": "Korištenje opasnih kemikalija"
+      }
+    ]
+  }
+}
