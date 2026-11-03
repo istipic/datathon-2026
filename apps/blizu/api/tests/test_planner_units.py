@@ -64,3 +64,12 @@ def test_wheelchair_coverage_is_a_subset_of_full(subgraph: GraphData) -> None:
     wheel = coverage_matrix(subgraph.wheelchair, cand, 700.0).toarray()
     assert not (wheel & ~full).any()
     assert wheel.sum() < full.sum()
+
+
+def test_parallel_and_serial_coverage_are_identical(subgraph: GraphData) -> None:
+    ones = np.ones(subgraph.n_nodes, dtype=bool)
+    cand = thin_candidates(subgraph.x, subgraph.y, ones)[:40]  # more than one chunk of 32
+    serial = coverage_matrix(subgraph.full, cand, 650.0, workers=1)
+    parallel = coverage_matrix(subgraph.full, cand, 650.0, workers=4)
+    assert serial.shape == parallel.shape == (40, subgraph.n_nodes)
+    assert (serial != parallel).nnz == 0

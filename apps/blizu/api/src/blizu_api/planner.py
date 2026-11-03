@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
+import os
 import threading
 from collections import OrderedDict
+from concurrent.futures import ThreadPoolExecutor
 from typing import Any
 
 import numpy as np
@@ -15,7 +17,7 @@ from blizu_api.store import DataStore
 from opendata_core.optimize import greedy_mclp
 
 THIN_M = 300.0
-CHUNK = 128
+CHUNK = 32
 CACHE_SIZE = 6
 
 
@@ -42,16 +44,29 @@ def thin_candidates(
     return np.sort(idx[order][first])
 
 
-def coverage_matrix(graph: sp.csr_matrix, candidates: np.ndarray, radius_m: float) -> sp.csr_matrix:
-    """Boolean matrix (n_candidates x n_nodes): node reachable within ``radius_m`` network metres."""
+def coverage_matrix(
+    graph: sp.csr_matrix, candidates: np.ndarray, radius_m: float, workers: int | None = None
+) -> sp.csr_matrix:
+    """Boolean matrix (n_candidates x n_nodes): node reachable within ``radius_m`` network metres.
+
+    Sources are processed in small chunks on a thread pool (scipy's Dijkstra releases the GIL
+    for most of its work); the result is identical to a serial run.
+    """
     n = graph.shape[0]
-    blocks = []
-    for start in range(0, len(candidates), CHUNK):
-        idx = candidates[start : start + CHUNK]
-        dist = dijkstra(graph, directed=False, indices=idx, limit=radius_m)
-        blocks.append(sp.csr_matrix(np.isfinite(dist)))
-    if not blocks:
+    if len(candidates) == 0:
         return sp.csr_matrix((0, n), dtype=bool)
+
+    def block(idx: np.ndarray) -> sp.csr_matrix:
+        dist = dijkstra(graph, directed=False, indices=idx, limit=radius_m)
+        return sp.csr_matrix(np.isfinite(dist))
+
+    chunks = [candidates[i : i + CHUNK] for i in range(0, len(candidates), CHUNK)]
+    n_workers = workers or min(4, os.cpu_count() or 1)
+    if n_workers <= 1 or len(chunks) == 1:
+        blocks = [block(c) for c in chunks]
+    else:
+        with ThreadPoolExecutor(max_workers=n_workers) as pool:
+            blocks = list(pool.map(block, chunks))  # map keeps the order
     return sp.vstack(blocks, format="csr")
 
 
