@@ -1,0 +1,146 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "id": "idf4ae404b-b2bf-4d4a-8613-b74926343bb5",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     15.945245377526058,
+     45.801658169923385
+    ]
+   },
+   "properties": {
+    "areaOfResponsibility": {
+     "nil": true,
+     "nilReason": "other:unpopulated"
+    },
+    "beginLifespanVersion": {
+     "nil": true,
+     "nilReason": "other:unpopulated"
+    },
+    "endLifespanVersion": {
+     "nil": true,
+     "nilReason": "other:unpopulated"
+    },
+    "inspireId": {
+     "Identifier": {
+      "versionId": {
+       "nil": true,
+       "nilReason": "other:unpopulated"
+      },
+      "namespace": "OBRAZOVNI_OBJEKTI.GRAD_ZAGREB",
+      "localId": "77a55a88-b626-4bdd-8bdf-fa385686c098"
+     }
+    },
+    "pointOfContact": {
+     "nil": true,
+     "nilReason": "other:unpopulated"
+    },
+    "serviceLocation": {
+     "ServiceLocationType": {
+      "serviceLocationByGeometry": "POINT (15.945245 45.801658)"
+     }
+    },
+    "serviceType": {
+     "href": "http://inspire.ec.europa.eu/codelist/ServiceTypeValue/earlyChildhoodEducation"
+    }
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "idc4aea146-54ab-491e-9927-02099a0fe8da",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     15.93802074871875,
+     45.8089168867214
+    ]
+   },
+   "properties": {
+    "areaOfResponsibility": {
+     "nil": true,
+     "nilReason": "other:unpopulated"
+    },
+    "beginLifespanVersion": {
+     "nil": true,
+     "nilReason": "other:unpopulated"
+    },
+    "endLifespanVersion": {
+     "nil": true,
+     "nilReason": "other:unpopulated"
+    },
+    "inspireId": {
+     "Identifier": {
+      "versionId": {
+       "nil": true,
+       "nilReason": "other:unpopulated"
+      },
+      "namespace": "OBRAZOVNI_OBJEKTI.GRAD_ZAGREB",
+      "localId": "428af1a1-fdb0-4e1b-b288-166bdacb7ef3"
+     }
+    },
+    "pointOfContact": {
+     "nil": true,
+     "nilReason": "other:unpopulated"
+    },
+    "serviceLocation": {
+     "ServiceLocationType": {
+      "serviceLocationByGeometry": "POINT (15.938021 45.808917)"
+     }
+    },
+    "serviceType": {
+     "href": "http://inspire.ec.europa.eu/codelist/ServiceTypeValue/earlyChildhoodEducation"
+    }
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "id46eb00c7-56cf-43d8-85c3-fc521a528c75",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     15.93721993657557,
+     45.79971810329037
+    ]
+   },
+   "properties": {
+    "areaOfResponsibility": {
+     "nil": true,
+     "nilReason": "other:unpopulated"
+    },
+    "beginLifespanVersion": {
+     "nil": true,
+     "nilReason": "other:unpopulated"
+    },
+    "endLifespanVersion": {
+     "nil": true,
+     "nilReason": "other:unpopulated"
+    },
+    "inspireId": {
+     "Identifier": {
+      "versionId": {
+       "nil": true,
+       "nilReason": "other:unpopulated"
+      },
+      "namespace": "OBRAZOVNI_OBJEKTI.GRAD_ZAGREB",
+      "localId": "fc81ee9c-08da-43c2-b8d8-e49e7301dae0"
+     }
+    },
+    "pointOfContact": {
+     "nil": true,
+     "nilReason": "other:unpopulated"
+    },
+    "serviceLocation": {
+     "ServiceLocationType": {
+      "serviceLocationByGeometry": "POINT (15.937220 45.799718)"
+     }
+    },
+    "serviceType": {
+     "href": "http://inspire.ec.europa.eu/codelist/ServiceTypeValue/earlyChildhoodEducation"
+    }
+   }
+  }
+ ]
+}

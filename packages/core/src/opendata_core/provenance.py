@@ -44,6 +44,9 @@ class RunStatus(enum.StrEnum):
     failed = "failed"
 
 
+IN_PROGRESS_ERROR = "run did not finish"
+
+
 def _enum(cls: type[enum.StrEnum], name: str) -> Enum:
     # Non-native enums (VARCHAR + CHECK) keep migrations simple and portable.
     return Enum(
@@ -132,8 +135,9 @@ def record_ingestion(session: Session, source_id: str, url: str) -> Iterator[Ing
     """Record an ingestion run around a load.
 
     The run row is committed *before* the body executes with status ``failed`` and
-    ``error="run did not finish"`` so a crashed process leaves an honest trace. On normal exit
-    the status becomes ``ok`` (or ``partial`` if the caller set ``run.status = RunStatus.partial``);
+    ``error="run did not finish"`` and keeps that state until the block ends, so a crashed process
+    (or a still-running nested run) is never reported as successful. On normal exit the status
+    becomes ``ok`` (or stays ``partial`` if the caller set ``run.status = RunStatus.partial``);
     on exception the session is rolled back, the run is marked ``failed`` with the error, and the
     exception is re-raised. The caller sets ``run.rows``, ``run.sha256`` and
     ``run.source_last_modified`` inside the block.
@@ -143,13 +147,11 @@ def record_ingestion(session: Session, source_id: str, url: str) -> Iterator[Ing
         started_at=datetime.now(UTC),
         status=RunStatus.failed,
         retrieved_url=url,
-        error="run did not finish",
+        error=IN_PROGRESS_ERROR,
     )
     session.add(run)
     session.commit()
     run_id = run.id
-    run.error = None
-    run.status = RunStatus.ok  # optimistic; downgraded below on failure
     try:
         yield run
     except BaseException as exc:
@@ -162,6 +164,12 @@ def record_ingestion(session: Session, source_id: str, url: str) -> Iterator[Ing
         session.commit()
         raise
     else:
+        # Until here the row stays failed/"did not finish": nested contexts and crashes then never
+        # leave a run looking successful. The caller may have set status partial itself.
+        if run.status is RunStatus.failed and run.error == IN_PROGRESS_ERROR:
+            run.status = RunStatus.ok
+        if run.error == IN_PROGRESS_ERROR:
+            run.error = None
         run.finished_at = datetime.now(UTC)
         session.commit()
 
@@ -179,7 +187,11 @@ def sources_summary(session: Session, now: datetime | None = None) -> list[dict[
     for source in session.scalars(select(DataSource).order_by(DataSource.id)):
         last_ok = session.scalars(
             select(IngestionRun)
-            .where(IngestionRun.source_id == source.id, IngestionRun.status == RunStatus.ok)
+            .where(
+                IngestionRun.source_id == source.id,
+                IngestionRun.status == RunStatus.ok,
+                IngestionRun.finished_at.is_not(None),
+            )
             .order_by(IngestionRun.finished_at.desc(), IngestionRun.id.desc())
             .limit(1)
         ).first()

@@ -72,6 +72,19 @@ def test_record_ingestion_ok(session: Session) -> None:
     assert saved.retrieved_url == "https://example.org/file"
 
 
+def test_run_is_not_successful_while_in_progress(session: Session) -> None:
+    _src(session)
+    session.commit()
+    with record_ingestion(session, "demo", "u") as run:
+        session.commit()  # e.g. a nested context committing while this run is still open
+        assert run.status is RunStatus.failed
+        assert run.error == "run did not finish"
+        assert run.finished_at is None
+        assert sources_summary(session)[0]["last_run"] is None  # not counted as a successful load
+    assert run.status is RunStatus.ok
+    assert run.error is None
+
+
 def test_record_ingestion_partial(session: Session) -> None:
     _src(session)
     session.commit()

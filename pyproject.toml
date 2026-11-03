@@ -5,16 +5,17 @@ description = "Monorepo for blizu, otporno and nabavaradar (Datathon Portala otv
 requires-python = ">=3.12,<3.13"
 readme = "README.md"
 license = { text = "EUPL-1.2" }
-dependencies = ["opendata-core"]
+dependencies = ["opendata-core", "blizu-api"]
 
 [tool.uv]
 package = false
 
 [tool.uv.workspace]
-members = ["packages/core"]
+members = ["packages/core", "apps/blizu/api"]
 
 [tool.uv.sources]
 opendata-core = { workspace = true }
+blizu-api = { workspace = true }
 
 [dependency-groups]
 dev = [
@@ -32,13 +33,13 @@ extend-exclude = ["node_modules", ".venv"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B", "SIM", "S", "C4", "PT"]
-ignore = ["S101"]
+ignore = ["S101", "E501"]
 
 [tool.ruff.lint.per-file-ignores]
 "**/tests/**" = ["S", "B011"]
 
 [tool.ruff.lint.isort]
-known-first-party = ["opendata_core"]
+known-first-party = ["opendata_core", "blizu_api"]
 
 [tool.mypy]
 python_version = "3.12"

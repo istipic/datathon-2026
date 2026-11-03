@@ -1,0 +1,6 @@
+﻿X,Y,OBJECTID,naziv,adresa,grad_cetvr,telefon,fax,email,web,vr_vrtica,tip_vrtica,nadlezan,gradjevina,kuhinja,dvorana,vdi,strani_jez
+15.9452453800001,45.801658172,1,BAJKA,Zorkovačka ulica 8,TREŠNJEVKA-SJEVER,01 369 2062,01 302 7322,vrtic-bajka@zagreb.hr,www.vrtic-bajka.zagreb.hr,Gradski vrtić,CENTRALNI,"Gradski ured za obrazovanje, sport i mlade",namjenska građevina,DA,DA,DA,engleski
+15.938020748,45.808916885,2,BAJKA,Humska ulica 1,TREŠNJEVKA-SJEVER,01 364 3327,,vrtic-bajka@zagreb.hr,,Gradski vrtić,PODRUČNI,"Gradski ured za obrazovanje, sport i mlade",namjenska građevina,NE,DA,DA,engleski
+15.9372199370001,45.799718103,3,BAJKA,Opatijski trg 9,TREŠNJEVKA-SJEVER,01 369 5959,,vrtic-bajka@zagreb.hr,,Gradski vrtić,PODRUČNI,"Gradski ured za obrazovanje, sport i mlade",prenamijenjeni stan,NE,NE,DA,engleski
+15.94402818,45.8027252630001,4,BAJKA,Selska cesta 95/1,TREŠNJEVKA-SJEVER,01 302 6170,,vrtic-bajka@zagreb.hr,,Gradski vrtić,PODRUČNI,"Gradski ured za obrazovanje, sport i mlade",namjenska građevina,NE,NE,DA,
+15.938067732,45.7538961400001,5,BOTINEC,Ulica Zlatarova zlata 67,NOVI ZAGREB-ZAPAD,"01 654 5905, 01 654 5906",01 654 5339,vrtic-botinec@zagreb.hr,www.vrtic-botinec.zagreb.hr,Gradski vrtić,CENTRALNI,"Gradski ured za obrazovanje, sport i mlade",namjenska građevina,DA,DA,DA,engleski

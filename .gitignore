@@ -45,3 +45,5 @@ Thumbs.db
 .idea/
 .vscode/*
 !.vscode/extensions.json
+apps/*/data/*.log
+apps/*/data/derived/
