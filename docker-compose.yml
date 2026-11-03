@@ -1,0 +1,38 @@
+# Development stack. `make dev` starts db + mailpit.
+# App services are added by the app tasks. Reserved service names (port 8000 inside the network):
+#   blizu-api, otporno-api, nabavaradar-api
+name: datathon-2026
+
+services:
+  db:
+    build: ./infra/db
+    image: datathon-2026-db:local
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}
+    ports:
+      - "127.0.0.1:5432:5432" # local access only
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      # 127.0.0.1 (TCP) so the check does not pass on the temporary init-time server
+      test: ["CMD-SHELL", "pg_isready -U postgres -h 127.0.0.1 -d nabavaradar"]
+      interval: 3s
+      timeout: 3s
+      retries: 30
+      start_period: 5s
+    restart: unless-stopped
+
+  mailpit:
+    image: axllent/mailpit:latest
+    ports:
+      - "127.0.0.1:1025:1025" # SMTP
+      - "127.0.0.1:8025:8025" # web UI
+    healthcheck:
+      test: ["CMD", "/mailpit", "readyz"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+    restart: unless-stopped
+
+volumes:
+  pgdata:
