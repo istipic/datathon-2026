@@ -11,13 +11,15 @@ ENV UV_LINK_MODE=copy UV_COMPILE_BYTECODE=1 UV_PYTHON_DOWNLOADS=never
 WORKDIR /app
 
 ARG APP
+# Optional extras of the app API, e.g. --build-arg UV_SYNC_ARGS="--extra semantic" (Blizu /search model)
+ARG UV_SYNC_ARGS=""
 COPY pyproject.toml uv.lock README.md .python-version ./
 COPY packages/core packages/core
 # apps/<APP>/api may only hold a .gitkeep yet
 COPY apps/${APP}/api apps/${APP}/api
 # Workspace members other than core and <APP>-api are not needed; uv.lock still lists them.
 RUN if [ -f "apps/${APP}/api/pyproject.toml" ]; then \
-      uv sync --frozen --no-dev --no-editable --package "${APP}-api"; \
+      uv sync --frozen --no-dev --no-editable --package "${APP}-api" ${UV_SYNC_ARGS}; \
     else \
       echo "NOTE: apps/${APP}/api/pyproject.toml missing - installing opendata-core only"; \
       uv sync --frozen --no-dev --no-editable --package opendata-core; \
@@ -35,6 +37,10 @@ WORKDIR /app
 COPY --from=builder --chown=app:app /app/.venv /app/.venv
 # Migrations / data folders used by `make migrate` and `make ingest` inside the container
 COPY --chown=app:app apps/${APP}/api /app/api
+# Writable data directory (raw downloads, derived graph/arrays): mount a named volume here.
+ENV DATA_DIR=/data HF_HOME=/data/hf
+RUN mkdir -p /data && chown app:app /data
+VOLUME /data
 USER app
 EXPOSE 8000
 HEALTHCHECK --interval=15s --timeout=5s --start-period=20s --retries=5 \

@@ -75,7 +75,10 @@ def get_store(request: Request) -> DataStore:
 
 def get_planner(request: Request) -> Planner:
     """Dependency: the planner (built with the store)."""
-    return request.app.state.planner  # type: ignore[no-any-return]
+    planner = getattr(request.app.state, "planner", None)
+    if planner is None:
+        raise HTTPException(503, "Podaci se još učitavaju.")
+    return planner  # type: ignore[no-any-return]
 
 
 def geocode_title(result: dict[str, Any]) -> str:

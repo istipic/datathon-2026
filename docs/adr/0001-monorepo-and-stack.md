@@ -43,8 +43,8 @@ provenance, geo utilities, error handling, deployment and UI conventions.
 
 ## Notes
 
-- Caddy's CSP is the specified one plus `worker-src 'self' blob:` and `https://tile.openstreetmap.org`
-  in `connect-src`: MapLibre runs tile workers from `blob:` URLs and the raster fallback fetches OSM
-  tiles with `fetch()`. Without these the map cannot render under `default-src 'self'`. (Based on
-  MapLibre's documented CSP requirements; not yet exercised in a real browser — verify in the first
-  app that shows a map.)
+- Caddy's CSP is the specified one plus `worker-src 'self'` and `https://tile.openstreetmap.org` in
+  `connect-src`: the raster fallback fetches OSM tiles with `fetch()`, and MapLibre needs a worker.
+  `@dt/ui`'s `MapView` passes MapLibre a bundled, same-origin worker URL (`?worker&url`), so `blob:` is
+  _not_ needed. Verified on 2026-11-03 in Chromium against the production web and API images behind
+  Caddy: the vector map renders and the console shows no CSP violation.

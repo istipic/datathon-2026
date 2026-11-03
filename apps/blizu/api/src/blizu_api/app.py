@@ -29,14 +29,22 @@ def create_blizu_app(
 
     @asynccontextmanager
     async def lifespan(app: FastAPI) -> AsyncIterator[None]:
-        store = store_loader()
-        app.state.store = store
-        app.state.planner = Planner(store)
+        app.state.store = None
+        app.state.planner = None
         app.state.search = CategorySearch(use_semantic=settings.semantic_search)
-        # load the (optional) semantic model in the background so the first /search is fast
-        if settings.semantic_search:
-            threading.Thread(target=app.state.search.warm_up, daemon=True).start()
-        log.info("blizu_ready", candidates=len(app.state.planner.candidates))
+        try:
+            store = store_loader()
+        except Exception as exc:
+            # First deploy / data not ingested yet: keep serving /health and /api/v1/sources and
+            # answer data endpoints with a clear 503 instead of crash-looping the container.
+            log.error("blizu_data_not_loaded", error=str(exc)[:300])
+        else:
+            app.state.store = store
+            app.state.planner = Planner(store)
+            log.info("blizu_ready", candidates=len(app.state.planner.candidates))
+            if settings.semantic_search:
+                # load the (optional) semantic model in the background: the first /search is fast
+                threading.Thread(target=app.state.search.warm_up, daemon=True).start()
         yield
 
     return create_app(

@@ -209,26 +209,37 @@ def test_need_and_optimise_share_the_same_definition(planner: Planner) -> None:
 
 # ---------------------------------------------------------------------------------- HTTP API
 @pytest.fixture
-def client(store: DataStore) -> Iterator[TestClient]:
-    engine = sa.create_engine(
-        "sqlite://", connect_args={"check_same_thread": False}, poolclass=StaticPool
-    )
-    wanted = {"geocode_cache", "data_source", "ingestion_run"}
-    tables = [t for name, t in core_db.Base.metadata.tables.items() if name in wanted]
-    core_db.Base.metadata.create_all(engine, tables=tables)
+def client_factory():  # type: ignore[no-untyped-def]
+    """Build a TestClient around any store loader (real store or a failing one)."""
 
-    def get_session() -> Iterator[Session]:
-        with Session(engine) as s:
-            yield s
+    def make(loader):  # type: ignore[no-untyped-def]
+        engine = sa.create_engine(
+            "sqlite://", connect_args={"check_same_thread": False}, poolclass=StaticPool
+        )
+        wanted = {"geocode_cache", "data_source", "ingestion_run"}
+        tables = [t for name, t in core_db.Base.metadata.tables.items() if name in wanted]
+        core_db.Base.metadata.create_all(engine, tables=tables)
 
-    settings = BlizuSettings(  # type: ignore[call-arg]
-        _env_file=None,
-        contact_email="test@example.org",
-        rate_limit="1000/minute",
-        semantic_search=False,  # tests stay offline and deterministic
-    )
-    app = create_blizu_app(settings, get_session, lambda: store)
-    with TestClient(app, raise_server_exceptions=False) as c:
+        def get_session() -> Iterator[Session]:
+            with Session(engine) as s:
+                yield s
+
+        settings = BlizuSettings(  # type: ignore[call-arg]
+            _env_file=None,
+            contact_email="test@example.org",
+            rate_limit="1000/minute",
+            semantic_search=False,  # tests stay offline and deterministic
+        )
+        return TestClient(
+            create_blizu_app(settings, get_session, loader), raise_server_exceptions=False
+        )
+
+    return make
+
+
+@pytest.fixture
+def client(store: DataStore, client_factory) -> Iterator[TestClient]:  # type: ignore[no-untyped-def]
+    with client_factory(lambda: store) as c:
         yield c
 
 
@@ -325,3 +336,26 @@ def test_stale_access_arrays_are_detected(store: DataStore) -> None:
     check_access_consistency(store.arrays, ids)  # consistent
     with pytest.raises(RuntimeError, match="ingest access"):
         check_access_consistency(store.arrays, set(list(ids)[:5]))
+
+
+def test_api_starts_without_data_and_answers_503(client_factory) -> None:  # type: ignore[no-untyped-def]
+    def broken_loader() -> DataStore:
+        raise RuntimeError("manifest has no 'graph'; run `blizu ingest` first")
+
+    with client_factory(broken_loader) as c:
+        assert c.get("/health").status_code == 200  # the container stays up
+        for url in (
+            "/api/v1/access?lat=45.81&lon=15.97&persona=opce",
+            "/api/v1/scoring",
+            "/api/v1/plan/need?category=vrtic&persona=opce",
+        ):
+            r = c.get(url)
+            assert r.status_code == 503, url
+            assert r.headers["content-type"].startswith("application/problem+json")
+            assert "učitavaju" in r.json()["detail"]
+        assert (
+            c.post(
+                "/api/v1/plan/optimise", json={"category": "vrtic", "persona": "opce", "k": 1}
+            ).status_code
+            == 503
+        )

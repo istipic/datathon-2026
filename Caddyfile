@@ -2,13 +2,15 @@
 # Host names come from the environment: BLIZU_HOST, OTPORNO_HOST, NABAVA_HOST.
 # Caddy obtains TLS certificates automatically for public host names.
 #
-# CSP = the policy from the foundation spec plus two additions MapLibre needs to work at all:
-#   worker-src 'self' blob:   (MapLibre runs its tile workers from a blob: URL)
+# CSP = the policy from the foundation spec plus two additions MapLibre needs:
+#   worker-src 'self'         (default-src 'self' already covers workers via child-src, but MapLibre's
+#                              worker is served as a same-origin file by @dt/ui, so no blob: is needed;
+#                              verified in a real browser against the production images)
 #   connect-src ... https://tile.openstreetmap.org  (the raster fallback fetches tiles via fetch())
 
 (spa_security) {
 	header {
-		Content-Security-Policy "default-src 'self'; img-src 'self' data: https://*.openfreemap.org https://tile.openstreetmap.org; connect-src 'self' https://tiles.openfreemap.org https://tile.openstreetmap.org; style-src 'self' 'unsafe-inline'; worker-src 'self' blob:; frame-ancestors 'none'"
+		Content-Security-Policy "default-src 'self'; img-src 'self' data: https://*.openfreemap.org https://tile.openstreetmap.org; connect-src 'self' https://tiles.openfreemap.org https://tile.openstreetmap.org; style-src 'self' 'unsafe-inline'; worker-src 'self'; frame-ancestors 'none'"
 		X-Content-Type-Options "nosniff"
 		Referrer-Policy "strict-origin-when-cross-origin"
 		Permissions-Policy "geolocation=(self)"

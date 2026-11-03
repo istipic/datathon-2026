@@ -27,6 +27,15 @@ Additional dev dependencies (essential, not listed in the stack):
 | `@types/react`, `@types/react-dom`                                        | typings for strict TypeScript               |
 | `typescript-eslint`, `@eslint/js`, `eslint-plugin-react-hooks`, `globals` | ESLint 9 flat config for TypeScript/React   |
 
+Added by the Blizu web app (2026-11-03):
+
+| Package                      | Why                                                                                    |
+| ---------------------------- | -------------------------------------------------------------------------------------- |
+| `postcss`, `autoprefixer`    | required by Tailwind CSS 3 (the stack's CSS framework) in a Vite build                 |
+| `@types/geojson`             | GeoJSON types for the API responses and map sources                                    |
+| `@types/node`                | `process.env` in `playwright.config.ts` (types only)                                   |
+| `@playwright/test` (per app) | e2e smoke tests of the app; already in the stack, now also a dependency of `blizu-web` |
+
 No `@testing-library/jest-dom` / `user-event`: plain assertions and `fireEvent` suffice.
 `@playwright/test` is installed at the root as specified (browsers are not downloaded until an app adds e2e tests).
 

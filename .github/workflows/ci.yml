@@ -35,6 +35,8 @@ jobs:
       - run: uv run mypy packages/core
       - name: pytest (no live tests) with coverage >= 80%
         run: uv run pytest packages/core --cov --cov-config=packages/core/pyproject.toml
+      - name: pytest Blizu API (real recorded fixtures, no network)
+        run: uv run pytest apps/blizu/api
 
   web:
     runs-on: ubuntu-latest

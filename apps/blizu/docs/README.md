@@ -1,0 +1,168 @@
+# Blizu
+
+**Što ti je blizu?** — za svaku adresu u Gradu Zagrebu Blizu pokazuje koliko je minuta hoda do svakodnevnih
+javnih usluga (liječnik, ljekarna, vrtić, škola, knjižnica, pošta, javni prijevoz, park, trgovina) za četiri
+persone (opće, starija osoba, roditelj s djetetom, invalidska kolica), a gradskim planerima pokazuje gdje je
+nezadovoljena potreba najveća i gdje bi 1–5 novih ustanova koristilo najviše ljudi.
+
+Datathon Portala otvorenih podataka 2026., izazov A „Društvo i javne usluge”. Kod: EUPL-1.2.
+
+## Arhitektura
+
+```
+ data.gov.hr (CKAN)  ZET GTFS  OpenStreetMap (Overpass / Geofabrik)  Eurostat Census 2021 grid
+        │                │                    │                                │
+        └────────────────┴───── blizu ingest (Typer CLI) ──────────────────────┘
+                                      │
+              PostgreSQL+PostGIS ◄────┤────► data/derived: graph_*.npz, access_*.npz, manifest.json
+              (facility, cell, cell_access,    (scipy CSR grafovi, udaljenosti čvor→najbliži objekt)
+               gtfs_stop_frequency,
+               vrtic_free_places, provenance)
+                                      │
+                         FastAPI  /api/v1  (učitava .npz pri pokretanju)
+                                      │
+                       React SPA (Vite, @dt/ui)  ◄── Caddy (CSP, /api proxy)
+```
+
+- `api/` — paket `blizu_api` (uv workspace član `blizu-api`), ASGI app `blizu_api.main:app`, CLI `blizu`.
+- `web/` — paket `blizu-web` (React 18, Vite, TypeScript strict, Tailwind 3, `@dt/ui`).
+- Konvencije su iz [docs/FOUNDATION.md](../../../docs/FOUNDATION.md); paket se zove `blizu_api` (a ne `blizu`)
+  zbog toga što `infra/python-api.Dockerfile` i `make` pretpostavljaju `<app>_api`.
+
+## Izvori podataka
+
+| ID                          | Izvor                                                                                 | Razina      | Licencija                         | Svježina u trenutku izrade       |
+| --------------------------- | ------------------------------------------------------------------------------------- | ----------- | --------------------------------- | -------------------------------- |
+| `zg-vrtici`                 | CKAN `geoportal-djecji-vrtici` (CSV, EPSG:4326 potvrđen vrijednostima)                | službeni    | CC BY 4.0                         | resurs iz 23.06.2022. (**star**) |
+| `zg-vrtici-mjesta`          | CKAN `slobodna-mjesta-u-vrticima-…`, `newest_resource(CSV)`                           | službeni    | Otvorena dozvola (OD)             | stanje 01.01.2025.               |
+| `zg-skole`                  | CKAN `djeji-vrtii-osnovne-i-srednje-kole-…-inspire` → INSPIRE WFS, `primaryEducation` | službeni    | nije navedena u CKAN metapodacima | dohvaćeno uživo, 177 objekata    |
+| `zet-gtfs`                  | https://zet.hr/gtfs-scheduled/latest                                                  | službeni    | nije navedena uz feed             | feed 21.10.2026.                 |
+| `osm-zagreb`                | OSM: pješačka mreža + 6 kategorija objekata                                           | zajednica   | ODbL 1.0                          | trenutak preuzimanja             |
+| `eurostat-census-grid-2021` | Eurostat GISCO Census 2021, mreža 1 km (V3)                                           | EU službeni | Eurostat (navesti izvor)          | V3, 19.06.2026.                  |
+| `blizu-derived-graph`       | izvedeno: pješački graf (puni / za kolica), udaljenosti, ćelije                       | izvedeno    | ODbL (izvedena baza)              | trenutak izrade                  |
+
+Dokazi sondiranja (sirovi odgovori s datumom) su u [`../data/evidence/`](../data/evidence/); testovi koriste
+isključivo snimljene stvarne odgovore (`api/tests/fixtures/`, `web/src/__fixtures__/`).
+
+**Ograničenja izvora koja su važna za tumačenje**
+
+- Registar vrtića je iz 2022. (pouzdanost se zbog toga umanjuje, vidi `scoring.yaml`); privatni i vjerski vrtići
+  su u registru, ali ne u tablici slobodnih mjesta (spajanje je po nazivu ustanove, `rapidfuzz` ≥ 90).
+- INSPIRE izvor za škole **nema nazive ni adrese**: nazivi se, gdje postoji OSM objekt unutar 50 m, preuzimaju iz
+  OpenStreetMapa (110 od 177 imenovano); ostali se prikazuju kao „Osnovna škola (naziv nije u izvoru)”.
+- Potpunost OSM-a (liječnici, ljekarne, pošte, knjižnice, parkovi, trgovine) ovisi o volonterima.
+- Mreža stanovništva je 1 km²: ne znamo gdje u ćeliji ljudi žive; ćelije na granici Zagreba mogu sadržavati
+  stanovnike susjednih općina (centroid ćelije mora biti unutar granice Grada Zagreba).
+- Pristupačnost za kolica izvodi se samo iz OSM oznaka (`highway=steps`, `wheelchair=no`).
+
+## Pokretanje (razvoj)
+
+```bash
+cp .env.example .env                 # POSTGRES_PASSWORD, CONTACT_EMAIL
+make dev                             # PostgreSQL+PostGIS+pgvector, Mailpit
+uv sync                              # (uv sync --extra semantic za semantičku pretragu)
+make migrate APP=blizu               # Alembic: tablice jezgre + Blizu
+make ingest  APP=blizu STEP=all      # sources, graph, facilities, gtfs, access, grid
+uv run --package blizu-api uvicorn blizu_api.main:app --port 8010   # API (port 8000 može biti zauzet)
+pnpm install && BLIZU_API_URL=http://127.0.0.1:8010 pnpm --filter blizu-web dev   # SPA na :5173
+```
+
+Korisne varijable (`apps/blizu/.env.example`): `DATABASE_URL`, `CONTACT_EMAIL`, `NOMINATIM_URL`, `HF_HOME`,
+`CORS_ORIGINS`, `DATA_DIR`, `OSM_FEATURE_SOURCE` (`auto` | `overpass` | `geofabrik`), `SEMANTIC_SEARCH`,
+`RATE_LIMIT`. Na Windowsu koristite `127.0.0.1`, ne `localhost`.
+
+### Koraci unosa (`blizu ingest <korak>`)
+
+| Korak        | Što radi                                                                                           | Tipično trajanje                   |
+| ------------ | -------------------------------------------------------------------------------------------------- | ---------------------------------- |
+| `sources`    | registrira `data_source` redove (naslov, izdavač, licencija čitaju se iz CKAN metapodataka)        | 2 s                                |
+| `graph`      | OSM pješačka mreža (`osmnx`, Overpass) → dva neusmjerena CSR grafa u EPSG:3765, `graph_*.npz`      | **ovisi o Overpassu** (vidi dolje) |
+| `facilities` | vrtići (CSV), škole (WFS), OSM kategorije; dedupliciranje službeno ≻ OSM u 50 m; slobodna mjesta   | 20–30 s                            |
+| `gtfs`       | referentna srijeda, polasci 07–09 h / 2 po stajalištu (roditeljska stanica), ≥ 6/h = „prijevoz”    | 6 s                                |
+| `access`     | snap objekata na čvor (≤ 200 m), `dijkstra(min_only, limit=4000)` po varijanti i kategoriji        | 2 s                                |
+| `grid`       | Eurostat mreža za Hrvatsku → ćelije unutar Zagreba → prosječne minute po ćeliji/personi/kategoriji | 25–60 s (566 MB preuzimanje)       |
+
+**Overpass.** Javni Overpass poslužitelji su povremeno preopterećeni (502/504, ConnectTimeout). Korak `graph` ponavlja
+upit s eksponencijalnim čekanjem (osmnx sprema svaki završeni odgovor u `data/cache/osmnx`). Za objekte `facilities`
+u načinu `auto` pokušava Overpass 2 puta (90 s) pa čita Geofabrik ekstrakt Hrvatske (`osmium`, ≈ 200 MB, 10 s obrade)
+— vidi [ADR 0005](../../../docs/adr/0005-geofabrik-fallback-for-osm-features.md). Svaki korak upisuje `ingestion_run`
+(uključujući neuspjele) i datoteku u `data/derived/manifest.json`.
+
+## API (`/api/v1`)
+
+| Ruta                                 | Opis                                                                                                |
+| ------------------------------------ | --------------------------------------------------------------------------------------------------- |
+| `GET /geocode?q=`                    | Nominatim (ograničen na Zagreb), 1 zahtjev/s, cache 30 dana; vraća `title`, `label`, koordinate     |
+| `GET /access?lat&lon&persona`        | indeks, ocjena, pouzdanost, 9 kategorija (minute, ocjena, težina, najbliži objekt, razina, starost) |
+| `GET /compare?a=lat,lon&b=…`         | dvije adrese, razlike po kategorijama                                                               |
+| `GET /facilities?category&bbox`      | GeoJSON (najviše 2000 značajki)                                                                     |
+| `GET /plan/need?category&persona`    | GeoJSON ćelija (`pop_group`, `mean_minutes`, `unmet`) + sažetak i kvantilni pragovi                 |
+| `POST /plan/optimise`                | `{category, persona, k: 1..5}` → lokacije, `+N osoba`, udio prije/poslije                           |
+| `GET /search?q=`                     | top 3 kategorije (semantički `multilingual-e5-small`; inače ključne riječi); `method` u odgovoru    |
+| `GET /kindergartens/free-places`     | slobodna mjesta spojena s registrom; nespojeni redovi posebno                                       |
+| `GET /scoring`                       | `scoring.yaml` (verzionirana konfiguracija bodovanja)                                               |
+| `GET /health`, `GET /api/v1/sources` | iz jezgre; izvori s datumom dohvaćanja i starošću podataka                                          |
+
+Greške su `application/problem+json`. Adresa izvan Grada Zagreba ili dalja od 300 m od pješačke mreže → 422.
+Granica „60/min po IP-u” iz jezgre je podesiva (`RATE_LIMIT`; produkcijski `docker-compose.prod.yml` koristi 300/min).
+Ako podaci još nisu učitani, API radi i vraća 503 „Podaci se još učitavaju.”.
+
+## Bodovanje
+
+`api/src/blizu_api/config/scoring.yaml` (verzija 1) sadrži brzine, pragove g/m i težine po personi; stranica
+`/metodologija` prikazuje upravo tu datoteku. Formule: `minute = udaljenost / brzina / 60`;
+`s(t)` = 1 do g, 0 od m, linearno između; indeks = `round(100 · Σ w·s / Σ w)` (težine se ponovno normiraju na
+kategorije s podacima i težinom > 0); ocjena A ≥ 85, B ≥ 70, C ≥ 55, D ≥ 40, inače E; pouzdanost = faktor razine
+(službeni 1,0 / zajednica 0,8) × faktor starosti (≤ 12 mj. 1,0; ≤ 36 mj. 0,85; inače 0,7).
+
+**Planiranje.** Nezadovoljena potreba po ćeliji `U = P · (1 − s(prosječne minute))`, P = ciljna skupina (65+ za liječnike
+i ljekarne, djeca do 15 za vrtiće i škole, inače ukupno stanovništvo; bez dobnih skupina koristi se ukupno).
+Optimizator: kandidati = čvorovi u naseljenim ćelijama, jedan na ≈ 300 m; potražnja čvora = `U` ćelije podijeljen
+jednako na čvorove ćelije; čvor je pokriven ako je nova ustanova unutar `g · brzina · 60` m po mreži; pohlepni MCLP
+(`opendata_core.optimize.greedy_mclp`, ≥ 63 % optimuma). Prikazani brojevi su **ljudi** ciljne skupine, a udio
+„prije/poslije” i KPI „unutar g minuta” računaju se istom (čvorovnom) definicijom.
+
+## Testovi
+
+```bash
+uv run pytest apps/blizu/api                        # 134 testa, bez mreže (stvarni fixturi)
+TEST_DATABASE_URL=… uv run pytest apps/blizu/api    # + testovi koji trebaju PostGIS
+uv run --package blizu-api --extra semantic pytest -m slow apps/blizu/api   # pravi e5 model
+pnpm --filter blizu-web test                        # 38 vitest testova
+BLIZU_API_URL=http://127.0.0.1:8010 pnpm --filter blizu-web e2e   # Playwright (treba API + podaci)
+uv run --package blizu-api blizu validate           # usporedba s OSRM-om → docs/validation.md
+```
+
+Integracijski testovi (`api/tests/test_integration.py`) grade `DataStore` iz **stvarnog** podgrafa od 1 km oko Trga
+bana Jelačića (3403 čvora, 8960 bridova), stvarnih objekata i ćelija snimljenih 2026-11-03 te pokreću proizvodne
+funkcije (`snap_facilities`, `nearest_facility_distances`, `compute_cell_access`, `Planner`, HTTP API).
+
+## Validacija i kvaliteta
+
+- **Udaljenosti vs OSRM (foot):** 20 nasumičnih parova, MAE 50 m, medijan omjera naša/OSRM 0,991,
+  90 % unutar ±20 % — [validation.md](validation.md).
+- **API:** `/access` p95 4,6 ms (100 zahtjeva nakon zagrijavanja); `/plan/optimise` k=3: 1,5 s hladno, ≈ 10 ms iz cachea.
+- **Lighthouse (mobilni), `/kartica`:** performanse 85–88, pristupačnost 100, CLS ≈ 0, TBT ≤ 20 ms.
+- Karta se prikazuje kroz OpenFreeMap („liberty”), uz OSM raster kao pričuvu i uvijek vidljivu atribuciju
+  „© OpenStreetMap contributors”.
+
+## Produkcija
+
+`docker-compose.prod.yml` (servis `blizu-api` + volumen `blizu-data` na `/data`, SPA preko `blizu-web`, Caddy):
+
+```bash
+docker compose -f docker-compose.prod.yml up -d --build db
+make migrate APP=blizu PROD=1        # alembic u kontejneru
+make ingest  APP=blizu STEP=all PROD=1   # unos u volumen /data, zatim restart blizu-api
+docker compose -f docker-compose.prod.yml up -d --build
+```
+
+Slika API-ja ne uključuje `semantic` ekstra (≈ 1 GB torch); za semantičku pretragu izgradite je s
+`--build-arg UV_SYNC_ARGS="--extra semantic"` i postavite `BLIZU_SEMANTIC_SEARCH=true`.
+
+## Poznati nedostaci
+
+- `mypy --strict` nije uključen u CI za `blizu_api` (30 nalaza, uglavnom tipovi `osmium`/`pandas`); jezgra jest.
+- Dobne skupine: Eurostat V3 ima `Y_LT15`/`Y_1564`/`Y_GE65`; ako se izvor promijeni, planer automatski pada na
+  ukupno stanovništvo i to piše u sučelju.
+- Karta nije testirana u jsdom-u (nema WebGL); pokriva je Playwright i ručna provjera u pravom pregledniku.

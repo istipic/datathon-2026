@@ -89,4 +89,4 @@ Notes that matter when using them:
 
 ## Deployment
 
-`docker-compose.prod.yml` + `Caddyfile`: Caddy serves `/srv/<app>` (SPA with `try_files {path} /index.html`) and proxies `/api/*` and `/health` to `<app>-api:8000`. The CSP is the specified one **plus** `worker-src 'self' blob:` and `https://tile.openstreetmap.org` in `connect-src`, which MapLibre needs (see ADR 0001 notes). `make deploy DEPLOY_HOST=user@host` runs `git pull`, `compose pull`, `compose up -d --build` over ssh.
+`docker-compose.prod.yml` + `Caddyfile`: Caddy serves `/srv/<app>` (SPA with `try_files {path} /index.html`) and proxies `/api/*` and `/health` to `<app>-api:8000`. The CSP is the specified one **plus** `worker-src 'self'` and `https://tile.openstreetmap.org` in `connect-src`, which MapLibre needs (see ADR 0001 notes). `make deploy DEPLOY_HOST=user@host` runs `git pull`, `compose pull`, `compose up -d --build` over ssh.

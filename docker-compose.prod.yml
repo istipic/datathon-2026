@@ -47,6 +47,12 @@ services:
       APP_NAME: blizu
       DATABASE_URL: postgresql+psycopg://postgres:${POSTGRES_PASSWORD}@db:5432/blizu
       PUBLIC_BASE_URL: https://${BLIZU_HOST:?set BLIZU_HOST in .env}
+      CORS_ORIGINS: https://${BLIZU_HOST}
+      RATE_LIMIT: ${BLIZU_RATE_LIMIT:-300/minute}
+      SEMANTIC_SEARCH: ${BLIZU_SEMANTIC_SEARCH:-false}
+      OSM_FEATURE_SOURCE: ${OSM_FEATURE_SOURCE:-auto}
+    volumes:
+      - blizu-data:/data
 
   otporno-api:
     <<: *api-defaults
@@ -117,6 +123,7 @@ services:
 
 volumes:
   pgdata:
+  blizu-data:
   srv:
   caddy_data:
   caddy_config:

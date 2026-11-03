@@ -10,6 +10,7 @@ APP          ?=
 STEP         ?=
 DEPLOY_HOST  ?=
 DEPLOY_DIR   ?= /opt/datathon-2026
+PROD         ?=
 APPS         := blizu otporno nabavaradar
 
 require-app = $(if $(filter $(APP),$(APPS)),,$(error APP must be one of: $(APPS)  (usage: make $@ APP=blizu)))
@@ -41,14 +42,23 @@ lint: ## ruff, mypy, eslint, prettier
 build: ## Build all web packages (type-check + bundle)
 	pnpm -r build
 
-migrate: ## Run Alembic migrations of one app:  make migrate APP=blizu
+migrate: ## Run Alembic migrations of one app:  make migrate APP=blizu   (PROD=1: in the prod container)
 	$(require-app)
+ifeq ($(PROD),1)
+	$(PROD_COMPOSE) run --rm $(APP)-api alembic -c /app/api/alembic.ini upgrade head
+else
 	uv run --package $(APP)-api alembic -c apps/$(APP)/api/alembic.ini upgrade head
+endif
 
-ingest: ## Run one ingestion step of an app:  make ingest APP=blizu STEP=schools
+ingest: ## Run an ingestion step:  make ingest APP=blizu STEP=all   (PROD=1: prod container, then restart the API)
 	$(require-app)
 	@test -n "$(STEP)" || (echo "ERROR: STEP is required (usage: make ingest APP=blizu STEP=<step>)" && exit 1)
+ifeq ($(PROD),1)
+	$(PROD_COMPOSE) run --rm $(APP)-api python -m $(APP)_api.cli ingest $(STEP)
+	$(PROD_COMPOSE) restart $(APP)-api
+else
 	uv run --package $(APP)-api python -m $(APP)_api.cli ingest $(STEP)
+endif
 
 deploy: ## Update the server: ssh, git pull, compose pull/up   make deploy DEPLOY_HOST=user@server
 	@test -n "$(DEPLOY_HOST)" || (echo "ERROR: set DEPLOY_HOST=user@server" && exit 1)
