@@ -1,0 +1,1569 @@
+{
+ "competition": {
+  "request": {
+   "query": "buyer-country=HRV AND notice-type=cn-standard AND publication-date>=20261020",
+   "fields": [
+    "publication-number",
+    "notice-type",
+    "publication-date",
+    "notice-title",
+    "title-proc",
+    "title-lot",
+    "description-proc",
+    "description-lot",
+    "buyer-name",
+    "buyer-country",
+    "organisation-country-buyer",
+    "place-of-performance",
+    "place-of-performance-country-lot",
+    "place-of-performance-subdiv-lot",
+    "place-of-performance-subdiv-proc",
+    "classification-cpv",
+    "main-classification-proc",
+    "main-classification-lot",
+    "deadline-receipt-tender-date-lot",
+    "deadline-receipt-tender-time-lot",
+    "deadline-date-lot",
+    "estimated-value-lot",
+    "estimated-value-cur-lot",
+    "estimated-value-proc",
+    "estimated-value-cur-proc",
+    "identifier-lot",
+    "procedure-identifier"
+   ],
+   "limit": 3
+  },
+  "response": {
+   "notices": [
+    {
+     "deadline-receipt-tender-date-lot": [
+      "2026-11-20+02:00",
+      "2026-11-20+02:00",
+      "2026-11-20+02:00"
+     ],
+     "notice-type": "cn-standard",
+     "publication-number": "722712-2026",
+     "main-classification-lot": [
+      "33692300",
+      "33692300",
+      "33692300"
+     ],
+     "main-classification-proc": [
+      "33692300"
+     ],
+     "procedure-identifier": "28d7006f-d265-4431-8354-9eaa1c41091e",
+     "publication-date": "2026-10-20+02:00",
+     "estimated-value-proc": "580952",
+     "links": {
+      "xml": {
+       "MUL": "https://ted.europa.eu/en/notice/722712-2026/xml"
+      },
+      "pdf": {
+       "BUL": "https://ted.europa.eu/bg/notice/722712-2026/pdf",
+       "SPA": "https://ted.europa.eu/es/notice/722712-2026/pdf",
+       "CES": "https://ted.europa.eu/cs/notice/722712-2026/pdf",
+       "DAN": "https://ted.europa.eu/da/notice/722712-2026/pdf",
+       "DEU": "https://ted.europa.eu/de/notice/722712-2026/pdf",
+       "EST": "https://ted.europa.eu/et/notice/722712-2026/pdf",
+       "ELL": "https://ted.europa.eu/el/notice/722712-2026/pdf",
+       "ENG": "https://ted.europa.eu/en/notice/722712-2026/pdf",
+       "FRA": "https://ted.europa.eu/fr/notice/722712-2026/pdf",
+       "GLE": "https://ted.europa.eu/ga/notice/722712-2026/pdf",
+       "HRV": "https://ted.europa.eu/hr/notice/722712-2026/pdf",
+       "ITA": "https://ted.europa.eu/it/notice/722712-2026/pdf",
+       "LAV": "https://ted.europa.eu/lv/notice/722712-2026/pdf",
+       "LIT": "https://ted.europa.eu/lt/notice/722712-2026/pdf",
+       "HUN": "https://ted.europa.eu/hu/notice/722712-2026/pdf",
+       "MLT": "https://ted.europa.eu/mt/notice/722712-2026/pdf",
+       "NLD": "https://ted.europa.eu/nl/notice/722712-2026/pdf",
+       "POL": "https://ted.europa.eu/pl/notice/722712-2026/pdf",
+       "POR": "https://ted.europa.eu/pt/notice/722712-2026/pdf",
+       "RON": "https://ted.europa.eu/ro/notice/722712-2026/pdf",
+       "SLK": "https://ted.europa.eu/sk/notice/722712-2026/pdf",
+       "SLV": "https://ted.europa.eu/sl/notice/722712-2026/pdf",
+       "FIN": "https://ted.europa.eu/fi/notice/722712-2026/pdf",
+       "SWE": "https://ted.europa.eu/sv/notice/722712-2026/pdf"
+      },
+      "pdfs": {
+       "HRV": "https://ted.europa.eu/hr/notice/722712-2026/pdfs"
+      },
+      "html": {
+       "BUL": "https://ted.europa.eu/bg/notice/-/detail/722712-2026",
+       "SPA": "https://ted.europa.eu/es/notice/-/detail/722712-2026",
+       "CES": "https://ted.europa.eu/cs/notice/-/detail/722712-2026",
+       "DAN": "https://ted.europa.eu/da/notice/-/detail/722712-2026",
+       "DEU": "https://ted.europa.eu/de/notice/-/detail/722712-2026",
+       "EST": "https://ted.europa.eu/et/notice/-/detail/722712-2026",
+       "ELL": "https://ted.europa.eu/el/notice/-/detail/722712-2026",
+       "ENG": "https://ted.europa.eu/en/notice/-/detail/722712-2026",
+       "FRA": "https://ted.europa.eu/fr/notice/-/detail/722712-2026",
+       "GLE": "https://ted.europa.eu/ga/notice/-/detail/722712-2026",
+       "HRV": "https://ted.europa.eu/hr/notice/-/detail/722712-2026",
+       "ITA": "https://ted.europa.eu/it/notice/-/detail/722712-2026",
+       "LAV": "https://ted.europa.eu/lv/notice/-/detail/722712-2026",
+       "LIT": "https://ted.europa.eu/lt/notice/-/detail/722712-2026",
+       "HUN": "https://ted.europa.eu/hu/notice/-/detail/722712-2026",
+       "MLT": "https://ted.europa.eu/mt/notice/-/detail/722712-2026",
+       "NLD": "https://ted.europa.eu/nl/notice/-/detail/722712-2026",
+       "POL": "https://ted.europa.eu/pl/notice/-/detail/722712-2026",
+       "POR": "https://ted.europa.eu/pt/notice/-/detail/722712-2026",
+       "RON": "https://ted.europa.eu/ro/notice/-/detail/722712-2026",
+       "SLK": "https://ted.europa.eu/sk/notice/-/detail/722712-2026",
+       "SLV": "https://ted.europa.eu/sl/notice/-/detail/722712-2026",
+       "FIN": "https://ted.europa.eu/fi/notice/-/detail/722712-2026",
+       "SWE": "https://ted.europa.eu/sv/notice/-/detail/722712-2026"
+      },
+      "htmlDirect": {
+       "BUL": "https://ted.europa.eu/bg/notice/722712-2026/html",
+       "SPA": "https://ted.europa.eu/es/notice/722712-2026/html",
+       "CES": "https://ted.europa.eu/cs/notice/722712-2026/html",
+       "DAN": "https://ted.europa.eu/da/notice/722712-2026/html",
+       "DEU": "https://ted.europa.eu/de/notice/722712-2026/html",
+       "EST": "https://ted.europa.eu/et/notice/722712-2026/html",
+       "ELL": "https://ted.europa.eu/el/notice/722712-2026/html",
+       "ENG": "https://ted.europa.eu/en/notice/722712-2026/html",
+       "FRA": "https://ted.europa.eu/fr/notice/722712-2026/html",
+       "GLE": "https://ted.europa.eu/ga/notice/722712-2026/html",
+       "HRV": "https://ted.europa.eu/hr/notice/722712-2026/html",
+       "ITA": "https://ted.europa.eu/it/notice/722712-2026/html",
+       "LAV": "https://ted.europa.eu/lv/notice/722712-2026/html",
+       "LIT": "https://ted.europa.eu/lt/notice/722712-2026/html",
+       "HUN": "https://ted.europa.eu/hu/notice/722712-2026/html",
+       "MLT": "https://ted.europa.eu/mt/notice/722712-2026/html",
+       "NLD": "https://ted.europa.eu/nl/notice/722712-2026/html",
+       "POL": "https://ted.europa.eu/pl/notice/722712-2026/html",
+       "POR": "https://ted.europa.eu/pt/notice/722712-2026/html",
+       "RON": "https://ted.europa.eu/ro/notice/722712-2026/html",
+       "SLK": "https://ted.europa.eu/sk/notice/722712-2026/html",
+       "SLV": "https://ted.europa.eu/sl/notice/722712-2026/html",
+       "FIN": "https://ted.europa.eu/fi/notice/722712-2026/html",
+       "SWE": "https://ted.europa.eu/sv/notice/722712-2026/html"
+      }
+     },
+     "identifier-lot": [
+      "LOT-0001",
+      "LOT-0002",
+      "LOT-0003"
+     ],
+     "place-of-performance": [
+      "HR035",
+      "HRV",
+      "HR035",
+      "HR035",
+      "HR035",
+      "HRV",
+      "HRV",
+      "HRV"
+     ],
+     "title-proc": {
+      "hrv": "Enteralna prehrana"
+     },
+     "place-of-performance-subdiv-lot": [
+      "HR035",
+      "HR035",
+      "HR035"
+     ],
+     "estimated-value-lot": [
+      "436710",
+      "300",
+      "80"
+     ],
+     "organisation-country-buyer": [
+      "HRV"
+     ],
+     "estimated-value-cur-lot": [
+      "EUR"
+     ],
+     "estimated-value-cur-proc": "EUR",
+     "buyer-country": [
+      "HRV"
+     ],
+     "description-lot": {
+      "hrv": [
+       "Grupa 1 -Enteralna prehrana",
+       "Grupa 2 -Enteralna prehrana",
+       "Grupa 1 -Enteralna prehrana"
+      ]
+     },
+     "place-of-performance-country-lot": [
+      "HRV",
+      "HRV",
+      "HRV"
+     ],
+     "deadline-receipt-tender-time-lot": [
+      "09:00:00+02:00",
+      "09:00:00+02:00",
+      "09:00:00+02:00"
+     ],
+     "classification-cpv": [
+      "33692300",
+      "33692300",
+      "33692300",
+      "33692300"
+     ],
+     "buyer-name": {
+      "hrv": [
+       "KLINIČKI BOLNIČKI CENTAR SPLIT"
+      ]
+     },
+     "place-of-performance-subdiv-proc": [
+      "HR035"
+     ],
+     "notice-title": {
+      "hun": "Horvátország – Enterális tápszerek – Enteralna prehrana",
+      "lav": "Horvātija – Enterālā barība – Enteralna prehrana",
+      "swe": "Kroatien – Enteral nutrition – Enteralna prehrana",
+      "gle": "An Chróit – Enteral feeds – Enteralna prehrana",
+      "ell": "Κροατία – Εντερικές τροφές – Enteralna prehrana",
+      "spa": "Croacia – Productos de nutrición enteral – Enteralna prehrana",
+      "est": "Horvaatia – Enteraalsed toitevedelikud – Enteralna prehrana",
+      "nld": "Kroatië – Enterale voeding – Enteralna prehrana",
+      "fin": "Kroatia – Enteraaliset ravinteet – Enteralna prehrana",
+      "pol": "Chorwacja – Roztwory do perfuzji – Enteralna prehrana",
+      "hrv": "Hrvatska – Enteralna hrana – Enteralna prehrana",
+      "ces": "Chorvatsko – Střevní výživa – Enteralna prehrana",
+      "dan": "Kroatien – Enterale næringsmidler – Enteralna prehrana",
+      "ron": "Croaţia – Produse pentru nutriţie enterală – Enteralna prehrana",
+      "por": "Croácia – Alimentos enterais – Enteralna prehrana",
+      "slk": "Chorvátsko – Enterálna výživa – Enteralna prehrana",
+      "fra": "Croatie – Produits d'alimentation entérale – Enteralna prehrana",
+      "mlt": "Il-Kroazja – Ikel enterali – Enteralna prehrana",
+      "deu": "Kroatien – Enterale Nahrungsmittel – Enteralna prehrana",
+      "lit": "Kroatija – Enterinis maistas – Enteralna prehrana",
+      "ita": "Croazia – Alimenti enterali – Enteralna prehrana",
+      "bul": "Хърватия – Ентерални храни – Enteralna prehrana",
+      "slv": "Hrvaška – Enteralna hranila – Enteralna prehrana",
+      "eng": "Croatia – Enteral feeds – Enteralna prehrana"
+     },
+     "title-lot": {
+      "hrv": [
+       "Grupa 1",
+       "Grupa 2",
+       "Grupa 3"
+      ]
+     },
+     "description-proc": {
+      "hrv": "Enteralna prehrana"
+     }
+    },
+    {
+     "deadline-receipt-tender-date-lot": [
+      "2026-11-17+02:00",
+      "2026-11-17+02:00",
+      "2026-11-17+02:00",
+      "2026-11-17+02:00",
+      "2026-11-17+02:00",
+      "2026-11-17+02:00",
+      "2026-11-17+02:00",
+      "2026-11-17+02:00",
+      "2026-11-17+02:00",
+      "2026-11-17+02:00",
+      "2026-11-17+02:00",
+      "2026-11-17+02:00",
+      "2026-11-17+02:00",
+      "2026-11-17+02:00"
+     ],
+     "notice-type": "cn-standard",
+     "publication-number": "722793-2026",
+     "main-classification-lot": [
+      "43600000",
+      "43600000",
+      "43600000",
+      "43600000",
+      "43600000",
+      "43600000",
+      "43600000",
+      "43600000",
+      "43600000",
+      "43600000",
+      "43600000",
+      "43600000",
+      "43600000",
+      "43600000"
+     ],
+     "main-classification-proc": [
+      "43600000"
+     ],
+     "procedure-identifier": "104de23e-c1b3-4f83-828f-92e52aa69390",
+     "publication-date": "2026-10-20+02:00",
+     "estimated-value-proc": "3793000",
+     "links": {
+      "xml": {
+       "MUL": "https://ted.europa.eu/en/notice/722793-2026/xml"
+      },
+      "pdf": {
+       "BUL": "https://ted.europa.eu/bg/notice/722793-2026/pdf",
+       "SPA": "https://ted.europa.eu/es/notice/722793-2026/pdf",
+       "CES": "https://ted.europa.eu/cs/notice/722793-2026/pdf",
+       "DAN": "https://ted.europa.eu/da/notice/722793-2026/pdf",
+       "DEU": "https://ted.europa.eu/de/notice/722793-2026/pdf",
+       "EST": "https://ted.europa.eu/et/notice/722793-2026/pdf",
+       "ELL": "https://ted.europa.eu/el/notice/722793-2026/pdf",
+       "ENG": "https://ted.europa.eu/en/notice/722793-2026/pdf",
+       "FRA": "https://ted.europa.eu/fr/notice/722793-2026/pdf",
+       "GLE": "https://ted.europa.eu/ga/notice/722793-2026/pdf",
+       "HRV": "https://ted.europa.eu/hr/notice/722793-2026/pdf",
+       "ITA": "https://ted.europa.eu/it/notice/722793-2026/pdf",
+       "LAV": "https://ted.europa.eu/lv/notice/722793-2026/pdf",
+       "LIT": "https://ted.europa.eu/lt/notice/722793-2026/pdf",
+       "HUN": "https://ted.europa.eu/hu/notice/722793-2026/pdf",
+       "MLT": "https://ted.europa.eu/mt/notice/722793-2026/pdf",
+       "NLD": "https://ted.europa.eu/nl/notice/722793-2026/pdf",
+       "POL": "https://ted.europa.eu/pl/notice/722793-2026/pdf",
+       "POR": "https://ted.europa.eu/pt/notice/722793-2026/pdf",
+       "RON": "https://ted.europa.eu/ro/notice/722793-2026/pdf",
+       "SLK": "https://ted.europa.eu/sk/notice/722793-2026/pdf",
+       "SLV": "https://ted.europa.eu/sl/notice/722793-2026/pdf",
+       "FIN": "https://ted.europa.eu/fi/notice/722793-2026/pdf",
+       "SWE": "https://ted.europa.eu/sv/notice/722793-2026/pdf"
+      },
+      "pdfs": {
+       "HRV": "https://ted.europa.eu/hr/notice/722793-2026/pdfs"
+      },
+      "html": {
+       "BUL": "https://ted.europa.eu/bg/notice/-/detail/722793-2026",
+       "SPA": "https://ted.europa.eu/es/notice/-/detail/722793-2026",
+       "CES": "https://ted.europa.eu/cs/notice/-/detail/722793-2026",
+       "DAN": "https://ted.europa.eu/da/notice/-/detail/722793-2026",
+       "DEU": "https://ted.europa.eu/de/notice/-/detail/722793-2026",
+       "EST": "https://ted.europa.eu/et/notice/-/detail/722793-2026",
+       "ELL": "https://ted.europa.eu/el/notice/-/detail/722793-2026",
+       "ENG": "https://ted.europa.eu/en/notice/-/detail/722793-2026",
+       "FRA": "https://ted.europa.eu/fr/notice/-/detail/722793-2026",
+       "GLE": "https://ted.europa.eu/ga/notice/-/detail/722793-2026",
+       "HRV": "https://ted.europa.eu/hr/notice/-/detail/722793-2026",
+       "ITA": "https://ted.europa.eu/it/notice/-/detail/722793-2026",
+       "LAV": "https://ted.europa.eu/lv/notice/-/detail/722793-2026",
+       "LIT": "https://ted.europa.eu/lt/notice/-/detail/722793-2026",
+       "HUN": "https://ted.europa.eu/hu/notice/-/detail/722793-2026",
+       "MLT": "https://ted.europa.eu/mt/notice/-/detail/722793-2026",
+       "NLD": "https://ted.europa.eu/nl/notice/-/detail/722793-2026",
+       "POL": "https://ted.europa.eu/pl/notice/-/detail/722793-2026",
+       "POR": "https://ted.europa.eu/pt/notice/-/detail/722793-2026",
+       "RON": "https://ted.europa.eu/ro/notice/-/detail/722793-2026",
+       "SLK": "https://ted.europa.eu/sk/notice/-/detail/722793-2026",
+       "SLV": "https://ted.europa.eu/sl/notice/-/detail/722793-2026",
+       "FIN": "https://ted.europa.eu/fi/notice/-/detail/722793-2026",
+       "SWE": "https://ted.europa.eu/sv/notice/-/detail/722793-2026"
+      },
+      "htmlDirect": {
+       "BUL": "https://ted.europa.eu/bg/notice/722793-2026/html",
+       "SPA": "https://ted.europa.eu/es/notice/722793-2026/html",
+       "CES": "https://ted.europa.eu/cs/notice/722793-2026/html",
+       "DAN": "https://ted.europa.eu/da/notice/722793-2026/html",
+       "DEU": "https://ted.europa.eu/de/notice/722793-2026/html",
+       "EST": "https://ted.europa.eu/et/notice/722793-2026/html",
+       "ELL": "https://ted.europa.eu/el/notice/722793-2026/html",
+       "ENG": "https://ted.europa.eu/en/notice/722793-2026/html",
+       "FRA": "https://ted.europa.eu/fr/notice/722793-2026/html",
+       "GLE": "https://ted.europa.eu/ga/notice/722793-2026/html",
+       "HRV": "https://ted.europa.eu/hr/notice/722793-2026/html",
+       "ITA": "https://ted.europa.eu/it/notice/722793-2026/html",
+       "LAV": "https://ted.europa.eu/lv/notice/722793-2026/html",
+       "LIT": "https://ted.europa.eu/lt/notice/722793-2026/html",
+       "HUN": "https://ted.europa.eu/hu/notice/722793-2026/html",
+       "MLT": "https://ted.europa.eu/mt/notice/722793-2026/html",
+       "NLD": "https://ted.europa.eu/nl/notice/722793-2026/html",
+       "POL": "https://ted.europa.eu/pl/notice/722793-2026/html",
+       "POR": "https://ted.europa.eu/pt/notice/722793-2026/html",
+       "RON": "https://ted.europa.eu/ro/notice/722793-2026/html",
+       "SLK": "https://ted.europa.eu/sk/notice/722793-2026/html",
+       "SLV": "https://ted.europa.eu/sl/notice/722793-2026/html",
+       "FIN": "https://ted.europa.eu/fi/notice/722793-2026/html",
+       "SWE": "https://ted.europa.eu/sv/notice/722793-2026/html"
+      }
+     },
+     "identifier-lot": [
+      "LOT-0001",
+      "LOT-0002",
+      "LOT-0003",
+      "LOT-0004",
+      "LOT-0005",
+      "LOT-0006",
+      "LOT-0007",
+      "LOT-0008",
+      "LOT-0009",
+      "LOT-0010",
+      "LOT-0011",
+      "LOT-0012",
+      "LOT-0013",
+      "LOT-0014"
+     ],
+     "place-of-performance": [
+      "HR050",
+      "HRV",
+      "HR050",
+      "HR050",
+      "HR050",
+      "HR050",
+      "HR050",
+      "HR050",
+      "HR050",
+      "HR050",
+      "HR050",
+      "HR050",
+      "HR050",
+      "HR050",
+      "HR050",
+      "HR050",
+      "HRV",
+      "HRV",
+      "HRV",
+      "HRV",
+      "HRV",
+      "HRV",
+      "HRV",
+      "HRV",
+      "HRV",
+      "HRV",
+      "HRV",
+      "HRV",
+      "HRV",
+      "HRV"
+     ],
+     "title-proc": {
+      "hrv": "REZERVNI DIJELOVI, POPRAVAK I SERVIS STROJEVA I PRIKLJUČNE OPREME ZA GRAĐEVINARSTVO"
+     },
+     "place-of-performance-subdiv-lot": [
+      "HR050",
+      "HR050",
+      "HR050",
+      "HR050",
+      "HR050",
+      "HR050",
+      "HR050",
+      "HR050",
+      "HR050",
+      "HR050",
+      "HR050",
+      "HR050",
+      "HR050",
+      "HR050"
+     ],
+     "estimated-value-lot": [
+      "420000",
+      "300000",
+      "390000",
+      "190000",
+      "150000",
+      "60000",
+      "150000",
+      "400000",
+      "150000",
+      "800000",
+      "142000",
+      "181000",
+      "430000",
+      "30000"
+     ],
+     "organisation-country-buyer": [
+      "HRV",
+      "HRV"
+     ],
+     "estimated-value-cur-lot": [
+      "EUR"
+     ],
+     "estimated-value-cur-proc": "EUR",
+     "buyer-country": [
+      "HRV",
+      "HRV"
+     ],
+     "description-lot": {
+      "hrv": [
+       "REZERVNI DIJELOVI, POPRAVAK I SERVIS RADNIH STROJEVA MARKE WIRTGEN",
+       "REZERVNI DIJELOVI, POPRAVAK I SERVIS RADNIH STROJEVA MARKE VOGELE",
+       "REZERVNI DIJELOVI, POPRAVAK I SERVIS RADNIH STROJEVA MARKE CATERPILLAR",
+       "REZERVNI DIJELOVI, POPRAVAK I SERVIS RADNIH STROJEVA MARKE BOBCAT",
+       "REZERVNI DIJELOVI I POPRAVAK PRIKLJUČNE OPREME PIETSCH",
+       "REZERVNI DIJELOVI, POPRAVAK I SERVIS STROJEVA MARKE FIAT HITACHI",
+       "REZERVNI DIJELOVI, POPRAVAK I SERVIS RADNIH STROJEVA MARKE BOMAG",
+       "REZERVNI DIJELOVI, POPRAVAK I SERVIS RADNIH STROJEVA ZA MANIPULACIJU OTPADOM METSO",
+       "REZERVNI DIJELOVI, POPRAVAK I SERVIS RADNIH STROJEVA MARKE HAMM",
+       "REZERVNI DIJELOVI, POPRAVAK I SERVIS GRAĐEVINSKIH STROJEVA MARKE JCB",
+       "REZERVNI DIJELOVI I POPRAVAK STROJA ATLAS",
+       "REZERVNI DIJELOVI, POPRAVAK I SERVIS PRIKLJUČNE OPREME RASCO",
+       "REZERVNI DIJELOVI, POPRAVAK I SERVIS STROJEVA MARKE HYUNDAI",
+       "REZERVNI DIJELOVI, POPRAVAK I SERVIS STROJEVA I PRIKLJUČNE OPREME MARKE NEW HOLLAND"
+      ]
+     },
+     "place-of-performance-country-lot": [
+      "HRV",
+      "HRV",
+      "HRV",
+      "HRV",
+      "HRV",
+      "HRV",
+      "HRV",
+      "HRV",
+      "HRV",
+      "HRV",
+      "HRV",
+      "HRV",
+      "HRV",
+      "HRV"
+     ],
+     "deadline-receipt-tender-time-lot": [
+      "12:00:00+02:00",
+      "12:00:00+02:00",
+      "12:00:00+02:00",
+      "12:00:00+02:00",
+      "12:00:00+02:00",
+      "12:00:00+02:00",
+      "12:00:00+02:00",
+      "12:00:00+02:00",
+      "12:00:00+02:00",
+      "12:00:00+02:00",
+      "12:00:00+02:00",
+      "12:00:00+02:00",
+      "12:00:00+02:00",
+      "12:00:00+02:00"
+     ],
+     "classification-cpv": [
+      "43600000",
+      "43600000",
+      "43600000",
+      "43600000",
+      "43600000",
+      "43600000",
+      "43600000",
+      "43600000",
+      "43600000",
+      "43600000",
+      "43600000",
+      "43600000",
+      "43600000",
+      "43600000",
+      "43600000"
+     ],
+     "buyer-name": {
+      "hrv": [
+       "ZAGREBAČKI HOLDING d.o.o.",
+       "VODOOPSKRBA I ODVODNJA d.o.o."
+      ]
+     },
+     "place-of-performance-subdiv-proc": [
+      "HR050"
+     ],
+     "notice-title": {
+      "hun": "Horvátország – Bányászati, kőfejtő és építőipari gépek alkatrészei – REZERVNI DIJELOVI, POPRAVAK I SERVIS STROJEVA I PRIKLJUČNE OPREME ZA GRAĐEVINARSTVO",
+      "lav": "Horvātija – Kalnrūpniecības, karjeru un celtniecības tehnikas detaļas – REZERVNI DIJELOVI, POPRAVAK I SERVIS STROJEVA I PRIKLJUČNE OPREME ZA GRAĐEVINARSTVO",
+      "swe": "Kroatien – Delar till maskiner för brytning och byggnadsarbeten – REZERVNI DIJELOVI, POPRAVAK I SERVIS STROJEVA I PRIKLJUČNE OPREME ZA GRAĐEVINARSTVO",
+      "gle": "An Chróit – Parts of machinery for mining, quarrying and construction – REZERVNI DIJELOVI, POPRAVAK I SERVIS STROJEVA I PRIKLJUČNE OPREME ZA GRAĐEVINARSTVO",
+      "ell": "Κροατία – Μέρη μηχανημάτων ορυχείων, λατομείων και κατασκευών – REZERVNI DIJELOVI, POPRAVAK I SERVIS STROJEVA I PRIKLJUČNE OPREME ZA GRAĐEVINARSTVO",
+      "spa": "Croacia – Partes de máquinas para la minería, la explotación de canteras y la construcción – REZERVNI DIJELOVI, POPRAVAK I SERVIS STROJEVA I PRIKLJUČNE OPREME ZA GRAĐEVINARSTVO",
+      "est": "Horvaatia – Kaevandus-, karjääri- ja ehitusmasinate osad – REZERVNI DIJELOVI, POPRAVAK I SERVIS STROJEVA I PRIKLJUČNE OPREME ZA GRAĐEVINARSTVO",
+      "nld": "Kroatië – Delen van machines voor mijnbouw, steengroeven en voor de bouw – REZERVNI DIJELOVI, POPRAVAK I SERVIS STROJEVA I PRIKLJUČNE OPREME ZA GRAĐEVINARSTVO",
+      "fin": "Kroatia – Kaivos-, louhinta- ja rakennuskoneiden osat – REZERVNI DIJELOVI, POPRAVAK I SERVIS STROJEVA I PRIKLJUČNE OPREME ZA GRAĐEVINARSTVO",
+      "pol": "Chorwacja – Części maszyn górniczych, kopalniczych oraz budowlanych – REZERVNI DIJELOVI, POPRAVAK I SERVIS STROJEVA I PRIKLJUČNE OPREME ZA GRAĐEVINARSTVO",
+      "hrv": "Hrvatska – Dijelovi strojeva za rudarstvo, kamenolome i građevinarstvo – REZERVNI DIJELOVI, POPRAVAK I SERVIS STROJEVA I PRIKLJUČNE OPREME ZA GRAĐEVINARSTVO",
+      "ces": "Chorvatsko – Části strojů pro doly, lomy a stavebnictví – REZERVNI DIJELOVI, POPRAVAK I SERVIS STROJEVA I PRIKLJUČNE OPREME ZA GRAĐEVINARSTVO",
+      "dan": "Kroatien – Dele til maskiner til minedrift, stenbrydning samt bygge- og anlæg – REZERVNI DIJELOVI, POPRAVAK I SERVIS STROJEVA I PRIKLJUČNE OPREME ZA GRAĐEVINARSTVO",
+      "ron": "Croaţia – Piese pentru utilaje de exploatare minieră şi în carieră şi piese pentru maşini de construcţii – REZERVNI DIJELOVI, POPRAVAK I SERVIS STROJEVA I PRIKLJUČNE OPREME ZA GRAĐEVINARSTVO",
+      "por": "Croácia – Peças para máquinas para as indústrias extractivas e da construção – REZERVNI DIJELOVI, POPRAVAK I SERVIS STROJEVA I PRIKLJUČNE OPREME ZA GRAĐEVINARSTVO",
+      "slk": "Chorvátsko – Časti zariadení na hlbinnú a povrchovú ťažbu a stavebníctvo – REZERVNI DIJELOVI, POPRAVAK I SERVIS STROJEVA I PRIKLJUČNE OPREME ZA GRAĐEVINARSTVO",
+      "fra": "Croatie – Pièces pour machines pour les industries excavatrices et la construction – REZERVNI DIJELOVI, POPRAVAK I SERVIS STROJEVA I PRIKLJUČNE OPREME ZA GRAĐEVINARSTVO",
+      "mlt": "Il-Kroazja – Partijiet tal-makkinarju għall-minieri, il-barrieri u l-kostruzzjoni – REZERVNI DIJELOVI, POPRAVAK I SERVIS STROJEVA I PRIKLJUČNE OPREME ZA GRAĐEVINARSTVO",
+      "deu": "Kroatien – Teile für Bergbaumaschinen, Maschinen für die Steingewinnung und Baumaschinen – REZERVNI DIJELOVI, POPRAVAK I SERVIS STROJEVA I PRIKLJUČNE OPREME ZA GRAĐEVINARSTVO",
+      "lit": "Kroatija – Kasybos, karjerų eksploatavimo ir statybos mašinų dalys – REZERVNI DIJELOVI, POPRAVAK I SERVIS STROJEVA I PRIKLJUČNE OPREME ZA GRAĐEVINARSTVO",
+      "ita": "Croazia – Parti di macchine per miniere, cave e cantieri – REZERVNI DIJELOVI, POPRAVAK I SERVIS STROJEVA I PRIKLJUČNE OPREME ZA GRAĐEVINARSTVO",
+      "bul": "Хърватия – Части за машини за добивната промишленост и строителството – REZERVNI DIJELOVI, POPRAVAK I SERVIS STROJEVA I PRIKLJUČNE OPREME ZA GRAĐEVINARSTVO",
+      "slv": "Hrvaška – Deli rudarskih, kamnoseških in gradbenih strojev – REZERVNI DIJELOVI, POPRAVAK I SERVIS STROJEVA I PRIKLJUČNE OPREME ZA GRAĐEVINARSTVO",
+      "eng": "Croatia – Parts of machinery for mining, quarrying and construction – REZERVNI DIJELOVI, POPRAVAK I SERVIS STROJEVA I PRIKLJUČNE OPREME ZA GRAĐEVINARSTVO"
+     },
+     "title-lot": {
+      "hrv": [
+       "REZERVNI DIJELOVI, POPRAVAK I SERVIS RADNIH STROJEVA MARKE WIRTGEN",
+       "REZERVNI DIJELOVI, POPRAVAK I SERVIS RADNIH STROJEVA MARKE VOGELE",
+       "REZERVNI DIJELOVI, POPRAVAK I SERVIS RADNIH STROJEVA MARKE CATERPILLAR",
+       "REZERVNI DIJELOVI, POPRAVAK I SERVIS RADNIH STROJEVA MARKE BOBCAT",
+       "REZERVNI DIJELOVI I POPRAVAK PRIKLJUČNE OPREME PIETSCH",
+       "REZERVNI DIJELOVI, POPRAVAK I SERVIS STROJEVA MARKE FIAT HITACHI",
+       "REZERVNI DIJELOVI, POPRAVAK I SERVIS RADNIH STROJEVA MARKE BOMAG",
+       "REZERVNI DIJELOVI, POPRAVAK I SERVIS RADNIH STROJEVA ZA MANIPULACIJU OTPADOM METSO",
+       "REZERVNI DIJELOVI, POPRAVAK I SERVIS RADNIH STROJEVA MARKE HAMM",
+       "REZERVNI DIJELOVI, POPRAVAK I SERVIS GRAĐEVINSKIH STROJEVA MARKE JCB",
+       "REZERVNI DIJELOVI I POPRAVAK STROJA ATLAS",
+       "REZERVNI DIJELOVI, POPRAVAK I SERVIS PRIKLJUČNE OPREME RASCO",
+       "REZERVNI DIJELOVI, POPRAVAK I SERVIS STROJEVA MARKE HYUNDAI",
+       "REZERVNI DIJELOVI, POPRAVAK I SERVIS STROJEVA I PRIKLJUČNE OPREME MARKE NEW HOLLAND"
+      ]
+     },
+     "description-proc": {
+      "hrv": "REZERVNI DIJELOVI, POPRAVAK I SERVIS STROJEVA I PRIKLJUČNE OPREME ZA GRAĐEVINARSTVO Naručitelj za ovaj predmet nabave ima aktivne okvirne sporazume za grupe 1., 2., 5., 7., 8., 9., 10. koji traju do 04.06.2027. g., za grupu 3. do 11.06.2027. g., a za grupu 12. i 14. do 12.06.2027. g. Okvirni sporazumi koje će naručitelj sklopiti temeljem ovog postupka javne nabave početi će se koristiti po isteku ili financijskoj iskorištenosti navedenih aktivnih okvirnih sporazuma. Ponude se mogu dostaviti za jednu, nekoliko ili za sve grupe predmeta nabave."
+     }
+    },
+    {
+     "deadline-receipt-tender-date-lot": [
+      "2026-11-19+02:00"
+     ],
+     "notice-type": "cn-standard",
+     "publication-number": "722893-2026",
+     "main-classification-lot": [
+      "34312000"
+     ],
+     "main-classification-proc": [
+      "34312000"
+     ],
+     "procedure-identifier": "db6da15e-0c62-4a51-a4b0-3fc176cce822",
+     "publication-date": "2026-10-20+02:00",
+     "estimated-value-proc": "230000",
+     "links": {
+      "xml": {
+       "MUL": "https://ted.europa.eu/en/notice/722893-2026/xml"
+      },
+      "pdf": {
+       "BUL": "https://ted.europa.eu/bg/notice/722893-2026/pdf",
+       "SPA": "https://ted.europa.eu/es/notice/722893-2026/pdf",
+       "CES": "https://ted.europa.eu/cs/notice/722893-2026/pdf",
+       "DAN": "https://ted.europa.eu/da/notice/722893-2026/pdf",
+       "DEU": "https://ted.europa.eu/de/notice/722893-2026/pdf",
+       "EST": "https://ted.europa.eu/et/notice/722893-2026/pdf",
+       "ELL": "https://ted.europa.eu/el/notice/722893-2026/pdf",
+       "ENG": "https://ted.europa.eu/en/notice/722893-2026/pdf",
+       "FRA": "https://ted.europa.eu/fr/notice/722893-2026/pdf",
+       "GLE": "https://ted.europa.eu/ga/notice/722893-2026/pdf",
+       "HRV": "https://ted.europa.eu/hr/notice/722893-2026/pdf",
+       "ITA": "https://ted.europa.eu/it/notice/722893-2026/pdf",
+       "LAV": "https://ted.europa.eu/lv/notice/722893-2026/pdf",
+       "LIT": "https://ted.europa.eu/lt/notice/722893-2026/pdf",
+       "HUN": "https://ted.europa.eu/hu/notice/722893-2026/pdf",
+       "MLT": "https://ted.europa.eu/mt/notice/722893-2026/pdf",
+       "NLD": "https://ted.europa.eu/nl/notice/722893-2026/pdf",
+       "POL": "https://ted.europa.eu/pl/notice/722893-2026/pdf",
+       "POR": "https://ted.europa.eu/pt/notice/722893-2026/pdf",
+       "RON": "https://ted.europa.eu/ro/notice/722893-2026/pdf",
+       "SLK": "https://ted.europa.eu/sk/notice/722893-2026/pdf",
+       "SLV": "https://ted.europa.eu/sl/notice/722893-2026/pdf",
+       "FIN": "https://ted.europa.eu/fi/notice/722893-2026/pdf",
+       "SWE": "https://ted.europa.eu/sv/notice/722893-2026/pdf"
+      },
+      "pdfs": {
+       "HRV": "https://ted.europa.eu/hr/notice/722893-2026/pdfs"
+      },
+      "html": {
+       "BUL": "https://ted.europa.eu/bg/notice/-/detail/722893-2026",
+       "SPA": "https://ted.europa.eu/es/notice/-/detail/722893-2026",
+       "CES": "https://ted.europa.eu/cs/notice/-/detail/722893-2026",
+       "DAN": "https://ted.europa.eu/da/notice/-/detail/722893-2026",
+       "DEU": "https://ted.europa.eu/de/notice/-/detail/722893-2026",
+       "EST": "https://ted.europa.eu/et/notice/-/detail/722893-2026",
+       "ELL": "https://ted.europa.eu/el/notice/-/detail/722893-2026",
+       "ENG": "https://ted.europa.eu/en/notice/-/detail/722893-2026",
+       "FRA": "https://ted.europa.eu/fr/notice/-/detail/722893-2026",
+       "GLE": "https://ted.europa.eu/ga/notice/-/detail/722893-2026",
+       "HRV": "https://ted.europa.eu/hr/notice/-/detail/722893-2026",
+       "ITA": "https://ted.europa.eu/it/notice/-/detail/722893-2026",
+       "LAV": "https://ted.europa.eu/lv/notice/-/detail/722893-2026",
+       "LIT": "https://ted.europa.eu/lt/notice/-/detail/722893-2026",
+       "HUN": "https://ted.europa.eu/hu/notice/-/detail/722893-2026",
+       "MLT": "https://ted.europa.eu/mt/notice/-/detail/722893-2026",
+       "NLD": "https://ted.europa.eu/nl/notice/-/detail/722893-2026",
+       "POL": "https://ted.europa.eu/pl/notice/-/detail/722893-2026",
+       "POR": "https://ted.europa.eu/pt/notice/-/detail/722893-2026",
+       "RON": "https://ted.europa.eu/ro/notice/-/detail/722893-2026",
+       "SLK": "https://ted.europa.eu/sk/notice/-/detail/722893-2026",
+       "SLV": "https://ted.europa.eu/sl/notice/-/detail/722893-2026",
+       "FIN": "https://ted.europa.eu/fi/notice/-/detail/722893-2026",
+       "SWE": "https://ted.europa.eu/sv/notice/-/detail/722893-2026"
+      },
+      "htmlDirect": {
+       "BUL": "https://ted.europa.eu/bg/notice/722893-2026/html",
+       "SPA": "https://ted.europa.eu/es/notice/722893-2026/html",
+       "CES": "https://ted.europa.eu/cs/notice/722893-2026/html",
+       "DAN": "https://ted.europa.eu/da/notice/722893-2026/html",
+       "DEU": "https://ted.europa.eu/de/notice/722893-2026/html",
+       "EST": "https://ted.europa.eu/et/notice/722893-2026/html",
+       "ELL": "https://ted.europa.eu/el/notice/722893-2026/html",
+       "ENG": "https://ted.europa.eu/en/notice/722893-2026/html",
+       "FRA": "https://ted.europa.eu/fr/notice/722893-2026/html",
+       "GLE": "https://ted.europa.eu/ga/notice/722893-2026/html",
+       "HRV": "https://ted.europa.eu/hr/notice/722893-2026/html",
+       "ITA": "https://ted.europa.eu/it/notice/722893-2026/html",
+       "LAV": "https://ted.europa.eu/lv/notice/722893-2026/html",
+       "LIT": "https://ted.europa.eu/lt/notice/722893-2026/html",
+       "HUN": "https://ted.europa.eu/hu/notice/722893-2026/html",
+       "MLT": "https://ted.europa.eu/mt/notice/722893-2026/html",
+       "NLD": "https://ted.europa.eu/nl/notice/722893-2026/html",
+       "POL": "https://ted.europa.eu/pl/notice/722893-2026/html",
+       "POR": "https://ted.europa.eu/pt/notice/722893-2026/html",
+       "RON": "https://ted.europa.eu/ro/notice/722893-2026/html",
+       "SLK": "https://ted.europa.eu/sk/notice/722893-2026/html",
+       "SLV": "https://ted.europa.eu/sl/notice/722893-2026/html",
+       "FIN": "https://ted.europa.eu/fi/notice/722893-2026/html",
+       "SWE": "https://ted.europa.eu/sv/notice/722893-2026/html"
+      }
+     },
+     "identifier-lot": [
+      "LOT-0000"
+     ],
+     "place-of-performance": [
+      "HR031",
+      "HRV",
+      "HR031",
+      "HRV"
+     ],
+     "title-proc": {
+      "hrv": "Rezervni dijelovi za propelere KaMeWa za m/t Zadar"
+     },
+     "place-of-performance-subdiv-lot": [
+      "HR031"
+     ],
+     "estimated-value-lot": [
+      "230000"
+     ],
+     "organisation-country-buyer": [
+      "HRV"
+     ],
+     "estimated-value-cur-lot": [
+      "EUR"
+     ],
+     "estimated-value-cur-proc": "EUR",
+     "buyer-country": [
+      "HRV"
+     ],
+     "description-lot": {
+      "hrv": [
+       "Rezervni dijelovi za propelere KaMeWa za m/t Zadar , sukladno tehničkim specifikacijama, troškovniku i ostalim traženim uvjetima."
+      ]
+     },
+     "place-of-performance-country-lot": [
+      "HRV"
+     ],
+     "deadline-receipt-tender-time-lot": [
+      "10:00:00+02:00"
+     ],
+     "classification-cpv": [
+      "34312000",
+      "34312000"
+     ],
+     "buyer-name": {
+      "hrv": [
+       "JADROLINIJA"
+      ]
+     },
+     "place-of-performance-subdiv-proc": [
+      "HR031"
+     ],
+     "notice-title": {
+      "hun": "Horvátország – Motoralkatrészek – Rezervni dijelovi za propelere KaMeWa za m/t Zadar",
+      "lav": "Horvātija – Dzinēju detaļas – Rezervni dijelovi za propelere KaMeWa za m/t Zadar",
+      "swe": "Kroatien – Motordelar – Rezervni dijelovi za propelere KaMeWa za m/t Zadar",
+      "gle": "An Chróit – Engine parts – Rezervni dijelovi za propelere KaMeWa za m/t Zadar",
+      "ell": "Κροατία – Μέρη κινητήρων – Rezervni dijelovi za propelere KaMeWa za m/t Zadar",
+      "spa": "Croacia – Partes de motores – Rezervni dijelovi za propelere KaMeWa za m/t Zadar",
+      "est": "Horvaatia – Mootoriosad – Rezervni dijelovi za propelere KaMeWa za m/t Zadar",
+      "nld": "Kroatië – Motoronderdelen – Rezervni dijelovi za propelere KaMeWa za m/t Zadar",
+      "fin": "Kroatia – Moottoreiden osat – Rezervni dijelovi za propelere KaMeWa za m/t Zadar",
+      "pol": "Chorwacja – Części silników – Rezervni dijelovi za propelere KaMeWa za m/t Zadar",
+      "hrv": "Hrvatska – Dijelovi motora – Rezervni dijelovi za propelere KaMeWa za m/t Zadar",
+      "ces": "Chorvatsko – Části motorů – Rezervni dijelovi za propelere KaMeWa za m/t Zadar",
+      "dan": "Kroatien – Dele til motorer – Rezervni dijelovi za propelere KaMeWa za m/t Zadar",
+      "ron": "Croaţia – Piese pentru motoare – Rezervni dijelovi za propelere KaMeWa za m/t Zadar",
+      "por": "Croácia – Peças para motores – Rezervni dijelovi za propelere KaMeWa za m/t Zadar",
+      "slk": "Chorvátsko – Časti motorov – Rezervni dijelovi za propelere KaMeWa za m/t Zadar",
+      "fra": "Croatie – Pièces de moteurs – Rezervni dijelovi za propelere KaMeWa za m/t Zadar",
+      "mlt": "Il-Kroazja – Partijiet ta' magni – Rezervni dijelovi za propelere KaMeWa za m/t Zadar",
+      "deu": "Kroatien – Motorenteile – Rezervni dijelovi za propelere KaMeWa za m/t Zadar",
+      "lit": "Kroatija – Variklio dalys – Rezervni dijelovi za propelere KaMeWa za m/t Zadar",
+      "ita": "Croazia – Pezzi di ricambio di motori – Rezervni dijelovi za propelere KaMeWa za m/t Zadar",
+      "bul": "Хърватия – Части за двигатели – Rezervni dijelovi za propelere KaMeWa za m/t Zadar",
+      "slv": "Hrvaška – Deli motorjev – Rezervni dijelovi za propelere KaMeWa za m/t Zadar",
+      "eng": "Croatia – Engine parts – Rezervni dijelovi za propelere KaMeWa za m/t Zadar"
+     },
+     "title-lot": {
+      "hrv": [
+       "Rezervni dijelovi za propelere KaMeWa za m/t Zadar"
+      ]
+     },
+     "description-proc": {
+      "hrv": "Rezervni dijelovi za propelere KaMeWa za m/t Zadar , sukladno tehničkim specifikacijama, troškovniku i ostalim traženim uvjetima."
+     }
+    }
+   ],
+   "totalNoticeCount": 435,
+   "iterationNextToken": null,
+   "timedOut": false
+  }
+ },
+ "result": {
+  "request": {
+   "query": "buyer-country=HRV AND notice-type=can-standard AND publication-date>=20261020",
+   "fields": [
+    "publication-number",
+    "notice-type",
+    "publication-date",
+    "notice-title",
+    "title-proc",
+    "title-lot",
+    "buyer-name",
+    "buyer-country",
+    "classification-cpv",
+    "main-classification-proc",
+    "main-classification-lot",
+    "place-of-performance-subdiv-lot",
+    "winner-name",
+    "winner-identifier",
+    "winner-selection-status",
+    "winner-country",
+    "winner-decision-date",
+    "tender-lot-identifier",
+    "result-lot-identifier",
+    "tender-identifier",
+    "received-submissions-type-code",
+    "received-submissions-type-val",
+    "identifier-lot",
+    "procedure-identifier",
+    "result-value-lot",
+    "result-value-cur-lot",
+    "tender-value",
+    "tender-value-cur"
+   ],
+   "limit": 3
+  },
+  "response": {
+   "notices": [
+    {
+     "notice-type": "can-standard",
+     "publication-number": "722709-2026",
+     "main-classification-lot": [
+      "18424300",
+      "18424300",
+      "18424300",
+      "18424300",
+      "18424300",
+      "18424300",
+      "18424300",
+      "18424300"
+     ],
+     "winner-country": [
+      "HRV",
+      "HRV",
+      "HRV",
+      "HRV"
+     ],
+     "main-classification-proc": [
+      "18424300"
+     ],
+     "result-lot-identifier": [
+      "LOT-0001",
+      "LOT-0002",
+      "LOT-0003",
+      "LOT-0004",
+      "LOT-0005",
+      "LOT-0006",
+      "LOT-0007",
+      "LOT-0008"
+     ],
+     "procedure-identifier": "030e4d08-d2d8-4a78-a1e1-3a56fca37fec",
+     "winner-identifier": [
+      "65605433360",
+      "70869514300",
+      "79093000972",
+      "20765781286"
+     ],
+     "winner-selection-status": [
+      "selec-w",
+      "selec-w",
+      "selec-w",
+      "clos-nw",
+      "clos-nw",
+      "clos-nw",
+      "selec-w",
+      "clos-nw"
+     ],
+     "publication-date": "2026-10-20+02:00",
+     "received-submissions-type-code": [
+      "tenders",
+      "t-esubm",
+      "t-no-eea",
+      "t-oth-eea",
+      "t-sme",
+      "tenders",
+      "t-esubm",
+      "t-no-eea",
+      "t-oth-eea",
+      "t-sme",
+      "tenders",
+      "t-esubm",
+      "t-no-eea",
+      "t-oth-eea",
+      "t-sme",
+      "tenders",
+      "t-esubm",
+      "t-no-eea",
+      "t-oth-eea",
+      "t-sme",
+      "tenders",
+      "t-esubm",
+      "t-no-eea",
+      "t-oth-eea",
+      "t-sme",
+      "tenders",
+      "t-esubm",
+      "t-no-eea",
+      "t-oth-eea",
+      "t-sme",
+      "tenders",
+      "t-esubm",
+      "t-no-eea",
+      "t-oth-eea",
+      "t-sme",
+      "tenders",
+      "t-esubm",
+      "t-no-eea",
+      "t-oth-eea",
+      "t-sme"
+     ],
+     "winner-decision-date": [
+      "2026-02-23+01:00",
+      "2026-03-03+01:00",
+      "2026-03-03+01:00",
+      "2026-02-23+01:00"
+     ],
+     "links": {
+      "xml": {
+       "MUL": "https://ted.europa.eu/en/notice/722709-2026/xml"
+      },
+      "pdf": {
+       "BUL": "https://ted.europa.eu/bg/notice/722709-2026/pdf",
+       "SPA": "https://ted.europa.eu/es/notice/722709-2026/pdf",
+       "CES": "https://ted.europa.eu/cs/notice/722709-2026/pdf",
+       "DAN": "https://ted.europa.eu/da/notice/722709-2026/pdf",
+       "DEU": "https://ted.europa.eu/de/notice/722709-2026/pdf",
+       "EST": "https://ted.europa.eu/et/notice/722709-2026/pdf",
+       "ELL": "https://ted.europa.eu/el/notice/722709-2026/pdf",
+       "ENG": "https://ted.europa.eu/en/notice/722709-2026/pdf",
+       "FRA": "https://ted.europa.eu/fr/notice/722709-2026/pdf",
+       "GLE": "https://ted.europa.eu/ga/notice/722709-2026/pdf",
+       "HRV": "https://ted.europa.eu/hr/notice/722709-2026/pdf",
+       "ITA": "https://ted.europa.eu/it/notice/722709-2026/pdf",
+       "LAV": "https://ted.europa.eu/lv/notice/722709-2026/pdf",
+       "LIT": "https://ted.europa.eu/lt/notice/722709-2026/pdf",
+       "HUN": "https://ted.europa.eu/hu/notice/722709-2026/pdf",
+       "MLT": "https://ted.europa.eu/mt/notice/722709-2026/pdf",
+       "NLD": "https://ted.europa.eu/nl/notice/722709-2026/pdf",
+       "POL": "https://ted.europa.eu/pl/notice/722709-2026/pdf",
+       "POR": "https://ted.europa.eu/pt/notice/722709-2026/pdf",
+       "RON": "https://ted.europa.eu/ro/notice/722709-2026/pdf",
+       "SLK": "https://ted.europa.eu/sk/notice/722709-2026/pdf",
+       "SLV": "https://ted.europa.eu/sl/notice/722709-2026/pdf",
+       "FIN": "https://ted.europa.eu/fi/notice/722709-2026/pdf",
+       "SWE": "https://ted.europa.eu/sv/notice/722709-2026/pdf"
+      },
+      "pdfs": {
+       "HRV": "https://ted.europa.eu/hr/notice/722709-2026/pdfs"
+      },
+      "html": {
+       "BUL": "https://ted.europa.eu/bg/notice/-/detail/722709-2026",
+       "SPA": "https://ted.europa.eu/es/notice/-/detail/722709-2026",
+       "CES": "https://ted.europa.eu/cs/notice/-/detail/722709-2026",
+       "DAN": "https://ted.europa.eu/da/notice/-/detail/722709-2026",
+       "DEU": "https://ted.europa.eu/de/notice/-/detail/722709-2026",
+       "EST": "https://ted.europa.eu/et/notice/-/detail/722709-2026",
+       "ELL": "https://ted.europa.eu/el/notice/-/detail/722709-2026",
+       "ENG": "https://ted.europa.eu/en/notice/-/detail/722709-2026",
+       "FRA": "https://ted.europa.eu/fr/notice/-/detail/722709-2026",
+       "GLE": "https://ted.europa.eu/ga/notice/-/detail/722709-2026",
+       "HRV": "https://ted.europa.eu/hr/notice/-/detail/722709-2026",
+       "ITA": "https://ted.europa.eu/it/notice/-/detail/722709-2026",
+       "LAV": "https://ted.europa.eu/lv/notice/-/detail/722709-2026",
+       "LIT": "https://ted.europa.eu/lt/notice/-/detail/722709-2026",
+       "HUN": "https://ted.europa.eu/hu/notice/-/detail/722709-2026",
+       "MLT": "https://ted.europa.eu/mt/notice/-/detail/722709-2026",
+       "NLD": "https://ted.europa.eu/nl/notice/-/detail/722709-2026",
+       "POL": "https://ted.europa.eu/pl/notice/-/detail/722709-2026",
+       "POR": "https://ted.europa.eu/pt/notice/-/detail/722709-2026",
+       "RON": "https://ted.europa.eu/ro/notice/-/detail/722709-2026",
+       "SLK": "https://ted.europa.eu/sk/notice/-/detail/722709-2026",
+       "SLV": "https://ted.europa.eu/sl/notice/-/detail/722709-2026",
+       "FIN": "https://ted.europa.eu/fi/notice/-/detail/722709-2026",
+       "SWE": "https://ted.europa.eu/sv/notice/-/detail/722709-2026"
+      },
+      "htmlDirect": {
+       "BUL": "https://ted.europa.eu/bg/notice/722709-2026/html",
+       "SPA": "https://ted.europa.eu/es/notice/722709-2026/html",
+       "CES": "https://ted.europa.eu/cs/notice/722709-2026/html",
+       "DAN": "https://ted.europa.eu/da/notice/722709-2026/html",
+       "DEU": "https://ted.europa.eu/de/notice/722709-2026/html",
+       "EST": "https://ted.europa.eu/et/notice/722709-2026/html",
+       "ELL": "https://ted.europa.eu/el/notice/722709-2026/html",
+       "ENG": "https://ted.europa.eu/en/notice/722709-2026/html",
+       "FRA": "https://ted.europa.eu/fr/notice/722709-2026/html",
+       "GLE": "https://ted.europa.eu/ga/notice/722709-2026/html",
+       "HRV": "https://ted.europa.eu/hr/notice/722709-2026/html",
+       "ITA": "https://ted.europa.eu/it/notice/722709-2026/html",
+       "LAV": "https://ted.europa.eu/lv/notice/722709-2026/html",
+       "LIT": "https://ted.europa.eu/lt/notice/722709-2026/html",
+       "HUN": "https://ted.europa.eu/hu/notice/722709-2026/html",
+       "MLT": "https://ted.europa.eu/mt/notice/722709-2026/html",
+       "NLD": "https://ted.europa.eu/nl/notice/722709-2026/html",
+       "POL": "https://ted.europa.eu/pl/notice/722709-2026/html",
+       "POR": "https://ted.europa.eu/pt/notice/722709-2026/html",
+       "RON": "https://ted.europa.eu/ro/notice/722709-2026/html",
+       "SLK": "https://ted.europa.eu/sk/notice/722709-2026/html",
+       "SLV": "https://ted.europa.eu/sl/notice/722709-2026/html",
+       "FIN": "https://ted.europa.eu/fi/notice/722709-2026/html",
+       "SWE": "https://ted.europa.eu/sv/notice/722709-2026/html"
+      }
+     },
+     "identifier-lot": [
+      "LOT-0001",
+      "LOT-0002",
+      "LOT-0003",
+      "LOT-0004",
+      "LOT-0005",
+      "LOT-0006",
+      "LOT-0007",
+      "LOT-0008"
+     ],
+     "title-proc": {
+      "hrv": "Rukavice II"
+     },
+     "place-of-performance-subdiv-lot": [
+      "HR035",
+      "HR035",
+      "HR035",
+      "HR035",
+      "HR035",
+      "HR035",
+      "HR035",
+      "HR035"
+     ],
+     "buyer-country": [
+      "HRV"
+     ],
+     "received-submissions-type-val": [
+      "2",
+      "2",
+      "0",
+      "0",
+      "2",
+      "5",
+      "5",
+      "0",
+      "0",
+      "5",
+      "2",
+      "2",
+      "0",
+      "0",
+      "2",
+      "3",
+      "3",
+      "0",
+      "0",
+      "2",
+      "3",
+      "3",
+      "0",
+      "0",
+      "3",
+      "3",
+      "3",
+      "0",
+      "0",
+      "2",
+      "2",
+      "2",
+      "0",
+      "0",
+      "2",
+      "2",
+      "2",
+      "0",
+      "0",
+      "2"
+     ],
+     "tender-value-cur": [
+      "EUR"
+     ],
+     "tender-value": [
+      "9520",
+      "116380",
+      "66500",
+      "12880"
+     ],
+     "classification-cpv": [
+      "18424300",
+      "18424300",
+      "18424300",
+      "18424300",
+      "18424300",
+      "18424300",
+      "18424300",
+      "18424300",
+      "18424300"
+     ],
+     "buyer-name": {
+      "hrv": [
+       "KLINIČKI BOLNIČKI CENTAR SPLIT"
+      ]
+     },
+     "tender-identifier": [
+      "KBCST//13012025",
+      "1201-02",
+      "2026-Rukavice-Grupa 3",
+      "02-KBCST-7"
+     ],
+     "winner-name": {
+      "hrv": [
+       "SANOL H d.o.o.",
+       "LOHMANN & RAUSCHER d.o.o.",
+       "SRIJEM d.o.o.",
+       "MA-CO PLAST d.o.o."
+      ]
+     },
+     "notice-title": {
+      "hun": "Horvátország – Eldobható gumikesztyűk – Rukavice II",
+      "lav": "Horvātija – Vienreizējās lietošanas cimdi – Rukavice II",
+      "swe": "Kroatien – Engångshandskar – Rukavice II",
+      "gle": "An Chróit – Disposable gloves – Rukavice II",
+      "ell": "Κροατία – Γάντια μιας χρήσης – Rukavice II",
+      "spa": "Croacia – Guantes desechables – Rukavice II",
+      "est": "Horvaatia – Ühekordsed kindad – Rukavice II",
+      "nld": "Kroatië – Wegwerphandschoenen – Rukavice II",
+      "fin": "Kroatia – Kertakäyttökäsineet – Rukavice II",
+      "pol": "Chorwacja – Rękawice jednorazowe – Rukavice II",
+      "hrv": "Hrvatska – Rukavice za jednokratnu upotrebu – Rukavice II",
+      "ces": "Chorvatsko – Rukavice na jedno použití – Rukavice II",
+      "dan": "Kroatien – Engangshandsker – Rukavice II",
+      "ron": "Croaţia – Mănuşi de unică folosinţă – Rukavice II",
+      "por": "Croácia – Luvas descartáveis – Rukavice II",
+      "slk": "Chorvátsko – Jednorazové rukavice – Rukavice II",
+      "fra": "Croatie – Gants jetables – Rukavice II",
+      "mlt": "Il-Kroazja – Ingwanti li jintużaw darba biss – Rukavice II",
+      "deu": "Kroatien – Einweghandschuhe – Rukavice II",
+      "lit": "Kroatija – Vienkartinės pirštinės – Rukavice II",
+      "ita": "Croazia – Guanti monouso – Rukavice II",
+      "bul": "Хърватия – Ръкавици за еднократна употреба – Rukavice II",
+      "slv": "Hrvaška – Rokavice za enkratno uporabo – Rukavice II",
+      "eng": "Croatia – Disposable gloves – Rukavice II"
+     },
+     "tender-lot-identifier": [
+      "LOT-0001",
+      "LOT-0002",
+      "LOT-0003",
+      "LOT-0007"
+     ],
+     "title-lot": {
+      "hrv": [
+       "Grupa 1",
+       "Grupa 2",
+       "Grupa 3",
+       "Grupa 4",
+       "Grupa 5",
+       "Grupa 6",
+       "Grupa 7",
+       "Grupa 8"
+      ]
+     }
+    },
+    {
+     "notice-type": "can-standard",
+     "publication-number": "722770-2026",
+     "main-classification-lot": [
+      "77314000"
+     ],
+     "winner-country": [
+      "HRV"
+     ],
+     "main-classification-proc": [
+      "77314000"
+     ],
+     "result-lot-identifier": [
+      "LOT-0000"
+     ],
+     "procedure-identifier": "b9297135-7faf-4bff-ad94-d418f8ee9b65",
+     "winner-identifier": [
+      "49733628869"
+     ],
+     "winner-selection-status": [
+      "selec-w"
+     ],
+     "publication-date": "2026-10-20+02:00",
+     "received-submissions-type-code": [
+      "tenders",
+      "t-esubm",
+      "t-no-eea",
+      "t-oth-eea",
+      "t-sme"
+     ],
+     "links": {
+      "xml": {
+       "MUL": "https://ted.europa.eu/en/notice/722770-2026/xml"
+      },
+      "pdf": {
+       "BUL": "https://ted.europa.eu/bg/notice/722770-2026/pdf",
+       "SPA": "https://ted.europa.eu/es/notice/722770-2026/pdf",
+       "CES": "https://ted.europa.eu/cs/notice/722770-2026/pdf",
+       "DAN": "https://ted.europa.eu/da/notice/722770-2026/pdf",
+       "DEU": "https://ted.europa.eu/de/notice/722770-2026/pdf",
+       "EST": "https://ted.europa.eu/et/notice/722770-2026/pdf",
+       "ELL": "https://ted.europa.eu/el/notice/722770-2026/pdf",
+       "ENG": "https://ted.europa.eu/en/notice/722770-2026/pdf",
+       "FRA": "https://ted.europa.eu/fr/notice/722770-2026/pdf",
+       "GLE": "https://ted.europa.eu/ga/notice/722770-2026/pdf",
+       "HRV": "https://ted.europa.eu/hr/notice/722770-2026/pdf",
+       "ITA": "https://ted.europa.eu/it/notice/722770-2026/pdf",
+       "LAV": "https://ted.europa.eu/lv/notice/722770-2026/pdf",
+       "LIT": "https://ted.europa.eu/lt/notice/722770-2026/pdf",
+       "HUN": "https://ted.europa.eu/hu/notice/722770-2026/pdf",
+       "MLT": "https://ted.europa.eu/mt/notice/722770-2026/pdf",
+       "NLD": "https://ted.europa.eu/nl/notice/722770-2026/pdf",
+       "POL": "https://ted.europa.eu/pl/notice/722770-2026/pdf",
+       "POR": "https://ted.europa.eu/pt/notice/722770-2026/pdf",
+       "RON": "https://ted.europa.eu/ro/notice/722770-2026/pdf",
+       "SLK": "https://ted.europa.eu/sk/notice/722770-2026/pdf",
+       "SLV": "https://ted.europa.eu/sl/notice/722770-2026/pdf",
+       "FIN": "https://ted.europa.eu/fi/notice/722770-2026/pdf",
+       "SWE": "https://ted.europa.eu/sv/notice/722770-2026/pdf"
+      },
+      "pdfs": {
+       "HRV": "https://ted.europa.eu/hr/notice/722770-2026/pdfs"
+      },
+      "html": {
+       "BUL": "https://ted.europa.eu/bg/notice/-/detail/722770-2026",
+       "SPA": "https://ted.europa.eu/es/notice/-/detail/722770-2026",
+       "CES": "https://ted.europa.eu/cs/notice/-/detail/722770-2026",
+       "DAN": "https://ted.europa.eu/da/notice/-/detail/722770-2026",
+       "DEU": "https://ted.europa.eu/de/notice/-/detail/722770-2026",
+       "EST": "https://ted.europa.eu/et/notice/-/detail/722770-2026",
+       "ELL": "https://ted.europa.eu/el/notice/-/detail/722770-2026",
+       "ENG": "https://ted.europa.eu/en/notice/-/detail/722770-2026",
+       "FRA": "https://ted.europa.eu/fr/notice/-/detail/722770-2026",
+       "GLE": "https://ted.europa.eu/ga/notice/-/detail/722770-2026",
+       "HRV": "https://ted.europa.eu/hr/notice/-/detail/722770-2026",
+       "ITA": "https://ted.europa.eu/it/notice/-/detail/722770-2026",
+       "LAV": "https://ted.europa.eu/lv/notice/-/detail/722770-2026",
+       "LIT": "https://ted.europa.eu/lt/notice/-/detail/722770-2026",
+       "HUN": "https://ted.europa.eu/hu/notice/-/detail/722770-2026",
+       "MLT": "https://ted.europa.eu/mt/notice/-/detail/722770-2026",
+       "NLD": "https://ted.europa.eu/nl/notice/-/detail/722770-2026",
+       "POL": "https://ted.europa.eu/pl/notice/-/detail/722770-2026",
+       "POR": "https://ted.europa.eu/pt/notice/-/detail/722770-2026",
+       "RON": "https://ted.europa.eu/ro/notice/-/detail/722770-2026",
+       "SLK": "https://ted.europa.eu/sk/notice/-/detail/722770-2026",
+       "SLV": "https://ted.europa.eu/sl/notice/-/detail/722770-2026",
+       "FIN": "https://ted.europa.eu/fi/notice/-/detail/722770-2026",
+       "SWE": "https://ted.europa.eu/sv/notice/-/detail/722770-2026"
+      },
+      "htmlDirect": {
+       "BUL": "https://ted.europa.eu/bg/notice/722770-2026/html",
+       "SPA": "https://ted.europa.eu/es/notice/722770-2026/html",
+       "CES": "https://ted.europa.eu/cs/notice/722770-2026/html",
+       "DAN": "https://ted.europa.eu/da/notice/722770-2026/html",
+       "DEU": "https://ted.europa.eu/de/notice/722770-2026/html",
+       "EST": "https://ted.europa.eu/et/notice/722770-2026/html",
+       "ELL": "https://ted.europa.eu/el/notice/722770-2026/html",
+       "ENG": "https://ted.europa.eu/en/notice/722770-2026/html",
+       "FRA": "https://ted.europa.eu/fr/notice/722770-2026/html",
+       "GLE": "https://ted.europa.eu/ga/notice/722770-2026/html",
+       "HRV": "https://ted.europa.eu/hr/notice/722770-2026/html",
+       "ITA": "https://ted.europa.eu/it/notice/722770-2026/html",
+       "LAV": "https://ted.europa.eu/lv/notice/722770-2026/html",
+       "LIT": "https://ted.europa.eu/lt/notice/722770-2026/html",
+       "HUN": "https://ted.europa.eu/hu/notice/722770-2026/html",
+       "MLT": "https://ted.europa.eu/mt/notice/722770-2026/html",
+       "NLD": "https://ted.europa.eu/nl/notice/722770-2026/html",
+       "POL": "https://ted.europa.eu/pl/notice/722770-2026/html",
+       "POR": "https://ted.europa.eu/pt/notice/722770-2026/html",
+       "RON": "https://ted.europa.eu/ro/notice/722770-2026/html",
+       "SLK": "https://ted.europa.eu/sk/notice/722770-2026/html",
+       "SLV": "https://ted.europa.eu/sl/notice/722770-2026/html",
+       "FIN": "https://ted.europa.eu/fi/notice/722770-2026/html",
+       "SWE": "https://ted.europa.eu/sv/notice/722770-2026/html"
+      }
+     },
+     "identifier-lot": [
+      "LOT-0000"
+     ],
+     "title-proc": {
+      "hrv": "UREĐENJE ZELENIH POVRŠINA I HORTIKULTURNI RADOVI"
+     },
+     "place-of-performance-subdiv-lot": [
+      "HR065"
+     ],
+     "buyer-country": [
+      "HRV",
+      "HRV",
+      "HRV"
+     ],
+     "received-submissions-type-val": [
+      "2",
+      "2",
+      "0",
+      "0",
+      "2"
+     ],
+     "tender-value-cur": [
+      "EUR"
+     ],
+     "tender-value": [
+      "7680",
+      "39205"
+     ],
+     "classification-cpv": [
+      "77314000",
+      "77314000"
+     ],
+     "buyer-name": {
+      "hrv": [
+       "GRAD ZAGREB",
+       "VODOOPSKRBA I ODVODNJA d.o.o.",
+       "ZAGREBAČKI HOLDING d.o.o."
+      ]
+     },
+     "tender-identifier": [
+      "TEN-0001",
+      "TEN-0002"
+     ],
+     "winner-name": {
+      "hrv": [
+       "BINĐO d.o.o.",
+       "BINĐO d.o.o."
+      ]
+     },
+     "notice-title": {
+      "hun": "Horvátország – Rétfenntartási szolgáltatások – UREĐENJE ZELENIH POVRŠINA I HORTIKULTURNI RADOVI",
+      "lav": "Horvātija – Laukumu kopšanas pakalpojumi – UREĐENJE ZELENIH POVRŠINA I HORTIKULTURNI RADOVI",
+      "swe": "Kroatien – Markskötsel – UREĐENJE ZELENIH POVRŠINA I HORTIKULTURNI RADOVI",
+      "gle": "An Chróit – Grounds maintenance services – UREĐENJE ZELENIH POVRŠINA I HORTIKULTURNI RADOVI",
+      "ell": "Κροατία – Υπηρεσίες συντήρησης οικοπέδων – UREĐENJE ZELENIH POVRŠINA I HORTIKULTURNI RADOVI",
+      "spa": "Croacia – Servicios de mantenimiento de terrenos – UREĐENJE ZELENIH POVRŠINA I HORTIKULTURNI RADOVI",
+      "est": "Horvaatia – Maa-alade hooldusteenused – UREĐENJE ZELENIH POVRŠINA I HORTIKULTURNI RADOVI",
+      "nld": "Kroatië – Onderhoud van terreinen – UREĐENJE ZELENIH POVRŠINA I HORTIKULTURNI RADOVI",
+      "fin": "Kroatia – Maa-alueiden hoito – UREĐENJE ZELENIH POVRŠINA I HORTIKULTURNI RADOVI",
+      "pol": "Chorwacja – Usługi utrzymania gruntów – UREĐENJE ZELENIH POVRŠINA I HORTIKULTURNI RADOVI",
+      "hrv": "Hrvatska – Usluge održavanja terena – UREĐENJE ZELENIH POVRŠINA I HORTIKULTURNI RADOVI",
+      "ces": "Chorvatsko – Služby při údržbě pozemků – UREĐENJE ZELENIH POVRŠINA I HORTIKULTURNI RADOVI",
+      "dan": "Kroatien – Vedligeholdelse af arealer – UREĐENJE ZELENIH POVRŠINA I HORTIKULTURNI RADOVI",
+      "ron": "Croaţia – Servicii de întreţinere a terenurilor – UREĐENJE ZELENIH POVRŠINA I HORTIKULTURNI RADOVI",
+      "por": "Croácia – Serviços de manutenção de terrenos – UREĐENJE ZELENIH POVRŠINA I HORTIKULTURNI RADOVI",
+      "slk": "Chorvátsko – Údržba pozemkov – UREĐENJE ZELENIH POVRŠINA I HORTIKULTURNI RADOVI",
+      "fra": "Croatie – Services d'entretien de terrains – UREĐENJE ZELENIH POVRŠINA I HORTIKULTURNI RADOVI",
+      "mlt": "Il-Kroazja – Servizzi tal-manutenzjoni ta' l-artijiet – UREĐENJE ZELENIH POVRŠINA I HORTIKULTURNI RADOVI",
+      "deu": "Kroatien – Grundstückspflege – UREĐENJE ZELENIH POVRŠINA I HORTIKULTURNI RADOVI",
+      "lit": "Kroatija – Aikštelių priežiūros paslaugos – UREĐENJE ZELENIH POVRŠINA I HORTIKULTURNI RADOVI",
+      "ita": "Croazia – Servizi di manutenzione terreni – UREĐENJE ZELENIH POVRŠINA I HORTIKULTURNI RADOVI",
+      "bul": "Хърватия – Услуги по поддържане на други зелени площи – UREĐENJE ZELENIH POVRŠINA I HORTIKULTURNI RADOVI",
+      "slv": "Hrvaška – Storitve vzdrževanja zemljišč – UREĐENJE ZELENIH POVRŠINA I HORTIKULTURNI RADOVI",
+      "eng": "Croatia – Grounds maintenance services – UREĐENJE ZELENIH POVRŠINA I HORTIKULTURNI RADOVI"
+     },
+     "tender-lot-identifier": [
+      "LOT-0000",
+      "LOT-0000"
+     ],
+     "title-lot": {
+      "hrv": [
+       "UREĐENJE ZELENIH POVRŠINA I HORTIKULTURNI RADOVI"
+      ]
+     }
+    },
+    {
+     "notice-type": "can-standard",
+     "publication-number": "722812-2026",
+     "main-classification-lot": [
+      "79800000"
+     ],
+     "winner-country": [
+      "HRV"
+     ],
+     "main-classification-proc": [
+      "79800000"
+     ],
+     "result-lot-identifier": [
+      "LOT-0000"
+     ],
+     "procedure-identifier": "78121bc5-d67f-4984-a26c-5905a2d23b97",
+     "winner-identifier": [
+      "77931216562"
+     ],
+     "winner-selection-status": [
+      "selec-w"
+     ],
+     "publication-date": "2026-10-20+02:00",
+     "received-submissions-type-code": [
+      "tenders",
+      "t-esubm",
+      "t-no-eea",
+      "t-oth-eea",
+      "t-sme"
+     ],
+     "links": {
+      "xml": {
+       "MUL": "https://ted.europa.eu/en/notice/722812-2026/xml"
+      },
+      "pdf": {
+       "BUL": "https://ted.europa.eu/bg/notice/722812-2026/pdf",
+       "SPA": "https://ted.europa.eu/es/notice/722812-2026/pdf",
+       "CES": "https://ted.europa.eu/cs/notice/722812-2026/pdf",
+       "DAN": "https://ted.europa.eu/da/notice/722812-2026/pdf",
+       "DEU": "https://ted.europa.eu/de/notice/722812-2026/pdf",
+       "EST": "https://ted.europa.eu/et/notice/722812-2026/pdf",
+       "ELL": "https://ted.europa.eu/el/notice/722812-2026/pdf",
+       "ENG": "https://ted.europa.eu/en/notice/722812-2026/pdf",
+       "FRA": "https://ted.europa.eu/fr/notice/722812-2026/pdf",
+       "GLE": "https://ted.europa.eu/ga/notice/722812-2026/pdf",
+       "HRV": "https://ted.europa.eu/hr/notice/722812-2026/pdf",
+       "ITA": "https://ted.europa.eu/it/notice/722812-2026/pdf",
+       "LAV": "https://ted.europa.eu/lv/notice/722812-2026/pdf",
+       "LIT": "https://ted.europa.eu/lt/notice/722812-2026/pdf",
+       "HUN": "https://ted.europa.eu/hu/notice/722812-2026/pdf",
+       "MLT": "https://ted.europa.eu/mt/notice/722812-2026/pdf",
+       "NLD": "https://ted.europa.eu/nl/notice/722812-2026/pdf",
+       "POL": "https://ted.europa.eu/pl/notice/722812-2026/pdf",
+       "POR": "https://ted.europa.eu/pt/notice/722812-2026/pdf",
+       "RON": "https://ted.europa.eu/ro/notice/722812-2026/pdf",
+       "SLK": "https://ted.europa.eu/sk/notice/722812-2026/pdf",
+       "SLV": "https://ted.europa.eu/sl/notice/722812-2026/pdf",
+       "FIN": "https://ted.europa.eu/fi/notice/722812-2026/pdf",
+       "SWE": "https://ted.europa.eu/sv/notice/722812-2026/pdf"
+      },
+      "pdfs": {
+       "HRV": "https://ted.europa.eu/hr/notice/722812-2026/pdfs"
+      },
+      "html": {
+       "BUL": "https://ted.europa.eu/bg/notice/-/detail/722812-2026",
+       "SPA": "https://ted.europa.eu/es/notice/-/detail/722812-2026",
+       "CES": "https://ted.europa.eu/cs/notice/-/detail/722812-2026",
+       "DAN": "https://ted.europa.eu/da/notice/-/detail/722812-2026",
+       "DEU": "https://ted.europa.eu/de/notice/-/detail/722812-2026",
+       "EST": "https://ted.europa.eu/et/notice/-/detail/722812-2026",
+       "ELL": "https://ted.europa.eu/el/notice/-/detail/722812-2026",
+       "ENG": "https://ted.europa.eu/en/notice/-/detail/722812-2026",
+       "FRA": "https://ted.europa.eu/fr/notice/-/detail/722812-2026",
+       "GLE": "https://ted.europa.eu/ga/notice/-/detail/722812-2026",
+       "HRV": "https://ted.europa.eu/hr/notice/-/detail/722812-2026",
+       "ITA": "https://ted.europa.eu/it/notice/-/detail/722812-2026",
+       "LAV": "https://ted.europa.eu/lv/notice/-/detail/722812-2026",
+       "LIT": "https://ted.europa.eu/lt/notice/-/detail/722812-2026",
+       "HUN": "https://ted.europa.eu/hu/notice/-/detail/722812-2026",
+       "MLT": "https://ted.europa.eu/mt/notice/-/detail/722812-2026",
+       "NLD": "https://ted.europa.eu/nl/notice/-/detail/722812-2026",
+       "POL": "https://ted.europa.eu/pl/notice/-/detail/722812-2026",
+       "POR": "https://ted.europa.eu/pt/notice/-/detail/722812-2026",
+       "RON": "https://ted.europa.eu/ro/notice/-/detail/722812-2026",
+       "SLK": "https://ted.europa.eu/sk/notice/-/detail/722812-2026",
+       "SLV": "https://ted.europa.eu/sl/notice/-/detail/722812-2026",
+       "FIN": "https://ted.europa.eu/fi/notice/-/detail/722812-2026",
+       "SWE": "https://ted.europa.eu/sv/notice/-/detail/722812-2026"
+      },
+      "htmlDirect": {
+       "BUL": "https://ted.europa.eu/bg/notice/722812-2026/html",
+       "SPA": "https://ted.europa.eu/es/notice/722812-2026/html",
+       "CES": "https://ted.europa.eu/cs/notice/722812-2026/html",
+       "DAN": "https://ted.europa.eu/da/notice/722812-2026/html",
+       "DEU": "https://ted.europa.eu/de/notice/722812-2026/html",
+       "EST": "https://ted.europa.eu/et/notice/722812-2026/html",
+       "ELL": "https://ted.europa.eu/el/notice/722812-2026/html",
+       "ENG": "https://ted.europa.eu/en/notice/722812-2026/html",
+       "FRA": "https://ted.europa.eu/fr/notice/722812-2026/html",
+       "GLE": "https://ted.europa.eu/ga/notice/722812-2026/html",
+       "HRV": "https://ted.europa.eu/hr/notice/722812-2026/html",
+       "ITA": "https://ted.europa.eu/it/notice/722812-2026/html",
+       "LAV": "https://ted.europa.eu/lv/notice/722812-2026/html",
+       "LIT": "https://ted.europa.eu/lt/notice/722812-2026/html",
+       "HUN": "https://ted.europa.eu/hu/notice/722812-2026/html",
+       "MLT": "https://ted.europa.eu/mt/notice/722812-2026/html",
+       "NLD": "https://ted.europa.eu/nl/notice/722812-2026/html",
+       "POL": "https://ted.europa.eu/pl/notice/722812-2026/html",
+       "POR": "https://ted.europa.eu/pt/notice/722812-2026/html",
+       "RON": "https://ted.europa.eu/ro/notice/722812-2026/html",
+       "SLK": "https://ted.europa.eu/sk/notice/722812-2026/html",
+       "SLV": "https://ted.europa.eu/sl/notice/722812-2026/html",
+       "FIN": "https://ted.europa.eu/fi/notice/722812-2026/html",
+       "SWE": "https://ted.europa.eu/sv/notice/722812-2026/html"
+      }
+     },
+     "identifier-lot": [
+      "LOT-0000"
+     ],
+     "title-proc": {
+      "hrv": "TISKARSKE USLUGE"
+     },
+     "place-of-performance-subdiv-lot": [
+      "HR050"
+     ],
+     "buyer-country": [
+      "HRV",
+      "HRV",
+      "HRV",
+      "HRV",
+      "HRV"
+     ],
+     "received-submissions-type-val": [
+      "1",
+      "1",
+      "0",
+      "0",
+      "0"
+     ],
+     "tender-value-cur": [
+      "EUR"
+     ],
+     "tender-value": [
+      "50267.8"
+     ],
+     "classification-cpv": [
+      "79800000",
+      "79800000"
+     ],
+     "buyer-name": {
+      "hrv": [
+       "GRAD ZAGREB",
+       "ZAGREBAČKI HOLDING d.o.o.",
+       "VODOOPSKRBA I ODVODNJA d.o.o.",
+       "GRADSKO STAMBENO KOMUNALNO GOSPODARSTVO d.o.o.",
+       "GRADSKA PLINARA ZAGREB-OPSKRBA d.o.o."
+      ]
+     },
+     "tender-identifier": [
+      "TEN-0001"
+     ],
+     "winner-name": {
+      "hrv": [
+       "URIHO - ZAGREB"
+      ]
+     },
+     "notice-title": {
+      "hun": "Horvátország – Nyomtatási és kapcsolódó szolgáltatások – TISKARSKE USLUGE",
+      "lav": "Horvātija – Iespiešanas un saistītie pakalpojumi – TISKARSKE USLUGE",
+      "swe": "Kroatien – Tryckning och tillhörande tjänster – TISKARSKE USLUGE",
+      "gle": "An Chróit – Printing and related services – TISKARSKE USLUGE",
+      "ell": "Κροατία – Υπηρεσίες εκτύπωσης και συναφείς υπηρεσίες – TISKARSKE USLUGE",
+      "spa": "Croacia – Servicios de impresión y servicios conexos – TISKARSKE USLUGE",
+      "est": "Horvaatia – Trüki- ja seotud teenused – TISKARSKE USLUGE",
+      "nld": "Kroatië – Drukkerij- en aanverwante diensten – TISKARSKE USLUGE",
+      "fin": "Kroatia – Painatus ja siihen liittyvät palvelut – TISKARSKE USLUGE",
+      "pol": "Chorwacja – Usługi drukowania i powiązane – TISKARSKE USLUGE",
+      "hrv": "Hrvatska – Tiskanje i s tim povezane usluge – TISKARSKE USLUGE",
+      "ces": "Chorvatsko – Tiskařské a související služby – TISKARSKE USLUGE",
+      "dan": "Kroatien – Trykning og hermed beslægtede tjenesteydelser – TISKARSKE USLUGE",
+      "ron": "Croaţia – Servicii tipografice şi servicii conexe – TISKARSKE USLUGE",
+      "por": "Croácia – Serviços de impressão e afins – TISKARSKE USLUGE",
+      "slk": "Chorvátsko – Tlačiarenské a príbuzné služby – TISKARSKE USLUGE",
+      "fra": "Croatie – Services d'impression et services connexes – TISKARSKE USLUGE",
+      "mlt": "Il-Kroazja – Servizzi ta' stampar u relatati – TISKARSKE USLUGE",
+      "deu": "Kroatien – Druckereidienste und verbundene Dienstleistungen des Druckgewerbes – TISKARSKE USLUGE",
+      "lit": "Kroatija – Spausdinimo ir susijusios paslaugos – TISKARSKE USLUGE",
+      "ita": "Croazia – Servizi di stampa e affini – TISKARSKE USLUGE",
+      "bul": "Хърватия – Печатни и други, свързани с печата услуги – TISKARSKE USLUGE",
+      "slv": "Hrvaška – Tiskarske in s tem povezane storitve – TISKARSKE USLUGE",
+      "eng": "Croatia – Printing and related services – TISKARSKE USLUGE"
+     },
+     "tender-lot-identifier": [
+      "LOT-0000"
+     ],
+     "title-lot": {
+      "hrv": [
+       "TISKARSKE USLUGE"
+      ]
+     }
+    }
+   ],
+   "totalNoticeCount": 666,
+   "iterationNextToken": null,
+   "timedOut": false
+  }
+ }
+}

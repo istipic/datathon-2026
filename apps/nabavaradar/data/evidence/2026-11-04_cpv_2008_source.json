@@ -1,0 +1,103 @@
+{
+ "source": "CPV 2008 official code list (Publications Office of the EU, published via TED)",
+ "download_url": "https://ted.europa.eu/documents/d/ted/cpv_2008_xls",
+ "retrieved": "2026-11-04",
+ "http_last_modified": "Tue, 12 Sep 2023 08:44:24 GMT",
+ "file": "cpv_2008_xls.zip -> cpv_2008_ver_2013.xlsx",
+ "sheets": [
+  "CPV codes",
+  "Supplementary codes"
+ ],
+ "columns": [
+  "CODE",
+  "BG",
+  "CS",
+  "DA",
+  "DE",
+  "EL",
+  "EN",
+  "ES",
+  "ET",
+  "FI",
+  "FR",
+  "GA",
+  "HR",
+  "HU",
+  "IT",
+  "LT",
+  "LV",
+  "MT",
+  "NL",
+  "PL",
+  "PT",
+  "RO",
+  "SK",
+  "SL",
+  "SV"
+ ],
+ "code_rows": 9454,
+ "croatian_labels": true,
+ "note": "The EU Vocabularies page has no direct file link in its text; the TED document URL pattern that serves the official guide PDFs also serves this official workbook.",
+ "sample": [
+  {
+   "code": "03000000-1",
+   "label_hr": "Poljoprivredni proizvodi, proizvodi stočarstva, ribarstva, šumarstva i srodni proizvodi",
+   "label_en": "Agricultural, farming, fishing, forestry and related products"
+  },
+  {
+   "code": "03100000-2",
+   "label_hr": "Poljoprivredni i hortikulturni proizvodi ",
+   "label_en": "Agricultural and horticultural products"
+  },
+  {
+   "code": "03110000-5",
+   "label_hr": "Usjevi, proizvodi komercijalnog uzgoja bilja i vrtlarstva",
+   "label_en": "Crops, products of market gardening and horticulture"
+  },
+  {
+   "code": "03111000-2",
+   "label_hr": "Sjeme",
+   "label_en": "Seeds"
+  },
+  {
+   "code": "03111100-3",
+   "label_hr": "Soja u zrnu",
+   "label_en": "Soya beans"
+  },
+  {
+   "code": "03111200-4",
+   "label_hr": "Kikiriki",
+   "label_en": "Peanuts"
+  },
+  {
+   "code": "03111300-5",
+   "label_hr": "Sjeme suncokreta",
+   "label_en": "Sunflower seeds"
+  },
+  {
+   "code": "03111400-6",
+   "label_hr": "Sjeme pamuka",
+   "label_en": "Cotton seeds"
+  },
+  {
+   "code": "03111500-7",
+   "label_hr": "Sjeme sezama",
+   "label_en": "Sesame seeds"
+  },
+  {
+   "code": "03111600-8",
+   "label_hr": "Sjeme gorušice",
+   "label_en": "Mustard seeds"
+  },
+  {
+   "code": "03111700-9",
+   "label_hr": "Sjeme povrća",
+   "label_en": "Vegetable seeds"
+  },
+  {
+   "code": "03111800-0",
+   "label_hr": "Sjeme voća",
+   "label_en": "Fruit seeds"
+  }
+ ]
+}

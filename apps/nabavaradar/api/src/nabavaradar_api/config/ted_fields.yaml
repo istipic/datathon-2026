@@ -1,0 +1,402 @@
+# Mapping of our fields to TED field names. Samples are copied from saved real responses (data/evidence).
+source: TED Search API v3 - POST https://api.ted.europa.eu/v3/notices/search (anonymous)
+evidence:
+- 2026-11-04_ted_api-v3.yaml
+- 2026-11-04_ted_search_field_names.txt
+- 2026-11-04_ted_search_competition_sample.json
+- 2026-11-04_ted_search_result_sample.json
+query:
+  competition: buyer-country=HRV AND notice-type IN (cn-standard cn-social cn-desg) AND publication-date>={YYYYMMDD}
+  result: buyer-country=HRV AND notice-type IN (can-standard can-social can-desg) AND publication-date>={YYYYMMDD}
+  syntax:
+    country: ISO alpha-3 (HRV)
+    date: YYYYMMDD
+  pagination:
+    paginationMode: ITERATION
+    limit_max: 250
+    fields_per_page_max: 10000
+    token_field: iterationNextToken
+notes:
+- 'Result notices published before about 2024-02 are legacy TED notices: the API returns no winner and no submissions
+  fields for them (measured 2026-11-04).'
+- Lists are flattened over lots/tenders; the alignment rules are implemented and tested in nabavaradar_api.ingest.ted_parse.
+fields:
+  pub_no:
+    ted_field: publication-number
+    applies_to:
+    - competition
+    - result
+    shape: scalar
+    note: Upsert key
+    sample: 722712-2026
+    sample_from: 2026-11-04_ted_search_competition_sample.json (publication 722712-2026)
+  notice_type:
+    ted_field: notice-type
+    applies_to:
+    - competition
+    - result
+    shape: scalar
+    note: 'competition: cn-standard|cn-social|cn-desg; result: can-standard|can-social|can-desg'
+    sample: cn-standard
+    sample_from: 2026-11-04_ted_search_competition_sample.json (publication 722712-2026)
+  pub_date:
+    ted_field: publication-date
+    applies_to:
+    - competition
+    - result
+    shape: scalar
+    note: '''YYYY-MM-DD+TZ'''
+    sample: 2026-10-20+02:00
+    sample_from: 2026-11-04_ted_search_competition_sample.json (publication 722712-2026)
+  procedure_id:
+    ted_field: procedure-identifier
+    applies_to:
+    - competition
+    - result
+    shape: scalar
+    note: Links a result notice to its competition notice (same procedure UUID)
+    sample: 28d7006f-d265-4431-8354-9eaa1c41091e
+    sample_from: 2026-11-04_ted_search_competition_sample.json (publication 722712-2026)
+  buyer_name:
+    ted_field: buyer-name
+    applies_to:
+    - competition
+    - result
+    shape: multilingual-list
+    note: '{lang: [names]}; first name of ''hrv'', else any language'
+    sample:
+      hrv:
+      - KLINIČKI BOLNIČKI CENTAR SPLIT
+    sample_from: 2026-11-04_ted_search_competition_sample.json (publication 722712-2026)
+  buyer_country:
+    ted_field: buyer-country
+    applies_to:
+    - competition
+    - result
+    shape: list
+    note: ISO alpha-3; used in the query as buyer-country=HRV
+    sample:
+    - HRV
+    sample_from: 2026-11-04_ted_search_competition_sample.json (publication 722712-2026)
+  buyer_nuts:
+    ted_field: buyer-country-sub
+    applies_to:
+    - competition
+    - result
+    shape: list
+    note: NUTS code of the buyer
+    sample:
+    - HR035
+    sample_from: 2026-11-04_ted_search_competition_sample.json (publication 722712-2026)
+  place_nuts_proc:
+    ted_field: place-of-performance-subdiv-proc
+    applies_to:
+    - competition
+    shape: list
+    note: NUTS3 of performance (procedure level)
+    sample:
+    - HR035
+    sample_from: 2026-11-04_ted_search_competition_sample.json (publication 722712-2026)
+  place_nuts_lot:
+    ted_field: place-of-performance-subdiv-lot
+    applies_to:
+    - competition
+    - result
+    shape: list
+    note: NUTS3 per lot
+    sample:
+    - HR035
+    - HR035
+    - HR035
+    sample_from: 2026-11-04_ted_search_competition_sample.json (publication 722712-2026)
+  cpv_codes:
+    ted_field: classification-cpv
+    applies_to:
+    - competition
+    - result
+    shape: list
+    note: All CPV codes, flattened over lots, with duplicates
+    sample:
+    - '33692300'
+    - '33692300'
+    - '33692300'
+    - '33692300'
+    sample_from: 2026-11-04_ted_search_competition_sample.json (publication 722712-2026)
+  cpv_main:
+    ted_field: main-classification-proc
+    applies_to:
+    - competition
+    - result
+    shape: list
+    note: Main CPV of the procedure
+    sample:
+    - '33692300'
+    sample_from: 2026-11-04_ted_search_competition_sample.json (publication 722712-2026)
+  title_notice:
+    ted_field: notice-title
+    applies_to:
+    - competition
+    - result
+    shape: multilingual
+    note: '''Country - CPV label - title''; fallback title'
+    sample: '{"hun": "Horvátország – Enterális tápszerek – Enteralna prehrana", "lav": "Horvātija – Enterālā barība
+      – Enteralna prehrana", "swe": "Kroatien – Enter...'
+    sample_from: 2026-11-04_ted_search_competition_sample.json (publication 722712-2026)
+  title:
+    ted_field: title-proc
+    applies_to:
+    - competition
+    - result
+    shape: multilingual
+    note: Procedure title
+    sample:
+      hrv: Enteralna prehrana
+    sample_from: 2026-11-04_ted_search_competition_sample.json (publication 722712-2026)
+  title_lot:
+    ted_field: title-lot
+    applies_to:
+    - competition
+    shape: multilingual-list
+    note: Per lot
+    sample:
+      hrv:
+      - Grupa 1
+      - Grupa 2
+      - Grupa 3
+    sample_from: 2026-11-04_ted_search_competition_sample.json (publication 722712-2026)
+  description:
+    ted_field: description-proc
+    applies_to:
+    - competition
+    shape: multilingual
+    note: Procedure description
+    sample:
+      hrv: Enteralna prehrana
+    sample_from: 2026-11-04_ted_search_competition_sample.json (publication 722712-2026)
+  description_lot:
+    ted_field: description-lot
+    applies_to:
+    - competition
+    shape: multilingual-list
+    note: Per lot
+    sample:
+      hrv:
+      - Grupa 1 -Enteralna prehrana
+      - Grupa 2 -Enteralna prehrana
+      - Grupa 1 -Enteralna prehrana
+    sample_from: 2026-11-04_ted_search_competition_sample.json (publication 722712-2026)
+  lot_ids:
+    ted_field: identifier-lot
+    applies_to:
+    - competition
+    - result
+    shape: list
+    note: LOT-0001...
+    sample:
+    - LOT-0001
+    - LOT-0002
+    - LOT-0003
+    sample_from: 2026-11-04_ted_search_competition_sample.json (publication 722712-2026)
+  deadline_date:
+    ted_field: deadline-receipt-tender-date-lot
+    applies_to:
+    - competition
+    shape: list
+    note: Per lot, 'YYYY-MM-DD+TZ'
+    sample:
+    - 2026-11-20+02:00
+    - 2026-11-20+02:00
+    - 2026-11-20+02:00
+    sample_from: 2026-11-04_ted_search_competition_sample.json (publication 722712-2026)
+  deadline_time:
+    ted_field: deadline-receipt-tender-time-lot
+    applies_to:
+    - competition
+    shape: list
+    note: Per lot, 'HH:MM:SS+TZ'
+    sample:
+    - 09:00:00+02:00
+    - 09:00:00+02:00
+    - 09:00:00+02:00
+    sample_from: 2026-11-04_ted_search_competition_sample.json (publication 722712-2026)
+  value_proc:
+    ted_field: estimated-value-proc
+    applies_to:
+    - competition
+    shape: scalar-string
+    note: Number as string
+    sample: '580952'
+    sample_from: 2026-11-04_ted_search_competition_sample.json (publication 722712-2026)
+  value_proc_currency:
+    ted_field: estimated-value-cur-proc
+    applies_to:
+    - competition
+    shape: scalar
+    note: ISO 4217
+    sample: EUR
+    sample_from: 2026-11-04_ted_search_competition_sample.json (publication 722712-2026)
+  value_lot:
+    ted_field: estimated-value-lot
+    applies_to:
+    - competition
+    shape: list
+    note: Per lot
+    sample:
+    - '436710'
+    - '300'
+    - '80'
+    sample_from: 2026-11-04_ted_search_competition_sample.json (publication 722712-2026)
+  value_lot_currency:
+    ted_field: estimated-value-cur-lot
+    applies_to:
+    - competition
+    shape: list
+    note: Often one entry for all lots
+    sample:
+    - EUR
+    sample_from: 2026-11-04_ted_search_competition_sample.json (publication 722712-2026)
+  result_lot_ids:
+    ted_field: result-lot-identifier
+    applies_to:
+    - result
+    shape: list
+    note: Lots with a result; aligned with winner_status and received_*
+    sample:
+    - LOT-0001
+    - LOT-0002
+    - LOT-0003
+    - LOT-0004
+    - LOT-0005
+    - LOT-0006
+    - LOT-0007
+    - LOT-0008
+    sample_from: 2026-11-04_ted_search_result_sample.json (publication 722709-2026)
+  winner_name:
+    ted_field: winner-name
+    applies_to:
+    - result
+    shape: multilingual-list
+    note: Aligned with winner_national_id and tender_lot_ids (per tender)
+    sample:
+      hrv:
+      - SANOL H d.o.o.
+      - LOHMANN & RAUSCHER d.o.o.
+      - SRIJEM d.o.o.
+      - MA-CO PLAST d.o.o.
+    sample_from: 2026-11-04_ted_search_result_sample.json (publication 722709-2026)
+  winner_national_id:
+    ted_field: winner-identifier
+    applies_to:
+    - result
+    shape: list
+    note: Croatian OIB for HR winners
+    sample:
+    - '65605433360'
+    - '70869514300'
+    - '79093000972'
+    - '20765781286'
+    sample_from: 2026-11-04_ted_search_result_sample.json (publication 722709-2026)
+  winner_status:
+    ted_field: winner-selection-status
+    applies_to:
+    - result
+    shape: list
+    note: 'per result lot: selec-w = winner selected; clos-nw = closed, no winner'
+    sample:
+    - selec-w
+    - selec-w
+    - selec-w
+    - clos-nw
+    - clos-nw
+    - clos-nw
+    - selec-w
+    - clos-nw
+    sample_from: 2026-11-04_ted_search_result_sample.json (publication 722709-2026)
+  winner_decision_date:
+    ted_field: winner-decision-date
+    applies_to:
+    - result
+    shape: list
+    note: per winner
+    sample:
+    - 2026-02-23+01:00
+    - 2026-03-03+01:00
+    - 2026-03-03+01:00
+    - 2026-02-23+01:00
+    sample_from: 2026-11-04_ted_search_result_sample.json (publication 722709-2026)
+  tender_lot_ids:
+    ted_field: tender-lot-identifier
+    applies_to:
+    - result
+    shape: list
+    note: Lot of each winning tender (aligned with winner_name)
+    sample:
+    - LOT-0001
+    - LOT-0002
+    - LOT-0003
+    - LOT-0007
+    sample_from: 2026-11-04_ted_search_result_sample.json (publication 722709-2026)
+  tender_ids:
+    ted_field: tender-identifier
+    applies_to:
+    - result
+    shape: list
+    note: ''
+    sample:
+    - KBCST//13012025
+    - 1201-02
+    - 2026-Rukavice-Grupa 3
+    - 02-KBCST-7
+    sample_from: 2026-11-04_ted_search_result_sample.json (publication 722709-2026)
+  received_type:
+    ted_field: received-submissions-type-code
+    applies_to:
+    - result
+    shape: list
+    note: 'Per lot: tenders, t-esubm, t-no-eea, t-oth-eea, t-sme (one block per lot)'
+    sample: '["tenders", "t-esubm", "t-no-eea", "t-oth-eea", "t-sme", "tenders", "t-esubm", "t-no-eea", "t-oth-eea",
+      "t-sme", "tenders", "t-esubm", "t-no-eea", "t-...'
+    sample_from: 2026-11-04_ted_search_result_sample.json (publication 722709-2026)
+  received_val:
+    ted_field: received-submissions-type-val
+    applies_to:
+    - result
+    shape: list
+    note: Strings; the 'tenders' entry is the number of tenders received
+    sample: '["2", "2", "0", "0", "2", "5", "5", "0", "0", "5", "2", "2", "0", "0", "2", "3", "3", "0", "0", "2",
+      "3", "3", "0", "0", "3", "3", "3", "0", "0", "2",...'
+    sample_from: 2026-11-04_ted_search_result_sample.json (publication 722709-2026)
+  tender_value:
+    ted_field: tender-value
+    applies_to:
+    - result
+    shape: list
+    note: per winning tender
+    sample:
+    - '9520'
+    - '116380'
+    - '66500'
+    - '12880'
+    sample_from: 2026-11-04_ted_search_result_sample.json (publication 722709-2026)
+  tender_value_currency:
+    ted_field: tender-value-cur
+    applies_to:
+    - result
+    shape: list
+    note: ''
+    sample:
+    - EUR
+    sample_from: 2026-11-04_ted_search_result_sample.json (publication 722709-2026)
+  links:
+    ted_field: links
+    applies_to:
+    - competition
+    - result
+    shape: object
+    note: 'Always returned: links.html.HRV / ENG, links.pdf.HRV / ENG, links.xml.MUL'
+    sample:
+      html:
+        HRV: https://ted.europa.eu/hr/notice/-/detail/722712-2026
+      pdf:
+        HRV: https://ted.europa.eu/hr/notice/722712-2026/pdf
+    sample_from: 2026-11-04_ted_search_competition_sample.json (publication 722712-2026)
