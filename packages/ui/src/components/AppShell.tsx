@@ -1,4 +1,4 @@
-import { useEffect, type ReactNode } from 'react';
+import { useEffect, type ComponentType, type ReactNode } from 'react';
 import { SkipLink } from './SkipLink';
 
 export interface NavItem {
@@ -13,7 +13,19 @@ export interface LicenceItem {
   href: string;
 }
 
+/** Props the shell passes to its internal link component (a plain <a> by default). */
+export interface ShellLinkProps {
+  href: string;
+  className?: string;
+  'aria-current'?: 'page';
+  target?: string;
+  rel?: string;
+  children: ReactNode;
+}
+
 export interface AppShellProps {
+  /** Replace <a> for internal links (e.g. a react-router adapter) to avoid full page loads. */
+  linkComponent?: ComponentType<ShellLinkProps>;
   brandName: string;
   logo?: ReactNode;
   /** Where the brand links to (default "/"). */
@@ -26,6 +38,10 @@ export interface AppShellProps {
   /** Extra footer content (e.g. a disclaimer). */
   footer?: ReactNode;
   children: ReactNode;
+}
+
+function DefaultLink({ children, ...rest }: ShellLinkProps) {
+  return <a {...rest}>{children}</a>;
 }
 
 export const DEFAULT_LICENCES: LicenceItem[] = [
@@ -44,6 +60,7 @@ export function AppShell({
   sourcesHref = '/izvori-podataka',
   licences = DEFAULT_LICENCES,
   footer,
+  linkComponent: Link = DefaultLink,
   children,
 }: AppShellProps) {
   useEffect(() => {
@@ -55,18 +72,18 @@ export function AppShell({
       <SkipLink />
       <header className="dt-header">
         <div className="dt-header__inner">
-          <a className="dt-brand" href={homeHref}>
+          <Link className="dt-brand" href={homeHref}>
             {logo ? <span aria-hidden="true">{logo}</span> : null}
             <span>{brandName}</span>
-          </a>
+          </Link>
           {nav.length > 0 ? (
             <nav aria-label="Glavna navigacija">
               <ul className="dt-nav">
                 {nav.map((item) => (
                   <li key={item.href}>
-                    <a href={item.href} aria-current={item.current ? 'page' : undefined}>
+                    <Link href={item.href} aria-current={item.current ? 'page' : undefined}>
                       {item.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -79,7 +96,7 @@ export function AppShell({
       </main>
       <footer className="dt-footer">
         <div className="dt-footer__inner">
-          <a href={sourcesHref}>Izvori podataka</a>
+          <Link href={sourcesHref}>Izvori podataka</Link>
           {licences.map((licence) => (
             <a key={licence.href} href={licence.href} target="_blank" rel="noopener noreferrer">
               {licence.label}

@@ -13,6 +13,7 @@ from slowapi.util import get_remote_address
 from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.requests import Request
 from starlette.responses import Response
+from starlette.types import Lifespan
 
 from opendata_core.config import CoreSettings
 from opendata_core.db import make_engine, make_session_dependency
@@ -76,6 +77,7 @@ def create_app(
     *,
     get_session: Callable[..., Any] | None = None,
     title: str | None = None,
+    lifespan: Lifespan[FastAPI] | None = None,
 ) -> FastAPI:
     """Create an app with logging, problem+json errors, health, CORS, rate limit, security headers.
 
@@ -87,6 +89,7 @@ def create_app(
             omitted it is built from ``settings.database_url`` if set, else the DB is reported as
             ``not_configured``.
         title: OpenAPI title (defaults to ``settings.app_name``).
+        lifespan: optional ASGI lifespan (e.g. to load data once at start-up).
     """
     if any(origin.strip() == "*" for origin in cors_origins):
         raise ValueError("wildcard CORS origins are not allowed; list origins explicitly")
@@ -97,6 +100,7 @@ def create_app(
 
     app = FastAPI(
         title=title or settings.app_name,
+        lifespan=lifespan,
         docs_url=None if settings.is_prod else "/docs",
         redoc_url=None,
         openapi_url=None if settings.is_prod else "/openapi.json",

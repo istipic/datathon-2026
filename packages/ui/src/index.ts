@@ -1,5 +1,5 @@
 export { AppShell, DEFAULT_LICENCES } from './components/AppShell';
-export type { AppShellProps, LicenceItem, NavItem } from './components/AppShell';
+export type { AppShellProps, LicenceItem, NavItem, ShellLinkProps } from './components/AppShell';
 export { ConfidenceBadge } from './components/ConfidenceBadge';
 export type { ConfidenceBadgeProps, ConfidenceLevel } from './components/ConfidenceBadge';
 export { ApiError, DataSourcesPage, fetchSources } from './components/DataSourcesPage';

@@ -1,0 +1,428 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "id": "idf4ae404b-b2bf-4d4a-8613-b74926343bb5",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     15.945245377526058,
+     45.801658169923385
+    ]
+   },
+   "properties": {
+    "areaOfResponsibility": {
+     "nil": true,
+     "nilReason": "other:unpopulated"
+    },
+    "beginLifespanVersion": {
+     "nil": true,
+     "nilReason": "other:unpopulated"
+    },
+    "endLifespanVersion": {
+     "nil": true,
+     "nilReason": "other:unpopulated"
+    },
+    "inspireId": {
+     "Identifier": {
+      "versionId": {
+       "nil": true,
+       "nilReason": "other:unpopulated"
+      },
+      "namespace": "OBRAZOVNI_OBJEKTI.GRAD_ZAGREB",
+      "localId": "77a55a88-b626-4bdd-8bdf-fa385686c098"
+     }
+    },
+    "pointOfContact": {
+     "nil": true,
+     "nilReason": "other:unpopulated"
+    },
+    "serviceLocation": {
+     "ServiceLocationType": {
+      "serviceLocationByGeometry": "POINT (15.945245 45.801658)"
+     }
+    },
+    "serviceType": {
+     "href": "http://inspire.ec.europa.eu/codelist/ServiceTypeValue/earlyChildhoodEducation"
+    }
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "idc4aea146-54ab-491e-9927-02099a0fe8da",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     15.93802074871875,
+     45.8089168867214
+    ]
+   },
+   "properties": {
+    "areaOfResponsibility": {
+     "nil": true,
+     "nilReason": "other:unpopulated"
+    },
+    "beginLifespanVersion": {
+     "nil": true,
+     "nilReason": "other:unpopulated"
+    },
+    "endLifespanVersion": {
+     "nil": true,
+     "nilReason": "other:unpopulated"
+    },
+    "inspireId": {
+     "Identifier": {
+      "versionId": {
+       "nil": true,
+       "nilReason": "other:unpopulated"
+      },
+      "namespace": "OBRAZOVNI_OBJEKTI.GRAD_ZAGREB",
+      "localId": "428af1a1-fdb0-4e1b-b288-166bdacb7ef3"
+     }
+    },
+    "pointOfContact": {
+     "nil": true,
+     "nilReason": "other:unpopulated"
+    },
+    "serviceLocation": {
+     "ServiceLocationType": {
+      "serviceLocationByGeometry": "POINT (15.938021 45.808917)"
+     }
+    },
+    "serviceType": {
+     "href": "http://inspire.ec.europa.eu/codelist/ServiceTypeValue/earlyChildhoodEducation"
+    }
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "id46eb00c7-56cf-43d8-85c3-fc521a528c75",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     15.93721993657557,
+     45.79971810329037
+    ]
+   },
+   "properties": {
+    "areaOfResponsibility": {
+     "nil": true,
+     "nilReason": "other:unpopulated"
+    },
+    "beginLifespanVersion": {
+     "nil": true,
+     "nilReason": "other:unpopulated"
+    },
+    "endLifespanVersion": {
+     "nil": true,
+     "nilReason": "other:unpopulated"
+    },
+    "inspireId": {
+     "Identifier": {
+      "versionId": {
+       "nil": true,
+       "nilReason": "other:unpopulated"
+      },
+      "namespace": "OBRAZOVNI_OBJEKTI.GRAD_ZAGREB",
+      "localId": "fc81ee9c-08da-43c2-b8d8-e49e7301dae0"
+     }
+    },
+    "pointOfContact": {
+     "nil": true,
+     "nilReason": "other:unpopulated"
+    },
+    "serviceLocation": {
+     "ServiceLocationType": {
+      "serviceLocationByGeometry": "POINT (15.937220 45.799718)"
+     }
+    },
+    "serviceType": {
+     "href": "http://inspire.ec.europa.eu/codelist/ServiceTypeValue/earlyChildhoodEducation"
+    }
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "id9246ec83-5ce8-48d2-bbec-02f6895e6192",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     15.967097040542711,
+     45.84371963810301
+    ]
+   },
+   "properties": {
+    "areaOfResponsibility": {
+     "nil": true,
+     "nilReason": "other:unpopulated"
+    },
+    "beginLifespanVersion": {
+     "nil": true,
+     "nilReason": "other:unpopulated"
+    },
+    "endLifespanVersion": {
+     "nil": true,
+     "nilReason": "other:unpopulated"
+    },
+    "inspireId": {
+     "Identifier": {
+      "versionId": {
+       "nil": true,
+       "nilReason": "other:unpopulated"
+      },
+      "namespace": "OBRAZOVNI_OBJEKTI.GRAD_ZAGREB",
+      "localId": "9d522d8c-9fbf-421e-8fb5-538c35139672"
+     }
+    },
+    "pointOfContact": {
+     "nil": true,
+     "nilReason": "other:unpopulated"
+    },
+    "serviceLocation": {
+     "ServiceLocationType": {
+      "serviceLocationByGeometry": "POINT (15.967097 45.843720)"
+     }
+    },
+    "serviceType": {
+     "href": "http://inspire.ec.europa.eu/codelist/ServiceTypeValue/primaryEducation"
+    }
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "id7f9d6b07-8dff-47d2-8697-b66901987f61",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     15.993488025437312,
+     45.80815253612613
+    ]
+   },
+   "properties": {
+    "areaOfResponsibility": {
+     "nil": true,
+     "nilReason": "other:unpopulated"
+    },
+    "beginLifespanVersion": {
+     "nil": true,
+     "nilReason": "other:unpopulated"
+    },
+    "endLifespanVersion": {
+     "nil": true,
+     "nilReason": "other:unpopulated"
+    },
+    "inspireId": {
+     "Identifier": {
+      "versionId": {
+       "nil": true,
+       "nilReason": "other:unpopulated"
+      },
+      "namespace": "OBRAZOVNI_OBJEKTI.GRAD_ZAGREB",
+      "localId": "d05bab1c-2223-49b1-a14c-f7f89c7bb5d1"
+     }
+    },
+    "pointOfContact": {
+     "nil": true,
+     "nilReason": "other:unpopulated"
+    },
+    "serviceLocation": {
+     "ServiceLocationType": {
+      "serviceLocationByGeometry": "POINT (15.993488 45.808153)"
+     }
+    },
+    "serviceType": {
+     "href": "http://inspire.ec.europa.eu/codelist/ServiceTypeValue/primaryEducation"
+    }
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "idf4d6993a-abf2-4872-b520-97ff5c12c277",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     15.96388697375698,
+     45.81889915038288
+    ]
+   },
+   "properties": {
+    "areaOfResponsibility": {
+     "nil": true,
+     "nilReason": "other:unpopulated"
+    },
+    "beginLifespanVersion": {
+     "nil": true,
+     "nilReason": "other:unpopulated"
+    },
+    "endLifespanVersion": {
+     "nil": true,
+     "nilReason": "other:unpopulated"
+    },
+    "inspireId": {
+     "Identifier": {
+      "versionId": {
+       "nil": true,
+       "nilReason": "other:unpopulated"
+      },
+      "namespace": "OBRAZOVNI_OBJEKTI.GRAD_ZAGREB",
+      "localId": "9572f95f-61ee-4561-82a0-5280bb7cd048"
+     }
+    },
+    "pointOfContact": {
+     "nil": true,
+     "nilReason": "other:unpopulated"
+    },
+    "serviceLocation": {
+     "ServiceLocationType": {
+      "serviceLocationByGeometry": "POINT (15.963887 45.818899)"
+     }
+    },
+    "serviceType": {
+     "href": "http://inspire.ec.europa.eu/codelist/ServiceTypeValue/primaryEducation"
+    }
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "id0a8a2fb4-ef1f-414e-bff3-fba026d96a76",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     15.936380541790935,
+     45.81222032535579
+    ]
+   },
+   "properties": {
+    "areaOfResponsibility": {
+     "nil": true,
+     "nilReason": "other:unpopulated"
+    },
+    "beginLifespanVersion": {
+     "nil": true,
+     "nilReason": "other:unpopulated"
+    },
+    "endLifespanVersion": {
+     "nil": true,
+     "nilReason": "other:unpopulated"
+    },
+    "inspireId": {
+     "Identifier": {
+      "versionId": {
+       "nil": true,
+       "nilReason": "other:unpopulated"
+      },
+      "namespace": "OBRAZOVNI_OBJEKTI.GRAD_ZAGREB",
+      "localId": "54"
+     }
+    },
+    "pointOfContact": {
+     "nil": true,
+     "nilReason": "other:unpopulated"
+    },
+    "serviceLocation": {
+     "ServiceLocationType": {
+      "serviceLocationByGeometry": "POINT (15.936381 45.812220)"
+     }
+    },
+    "serviceType": {
+     "href": "http://inspire.ec.europa.eu/codelist/ServiceTypeValue/upperSecondaryEducation"
+    }
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "id18904d81-5e71-4493-84aa-76952f862af4",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     15.95363903791151,
+     45.81533951953106
+    ]
+   },
+   "properties": {
+    "areaOfResponsibility": {
+     "nil": true,
+     "nilReason": "other:unpopulated"
+    },
+    "beginLifespanVersion": {
+     "nil": true,
+     "nilReason": "other:unpopulated"
+    },
+    "endLifespanVersion": {
+     "nil": true,
+     "nilReason": "other:unpopulated"
+    },
+    "inspireId": {
+     "Identifier": {
+      "versionId": {
+       "nil": true,
+       "nilReason": "other:unpopulated"
+      },
+      "namespace": "OBRAZOVNI_OBJEKTI.GRAD_ZAGREB",
+      "localId": "42"
+     }
+    },
+    "pointOfContact": {
+     "nil": true,
+     "nilReason": "other:unpopulated"
+    },
+    "serviceLocation": {
+     "ServiceLocationType": {
+      "serviceLocationByGeometry": "POINT (15.953639 45.815340)"
+     }
+    },
+    "serviceType": {
+     "href": "http://inspire.ec.europa.eu/codelist/ServiceTypeValue/upperSecondaryEducation"
+    }
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "id07e90e67-e1d9-4b4d-976d-69baa508ba3b",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     15.933155949247059,
+     45.81371161898594
+    ]
+   },
+   "properties": {
+    "areaOfResponsibility": {
+     "nil": true,
+     "nilReason": "other:unpopulated"
+    },
+    "beginLifespanVersion": {
+     "nil": true,
+     "nilReason": "other:unpopulated"
+    },
+    "endLifespanVersion": {
+     "nil": true,
+     "nilReason": "other:unpopulated"
+    },
+    "inspireId": {
+     "Identifier": {
+      "versionId": {
+       "nil": true,
+       "nilReason": "other:unpopulated"
+      },
+      "namespace": "OBRAZOVNI_OBJEKTI.GRAD_ZAGREB",
+      "localId": "78"
+     }
+    },
+    "pointOfContact": {
+     "nil": true,
+     "nilReason": "other:unpopulated"
+    },
+    "serviceLocation": {
+     "ServiceLocationType": {
+      "serviceLocationByGeometry": "POINT (15.933156 45.813712)"
+     }
+    },
+    "serviceType": {
+     "href": "http://inspire.ec.europa.eu/codelist/ServiceTypeValue/upperSecondaryEducation"
+    }
+   }
+  }
+ ]
+}

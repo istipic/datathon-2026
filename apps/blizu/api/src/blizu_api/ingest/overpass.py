@@ -15,11 +15,10 @@ log = structlog.get_logger(__name__)
 
 ENDPOINTS = (
     "https://overpass-api.de/api",
-    "https://overpass.kumi.systems/api",
-    "https://overpass.private.coffee/api",
+    "https://overpass.openstreetmap.fr/api",
 )
 MAX_ATTEMPTS = 10
-BASE_WAIT_S = 20.0
+BASE_WAIT_S = 15.0
 MAX_WAIT_S = 300.0
 
 # Indirection so tests do not sleep.
@@ -27,7 +26,7 @@ _sleep = time.sleep
 
 
 def backoff_seconds(attempt: int) -> float:
-    """Wait before retry number ``attempt`` (1-based): 20, 40, 80, ... capped at 300 s."""
+    """Wait before retry number ``attempt`` (1-based): 15, 30, 60, ... capped at 300 s."""
     return min(MAX_WAIT_S, BASE_WAIT_S * 2 ** (attempt - 1))
 
 

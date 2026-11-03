@@ -315,7 +315,7 @@ def download_osm_features(settings: BlizuSettings) -> dict[str, pd.DataFrame]:
     import osmnx as ox
 
     ox.settings.http_user_agent = f"blizu/0.1 (+mailto:{settings.contact_email}) datathon-2026"
-    ox.settings.requests_timeout = 180  # feature queries are small; fail fast and retry
+    ox.settings.requests_timeout = 300
     ox.settings.cache_folder = str(settings.data_dir / "cache" / "osmnx")
     ox.settings.log_console = False
     out: dict[str, pd.DataFrame] = {}

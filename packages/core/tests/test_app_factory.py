@@ -213,3 +213,21 @@ def test_sources_endpoint_lists_registered_sources(
 def test_custom_title(settings: CoreSettings) -> None:
     c = _client(settings, title="Blizu API")
     assert c.get("/openapi.json").json()["info"]["title"] == "Blizu API"
+
+
+def test_lifespan_runs_at_startup_and_shutdown(settings: CoreSettings) -> None:
+    from contextlib import asynccontextmanager
+
+    events: list[str] = []
+
+    @asynccontextmanager
+    async def lifespan(app: object):  # type: ignore[no-untyped-def]
+        events.append("start")
+        yield
+        events.append("stop")
+
+    app = create_app(settings, [], [ORIGIN], lifespan=lifespan)
+    with TestClient(app) as client:
+        assert client.get("/health").status_code == 200
+        assert events == ["start"]
+    assert events == ["start", "stop"]
