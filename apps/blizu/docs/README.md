@@ -73,20 +73,26 @@ Korisne varijable (`apps/blizu/.env.example`): `DATABASE_URL`, `CONTACT_EMAIL`, 
 
 ### Koraci unosa (`blizu ingest <korak>`)
 
-| Korak        | Što radi                                                                                           | Tipično trajanje                   |
-| ------------ | -------------------------------------------------------------------------------------------------- | ---------------------------------- |
-| `sources`    | registrira `data_source` redove (naslov, izdavač, licencija čitaju se iz CKAN metapodataka)        | 2 s                                |
-| `graph`      | OSM pješačka mreža (`osmnx`, Overpass) → dva neusmjerena CSR grafa u EPSG:3765, `graph_*.npz`      | **ovisi o Overpassu** (vidi dolje) |
-| `facilities` | vrtići (CSV), škole (WFS), OSM kategorije; dedupliciranje službeno ≻ OSM u 50 m; slobodna mjesta   | 20–30 s                            |
-| `gtfs`       | referentna srijeda, polasci 07–09 h / 2 po stajalištu (roditeljska stanica), ≥ 6/h = „prijevoz”    | 6 s                                |
-| `access`     | snap objekata na čvor (≤ 200 m), `dijkstra(min_only, limit=4000)` po varijanti i kategoriji        | 2 s                                |
-| `grid`       | Eurostat mreža za Hrvatsku → ćelije unutar Zagreba → prosječne minute po ćeliji/personi/kategoriji | 25–60 s (566 MB preuzimanje)       |
+| Korak        | Što radi                                                                                                                                                        | Tipično trajanje                                    |
+| ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- |
+| `sources`    | registrira `data_source` redove (naslov, izdavač, licencija čitaju se iz CKAN metapodataka)                                                                     | 2 s                                                 |
+| `graph`      | pješačka mreža Grada Zagreba → dva neusmjerena CSR grafa u EPSG:3765 (`graph_*.npz`): osmnx/Overpass, a ako Overpass ne odgovori, Geofabrik ekstrakt (`osmium`) | osmnx: 1–5 min kad Overpass radi; ekstrakt: ≈ 3 min |
+| `facilities` | vrtići (CSV), škole (WFS), OSM kategorije; dedupliciranje službeno ≻ OSM u 50 m; slobodna mjesta                                                                | 20–30 s                                             |
+| `gtfs`       | referentna srijeda, polasci 07–09 h / 2 po stajalištu (roditeljska stanica), ≥ 6/h = „prijevoz”                                                                 | 6 s                                                 |
+| `access`     | snap objekata na čvor (≤ 200 m), `dijkstra(min_only, limit=4000)` po varijanti i kategoriji                                                                     | 2 s                                                 |
+| `grid`       | Eurostat mreža za Hrvatsku → ćelije unutar Zagreba → prosječne minute po ćeliji/personi/kategoriji                                                              | 25–60 s (566 MB preuzimanje)                        |
 
-**Overpass.** Javni Overpass poslužitelji su povremeno preopterećeni (502/504, ConnectTimeout). Korak `graph` ponavlja
-upit s eksponencijalnim čekanjem (osmnx sprema svaki završeni odgovor u `data/cache/osmnx`). Za objekte `facilities`
-u načinu `auto` pokušava Overpass 2 puta (90 s) pa čita Geofabrik ekstrakt Hrvatske (`osmium`, ≈ 200 MB, 10 s obrade)
-— vidi [ADR 0005](../../../docs/adr/0005-geofabrik-fallback-for-osm-features.md). Svaki korak upisuje `ingestion_run`
-(uključujući neuspjele) i datoteku u `data/derived/manifest.json`.
+**Overpass.** Javni Overpass poslužitelji su povremeno preopterećeni (502/504, ConnectTimeout); u razvoju su bili
+nedostupni satima (jedan `graph_from_place` trajao je 77 minuta). Zato `OSM_FEATURE_SOURCE=auto` (zadano) radi
+ovako: jedan pokušaj Overpassa (graf: 3 min; objekti: 2 pokušaja po 90 s), pa **Geofabrik ekstrakt Hrvatske**
+(`croatia-latest.osm.pbf`, ≈ 200 MB) čitan s `osmium` — za graf (`graph_pbf.py`, isti „walk” filter kao osmnx,
+najveća povezana komponenta, 344 tis. čvorova) i za objekte. Graf iz ekstrakta daje iste mrežne udaljenosti kao osmnx
+graf (medijan omjera 1,000; p10 0,965; p90 1,01 na 40 parova). Vidi
+[ADR 0005](../../../docs/adr/0005-geofabrik-fallback-for-osm-features.md). Svaki korak upisuje `ingestion_run`
+(uključujući neuspjele) i datoteku u `data/derived/manifest.json` (`graph.via`, `osm_via`).
+
+**Izmjereno:** `make ingest APP=blizu STEP=all` od nule (nova baza, prazan `DATA_DIR`, bez osmnx cachea) uz
+nedostupan Overpass: **466 s (7,8 min)**, izlaz 0, sedam izvora s uspješnim `ingestion_run`.
 
 ## API (`/api/v1`)
 
@@ -125,10 +131,10 @@ jednako na čvorove ćelije; čvor je pokriven ako je nova ustanova unutar `g ·
 ## Testovi
 
 ```bash
-uv run pytest apps/blizu/api                        # 134 testa, bez mreže (stvarni fixturi)
+uv run pytest apps/blizu/api                        # 190+ testova, bez mreže (stvarni fixturi)
 TEST_DATABASE_URL=… uv run pytest apps/blizu/api    # + testovi koji trebaju PostGIS
 uv run --package blizu-api --extra semantic pytest -m slow apps/blizu/api   # pravi e5 model
-pnpm --filter blizu-web test                        # 38 vitest testova
+pnpm --filter blizu-web test                        # 38 vitest testova (+ 7 Playwright)
 BLIZU_API_URL=http://127.0.0.1:8010 pnpm --filter blizu-web e2e   # Playwright (treba API + podaci)
 uv run --package blizu-api blizu validate           # usporedba s OSRM-om → docs/validation.md
 ```
@@ -141,7 +147,8 @@ funkcije (`snap_facilities`, `nearest_facility_distances`, `compute_cell_access`
 
 - **Udaljenosti vs OSRM (foot):** 20 nasumičnih parova, MAE 50 m, medijan omjera naša/OSRM 0,991,
   90 % unutar ±20 % — [validation.md](validation.md).
-- **API:** `/access` p95 4,6 ms (100 zahtjeva nakon zagrijavanja); `/plan/optimise` k=3: 1,5 s hladno, ≈ 10 ms iz cachea.
+- **API:** `/access` p95 3,8–4,6 ms (100 zahtjeva nakon zagrijavanja, oba grafa); `/plan/optimise` k=3: 3,5 s hladno
+  (graf od 344 tis. čvorova, 4 niti), ≈ 20–30 ms iz cachea.
 - **Lighthouse (mobilni), `/kartica`:** performanse 85–88, pristupačnost 100, CLS ≈ 0, TBT ≤ 20 ms.
 - Karta se prikazuje kroz OpenFreeMap („liberty”), uz OSM raster kao pričuvu i uvijek vidljivu atribuciju
   „© OpenStreetMap contributors”.
