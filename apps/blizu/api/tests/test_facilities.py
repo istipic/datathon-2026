@@ -166,3 +166,74 @@ def test_osm_frame_conversion_points_and_park_polygons() -> None:
     post = fac.osm_features_to_frame(gdf.iloc[[1]], "posta").iloc[0]
     assert post["address"] == "Ilica 5"
     assert "access_points" not in post["attrs"]
+
+
+def test_facility_records_turn_missing_text_into_null_not_the_string_nan(
+    skole: pd.DataFrame,
+) -> None:
+    """Real unnamed schools (the INSPIRE source has no names): pandas 3 makes them NaN."""
+    frame = pd.concat(
+        [
+            skole,
+            fac.parse_vrtici(
+                (FIX / "zg-vrtici" / "2026-11-03_vrtici_sample.csv").read_text(encoding="utf-8")
+            ).head(2),
+        ],
+        ignore_index=True,
+    )
+    assert frame["name"].isna().sum() == 3  # the three schools have no name
+    records = fac.facility_records(frame)
+    assert [r["name"] for r in records[:3]] == [None, None, None]
+    assert all(r["address"] is None for r in records[:3])
+    assert records[3]["name"] == "BAJKA"
+    assert records[3]["geom"].startswith("SRID=4326;POINT(15.94")
+    assert all(r["name"] != "NaN" and r["address"] != "NaN" for r in records)
+    assert all(r["source_record_id"] not in (None, "NaN") for r in records)
+
+
+def test_school_hints_never_name_a_primary_school_after_a_secondary_one(
+    skole: pd.DataFrame,
+) -> None:
+    """Real case: "IV. gimnazija Zagreb" stands next to the primary school record."""
+    one = skole.head(1).reset_index(drop=True)
+    gym = _offset(one, 10)
+    gym["name"] = "IV. gimnazija Zagreb"
+    os_ = _offset(one, 35)
+    os_["name"] = "Osnovna škola Hugo Kon"
+    hints = pd.concat([gym, os_], ignore_index=True)
+    # plain nearest-hint matching would pick the gymnasium (10 m)
+    assert fac.attach_name_hints(one, hints)[0]["name"].iloc[0] == "IV. gimnazija Zagreb"
+    named, n = fac.attach_name_hints(
+        one, hints, exclude=fac.SECONDARY_SCHOOL, prefer=fac.PRIMARY_SCHOOL
+    )
+    assert n == 1
+    assert named["name"].iloc[0] == "Osnovna škola Hugo Kon"
+    assert named["attrs"].iloc[0]["name_hint_distance_m"] == pytest.approx(35, abs=2)
+    # only a secondary school nearby -> the record stays unnamed (honest, not wrong)
+    named, n = fac.attach_name_hints(
+        one, gym, exclude=fac.SECONDARY_SCHOOL, prefer=fac.PRIMARY_SCHOOL
+    )
+    assert n == 0
+    assert pd.isna(named["name"].iloc[0])
+
+
+@pytest.mark.parametrize(
+    ("name", "secondary", "primary"),
+    [
+        ("IV. gimnazija Zagreb", True, False),
+        ("Tehnička škola Ruđera Boškovića", True, False),
+        ("Srednja strukovna škola", True, False),
+        ("Osnovna škola Hugo Kon", False, True),
+        ("OŠ Augusta Šenoe", False, True),
+        ("O.Š. Petra Zrinskog", False, True),
+        (
+            "Osnovna glazbena škola",
+            True,
+            True,
+        ),  # a music school: excluded because it is secondary-like
+        ("Škola za medicinske sestre", True, False),
+    ],
+)
+def test_school_name_patterns(name: str, secondary: bool, primary: bool) -> None:
+    assert bool(fac.SECONDARY_SCHOOL.search(name)) is secondary
+    assert bool(fac.PRIMARY_SCHOOL.search(name)) is primary

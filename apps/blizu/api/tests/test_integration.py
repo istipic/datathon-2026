@@ -359,3 +359,32 @@ def test_api_starts_without_data_and_answers_503(client_factory) -> None:  # typ
             ).status_code
             == 503
         )
+
+
+def test_responses_never_contain_nan_for_unnamed_or_address_less_facilities(
+    store: DataStore, client: TestClient
+) -> None:
+    """pandas turns missing text into NaN; it must never reach the API ("NaN · NaN" in the UI)."""
+    import math
+
+    import numpy as np
+
+    rng = np.random.default_rng(11)
+    g = store.graph
+    sample = rng.choice(g.n_nodes, size=40, replace=False)
+    unnamed_seen = 0
+    for i in sample:
+        for persona in ("opce", "kolica"):
+            result = service.compute_access(store, float(g.lat[i]), float(g.lon[i]), persona)
+            json.dumps(result, allow_nan=False)  # raises ValueError on NaN
+            for c in result["categories"]:
+                near = c["nearest"]
+                if near:
+                    assert isinstance(near["name"], str)
+                    assert near["address"] is None or isinstance(near["address"], str)
+                    assert not (isinstance(near["address"], float) and math.isnan(near["address"]))
+                    unnamed_seen += near["address"] is None
+    assert unnamed_seen > 0, "the real data has facilities without an address (e.g. parks)"
+    r = client.get("/api/v1/facilities", params={"bbox": "15.96,45.80,15.99,45.82"})
+    assert "NaN" not in r.text
+    assert any(f["properties"]["address"] is None for f in r.json()["features"])

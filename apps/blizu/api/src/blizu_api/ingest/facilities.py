@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import io
 import json
+import re
 from contextlib import ExitStack
 from datetime import UTC, datetime
 from pathlib import Path
@@ -73,7 +74,7 @@ OSM_NAME_HINT_TAGS: dict[str, Any] = {"amenity": ["school"]}
 
 
 def _clean(value: Any) -> str | None:
-    if value is None or (isinstance(value, float) and np.isnan(value)):
+    if value is None or (isinstance(value, float) and np.isnan(value)) or value is pd.NA:
         return None
     text = str(value).strip()
     return text or None
@@ -237,28 +238,57 @@ def dedupe_official_vs_osm(
     return df[keep].reset_index(drop=True), int((~keep).sum())
 
 
-def attach_name_hints(
-    official: pd.DataFrame, hints: pd.DataFrame, radius_m: float = NAME_HINT_RADIUS_M
-) -> tuple[pd.DataFrame, int]:
-    """Give nameless official rows the name of the nearest OSM hint within ``radius_m``.
+# A school hint must be the right kind of school: the INSPIRE records are PRIMARY schools, and many
+# primary and secondary schools share a campus or a street (e.g. "IV. gimnazija" next to an OŠ).
+SECONDARY_SCHOOL = re.compile(
+    r"gimnazij|srednj|tehničk|strukovn|učeničk|obrtničk|ekonomsk|graditeljsk|prirodoslovn|"
+    r"škola za |umjetničk|glazbena|plesna|fakultet|akademij|sveučilišt|učilište",
+    re.IGNORECASE,
+)
+PRIMARY_SCHOOL = re.compile(r"osnovn|\bo\.?\s?š\b", re.IGNORECASE)
 
-    The origin is recorded in ``attrs['name_source'] = 'osm'`` (ODbL attribution applies).
+
+def attach_name_hints(
+    official: pd.DataFrame,
+    hints: pd.DataFrame,
+    radius_m: float = NAME_HINT_RADIUS_M,
+    exclude: re.Pattern[str] | None = None,
+    prefer: re.Pattern[str] | None = None,
+) -> tuple[pd.DataFrame, int]:
+    """Give nameless official rows the name of a nearby OSM hint (within ``radius_m``).
+
+    Hints whose name matches ``exclude`` are never used; among the remaining ones a name matching
+    ``prefer`` wins over a nearer one that does not. The origin is recorded in
+    ``attrs['name_source'] = 'osm'`` (ODbL attribution applies).
     """
     official = official.copy()
     hints = hints[hints["name"].notna()].reset_index(drop=True)
+    if exclude is not None:
+        hints = hints[~hints["name"].map(lambda x: bool(exclude.search(str(x))))].reset_index(
+            drop=True
+        )
     if official.empty or hints.empty:
         return official, 0
     tree = cKDTree(_xy(hints))
-    dist, idx = tree.query(_xy(official), k=1)
+    hint_xy = tree.data
+    off_xy = _xy(official)
     n = 0
     names = official["name"].tolist()
     attrs = [dict(a) for a in official["attrs"]]
-    for i, (d, j) in enumerate(zip(dist, idx, strict=True)):
-        if names[i] is None and d <= radius_m:
-            names[i] = hints.loc[j, "name"]
-            attrs[i]["name_source"] = "osm"
-            attrs[i]["name_hint_distance_m"] = round(float(d), 1)
-            n += 1
+    for i in range(len(official)):
+        if not pd.isna(names[i]):
+            continue
+        near = tree.query_ball_point(off_xy[i], r=radius_m)
+        if not near:
+            continue
+        near.sort(key=lambda j: float(np.hypot(*(hint_xy[j] - off_xy[i]))))
+        pick = next(
+            (j for j in near if prefer and prefer.search(str(hints.loc[j, "name"]))), near[0]
+        )
+        names[i] = hints.loc[pick, "name"]
+        attrs[i]["name_source"] = "osm"
+        attrs[i]["name_hint_distance_m"] = round(float(np.hypot(*(hint_xy[pick] - off_xy[i]))), 1)
+        n += 1
     official["name"] = names
     official["attrs"] = attrs
     return official, n
@@ -413,6 +443,26 @@ def download_osm_features(
     }
 
 
+def facility_records(frame: pd.DataFrame) -> list[dict[str, Any]]:
+    """Rows for ``insert(Facility)``. Missing text becomes NULL, never the string 'NaN'.
+
+    pandas 3 stores missing strings as NaN; passing that to PostgreSQL would write the text 'NaN'.
+    """
+    return [
+        {
+            "category": r.category,
+            "name": _clean(r.name),
+            "address": _clean(r.address),
+            "geom": f"SRID=4326;POINT({r.lon:.7f} {r.lat:.7f})",
+            "source_id": r.source_id,
+            "tier": r.tier,
+            "source_record_id": _clean(r.source_record_id),
+            "attrs": r.attrs,
+        }
+        for r in frame.itertuples(index=False)
+    ]
+
+
 # ----------------------------------------------------------------------------- orchestration
 
 
@@ -452,7 +502,9 @@ def ingest_facilities(session: Session, settings: BlizuSettings) -> dict[str, in
             run_o.retrieved_url = osm_info["url"]
             run_o.sha256 = osm_info["sha256"]
             hints = osm.pop("_school_names")
-            skole, named = attach_name_hints(skole, hints)
+            skole, named = attach_name_hints(
+                skole, hints, exclude=SECONDARY_SCHOOL, prefer=PRIMARY_SCHOOL
+            )
             log.info("school_names_from_osm", named=named, total=len(skole))
 
             frame = pd.concat([vrtici, skole, *osm.values()], ignore_index=True)
@@ -462,19 +514,7 @@ def ingest_facilities(session: Session, settings: BlizuSettings) -> dict[str, in
             session.execute(
                 delete(Facility).where(Facility.source_id.in_([SRC_VRTICI, SRC_SKOLE, SRC_OSM]))
             )
-            records = [
-                {
-                    "category": r.category,
-                    "name": r.name,
-                    "address": r.address,
-                    "geom": f"SRID=4326;POINT({r.lon:.7f} {r.lat:.7f})",
-                    "source_id": r.source_id,
-                    "tier": r.tier,
-                    "source_record_id": r.source_record_id,
-                    "attrs": r.attrs,
-                }
-                for r in frame.itertuples(index=False)
-            ]
+            records = facility_records(frame)
             for i in range(0, len(records), 5000):
                 session.execute(insert(Facility), records[i : i + 5000])
             counts = frame.groupby("source_id").size().to_dict()

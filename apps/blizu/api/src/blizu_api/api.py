@@ -15,7 +15,7 @@ from blizu_api.names import fuzzy_join
 from blizu_api.planner import Planner
 from blizu_api.search import CategorySearch
 from blizu_api.settings import BlizuSettings
-from blizu_api.store import DataStore
+from blizu_api.store import DataStore, clean
 from opendata_core import geocode as core_geocode
 from opendata_core.geo import in_croatia
 
@@ -114,7 +114,7 @@ def free_places_response(store: DataStore) -> dict[str, Any]:
         base = {
             "name": row.name,
             "district": row.district,
-            "branches": row.branches,
+            "branches": clean(row.branches),
             "jaslice_free": int(row.jaslice_free),
             "vrtic_free": int(row.vrtic_free),
             "total_free": int(row.total_free),
@@ -293,8 +293,8 @@ def make_router(get_session: Callable[..., Any], settings: BlizuSettings) -> API
                 "properties": {
                     "id": int(r.id),
                     "category": r.category,
-                    "name": service.display_name(store, r.category, r.name),
-                    "address": r.address,
+                    "name": service.display_name(store, r.category, clean(r.name)),
+                    "address": clean(r.address),
                     "source_id": r.source_id,
                     "tier": r.tier,
                 },

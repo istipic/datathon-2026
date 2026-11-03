@@ -33,6 +33,16 @@ FALLBACK_GROUP = "pop_total"
 STREET_MAX_M = 150.0
 
 
+def clean(value: Any) -> Any:
+    """None for missing values: pandas turns missing text into NaN, which must never reach JSON."""
+    if value is None:
+        return None
+    try:
+        return None if pd.isna(value) else value
+    except (TypeError, ValueError):  # lists / dicts
+        return value
+
+
 @dataclass
 class DataStore:
     """Everything the endpoints need, loaded once at start-up."""
@@ -125,8 +135,8 @@ class DataStore:
         row = self.facilities.loc[fid]
         return {
             "id": int(fid),
-            "name": row["name"],
-            "address": row["address"],
+            "name": clean(row["name"]),
+            "address": clean(row["address"]),
             "lon": float(row["lon"]),
             "lat": float(row["lat"]),
             "source_id": row["source_id"],

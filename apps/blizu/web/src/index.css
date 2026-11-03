@@ -54,36 +54,55 @@ body {
   vertical-align: middle;
 }
 
-/* Print: one-page card without map and navigation */
+/* Print: one-page A4 card without map, navigation and interactive controls */
+@page {
+  size: A4;
+  margin: 12mm;
+}
 @media print {
   .dt-header,
   .dt-footer,
   .dt-skip-link,
   .blizu-noprint,
   .maplibregl-map,
-  .blizu-mapcol {
+  .blizu-mapcol,
+  .blizu-card [role='radiogroup'],
+  .blizu-row-source-toggle,
+  .blizu-row-score,
+  .blizu-row-bar,
+  [data-testid^='source-'] {
     display: none !important;
+  }
+  body {
+    background: #fff;
   }
   .dt-main {
     padding: 0;
     max-width: none;
   }
-  body {
-    background: #fff;
-  }
   .blizu-card {
-    break-inside: avoid;
-    font-size: 11pt;
+    font-size: 10.5pt;
+    line-height: 1.3;
+  }
+  .blizu-card h1 {
+    margin-bottom: 4pt;
+    font-size: 16pt;
+  }
+  .blizu-card [data-grade] {
+    width: 64px !important;
+    height: 64px !important;
+    font-size: 36px !important;
   }
   .blizu-card li {
     break-inside: avoid;
-    padding-top: 2px;
-    padding-bottom: 2px;
+    padding-top: 3pt;
+    padding-bottom: 3pt;
   }
-  [data-testid^='source-'] {
-    display: none !important;
+  .blizu-card li button {
+    min-height: 0 !important;
   }
-  .blizu-card a[href]::after {
-    content: '';
+  .blizu-card [data-testid='data-note'] {
+    margin-top: 6pt;
+    font-size: 8.5pt;
   }
 }

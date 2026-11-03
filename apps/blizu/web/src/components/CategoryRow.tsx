@@ -49,7 +49,7 @@ export function CategoryRow({ result, source, onSelect }: Props) {
             {result.nearest ? <span className="dt-sr-only"> Prikaži na karti.</span> : null}
           </span>
           <span
-            className="mt-2 block h-2 w-full overflow-hidden rounded-full bg-neutral-200"
+            className="blizu-row-bar mt-2 block h-2 w-full overflow-hidden rounded-full bg-neutral-200"
             aria-hidden="true"
           >
             <span
@@ -57,7 +57,7 @@ export function CategoryRow({ result, source, onSelect }: Props) {
               style={{ width: `${percent}%`, opacity: irrelevant ? 0.35 : 1 }}
             />
           </span>
-          <span className="mt-1 flex justify-between text-xs text-neutral-600">
+          <span className="blizu-row-score mt-1 flex justify-between text-xs text-neutral-600">
             <span>
               Ocjena {percent} %{irrelevant ? ' · ne ulazi u indeks za ovu osobu' : ''}
             </span>
@@ -68,7 +68,7 @@ export function CategoryRow({ result, source, onSelect }: Props) {
         </button>
         <button
           type="button"
-          className="min-h-[44px] min-w-[44px] rounded-md px-2 text-sm text-brand-700 underline"
+          className="blizu-row-source-toggle min-h-[44px] min-w-[44px] rounded-md px-2 text-sm text-brand-700 underline"
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
           aria-label={`Izvor podataka: ${result.label}`}
