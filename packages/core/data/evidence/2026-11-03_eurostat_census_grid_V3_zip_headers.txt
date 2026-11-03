@@ -1,0 +1,17 @@
+HTTP/1.1 200 OK
+Date: Tue, 03 Nov 2026 18:37:24 GMT
+Content-Type: application/zip
+Content-Length: 566125577
+Connection: keep-alive
+Set-Cookie: gisco-waf-prod-affinityCORS=b57d715d33dc382261003da489c62023; Path=/; SameSite=None; Secure
+Set-Cookie: gisco-waf-prod-affinity=b57d715d33dc382261003da489c62023; Path=/
+last-modified: Fri, 19 Jun 2026 11:29:37 GMT
+etag: "21be6409-654999b918a40"
+accept-ranges: bytes
+access-control-allow-origin: *
+access-control-allow-headers: X-Requested-With
+x-storage: default
+age: 9
+strict-transport-security: max-age=63072000
+set-cookie: unique_user_id=91b5479f-8c52-4301-af9c-23db35619cbf; Path=/; HttpOnly; SameSite=Lax
+

@@ -1,0 +1,81 @@
+
+The Census 2021 grid dataset contains data submitted by the National Statistical Institutes by the deadline 31.03.2024.
+This dataset is based on data received on the 22/01/2025.
+The dataset is labelled as final.
+Data is available for the 13 variables as defined in EU regulation 1799/2018 (https://eur-lex.europa.eu/eli/reg_impl/2018/1799/oj).
+
+
+###### DATASET DESCRIPTION ######
+
+The dataset is available in GeoPackage, CSV, parquet and GeoTIFF formats.
+The dataset coordinate reference system is ETRS89-LAEA (EPSG:3035).
+The files include the following variables for each cell:
+
+GRD_ID: the cell code
+CNTR_ID: the list of two letters codes of the countries that reported data on the cell.
+T: Total population
+M: Male Population
+F: Female Population 
+Y_LT15: Age Under 15 years
+Y_1564: Age 15 to 64 years
+Y_GE65: Age 65 years and over
+EMP: Employed persons
+NAT:  Place of birth in reporting country
+EU_OTH: Place of birth in other EU Member State
+OTH: Place of birth elsewhere
+SAME: Place of usual residence one year prior to the census unchanged
+CHG_IN: Place of usual residence one year prior to the census: move within reporting country
+CHG_OUT: Place of usual residence one year prior to the census: move from outside of the reporting country
+LAND_SURFACE: Land surface area of the cell, in km2. The value is within [0,1].
+POPULATED: 1 for populated cells, 0 for unpopulated cells.
+
+These variables are encoded as integers, except for GRD_ID (text), CNTR_ID (text) and LAND_SURFACE (floating number within [0,1]).
+The value -8888 is used for values that are not available for confidentiality reasons.
+The value -9999 is used for values that are not available for other reasons.
+
+Note 1: The statistics (STAT) are documented below or can be found in the code list ESTAT+CL_STAT+1.0.XML.
+Note 2: Unallocated population is available for FR, IT, FI, BG, EL, SE, DK, NO, BE, LV, LU, SI. The cell code is "CC_unallocated" where CC is the 2 letters country code. This information is not available in GeoTIFF since this format does not support such data. In GeoPackage, this information is represented as cells without geometry.
+Note 3: In GeoTIFF format, the datatype is int64. Consequently, non-integer variables (GRD_ID, CNTR_ID, LAND_SURFACE) are not available. A separate file is provided for LAND_SURFACE with the float32 datatype.
+Note 4: In addition, the raw country data is available, as CSV files, one per country (file ESTAT_Census_2021_country.csv.zip).
+Note 5: ESTAT_Census_2021_V2_SDMX_Metadata.zip includes the original Metadata that European NSIs provided as SDMX XML files for each country.
+
+
+###### CHANGE LOG ######
+
+Version 3.0
+- Changes in file encodings and structure (see section below).
+- Added new variable 'CNTR_ID' with the list of two letters codes of the countries that reported data on each cell.
+- Removal of variables on confidentiality. Confidential data are now encoded as -8888 value. Other not available data is encoded as -9999.
+- Replacement of no_data values: For cells with no total population (T=0), no_data values have been replaced with 0 values. It concerns cells in BE. It concerns EMP values for DE and FR.
+- Added 183 missing cells including those for non-allocated data.
+- Correction of rounding issues for LAND_SURFACE values (for example 0.5529999999999 instead of 0.553)
+- Correction of POPULATED values.
+- Review of this read.me file.
+
+Version 2.3
+- Fixed some Nodata values in the Data columns
+
+Version 2.2
+- Changed the Nodata processing for the datasets by setting these to a special value (-9999) in the incoming CSV files instead of treating these as zero. 
+- Added for each STAT value an extra column (_CI) indicating if a statistical disclosure control method has been applied as reported by the NSI
+- Added updated data for Belgium, Hungary, Norway, Poland, Slovakia for a variety of reasons (e.g. Land surface, update to STAT values)
+- Zipped CSV file before adding to distribution zip reduced file size by 200MB
+
+Version 2.1
+- Fixed a typo in the readme file
+- Harmonised Export of variables in geoparquet and GPKG  
+- Values of Land surface at the boundaries have been adjusted to provide a harmonised European product. These difference were due to the different precision delivered by the NSI. Adjustments were done based on absolute difference with Eurostats calculated Landsurface values (based on CORINE 2018). Countries where Eurostat provided Landsurface values on request/behalf of the NSI received less weight due to 25ha MMU of CORINE. 
+
+
+###### KNOWN ISSUES ######
+
+- The sum of population figures by category (for example, M + F) may not result in the total population specified in variable T: This is due to non-disclosure control that modify population values by category. EMP population may also be greater than total population.
+- Some cells have a LAND_SURFACE to 0 or not available but with population (T>0 or POPULATED='1'). It affects cells on coastal areas of RO, NL, DK, FR.
+- Some cells T=0 and POPULATED=1. This is a due to non-disclosure control.
+
+
+###### COPYRIGHT ######
+
+Copyright European Union 2026
+The source needs to be indicated and when re-use involves modifications to the data or text, this must be stated clearly to the end user of the information.
+For further information refer to https://ec.europa.eu/eurostat/web/main/about-us/policies/copyright.
