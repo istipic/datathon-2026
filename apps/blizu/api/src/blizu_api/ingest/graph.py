@@ -171,14 +171,35 @@ def load_graph(path: Path) -> GraphData:
         )
 
 
+def fetch_boundary(settings: BlizuSettings, boundary_path: Path) -> Any | None:
+    """Polygon of Grad Zagreb from Nominatim (via osmnx), saved as GeoJSON; None if unavailable."""
+    import osmnx as ox
+
+    ox.settings.http_user_agent = f"blizu/0.1 (+mailto:{settings.contact_email}) datathon-2026"
+    ox.settings.cache_folder = str(settings.data_dir / "cache" / "osmnx")
+    ox.settings.log_console = False
+    try:
+        boundary = ox.geocode_to_gdf(PLACE)  # Nominatim, cached by osmnx
+    except Exception as exc:
+        log.warning("boundary_unavailable", error=str(exc)[:200])
+        return None
+    boundary_path.parent.mkdir(parents=True, exist_ok=True)
+    boundary[["geometry"]].to_file(boundary_path, driver="GeoJSON")
+    return boundary.geometry.union_all()
+
+
 def download_osm_graph(
-    settings: BlizuSettings, graphml_path: Path, boundary_path: Path
+    settings: BlizuSettings,
+    graphml_path: Path,
+    boundary_path: Path,
+    max_attempts: int = 10,
+    timeout_s: int = 600,
 ) -> GraphData:
     """Download the walking network of Grad Zagreb with osmnx and convert it."""
     import osmnx as ox
 
     ox.settings.http_user_agent = f"blizu/0.1 (+mailto:{settings.contact_email}) datathon-2026"
-    ox.settings.requests_timeout = 600
+    ox.settings.requests_timeout = timeout_s
     ox.settings.cache_folder = str(settings.data_dir / "cache" / "osmnx")
     ox.settings.log_console = False
     ox.settings.useful_tags_way = sorted({*ox.settings.useful_tags_way, "wheelchair", "name"})
@@ -192,6 +213,7 @@ def download_osm_graph(
         "graph_from_place",
         lambda: ox.graph_from_place(PLACE, network_type="walk", retain_all=False),
         set_endpoint,
+        max_attempts=max_attempts,
     )
     log.info(
         "osm_graph_downloaded",
@@ -215,6 +237,23 @@ def download_osm_graph(
     )
 
 
+def graph_from_geofabrik(
+    settings: BlizuSettings, boundary_path: Path, today: str, run: Any
+) -> GraphData:
+    """Build the graph from the Geofabrik Croatia extract and record its provenance on ``run``."""
+    from blizu_api.ingest import osm_pbf
+    from blizu_api.ingest.graph_pbf import graph_from_extract, region_or_box
+    from opendata_core import http as http_mod
+
+    with http_mod.make_client(settings) as client:
+        info = osm_pbf.download_extract(client, settings.raw_dir, today)
+    region = region_or_box(fetch_boundary(settings, boundary_path))
+    run.retrieved_url = info.url
+    run.sha256 = info.sha256
+    run.source_last_modified = info.snapshot
+    return graph_from_extract(info.path, region)
+
+
 def ingest_graph(session: Session, settings: BlizuSettings) -> GraphData:
     """``blizu ingest graph``: download, build, save, record provenance (osm + derived graph)."""
     today = datetime.now(UTC).date().isoformat()
@@ -225,13 +264,35 @@ def ingest_graph(session: Session, settings: BlizuSettings) -> GraphData:
 
     graphml = derived / f"osm-zagreb-walk_{today}.graphml"
     boundary = derived / f"zagreb-boundary_{today}.geojson"
+    mode = settings.osm_feature_source
+    via = "overpass"
     with record_ingestion(
         session, SRC_OSM, f"{OVERPASS_URL} (osmnx graph_from_place '{PLACE}')"
     ) as run:
-        graph = download_osm_graph(settings, graphml, boundary)
+        graph: GraphData | None = None
+        if mode in ("auto", "overpass"):
+            try:
+                # auto: one attempt (3 min budget), then the extract; overpass: be patient
+                graph = download_osm_graph(
+                    settings,
+                    graphml,
+                    boundary,
+                    max_attempts=1 if mode == "auto" else 10,
+                    timeout_s=180 if mode == "auto" else 600,
+                )
+                run.sha256 = sha256_file(graphml)
+                run.source_last_modified = datetime.now(UTC)  # continuously updated: extract time
+            except Exception as exc:
+                if mode == "overpass":
+                    raise
+                log.warning(
+                    "overpass_unavailable_building_graph_from_geofabrik", error=str(exc)[:200]
+                )
+        if graph is None:
+            via = "geofabrik"
+            graph = graph_from_geofabrik(settings, boundary, today, run)
+            graphml = None  # type: ignore[assignment]
         run.rows = graph.n_nodes
-        run.sha256 = sha256_file(graphml)
-        run.source_last_modified = datetime.now(UTC)  # OSM is continuously updated: extract time
 
     npz = derived / f"graph_{today}.npz"
     with record_ingestion(session, SRC_GRAPH, str(npz.name)) as run:
@@ -247,8 +308,9 @@ def ingest_graph(session: Session, settings: BlizuSettings) -> GraphData:
         nodes=graph.n_nodes,
         edges_full=int(graph.full.nnz // 2),
         edges_wheelchair=int(graph.wheelchair.nnz // 2),
-        graphml=graphml.name,
-        boundary=boundary.name,
+        graphml=graphml.name if graphml else None,
+        boundary=boundary.name if boundary.exists() else None,
+        via=via,
     )
     log.info("graph_saved", file=npz.name, nodes=graph.n_nodes)
     return graph
