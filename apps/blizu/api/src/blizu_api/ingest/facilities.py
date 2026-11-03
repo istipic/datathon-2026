@@ -27,6 +27,7 @@ from blizu_api.constants import (
     SRC_VRTICI,
 )
 from blizu_api.db import Facility
+from blizu_api.ingest import osm_pbf
 from blizu_api.ingest.overpass import with_overpass_retry
 from blizu_api.manifest import Manifest, sha256_file
 from blizu_api.settings import BlizuSettings
@@ -310,8 +311,8 @@ def download_skole(
     return path, sha256_file(path), str(fetched.url)
 
 
-def download_osm_features(settings: BlizuSettings) -> dict[str, pd.DataFrame]:
-    """features_from_place per category (+ school names used only as hints)."""
+def _overpass_features(settings: BlizuSettings, max_attempts: int) -> dict[str, pd.DataFrame]:
+    """features_from_place per category (+ school names used only as hints) via Overpass."""
     import osmnx as ox
 
     ox.settings.http_user_agent = f"blizu/0.1 (+mailto:{settings.contact_email}) datathon-2026"
@@ -325,17 +326,83 @@ def download_osm_features(settings: BlizuSettings) -> dict[str, pd.DataFrame]:
 
     for category, tags in OSM_TAGS.items():
         gdf = with_overpass_retry(
-            f"features_{category}", lambda t=tags: ox.features_from_place(PLACE, t), set_endpoint
+            f"features_{category}",
+            lambda t=tags: ox.features_from_place(PLACE, t),
+            set_endpoint,
+            max_attempts=max_attempts,
         )
         out[category] = osm_features_to_frame(gdf, category)
-        log.info("osm_features", category=category, n=len(out[category]))
+        log.info("osm_features", via="overpass", category=category, n=len(out[category]))
     hints = with_overpass_retry(
         "features_school_names",
         lambda: ox.features_from_place(PLACE, OSM_NAME_HINT_TAGS),
         set_endpoint,
+        max_attempts=max_attempts,
     )
     out["_school_names"] = osm_features_to_frame(hints, "skola")
     return out
+
+
+def _boundary_or_none(settings: BlizuSettings) -> Any:
+    try:
+        from blizu_api.store import load_boundary
+
+        prepared = load_boundary(settings.derived_dir, Manifest(settings.derived_dir))
+        return None if prepared is None else prepared.context
+    except Exception:  # boundary is optional here: fall back to a Zagreb box
+        return None
+
+
+def _pbf_features(
+    settings: BlizuSettings, client: Any, today: str
+) -> tuple[dict[str, pd.DataFrame], osm_pbf.PbfInfo]:
+    info = osm_pbf.download_extract(client, settings.raw_dir, today)
+    gdfs = osm_pbf.extract_features(info.path, _boundary_or_none(settings))
+    out: dict[str, pd.DataFrame] = {}
+    for category in OSM_TAGS:
+        out[category] = (
+            osm_features_to_frame(gdfs[category], category)
+            if category in gdfs
+            else pd.DataFrame(columns=COLUMNS)
+        )
+        log.info("osm_features", via="geofabrik", category=category, n=len(out[category]))
+    names = gdfs.get(osm_pbf.SCHOOL_NAMES)
+    out["_school_names"] = (
+        osm_features_to_frame(names, "skola")
+        if names is not None
+        else pd.DataFrame(columns=COLUMNS)
+    )
+    return out, info
+
+
+def download_osm_features(
+    settings: BlizuSettings, client: Any, today: str
+) -> tuple[dict[str, pd.DataFrame], dict[str, Any]]:
+    """OSM features: Overpass first (``auto``: 3 attempts), else the Geofabrik extract.
+
+    Returns the per-category frames and a dict describing how/when they were obtained.
+    """
+    mode = settings.osm_feature_source
+    if mode in ("auto", "overpass"):
+        try:
+            frames = _overpass_features(settings, max_attempts=3 if mode == "auto" else 10)
+            return frames, {
+                "via": "overpass",
+                "url": "Overpass API (osmnx features_from_place)",
+                "snapshot": datetime.now(UTC),
+                "sha256": None,
+            }
+        except Exception as exc:
+            if mode == "overpass":
+                raise
+            log.warning("overpass_unavailable_using_geofabrik", error=str(exc)[:200])
+    frames, info = _pbf_features(settings, client, today)
+    return frames, {
+        "via": "geofabrik",
+        "url": info.url,
+        "snapshot": info.snapshot,
+        "sha256": info.sha256,
+    }
 
 
 # ----------------------------------------------------------------------------- orchestration
@@ -372,8 +439,10 @@ def ingest_facilities(session: Session, settings: BlizuSettings) -> dict[str, in
             )  # live service: no publication date in the data
             skole = parse_skole(json.loads(s_path.read_text(encoding="utf-8")))
 
-            osm = download_osm_features(settings)
-            run_o.source_last_modified = datetime.now(UTC)
+            osm, osm_info = download_osm_features(settings, client, today)
+            run_o.source_last_modified = osm_info["snapshot"]
+            run_o.retrieved_url = osm_info["url"]
+            run_o.sha256 = osm_info["sha256"]
             hints = osm.pop("_school_names")
             skole, named = attach_name_hints(skole, hints)
             log.info("school_names_from_osm", named=named, total=len(skole))

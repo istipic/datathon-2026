@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from functools import lru_cache
 from pathlib import Path
+from typing import Literal
 
 from pydantic import Field
 
@@ -16,6 +17,7 @@ class BlizuSettings(CoreSettings):
     app_name: str = "blizu"
     data_dir: Path = Path("apps/blizu/data")
     hf_home: str | None = None
+    osm_feature_source: Literal["auto", "overpass", "geofabrik"] = "auto"
     cors_origins: str = Field(
         default="http://localhost:5173,http://127.0.0.1:5173",
         description="Comma-separated list of allowed browser origins.",

@@ -115,7 +115,14 @@ def nearest_facility_distances(
         limit=limit_m,
         return_predecessors=True,
     )
-    fac = np.where(src >= 0, snap.facility_ids[np.clip(src, 0, None)], -1)
+    # With min_only=True scipy returns, per node, the GRAPH NODE that is its nearest source.
+    # Map source nodes back to facility ids (several facilities on one node: lowest id wins).
+    node_to_fac = np.full(n, -1, dtype=np.int64)
+    for node, fid in sorted(
+        zip(snap.nodes.tolist(), snap.facility_ids.tolist(), strict=True), key=lambda t: -t[1]
+    ):
+        node_to_fac[node] = fid
+    fac = np.where(src >= 0, node_to_fac[np.clip(src, 0, None)], -1)
     return dist.astype(np.float32), fac.astype(np.int64)
 
 

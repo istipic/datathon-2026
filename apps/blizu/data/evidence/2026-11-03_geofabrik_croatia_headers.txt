@@ -1,0 +1,5 @@
+HTTP/1.1 307 Temporary Redirect
+Location: https://download.geofabrik.de/europe/croatia-261102.osm.pbf
+HTTP/1.1 200 OK
+Last-Modified: Tue, 03 Nov 2026 04:21:21 GMT
+Content-Length: 201292854

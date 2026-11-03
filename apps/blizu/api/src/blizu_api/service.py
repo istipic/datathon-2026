@@ -36,8 +36,9 @@ class FarFromNetworkError(ValueError):
 
 
 def _days_text(days: float) -> str:
-    years = days / 365.25
-    return f"{years:.1f} god.".replace(".", ",") if days >= 730 else f"{round(days)} dana"
+    if days < 730:
+        return f"{round(days)} dana"
+    return f"{days / 365.25:.1f}".replace(".", ",") + " godina"
 
 
 def display_name(store: DataStore, category: str, name: str | None) -> str:

@@ -46,6 +46,7 @@ vi.mock('maplibre-gl', () => {
       for (const h of [...(this.handlers[type] ?? [])]) h(event);
     }
   }
+  const setWorkerUrl = vi.fn();
   class AttributionControl {
     kind = 'attribution';
     constructor(public options: Record<string, unknown>) {}
@@ -54,7 +55,7 @@ vi.mock('maplibre-gl', () => {
     kind = 'navigation';
     constructor(public options: Record<string, unknown>) {}
   }
-  return { Map: FakeMap, AttributionControl, NavigationControl };
+  return { Map: FakeMap, AttributionControl, NavigationControl, setWorkerUrl };
 });
 
 beforeEach(() => {

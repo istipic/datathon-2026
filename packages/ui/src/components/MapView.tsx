@@ -2,9 +2,15 @@ import {
   AttributionControl,
   Map as MapLibreMap,
   NavigationControl,
+  setWorkerUrl,
   type StyleSpecification,
 } from 'maplibre-gl';
+// maplibre-gl v6 derives its worker URL from import.meta.url, which breaks once Vite pre-bundles the
+// library ("Worker failed to load"). Let Vite bundle the worker and pass its same-origin URL.
+import workerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url';
 import { useEffect, useRef, useState } from 'react';
+
+setWorkerUrl(workerUrl);
 
 export const OSM_ATTRIBUTION = '© OpenStreetMap contributors';
 export const DEFAULT_STYLE_URL = 'https://tiles.openfreemap.org/styles/liberty';

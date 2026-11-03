@@ -8,6 +8,12 @@ import type { NeedCollection, OptimiseSite } from '../lib/types';
 export const NEED_COLORS = ['#CCE7E2', '#8FCFC4', '#4FB0A3', '#1F8579', '#0A5750'];
 export const NO_NEED_COLOR = '#E2E8F0';
 
+/** Grad Zagreb: [west, south], [east, north]. */
+export const ZAGREB_BOUNDS: [[number, number], [number, number]] = [
+  [15.77, 45.61],
+  [16.24, 45.97],
+];
+
 export interface LegendClass {
   color: string;
   from: number;
@@ -38,6 +44,13 @@ interface Props {
 export function PlanMap({ need, sites }: Props) {
   const [map, setMap] = useState<MapLibreMap | null>(null);
   const markers = useRef<Marker[]>([]);
+
+  const fitted = useRef(false);
+  useEffect(() => {
+    if (!map || fitted.current) return;
+    fitted.current = true;
+    map.fitBounds(ZAGREB_BOUNDS, { padding: 16, duration: 0 });
+  }, [map]);
 
   useEffect(() => {
     if (!map || !need) return;

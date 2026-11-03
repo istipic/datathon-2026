@@ -32,6 +32,7 @@ class CoreSettings(BaseSettings):
     smtp_from: str = "no-reply@localhost"
     public_base_url: str = "http://localhost:5173"
     git_sha: str = "dev"
+    rate_limit: str = "60/minute"  # per client IP, one budget for all routes (slowapi syntax)
 
     @property
     def is_prod(self) -> bool:

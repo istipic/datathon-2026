@@ -71,19 +71,58 @@ class Planner:
         self._cache: OrderedDict[tuple[str, int], sp.csr_matrix] = OrderedDict()
         self._lock = threading.Lock()
 
-    # ------------------------------------------------------------------ need
-    def need(self, category: str, persona: str) -> dict[str, Any]:
-        """Unmet need per cell as a GeoJSON FeatureCollection plus a summary."""
+    # ------------------------------------------------------------------ shared node-level state
+    def _node_state(self, category: str, persona: str) -> dict[str, Any]:
+        """People, unmet-need demand and "already within g" per graph node.
+
+        People of the target group are split equally over the nodes of their cell; demand is the
+        cell's unmet need ``P * (1 - s(mean minutes))`` split the same way. A node counts as served
+        when its network distance to the nearest facility is <= good_min * speed * 60 metres.
+        Both ``need()`` and ``optimise()`` use this, so their shares are consistent.
+        """
         store = self.store
         cat = store.cfg.categories[category]
+        speed = store.cfg.personas[persona].speed_mps
+        radius = cat.good_min * speed * 60.0
         pop, _column, label = store.group_population(category)
         minutes = store.cell_minutes(persona, category)
         s = np.array(
             [score(m, cat.good_min, cat.max_min) if np.isfinite(m) else 0.0 for m in minutes]
         )
-        unmet = pop * (1.0 - s)
+        unmet_cell = pop * (1.0 - s)
+        node_cell = store.node_cell
+        valid = node_cell >= 0
+        per_cell = np.where(store.nodes_per_cell > 0, store.nodes_per_cell, 1)
+        people = np.zeros(store.graph.n_nodes)
+        demand = np.zeros(store.graph.n_nodes)
+        people[valid] = pop[node_cell[valid]] / per_cell[node_cell[valid]]
+        demand[valid] = unmet_cell[node_cell[valid]] / per_cell[node_cell[valid]]
+        dist, _fac = store.distance_array(persona, category)
+        already = np.isfinite(dist) & (dist <= radius)
+        return {
+            "cat": cat,
+            "radius": radius,
+            "pop": pop,
+            "label": label,
+            "minutes": minutes,
+            "unmet_cell": unmet_cell,
+            "people": people,
+            "demand": demand,
+            "already": already,
+        }
+
+    # ------------------------------------------------------------------ need
+    def need(self, category: str, persona: str) -> dict[str, Any]:
+        """Unmet need per cell as a GeoJSON FeatureCollection plus a summary."""
+        store = self.store
+        state = self._node_state(category, persona)
+        cat, pop, label = state["cat"], state["pop"], state["label"]
+        minutes, unmet = state["minutes"], state["unmet_cell"]
+        node_total = float(state["people"].sum())
+        share_within = (
+            float(state["people"][state["already"]].sum()) / node_total if node_total > 0 else None
+        )
         total = float(pop.sum())
-        within = float(pop[np.isfinite(minutes) & (minutes <= cat.good_min)].sum())
         positive = unmet[unmet > 0]
         breaks = (
             [float(v) for v in np.quantile(positive, [0.2, 0.4, 0.6, 0.8])]
@@ -114,7 +153,7 @@ class Planner:
                 "pop_group_label": label,
                 "has_age_groups": store.has_age_groups,
                 "pop_group_total": round(total),
-                "share_within_g": (within / total) if total > 0 else None,
+                "share_within_g": share_within,
                 "good_min": cat.good_min,
                 "max_min": cat.max_min,
                 "unmet_total": round(float(unmet.sum())),
@@ -145,29 +184,10 @@ class Planner:
         reported figures are people of the target group (not weighted by unmet fraction).
         """
         store = self.store
-        cat = store.cfg.categories[category]
-        speed = store.cfg.personas[persona].speed_mps
         variant = store.cfg.personas[persona].graph
-        radius = cat.good_min * speed * 60.0
-
-        pop, _column, label = store.group_population(category)
-        minutes = store.cell_minutes(persona, category)
-        s = np.array(
-            [score(m, cat.good_min, cat.max_min) if np.isfinite(m) else 0.0 for m in minutes]
-        )
-        unmet_cell = pop * (1.0 - s)
-
-        n_nodes = store.graph.n_nodes
-        node_cell = store.node_cell
-        valid = node_cell >= 0
-        per_cell = np.where(store.nodes_per_cell > 0, store.nodes_per_cell, 1)
-        people = np.zeros(n_nodes)
-        demand = np.zeros(n_nodes)
-        people[valid] = pop[node_cell[valid]] / per_cell[node_cell[valid]]
-        demand[valid] = unmet_cell[node_cell[valid]] / per_cell[node_cell[valid]]
-
-        dist, _fac = store.distance_array(persona, category)
-        already = np.isfinite(dist) & (dist <= radius)
+        state = self._node_state(category, persona)
+        cat, radius, label = state["cat"], state["radius"], state["label"]
+        people, demand, already = state["people"], state["demand"], state["already"]
         total_people = float(people.sum())
         before = float(people[already].sum())
 
@@ -184,12 +204,11 @@ class Planner:
             covered[nodes] = True
             newly_total += newly
             node = int(self.candidates[cand_idx])
-            street = store.street_near(node)
             sites.append(
                 {
                     "lon": float(store.graph.lon[node]),
                     "lat": float(store.graph.lat[node]),
-                    "street": street,
+                    "street": store.street_near(node),
                     "newly_covered": int(round(newly)),
                 }
             )

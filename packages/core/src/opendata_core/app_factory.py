@@ -21,7 +21,6 @@ from opendata_core.errors import register_exception_handlers
 from opendata_core.health import make_health_router
 from opendata_core.logging import RequestIDMiddleware, configure_logging
 
-DEFAULT_RATE_LIMIT = "60/minute"
 SECURITY_HEADERS = {
     "X-Content-Type-Options": "nosniff",
     "Referrer-Policy": "strict-origin-when-cross-origin",
@@ -108,7 +107,7 @@ def create_app(
     # key_style="endpoint": one counter per IP (the default "url" style counts per path, which
     # would let a client dodge the limit by varying the URL).
     limiter = Limiter(
-        key_func=get_remote_address, default_limits=[DEFAULT_RATE_LIMIT], key_style="endpoint"
+        key_func=get_remote_address, default_limits=[settings.rate_limit], key_style="endpoint"
     )
     app.state.limiter = limiter
 

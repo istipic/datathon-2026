@@ -231,3 +231,9 @@ def test_lifespan_runs_at_startup_and_shutdown(settings: CoreSettings) -> None:
         assert client.get("/health").status_code == 200
         assert events == ["start"]
     assert events == ["start", "stop"]
+
+
+def test_rate_limit_is_configurable(settings: CoreSettings) -> None:
+    c = _client(settings.model_copy(update={"rate_limit": "5/minute"}))
+    assert [c.get("/api/v1/items/1").status_code for _ in range(5)] == [200] * 5
+    assert c.get("/api/v1/items/1").status_code == 429
