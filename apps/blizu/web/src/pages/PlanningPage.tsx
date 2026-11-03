@@ -1,8 +1,9 @@
 import { ErrorState, LoadingSkeleton, SourceBadge } from '@dt/ui';
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { useEffect, useMemo, useState } from 'react';
+import { Suspense, lazy, useEffect, useMemo, useState } from 'react';
+import { LazyMount } from '../components/LazyMount';
 import { PersonaControl } from '../components/PersonaControl';
-import { PlanMap, NO_NEED_COLOR, legendClasses } from '../components/PlanMap';
+import { NO_NEED_COLOR, legendClasses } from '../lib/legend';
 import { api } from '../lib/api';
 import { formatInt, formatPercent } from '../lib/labels';
 import { useSources } from '../lib/useSources';
@@ -35,6 +36,9 @@ function Kpi({
     </div>
   );
 }
+
+// The map library is large: load it in its own chunk, after the page's text has rendered.
+const PlanMap = lazy(() => import('../components/PlanMap').then((m) => ({ default: m.PlanMap })));
 
 export function downloadGeoJson(need: NeedCollection, optimise: OptimiseResult | undefined): void {
   const sites = (optimise?.sites ?? []).map((s, i) => ({
@@ -292,7 +296,11 @@ export function PlanningPage() {
       </div>
 
       <div className="min-h-[28rem] lg:sticky lg:top-4 lg:h-[calc(100vh-6rem)]">
-        <PlanMap need={need.data} sites={sites} />
+        <LazyMount placeholder={<LoadingSkeleton lines={6} label="Karta će se učitati…" />}>
+          <Suspense fallback={<LoadingSkeleton lines={6} label="Učitavam kartu…" />}>
+            <PlanMap need={need.data} sites={sites} />
+          </Suspense>
+        </LazyMount>
       </div>
     </div>
   );

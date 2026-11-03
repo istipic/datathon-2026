@@ -1,0 +1,22 @@
+{
+  "category": "vrtic",
+  "persona": "roditelj",
+  "k": 3,
+  "pop_group_label": "djeca do 15 godina",
+  "radius_m": 660,
+  "good_min": 10.0,
+  "sites": [
+    { "lon": 16.0397239, "lat": 45.8430541, "street": "Novačka ulica", "newly_covered": 757 },
+    { "lon": 15.9393642, "lat": 45.8345965, "street": "Čičkovina", "newly_covered": 291 },
+    {
+      "lon": 15.9591542,
+      "lat": 45.7542979,
+      "street": "Sisačka cesta II. odvojak",
+      "newly_covered": 326
+    }
+  ],
+  "total_newly_covered": 1374,
+  "share_before": 0.6787042995492732,
+  "share_after": 0.6905544453078347,
+  "candidates": 4092
+}

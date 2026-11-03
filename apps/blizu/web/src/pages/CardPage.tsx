@@ -1,12 +1,20 @@
 import { EmptyState, ErrorState, LoadingSkeleton } from '@dt/ui';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
-import { useMemo, useState } from 'react';
+import { Suspense, lazy, useMemo, useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { AccessCard } from '../components/AccessCard';
-import { MapPanel, type MapFocus, type MapPlace } from '../components/MapPanel';
+import { LazyMount } from '../components/LazyMount';
+import { PersonaControl } from '../components/PersonaControl';
+import type { MapFocus, MapPlace } from '../components/MapPanel';
 import { ApiError, api } from '../lib/api';
 import { isPersona } from '../lib/labels';
+import { useSources } from '../lib/useSources';
 import type { CategoryResult, PersonaId } from '../lib/types';
+
+// The map library is large: load it in its own chunk so the card text renders first.
+const MapPanel = lazy(() =>
+  import('../components/MapPanel').then((m) => ({ default: m.MapPanel })),
+);
 
 export function CardPage() {
   const [params, setParams] = useSearchParams();
@@ -20,6 +28,8 @@ export function CardPage() {
     Number.isFinite(lat) && Number.isFinite(lon) && params.has('lat') && params.has('lon');
   const [focus, setFocus] = useState<MapFocus | null>(null);
 
+  // Wait for the sources too: their (late) arrival would lengthen the footnote and shift the layout.
+  const sources = useSources();
   const query = useQuery({
     queryKey: ['access', lat, lon, persona],
     queryFn: ({ signal }) => api.access(lat, lon, persona, signal),
@@ -67,10 +77,33 @@ export function CardPage() {
     );
   }
 
-  if (query.isPending) {
+  if (query.isPending || sources.isPending) {
+    // Same structure and heights as the loaded card, so the persona buttons do not jump.
     return (
-      <div className="grid gap-6 lg:grid-cols-2">
-        <LoadingSkeleton lines={8} label="Računam dostupnost usluga…" />
+      <div key="pending" className="grid gap-6 lg:grid-cols-2" style={{ minHeight: '100vh' }}>
+        <div>
+          <h1 className="mb-4 text-xl font-semibold text-neutral-900">{label}</h1>
+          <div
+            className="flex flex-wrap items-center gap-5"
+            style={{ minHeight: 112 }}
+            aria-hidden="true"
+          >
+            <div
+              className="dt-skeleton__line"
+              style={{ width: 112, height: 112, borderRadius: '50%', margin: 0 }}
+            />
+            <div style={{ width: 160 }}>
+              <div className="dt-skeleton__line" style={{ width: '80%' }} />
+              <div className="dt-skeleton__line" style={{ height: '2rem' }} />
+            </div>
+          </div>
+          <div className="mt-5">
+            <PersonaControl value={persona} onChange={setPersona} />
+          </div>
+          <div className="mt-4">
+            <LoadingSkeleton lines={9} label="Računam dostupnost usluga…" />
+          </div>
+        </div>
       </div>
     );
   }
@@ -94,7 +127,7 @@ export function CardPage() {
 
   const result = query.data;
   return (
-    <div className="grid gap-6 lg:grid-cols-2">
+    <div key="loaded" className="grid gap-6 lg:grid-cols-2">
       <div>
         <AccessCard
           title={label}
@@ -126,7 +159,11 @@ export function CardPage() {
         </div>
       </div>
       <div className="blizu-mapcol lg:sticky lg:top-4 lg:h-[calc(100vh-6rem)]">
-        <MapPanel origin={{ lon, lat, label }} places={places} focus={focus} />
+        <LazyMount placeholder={<LoadingSkeleton lines={6} label="Karta će se učitati…" />}>
+          <Suspense fallback={<LoadingSkeleton lines={6} label="Učitavam kartu…" />}>
+            <MapPanel origin={{ lon, lat, label }} places={places} focus={focus} />
+          </Suspense>
+        </LazyMount>
       </div>
     </div>
   );

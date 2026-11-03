@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { AddressSearch, shortLabel } from '../components/AddressSearch';
+import { AddressSearch, resultLabel } from '../components/AddressSearch';
 import { PersonaControl } from '../components/PersonaControl';
 import { EXAMPLES } from '../lib/examples';
 import { isPersona } from '../lib/labels';
@@ -23,7 +23,7 @@ export function HomePage() {
   const [persona, setPersona] = useState<PersonaId>(isPersona(initial) ? initial : 'opce');
 
   function go(item: GeocodeItem) {
-    navigate(cardUrl(item.lat, item.lon, persona, shortLabel(item.label)));
+    navigate(cardUrl(item.lat, item.lon, persona, resultLabel(item)));
   }
 
   return (

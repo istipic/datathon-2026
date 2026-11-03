@@ -2,7 +2,7 @@ import { EmptyState, ErrorState, LoadingSkeleton } from '@dt/ui';
 import { useQuery } from '@tanstack/react-query';
 import { Link, useSearchParams } from 'react-router-dom';
 import { AccessCard } from '../components/AccessCard';
-import { AddressSearch, shortLabel } from '../components/AddressSearch';
+import { AddressSearch, resultLabel } from '../components/AddressSearch';
 import { PersonaControl } from '../components/PersonaControl';
 import { ApiError, api } from '../lib/api';
 import { isPersona } from '../lib/labels';
@@ -37,7 +37,7 @@ export function ComparePage() {
   const pick = (key: 'a' | 'b') => (item: GeocodeItem) =>
     update({
       [key]: `${item.lat.toFixed(6)},${item.lon.toFixed(6)}`,
-      [`${key}q`]: shortLabel(item.label),
+      [`${key}q`]: resultLabel(item),
     });
 
   return (

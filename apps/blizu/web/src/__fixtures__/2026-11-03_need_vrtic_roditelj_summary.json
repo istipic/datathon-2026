@@ -1,0 +1,123 @@
+{
+  "summary": {
+    "category": "vrtic",
+    "persona": "roditelj",
+    "pop_group_label": "djeca do 15 godina",
+    "has_age_groups": true,
+    "pop_group_total": 115944,
+    "share_within_g": 0.6787042995492732,
+    "good_min": 10.0,
+    "max_min": 25.0,
+    "unmet_total": 14269,
+    "breaks": [8.0, 19.0, 35.36967087870897, 65.65401943424426]
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [15.896605, 45.619607],
+            [15.909378, 45.618894],
+            [15.910349, 45.627872],
+            [15.897574, 45.628585],
+            [15.896605, 45.619607]
+          ]
+        ]
+      },
+      "properties": {
+        "grd_id": "CRS3035RES1000mN2519000E4781000",
+        "pop_group": 0.0,
+        "mean_minutes": 60.6,
+        "unmet": 0.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [15.909378, 45.618894],
+            [15.92215, 45.618179],
+            [15.923123, 45.627157],
+            [15.910349, 45.627872],
+            [15.909378, 45.618894]
+          ]
+        ]
+      },
+      "properties": {
+        "grd_id": "CRS3035RES1000mN2519000E4782000",
+        "pop_group": 0.0,
+        "mean_minutes": 60.6,
+        "unmet": 0.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [15.92215, 45.618179],
+            [15.934922, 45.617463],
+            [15.935897, 45.626441],
+            [15.923123, 45.627157],
+            [15.92215, 45.618179]
+          ]
+        ]
+      },
+      "properties": {
+        "grd_id": "CRS3035RES1000mN2519000E4783000",
+        "pop_group": 6.0,
+        "mean_minutes": 60.6,
+        "unmet": 6.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [15.910349, 45.627872],
+            [15.923123, 45.627157],
+            [15.924096, 45.636135],
+            [15.91132, 45.63685],
+            [15.910349, 45.627872]
+          ]
+        ]
+      },
+      "properties": {
+        "grd_id": "CRS3035RES1000mN2520000E4782000",
+        "pop_group": 27.0,
+        "mean_minutes": 60.6,
+        "unmet": 27.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [15.923123, 45.627157],
+            [15.935897, 45.626441],
+            [15.936872, 45.635418],
+            [15.924096, 45.636135],
+            [15.923123, 45.627157]
+          ]
+        ]
+      },
+      "properties": {
+        "grd_id": "CRS3035RES1000mN2520000E4783000",
+        "pop_group": 20.0,
+        "mean_minutes": 58.6,
+        "unmet": 20.0
+      }
+    }
+  ],
+  "cells_total": 641,
+  "max_unmet": 351.1
+}

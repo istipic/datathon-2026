@@ -1,0 +1,145 @@
+{
+  "sources": [
+    {
+      "id": "blizu-derived-graph",
+      "title": "Blizu: izvedeni pješački graf (puni i za invalidska kolica)",
+      "publisher": "Blizu (izvedeno iz OpenStreetMapa)",
+      "url": "https://www.openstreetmap.org/copyright",
+      "license_name": "ODbL 1.0 (izvedena baza)",
+      "license_url": "https://opendatacommons.org/licenses/odbl/1-0/",
+      "access_method": "derived",
+      "tier": "derived",
+      "notes": "Neusmjereni graf, težina brida = duljina u metrima; graf za kolica isključuje highway=steps i wheelchair=no.",
+      "last_run": {
+        "id": 24,
+        "rows": 23076,
+        "sha256": "68e4280edc6c5be8a2e5397243e965205497c3476510f587f26574f1932a1620",
+        "retrieved_url": "cell_access (mean minutes per 1 km cell)",
+        "source_last_modified": null
+      },
+      "retrieved_at": "2026-11-03T21:36:20.803790+00:00",
+      "freshness_days": 0
+    },
+    {
+      "id": "eurostat-census-grid-2021",
+      "title": "Census 2021 population grid, 1 km² (version 3)",
+      "publisher": "Eurostat (GISCO)",
+      "url": "https://ec.europa.eu/eurostat/web/gisco/geodata/population-distribution/population-grids",
+      "license_name": "Eurostat copyright policy (source must be indicated; modifications stated)",
+      "license_url": "https://ec.europa.eu/eurostat/web/main/about-us/policies/copyright",
+      "access_method": "download",
+      "tier": "eu_official",
+      "notes": "Cells with CNTR_ID containing HR. Border cells shared with SI/HU also contain neighbouring residents. -8888/-9999 loaded as NULL. Derived from GRD_ID: polygon (EPSG:3035, SW corner + 1 km) and WGS84 centroid.",
+      "last_run": {
+        "id": 23,
+        "rows": 60873,
+        "sha256": "18a467e3d96b71dd89f0440cc184751bded45721cdff8ba778ece79d7a4f5843",
+        "retrieved_url": "https://gisco-services.ec.europa.eu/census/2021/Eurostat_Census-GRID_2021_V3.zip",
+        "source_last_modified": "2026-06-19T11:29:37+00:00"
+      },
+      "retrieved_at": "2026-11-03T21:36:17.708480+00:00",
+      "freshness_days": 137
+    },
+    {
+      "id": "osm-zagreb",
+      "title": "OpenStreetMap: pješačka mreža i objekti, Grad Zagreb",
+      "publisher": "OpenStreetMap contributors",
+      "url": "https://www.openstreetmap.org/copyright",
+      "license_name": "ODbL 1.0",
+      "license_url": "https://opendatacommons.org/licenses/odbl/1-0/",
+      "access_method": "api",
+      "tier": "community",
+      "notes": "Overpass API preko osmnx. Potpunost podataka ovisi o volonterima; atribucija: © OpenStreetMap contributors.",
+      "last_run": {
+        "id": 20,
+        "rows": 1581,
+        "sha256": "83ed8caeda5fe21e8ee7c1b50a264e0ecf9caf6c5005b75c7157e4bd73b88f02",
+        "retrieved_url": "https://download.geofabrik.de/europe/croatia-261102.osm.pbf",
+        "source_last_modified": "2026-11-03T04:21:21+00:00"
+      },
+      "retrieved_at": "2026-11-03T21:35:27.324208+00:00",
+      "freshness_days": 0
+    },
+    {
+      "id": "zet-gtfs",
+      "title": "ZET GTFS (statični vozni red)",
+      "publisher": "Zagrebački električni tramvaj (ZET)",
+      "url": "https://zet.hr/gtfs-scheduled/latest",
+      "license_name": null,
+      "license_url": null,
+      "access_method": "download",
+      "tier": "official",
+      "notes": "Licencija nije navedena uz feed. Učestalost polazaka računa se za jutarnji vrh (07:00–09:00) referentne srijede.",
+      "last_run": {
+        "id": 4,
+        "rows": 1224,
+        "sha256": "2ddf4051147837545bc1b77af5a82bc8961096da630b11fe7a1079ce3654edf8",
+        "retrieved_url": "https://zet.hr/gtfs-scheduled/latest",
+        "source_last_modified": "2026-10-21T12:14:18+00:00"
+      },
+      "retrieved_at": "2026-11-03T20:55:54.958940+00:00",
+      "freshness_days": 13
+    },
+    {
+      "id": "zg-skole",
+      "title": "Dječji vrtići, osnovne i srednje škole Grada Zagreba INSPIRE",
+      "publisher": "Državna geodetska uprava",
+      "url": "https://data.gov.hr/ckan/dataset/djeji-vrtii-osnovne-i-srednje-kole-grada-zagreba-inspire",
+      "license_name": null,
+      "license_url": null,
+      "access_method": "api",
+      "tier": "official",
+      "notes": "INSPIRE WFS (us-govserv:GovernmentalService), samo osnovno obrazovanje. Izvor ne sadrži nazive ni adrese; nazivi se, gdje postoji OSM objekt unutar 50 m, preuzimaju iz OpenStreetMapa (ODbL). Licencija nije navedena u metapodacima CKAN-a.",
+      "last_run": {
+        "id": 19,
+        "rows": 177,
+        "sha256": "9ac4ea0ad3c5ef53bbc0f572e3cf9bcde18fd625359c19d3b42cce3439b0637d",
+        "retrieved_url": "https://transformiraj.nipp.hr/ows/services/org.4.37584bbc-0dba-41bc-ac95-dd296d1f71ec_wfs?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=us-govserv%3AGovernmentalService&OUTPUTFORMAT=application%2Fgeo%2Bjson&SRSNAME=urn%3Aogc%3Adef%3Acrs%3AEPSG%3A%3A4326",
+        "source_last_modified": "2026-11-03T21:35:12.259385+00:00"
+      },
+      "retrieved_at": "2026-11-03T21:35:27.329968+00:00",
+      "freshness_days": 0
+    },
+    {
+      "id": "zg-vrtici",
+      "title": "Geoportal Dječji vrtići",
+      "publisher": "Grad Zagreb",
+      "url": "https://data.gov.hr/ckan/dataset/geoportal-djecji-vrtici",
+      "license_name": "Creative Commons Imenovanje 4.0 međunarodna",
+      "license_url": "http://publications.europa.eu/resource/authority/licence/CC_BY_4_0",
+      "access_method": "download",
+      "tier": "official",
+      "notes": "CSV iz ArcGIS izvoza (EPSG:4326). Uključeni su gradski, privatni i vjerski vrtići; izuzeti su 'Vrtić u bolnici' i 'Posebna ustanova'.",
+      "last_run": {
+        "id": 18,
+        "rows": 316,
+        "sha256": "76b2afef94c5f956dafc1724a930b4dffd37f360d8cbc576c2ab15b7c2ad0ec9",
+        "retrieved_url": "https://opendata.arcgis.com/api/v3/datasets/49bb07d4efc34bd5bacc1d330dc28a07_0/downloads/data?format=csv&spatialRefId=4326&where=1%3D1",
+        "source_last_modified": "2022-06-23T14:19:04.078771+00:00"
+      },
+      "retrieved_at": "2026-11-03T21:35:27.334169+00:00",
+      "freshness_days": 1594
+    },
+    {
+      "id": "zg-vrtici-mjesta",
+      "title": "Slobodna mjesta u vrtićima i obrtima za čuvanje djece Grada Zagreba",
+      "publisher": "Grad Zagreb",
+      "url": "https://data.gov.hr/ckan/dataset/slobodna-mjesta-u-vrticima-i-obrtima-za-cuvanje-djece-grada-zagreba",
+      "license_name": "Otvorena dozvola (OD)",
+      "license_url": "https://data.gov.hr/id/licence/otvorena-dozvola-rh",
+      "access_method": "download",
+      "tier": "official",
+      "notes": "Stanje 01.01.2025. (gradski dječji vrtići), spajanje po nazivu ustanove, ne po lokaciji.",
+      "last_run": {
+        "id": 21,
+        "rows": 60,
+        "sha256": "9e2ef5df220d7ccd855ab0facfcc40a0be98e9d25caf1ee760a20d3f3d545179",
+        "retrieved_url": "https://data.zagreb.hr/dataset/2286de51-f7bf-45ae-a212-9a5530527c94/resource/a6a9199d-eaf4-4f75-9bce-7a3a5b367d30/download/slobodna-mjesta-u-gradskim-dv-01.01.2025..csv",
+        "source_last_modified": "2025-01-02T11:43:38.182310+00:00"
+      },
+      "retrieved_at": "2026-11-03T21:35:36.717254+00:00",
+      "freshness_days": 670
+    }
+  ],
+  "generated_at": "2026-11-03T22:21:34.763453+00:00"
+}

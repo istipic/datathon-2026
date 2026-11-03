@@ -15,12 +15,9 @@ interface Props {
   autoFocus?: boolean;
 }
 
-/** "Trg bana Josipa Jelačića, Kaptol, ..., Zagreb, Hrvatska" -> "Trg bana Josipa Jelačića, Zagreb". */
-export function shortLabel(label: string): string {
-  const parts = label.split(',').map((p) => p.trim());
-  const first = parts[0] ?? label;
-  const city = parts.find((p) => p === 'Zagreb' || p === 'Grad Zagreb');
-  return city && city !== first ? `${first}, Zagreb` : first;
+/** Text shown for a result and put into the input: "Ilica 200, Zagreb". */
+export function resultLabel(item: GeocodeItem): string {
+  return `${item.title}, Zagreb`;
 }
 
 /** Address autocomplete (ARIA combobox) backed by `/api/v1/geocode`, debounced by 400 ms. */
@@ -58,7 +55,7 @@ export function AddressSearch({
   const showPanel = open && debounced.length >= MIN_CHARS && text.trim() === debounced;
 
   function choose(item: GeocodeItem) {
-    setText(shortLabel(item.label));
+    setText(resultLabel(item));
     setOpen(false);
     setActive(-1);
     onSelect(item);
@@ -160,7 +157,7 @@ export function AddressSearch({
                       : 'text-neutral-900 hover:bg-neutral-100',
                   ].join(' ')}
                 >
-                  {shortLabel(item.label)}
+                  {item.title}
                   <span
                     className={
                       i === active ? 'block text-sm text-white' : 'block text-sm text-neutral-600'

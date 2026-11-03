@@ -1,0 +1,24 @@
+{
+  "type": "about:blank",
+  "title": "Validation Error",
+  "status": 422,
+  "instance": "/api/v1/access",
+  "detail": "Request validation failed",
+  "request_id": "ed1e0faaa77340eb9e3cbdc432dae985",
+  "errors": [
+    {
+      "type": "less_than_equal",
+      "loc": ["query", "lat"],
+      "msg": "Input should be less than or equal to 46.6",
+      "input": "48.85",
+      "ctx": { "le": 46.6 }
+    },
+    {
+      "type": "greater_than_equal",
+      "loc": ["query", "lon"],
+      "msg": "Input should be greater than or equal to 13",
+      "input": "2.35",
+      "ctx": { "ge": 13.0 }
+    }
+  ]
+}

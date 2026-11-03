@@ -78,6 +78,19 @@ def get_planner(request: Request) -> Planner:
     return request.app.state.planner  # type: ignore[no-any-return]
 
 
+def geocode_title(result: dict[str, Any]) -> str:
+    """Short, readable title of a Nominatim result: "Ilica 200", else the place name."""
+    address = result.get("address") or {}
+    road = next(
+        (address[k] for k in ("road", "pedestrian", "footway", "path") if address.get(k)), None
+    )
+    if road:
+        number = address.get("house_number")
+        return f"{road} {number}" if number else str(road)
+    name = result.get("name") or str(result.get("display_name", "")).split(",")[0].strip()
+    return str(name)
+
+
 def get_search(request: Request) -> CategorySearch:
     """Dependency: the category search."""
     return request.app.state.search  # type: ignore[no-any-return]
@@ -153,6 +166,7 @@ def make_router(get_session: Callable[..., Any], settings: BlizuSettings) -> API
 
     class GeocodeResult(BaseModel):
         label: str
+        title: str
         lat: float
         lon: float
         type: str | None = None
@@ -169,15 +183,21 @@ def make_router(get_session: Callable[..., Any], settings: BlizuSettings) -> API
             )
         except Exception as exc:
             raise HTTPException(502, "Usluga za pretragu adresa trenutno nije dostupna.") from exc
-        items = [
-            GeocodeResult(
+        items: list[dict[str, Any]] = []
+        seen: set[tuple[str, float, float]] = set()
+        for r in result.results:
+            item = GeocodeResult(
                 label=r.get("display_name", ""),
+                title=geocode_title(r),
                 lat=float(r["lat"]),
                 lon=float(r["lon"]),
                 type=r.get("type"),
             ).model_dump()
-            for r in result.results
-        ]
+            # the same address is often returned several times (building, shop, apartments): ~100 m cell
+            key = (item["title"], round(item["lat"], 3), round(item["lon"], 3))
+            if key not in seen:
+                seen.add(key)
+                items.append(item)
         return {
             "results": items,
             "attribution": result.attribution,

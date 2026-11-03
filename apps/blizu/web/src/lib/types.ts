@@ -81,6 +81,8 @@ export interface CompareResult {
 
 export interface GeocodeItem {
   label: string;
+  /** Short title built by the API, e.g. "Ilica 200". */
+  title: string;
   lat: number;
   lon: number;
   type: string | null;

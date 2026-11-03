@@ -305,6 +305,7 @@ def test_api_search_and_geocode_with_recorded_nominatim(client: TestClient) -> N
         assert g.status_code == 200
         body = g.json()
         assert body["results"][0]["lat"] == pytest.approx(45.8130887)
+        assert body["results"][0]["title"] == "Trg bana Josipa Jelačića"
         assert body["attribution"] == "© OpenStreetMap contributors (Nominatim)"
         sent = dict(route.calls.last.request.url.params)
         assert sent["viewbox"] == "15.75,45.7,16.25,45.95"

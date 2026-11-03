@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "updated": "2026-11-03",
+  "personas": {
+    "opce": { "label": "Opće", "speed_mps": 1.33, "graph": "full" },
+    "starija": { "label": "Starija osoba", "speed_mps": 0.9, "graph": "full" },
+    "roditelj": { "label": "Roditelj s djetetom", "speed_mps": 1.1, "graph": "full" },
+    "kolica": { "label": "Invalidska kolica", "speed_mps": 0.9, "graph": "wheelchair" }
+  },
+  "categories": {
+    "lijecnik": {
+      "label": "Liječnik / ambulanta",
+      "good_min": 10,
+      "max_min": 30,
+      "group": "pop_65p",
+      "weights": { "opce": 0.12, "starija": 0.22, "roditelj": 0.12, "kolica": 0.12 }
+    },
+    "ljekarna": {
+      "label": "Ljekarna",
+      "good_min": 10,
+      "max_min": 25,
+      "group": "pop_65p",
+      "weights": { "opce": 0.1, "starija": 0.18, "roditelj": 0.08, "kolica": 0.1 }
+    },
+    "vrtic": {
+      "label": "Dječji vrtić",
+      "good_min": 10,
+      "max_min": 25,
+      "group": "pop_u15",
+      "weights": { "opce": 0.08, "starija": 0.0, "roditelj": 0.22, "kolica": 0.08 }
+    },
+    "skola": {
+      "label": "Osnovna škola",
+      "good_min": 15,
+      "max_min": 30,
+      "group": "pop_u15",
+      "weights": { "opce": 0.08, "starija": 0.0, "roditelj": 0.15, "kolica": 0.08 }
+    },
+    "knjiznica": {
+      "label": "Knjižnica",
+      "good_min": 15,
+      "max_min": 40,
+      "group": "pop_total",
+      "weights": { "opce": 0.06, "starija": 0.07, "roditelj": 0.05, "kolica": 0.06 }
+    },
+    "posta": {
+      "label": "Pošta",
+      "good_min": 15,
+      "max_min": 35,
+      "group": "pop_total",
+      "weights": { "opce": 0.06, "starija": 0.1, "roditelj": 0.03, "kolica": 0.06 }
+    },
+    "prijevoz": {
+      "label": "Javni prijevoz (≥ 6 polazaka/h)",
+      "good_min": 5,
+      "max_min": 15,
+      "group": "pop_total",
+      "weights": { "opce": 0.2, "starija": 0.18, "roditelj": 0.12, "kolica": 0.2 }
+    },
+    "park": {
+      "label": "Park",
+      "good_min": 5,
+      "max_min": 15,
+      "group": "pop_total",
+      "weights": { "opce": 0.15, "starija": 0.1, "roditelj": 0.13, "kolica": 0.15 }
+    },
+    "namirnice": {
+      "label": "Trgovina (namirnice)",
+      "good_min": 5,
+      "max_min": 15,
+      "group": "pop_total",
+      "weights": { "opce": 0.15, "starija": 0.15, "roditelj": 0.1, "kolica": 0.15 }
+    }
+  },
+  "group_labels": {
+    "pop_65p": "stanovnici 65+",
+    "pop_u15": "djeca do 15 godina",
+    "pop_total": "ukupno stanovništvo"
+  },
+  "grades": { "A": 85, "B": 70, "C": 55, "D": 40 },
+  "confidence": {
+    "tier_factor": { "official": 1.0, "eu_official": 1.0, "community": 0.8, "derived": 0.8 },
+    "freshness": [
+      { "max_months": 12, "factor": 1.0 },
+      { "max_months": 36, "factor": 0.85 },
+      { "max_months": null, "factor": 0.7 }
+    ],
+    "labels": { "visoka": 0.85, "srednja": 0.7 }
+  }
+}

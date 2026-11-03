@@ -33,11 +33,6 @@ export function CategoryRow({ result, source, onSelect }: Props) {
           className="min-h-[44px] flex-1 text-left"
           onClick={() => onSelect(result)}
           disabled={!result.nearest}
-          aria-label={
-            result.nearest
-              ? `${result.label}: ${minutesText(result)}, ${result.nearest.name}. Prikaži na karti.`
-              : `${result.label}: ${minutesText(result)}`
-          }
         >
           <span className="flex items-baseline justify-between gap-3">
             <span className="text-base font-medium text-neutral-900">{result.label}</span>
@@ -51,6 +46,7 @@ export function CategoryRow({ result, source, onSelect }: Props) {
           <span className="block text-sm text-neutral-600">
             {result.nearest ? result.nearest.name : 'Nema objekta u dometu od 4 km hoda'}
             {result.nearest?.address ? ` · ${result.nearest.address}` : ''}
+            {result.nearest ? <span className="dt-sr-only"> Prikaži na karti.</span> : null}
           </span>
           <span
             className="mt-2 block h-2 w-full overflow-hidden rounded-full bg-neutral-200"

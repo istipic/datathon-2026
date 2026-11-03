@@ -7,17 +7,32 @@ categories:
     description: >-
       Liječnik obiteljske medicine, ambulanta, poliklinika, dom zdravlja i specijalist: mjesto gdje
       se ide na pregled, za recept, uputnicu ili kad se razboli.
-    synonyms: [doktor, ambulanta, liječnik, obiteljski liječnik, poliklinika, dom zdravlja, pregled, uputnica, bolest, zubar, pedijatar]
+    synonyms:
+      [
+        doktor,
+        ambulanta,
+        liječnik,
+        obiteljski liječnik,
+        poliklinika,
+        dom zdravlja,
+        pregled,
+        uputnica,
+        bolest,
+        zubar,
+        pedijatar,
+      ]
   ljekarna:
     description: >-
       Ljekarna ili apoteka u kojoj se kupuju lijekovi, podižu recepti, vitamini, zavoji i
       medicinski proizvodi.
-    synonyms: [apoteka, ljekarna, lijekovi, lijek, recept, tablete, vitamini, zavoji, medikamenti, brufen]
+    synonyms:
+      [apoteka, ljekarna, lijekovi, lijek, recept, tablete, vitamini, zavoji, medikamenti, brufen]
   vrtic:
     description: >-
       Dječji vrtić i jaslice za čuvanje, odgoj i predškolsko obrazovanje djece od jedne godine do
       polaska u školu.
-    synonyms: [vrtić, jaslice, dadilja, čuvanje djece, predškola, dječji vrtić, mališani, djeca, bebe]
+    synonyms:
+      [vrtić, jaslice, dadilja, čuvanje djece, predškola, dječji vrtić, mališani, djeca, bebe]
   skola:
     description: >-
       Osnovna škola, mjesto gdje djeca pohađaju obvezno osnovnoškolsko obrazovanje od prvog do
@@ -30,18 +45,36 @@ categories:
   posta:
     description: >-
       Poštanski ured za slanje i primanje pisama i paketa, plaćanje računa i uplate.
-    synonyms: [pošta, poštanski ured, paket, pismo, marke, uplatnica, slanje paketa, preporučena pošiljka]
+    synonyms:
+      [pošta, poštanski ured, paket, pismo, marke, uplatnica, slanje paketa, preporučena pošiljka]
   prijevoz:
     description: >-
       Stajalište javnog prijevoza, tramvaj ili autobus ZET-a s čestim polascima.
-    synonyms: [tramvaj, autobus, bus, stanica, stajalište, ZET, javni prijevoz, gradski prijevoz, vozni red]
+    synonyms:
+      [tramvaj, autobus, bus, stanica, stajalište, ZET, javni prijevoz, gradski prijevoz, vozni red]
   park:
     description: >-
       Park, zelena površina, šetnica i igralište za odmor, šetnju, igru djece i rekreaciju na
       otvorenom.
-    synonyms: [park, zelenilo, šetnja, igralište, igra, igrati, igraju, priroda, drveće, klupa, rekreacija, trčanje, pas]
+    synonyms:
+      [
+        park,
+        zelenilo,
+        šetnja,
+        igralište,
+        igra,
+        igrati,
+        igraju,
+        priroda,
+        drveće,
+        klupa,
+        rekreacija,
+        trčanje,
+        pas,
+      ]
   namirnice:
     description: >-
       Trgovina s namirnicama, supermarket ili dućan za svakodnevnu kupnju hrane, pića i kućanskih
       potrepština.
-    synonyms: [trgovina, dućan, supermarket, namirnice, hrana, kruh, mlijeko, market, kupovina, pekara]
+    synonyms:
+      [trgovina, dućan, supermarket, namirnice, hrana, kruh, mlijeko, market, kupovina, pekara]

@@ -6,23 +6,23 @@
 #   index   = round(100 * sum(w_c * s_c) / sum(w_c))   over categories that have data (renormalised)
 #   grade   = A >= 85, B >= 70, C >= 55, D >= 40, else E
 version: 1
-updated: "2026-11-03"
+updated: '2026-11-03'
 
 personas:
   opce:
-    label: "Opće"
+    label: 'Opće'
     speed_mps: 1.33
     graph: full
   starija:
-    label: "Starija osoba"
+    label: 'Starija osoba'
     speed_mps: 0.90
     graph: full
   roditelj:
-    label: "Roditelj s djetetom"
+    label: 'Roditelj s djetetom'
     speed_mps: 1.10
     graph: full
   kolica:
-    label: "Invalidska kolica"
+    label: 'Invalidska kolica'
     speed_mps: 0.90
     graph: wheelchair # edges with highway=steps or wheelchair=no removed
 
@@ -30,64 +30,64 @@ personas:
 # group = population group used for unmet need: pop_65p, pop_u15 or pop_total.
 categories:
   lijecnik:
-    label: "Liječnik / ambulanta"
+    label: 'Liječnik / ambulanta'
     good_min: 10
     max_min: 30
     group: pop_65p
     weights: { opce: 0.12, starija: 0.22, roditelj: 0.12, kolica: 0.12 }
   ljekarna:
-    label: "Ljekarna"
+    label: 'Ljekarna'
     good_min: 10
     max_min: 25
     group: pop_65p
     weights: { opce: 0.10, starija: 0.18, roditelj: 0.08, kolica: 0.10 }
   vrtic:
-    label: "Dječji vrtić"
+    label: 'Dječji vrtić'
     good_min: 10
     max_min: 25
     group: pop_u15
     weights: { opce: 0.08, starija: 0.0, roditelj: 0.22, kolica: 0.08 }
   skola:
-    label: "Osnovna škola"
+    label: 'Osnovna škola'
     good_min: 15
     max_min: 30
     group: pop_u15
     weights: { opce: 0.08, starija: 0.0, roditelj: 0.15, kolica: 0.08 }
   knjiznica:
-    label: "Knjižnica"
+    label: 'Knjižnica'
     good_min: 15
     max_min: 40
     group: pop_total
     weights: { opce: 0.06, starija: 0.07, roditelj: 0.05, kolica: 0.06 }
   posta:
-    label: "Pošta"
+    label: 'Pošta'
     good_min: 15
     max_min: 35
     group: pop_total
     weights: { opce: 0.06, starija: 0.10, roditelj: 0.03, kolica: 0.06 }
   prijevoz:
-    label: "Javni prijevoz (≥ 6 polazaka/h)"
+    label: 'Javni prijevoz (≥ 6 polazaka/h)'
     good_min: 5
     max_min: 15
     group: pop_total
     weights: { opce: 0.20, starija: 0.18, roditelj: 0.12, kolica: 0.20 }
   park:
-    label: "Park"
+    label: 'Park'
     good_min: 5
     max_min: 15
     group: pop_total
     weights: { opce: 0.15, starija: 0.10, roditelj: 0.13, kolica: 0.15 }
   namirnice:
-    label: "Trgovina (namirnice)"
+    label: 'Trgovina (namirnice)'
     good_min: 5
     max_min: 15
     group: pop_total
     weights: { opce: 0.15, starija: 0.15, roditelj: 0.10, kolica: 0.15 }
 
 group_labels:
-  pop_65p: "stanovnici 65+"
-  pop_u15: "djeca do 15 godina"
-  pop_total: "ukupno stanovništvo"
+  pop_65p: 'stanovnici 65+'
+  pop_u15: 'djeca do 15 godina'
+  pop_total: 'ukupno stanovništvo'
 
 grades: { A: 85, B: 70, C: 55, D: 40 } # below D => E
 
