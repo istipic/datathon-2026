@@ -47,3 +47,6 @@ Thumbs.db
 !.vscode/extensions.json
 apps/*/data/*.log
 apps/*/data/derived/
+
+# osmnx default cache (our code redirects it to apps/*/data/cache)
+/cache/
