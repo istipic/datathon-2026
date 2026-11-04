@@ -129,7 +129,9 @@ def slim_raw(raw: dict[str, Any]) -> dict[str, Any]:
     for key, value in raw.items():
         if key == "links":
             out[key] = {
-                "html": {k: v for k, v in ((value.get("html") or {}).items()) if k in ("HRV", "ENG")},
+                "html": {
+                    k: v for k, v in ((value.get("html") or {}).items()) if k in ("HRV", "ENG")
+                },
                 "pdf": {k: v for k, v in ((value.get("pdf") or {}).items()) if k in ("HRV", "ENG")},
             }
         elif isinstance(value, dict) and value and all(len(k) == 3 and k.islower() for k in value):
@@ -146,7 +148,9 @@ def slim_raw(raw: dict[str, Any]) -> dict[str, Any]:
 
 def parse_value(raw: dict[str, Any]) -> tuple[Decimal | None, str | None]:
     """Estimated value of a competition notice and its currency (procedure level, else lots)."""
-    currency = (raw.get("estimated-value-cur-proc") or next(iter(as_list(raw.get("estimated-value-cur-lot"))), None))
+    currency = raw.get("estimated-value-cur-proc") or next(
+        iter(as_list(raw.get("estimated-value-cur-lot"))), None
+    )
     value = parse_decimal(raw.get("estimated-value-proc"))
     if value is None:
         lots = [parse_decimal(v) for v in as_list(raw.get("estimated-value-lot"))]
@@ -158,7 +162,10 @@ def parse_value(raw: dict[str, Any]) -> tuple[Decimal | None, str | None]:
 def parse_notice(raw: dict[str, Any], kind: str) -> ParsedNotice:
     """Parse one TED notice (``kind`` is ``competition`` or ``result``)."""
     cpv = unique([c for c in map(str, as_list(raw.get("classification-cpv"))) if CPV8_RE.match(c)])
-    main = next((str(c) for c in as_list(raw.get("main-classification-proc")) if CPV8_RE.match(str(c))), None)
+    main = next(
+        (str(c) for c in as_list(raw.get("main-classification-proc")) if CPV8_RE.match(str(c))),
+        None,
+    )
     lots = as_list(raw.get("identifier-lot")) or as_list(raw.get("result-lot-identifier"))
     title = ml_first(raw.get("title-proc")) or ml_first(raw.get("notice-title"))
     description = ml_first(raw.get("description-proc"))

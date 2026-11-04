@@ -56,16 +56,26 @@ def render_validation_md(r: dict[str, Any]) -> str:
         "",
         "| Metoda | " + " | ".join(f"recall@{k}" for k in ks) + " |",
         "|---|" + "|".join("---:" for _ in ks) + "|",
-        "| **NabavaRadar (prilagodba S/C/G/T)** | " + " | ".join(pct(r["fit"][f"recall@{k}"]) for k in ks) + " |",
-        "| Osnovna: Postgres full-text | " + " | ".join(pct(r["fts_baseline"][f"recall@{k}"]) for k in ks) + " |",
-        "| Slučajan poredak (očekivanje) | " + " | ".join(pct(r["random_baseline"][f"recall@{k}"]) for k in ks) + " |",
+        "| **NabavaRadar (prilagodba S/C/G/T)** | "
+        + " | ".join(pct(r["fit"][f"recall@{k}"]) for k in ks)
+        + " |",
+        "| Osnovna: Postgres full-text | "
+        + " | ".join(pct(r["fts_baseline"][f"recall@{k}"]) for k in ks)
+        + " |",
+        "| Slučajan poredak (očekivanje) | "
+        + " | ".join(pct(r["random_baseline"][f"recall@{k}"]) for k in ks)
+        + " |",
         "",
         "Samo pobjednici s NKD profilom (isključeni oni bez djelatnosti):",
         "",
         "| Metoda | " + " | ".join(f"recall@{k}" for k in ks) + " |",
         "|---|" + "|".join("---:" for _ in ks) + "|",
-        "| NabavaRadar | " + " | ".join(pct(r["fit_scored_only"][f"recall@{k}"]) for k in ks) + " |",
-        "| Full-text | " + " | ".join(pct(r["fts_baseline_scored_only"][f"recall@{k}"]) for k in ks) + " |",
+        "| NabavaRadar | "
+        + " | ".join(pct(r["fit_scored_only"][f"recall@{k}"]) for k in ks)
+        + " |",
+        "| Full-text | "
+        + " | ".join(pct(r["fts_baseline_scored_only"][f"recall@{k}"]) for k in ks)
+        + " |",
         "",
         f"Medijan ranga cilja (NabavaRadar): {r['median_rank_fit']}",
         "",
@@ -134,6 +144,7 @@ def write_outputs(result: dict[str, Any], docs_path: Path) -> None:
             "source": "nabavaradar eval (maximises F1 of winners' activities vs awarded CPV division)",
         }
         (CONFIG_DIR / "market.yaml").write_text(
-            "# Written by `nabavaradar eval`; do not edit by hand.\n" + yaml.safe_dump(market, allow_unicode=True, sort_keys=False),
+            "# Written by `nabavaradar eval`; do not edit by hand.\n"
+            + yaml.safe_dump(market, allow_unicode=True, sort_keys=False),
             encoding="utf-8",
         )

@@ -210,7 +210,9 @@ class SudregClient:
             Snapshot(r["id"], r["timestamp"], r.get("available_until"), r.get("staleness"))
             for r in rows
         ]
-        return sorted(snaps, key=lambda s: (s.staleness if s.staleness is not None else 9999, -s.id))
+        return sorted(
+            snaps, key=lambda s: (s.staleness if s.staleness is not None else 9999, -s.id)
+        )
 
     def table(
         self, name: str, snapshot_id: int, *, page_size: int = PAGE_SIZE, **params: Any
@@ -232,7 +234,9 @@ class SudregClient:
 
     def nkd_codes(self, snapshot_id: int) -> list[dict[str, Any]]:
         """The NKD code list (šifrarnik) as delivered by the register."""
-        return self._get("nacionalna_klasifikacija_djelatnosti", {"snapshot_id": snapshot_id}).json()
+        return self._get(
+            "nacionalna_klasifikacija_djelatnosti", {"snapshot_id": snapshot_id}
+        ).json()
 
     def detalji_subjekta(
         self, oib: str, *, snapshot_id: int | None = None, wait: bool = False

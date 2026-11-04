@@ -32,16 +32,19 @@ def result() -> dict[str, dict]:
 def test_competition_notice_single_buyer_three_lots(competition) -> None:
     p = tp.parse_notice(competition["722712-2026"], "competition")
     r = p.row
-    assert r["type"] == "competition" and r["notice_type"] == "cn-standard"
+    assert r["type"] == "competition"
+    assert r["notice_type"] == "cn-standard"
     assert r["pub_date"] == date(2026, 10, 20)
     assert r["buyer_name"] == "KLINIČKI BOLNIČKI CENTAR SPLIT"
     assert r["buyer_nuts"] is None or r["buyer_nuts"].startswith("HR")
     assert r["place_nuts"] == "HR035"
-    assert r["cpv_codes"] == ["33692300"] and r["cpv_main"] == "33692300"
+    assert r["cpv_codes"] == ["33692300"]
+    assert r["cpv_main"] == "33692300"
     assert r["title"] == "Enteralna prehrana"
     assert "Grupa 1" in r["description"]
     assert r["n_lots"] == 3
-    assert r["value_eur"] == Decimal("580952") and r["currency"] == "EUR"
+    assert r["value_eur"] == Decimal("580952")
+    assert r["currency"] == "EUR"
     assert r["url_html"].startswith("https://ted.europa.eu/hr/notice/-/detail/722712-2026")
     assert r["url_pdf"].endswith("/722712-2026/pdf")
     assert p.awards == []
@@ -65,9 +68,12 @@ def test_competition_notice_many_lots_uses_procedure_value(competition) -> None:
 
 def test_result_notice_multi_lot_aligns_winners_with_lots_and_submissions(result) -> None:
     p = tp.parse_notice(result["722709-2026"], "result")
-    assert p.row["type"] == "result" and p.row["deadline"] is None and p.row["value_eur"] is None
+    assert p.row["type"] == "result"
+    assert p.row["deadline"] is None
+    assert p.row["value_eur"] is None
     by_lot = {a["lot_id"]: a for a in p.awards}
-    assert len(p.awards) == 8 and set(by_lot) == {f"LOT-000{i}" for i in range(1, 9)}
+    assert len(p.awards) == 8
+    assert set(by_lot) == {f"LOT-000{i}" for i in range(1, 9)}
     # winners follow tender-lot-identifier (LOT-1, 2, 3, 7), NOT the order of the lots
     assert by_lot["LOT-0001"]["winner_name"] == "SANOL H d.o.o."
     assert by_lot["LOT-0001"]["winner_national_id"] == "65605433360"
@@ -77,9 +83,19 @@ def test_result_notice_multi_lot_aligns_winners_with_lots_and_submissions(result
     assert by_lot["LOT-0007"]["winner_national_id"] == "20765781286"
     # lots closed without a winner carry no winner row
     for lot in ("LOT-0004", "LOT-0005", "LOT-0006", "LOT-0008"):
-        assert by_lot[lot]["lot_status"] == "clos-nw" and by_lot[lot]["winner_name"] is None
+        assert by_lot[lot]["lot_status"] == "clos-nw"
+        assert by_lot[lot]["winner_name"] is None
     # number of tenders received per lot (the 'tenders' entry of every 5-value block)
-    assert [by_lot[f"LOT-000{i}"]["received_submissions"] for i in range(1, 9)] == [2, 5, 2, 3, 3, 3, 2, 2]
+    assert [by_lot[f"LOT-000{i}"]["received_submissions"] for i in range(1, 9)] == [
+        2,
+        5,
+        2,
+        3,
+        3,
+        3,
+        2,
+        2,
+    ]
 
 
 def test_result_notice_two_tenders_of_one_winner_share_one_identifier(result) -> None:
@@ -113,12 +129,16 @@ def test_winner_ids_mapping_rules() -> None:
 
 def test_legacy_notice_without_winner_fields_has_no_awards() -> None:
     """Real notice 674010-2023 (published before the eForms data reached the API): no winner data."""
-    raw = json.loads((FIX / "2026-11-04_result_legacy_674010-2023.json").read_text(encoding="utf-8"))
-    assert "winner-identifier" not in raw and "received-submissions-type-val" not in raw
+    raw = json.loads(
+        (FIX / "2026-11-04_result_legacy_674010-2023.json").read_text(encoding="utf-8")
+    )
+    assert "winner-identifier" not in raw
+    assert "received-submissions-type-val" not in raw
     p = tp.parse_notice(raw, "result")
     assert p.awards == []
     assert p.row["pub_date"] == date(2023, 11, 7)
-    assert p.row["buyer_name"] and p.row["cpv_main"]
+    assert p.row["buyer_name"]
+    assert p.row["cpv_main"]
 
 
 def test_helpers() -> None:
@@ -129,12 +149,15 @@ def test_helpers() -> None:
     assert tp.first_nuts3(["HRV"]) is None
     assert tp.parse_date("2026-07-07+02:00") == date(2026, 7, 7)
     assert tp.parse_date("garbage") is None
-    assert tp.parse_decimal("12.5") == Decimal("12.5") and tp.parse_decimal("x") is None
+    assert tp.parse_decimal("12.5") == Decimal("12.5")
+    assert tp.parse_decimal("x") is None
 
 
 def test_result_lot_result_repeated_for_two_winners_gives_unique_award_keys() -> None:
     """Real notice 93705-2024: result-lot-identifier = [LOT-0000, LOT-0000] (two winners, one lot)."""
-    raw = json.loads((FIX / "2026-11-04_result_duplicate_lots_93705-2024.json").read_text(encoding="utf-8"))
+    raw = json.loads(
+        (FIX / "2026-11-04_result_duplicate_lots_93705-2024.json").read_text(encoding="utf-8")
+    )
     awards = tp.parse_notice(raw, "result").awards
     keys = [(a["pub_no"], a["lot_id"], a["seq"]) for a in awards]
     assert len(keys) == len(set(keys)) == 2

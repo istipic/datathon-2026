@@ -33,7 +33,9 @@ class CompanyRecord:
     status: int
     county_code: int | None
     nuts3: str | None
-    activities: list[tuple[str, str, bool]] = field(default_factory=list)  # (code, version, is_main)
+    activities: list[tuple[str, str, bool]] = field(
+        default_factory=list
+    )  # (code, version, is_main)
     snapshot_id: int | None = None
     snapshot_at: datetime | None = None
 

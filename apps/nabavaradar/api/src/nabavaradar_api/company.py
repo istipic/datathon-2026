@@ -43,10 +43,23 @@ def company_profile(session: Session, oib: str) -> dict[str, Any] | None:
     if company is None:
         return None
     acts = session.execute(
-        select(CompanyActivity.nkd_code, CompanyActivity.nkd_version, CompanyActivity.is_main, Nkd.label_hr)
-        .join(Nkd, (Nkd.code == CompanyActivity.nkd_code) & (Nkd.version == CompanyActivity.nkd_version), isouter=True)
+        select(
+            CompanyActivity.nkd_code,
+            CompanyActivity.nkd_version,
+            CompanyActivity.is_main,
+            Nkd.label_hr,
+        )
+        .join(
+            Nkd,
+            (Nkd.code == CompanyActivity.nkd_code) & (Nkd.version == CompanyActivity.nkd_version),
+            isouter=True,
+        )
         .where(CompanyActivity.oib == oib)
-        .order_by(CompanyActivity.is_main.desc(), CompanyActivity.nkd_version.desc(), CompanyActivity.nkd_code)
+        .order_by(
+            CompanyActivity.is_main.desc(),
+            CompanyActivity.nkd_version.desc(),
+            CompanyActivity.nkd_code,
+        )
     ).all()
     county = by_code(company.county_code)
     return {
@@ -54,9 +67,16 @@ def company_profile(session: Session, oib: str) -> dict[str, Any] | None:
         "mbs": company.mbs,
         "name": company.name,
         "status": company.status,
-        "county": {"code": county.code, "name": county.name, "nuts3": county.nuts3} if county else None,
+        "county": {"code": county.code, "name": county.name, "nuts3": county.nuts3}
+        if county
+        else None,
         "activities": [
-            {"code": a.nkd_code, "version": a.nkd_version, "label": a.label_hr, "is_main": bool(a.is_main)}
+            {
+                "code": a.nkd_code,
+                "version": a.nkd_version,
+                "label": a.label_hr,
+                "is_main": bool(a.is_main),
+            }
             for a in acts
         ],
         "data_as_of": company.snapshot_at.isoformat() if company.snapshot_at else None,
@@ -85,7 +105,8 @@ def store_company(session: Session, record: CompanyRecord) -> None:
     )
     session.execute(delete(CompanyActivity).where(CompanyActivity.oib == record.oib))
     rows = [
-        {"oib": record.oib, "nkd_code": c, "nkd_version": v, "is_main": m} for c, v, m in record.activities
+        {"oib": record.oib, "nkd_code": c, "nkd_version": v, "is_main": m}
+        for c, v, m in record.activities
     ]
     if rows:
         session.execute(insert(CompanyActivity).values(rows).on_conflict_do_nothing())
@@ -111,7 +132,12 @@ class Job:
 class LookupQueue:
     """Single-worker queue for live register lookups (6/minute)."""
 
-    def __init__(self, settings: NabavaSettings, session_factory: sessionmaker[Session], client: SudregClient | None = None) -> None:
+    def __init__(
+        self,
+        settings: NabavaSettings,
+        session_factory: sessionmaker[Session],
+        client: SudregClient | None = None,
+    ) -> None:
         self.settings = settings
         self._factory = session_factory
         self._client = client

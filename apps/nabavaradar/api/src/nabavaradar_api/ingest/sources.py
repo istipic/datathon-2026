@@ -15,7 +15,9 @@ from nabavaradar_api.constants import (
 from nabavaradar_api.settings import NabavaSettings
 from opendata_core.provenance import AccessMethod, Tier, register_source
 
-LICENCE_NOTE = "The publisher's licence was not stated in the retrieved documents; check before reuse."
+LICENCE_NOTE = (
+    "The publisher's licence was not stated in the retrieved documents; check before reuse."
+)
 
 
 def register_all(session: Session, settings: NabavaSettings) -> None:

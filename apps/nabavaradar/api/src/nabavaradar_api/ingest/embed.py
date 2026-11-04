@@ -50,19 +50,26 @@ def notice_text(
 
 def cpv_label_map(session: Session) -> dict[str, str]:
     """Croatian CPV label per 8-digit code (English when no Croatian label exists)."""
-    return {c: (hr or en) for c, hr, en in session.execute(select(Cpv.code, Cpv.label_hr, Cpv.label_en))}
+    return {
+        c: (hr or en) for c, hr, en in session.execute(select(Cpv.code, Cpv.label_hr, Cpv.label_en))
+    }
 
 
 def embed_nkd(session: Session, encode_queries: Encoder | None = None) -> int:
     """Embed NKD labels (as queries); returns the number embedded."""
     enc = encode_queries or _encoders()[0]
-    rows = session.execute(select(Nkd.code, Nkd.version, Nkd.label_hr).where(Nkd.embedding.is_(None))).all()
+    rows = session.execute(
+        select(Nkd.code, Nkd.version, Nkd.label_hr).where(Nkd.embedding.is_(None))
+    ).all()
     for i in range(0, len(rows), CHUNK):
         chunk = rows[i : i + CHUNK]
         vecs = enc([r.label_hr for r in chunk])
         session.execute(
             update(Nkd),
-            [{"code": r.code, "version": r.version, "embedding": v} for r, v in zip(chunk, vecs, strict=True)],
+            [
+                {"code": r.code, "version": r.version, "embedding": v}
+                for r, v in zip(chunk, vecs, strict=True)
+            ],
         )
         session.commit()
     log.info("nkd_embedded", rows=len(rows))
@@ -79,7 +86,8 @@ def embed_cpv(session: Session, encode_passages: Encoder | None = None) -> int:
         chunk = rows[i : i + CHUNK]
         vecs = enc([r.label_hr or r.label_en for r in chunk])
         session.execute(
-            update(Cpv), [{"code": r.code, "embedding": v} for r, v in zip(chunk, vecs, strict=True)]
+            update(Cpv),
+            [{"code": r.code, "embedding": v} for r, v in zip(chunk, vecs, strict=True)],
         )
         session.commit()
     log.info("cpv_embedded", rows=len(rows))
@@ -92,16 +100,21 @@ def embed_notices(
     """Embed notices that have no embedding yet (passages); returns the number embedded."""
     enc = encode_passages or _encoders()[1]
     labels = cpv_label_map(session)
-    query = select(
-        Notice.pub_no, Notice.title, Notice.description, Notice.cpv_codes
-    ).where(Notice.embedding.is_(None)).order_by(Notice.pub_date.desc())
+    query = (
+        select(Notice.pub_no, Notice.title, Notice.description, Notice.cpv_codes)
+        .where(Notice.embedding.is_(None))
+        .order_by(Notice.pub_date.desc())
+    )
     if limit:
         query = query.limit(limit)
     rows = session.execute(query).all()
     done = 0
     for i in range(0, len(rows), CHUNK):
         chunk = rows[i : i + CHUNK]
-        texts = [notice_text(r.title, r.description, list(r.cpv_codes or []), labels) or r.pub_no for r in chunk]
+        texts = [
+            notice_text(r.title, r.description, list(r.cpv_codes or []), labels) or r.pub_no
+            for r in chunk
+        ]
         vecs = enc(texts)
         session.execute(
             update(Notice),

@@ -8,7 +8,6 @@ from collections import defaultdict, deque
 from collections.abc import Callable
 from typing import Annotated, Any
 
-import numpy as np
 from fastapi import APIRouter, Depends, HTTPException, Query, Request
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field, field_validator
@@ -18,15 +17,13 @@ from sqlalchemy.orm import Session
 from nabavaradar_api.company import LookupQueue, company_profile
 from nabavaradar_api.counties import counties, valid_county_codes
 from nabavaradar_api.db import Award, Calibration, Company, CompetitionStat, Cpv, Notice
-from nabavaradar_api.fit import rank_divisions
-from nabavaradar_api.match import Activity, MatchEngine, crosswalk_maps, load_activities
+from nabavaradar_api.match import CompanyNotLoaded, MatchEngine, build_profile
 from nabavaradar_api.oib import is_valid_oib
 from nabavaradar_api.settings import NabavaSettings
 from nabavaradar_api.sounding import (
     CPV_RE,
     MAX_TEXT,
     competition_for,
-    cpv_index,
     data_dates,
     normalise_cpv,
     sound_market,
@@ -42,7 +39,9 @@ EVAL_KEY = "eval_latest"
 class SlidingLimit:
     """Per-key sliding-window limiter (in-memory, one process)."""
 
-    def __init__(self, limit: int, period: float = 60.0, clock: Callable[[], float] = time.monotonic) -> None:
+    def __init__(
+        self, limit: int, period: float = 60.0, clock: Callable[[], float] = time.monotonic
+    ) -> None:
         self.limit, self.period, self._clock = limit, period, clock
         self._hits: dict[str, deque[float]] = defaultdict(deque)
         self._lock = threading.Lock()
@@ -63,21 +62,29 @@ class SlidingLimit:
 def require_oib(oib: str) -> str:
     """422 for a malformed OIB or a wrong checksum - before any database or external call."""
     if not is_valid_oib(oib):
-        raise HTTPException(status_code=422, detail="Neispravan OIB: mora imati 11 znamenki i ispravnu kontrolnu znamenku.")
+        raise HTTPException(
+            status_code=422,
+            detail="Neispravan OIB: mora imati 11 znamenki i ispravnu kontrolnu znamenku.",
+        )
     return oib
 
 
 def require_cpv(value: str) -> str:
     """422 unless ``value`` is an 8-digit CPV code (optional check digit) or a 2-8 digit prefix."""
     if not CPV_RE.match(value):
-        raise HTTPException(status_code=422, detail="Neispravan CPV: očekuje se 8 znamenki (npr. 45000000-7) ili prefiks od 2 do 8 znamenki.")
+        raise HTTPException(
+            status_code=422,
+            detail="Neispravan CPV: očekuje se 8 znamenki (npr. 45000000-7) ili prefiks od 2 do 8 znamenki.",
+        )
     return value
 
 
 def require_county(code: int | None) -> int | None:
     """422 unless ``code`` is one of the fixed county codes."""
     if code is not None and code not in valid_county_codes():
-        raise HTTPException(status_code=422, detail=f"Nepoznata županija; dopuštene šifre: {valid_county_codes()}")
+        raise HTTPException(
+            status_code=422, detail=f"Nepoznata županija; dopuštene šifre: {valid_county_codes()}"
+        )
     return code
 
 
@@ -121,7 +128,9 @@ def make_router(
         profile = company_profile(session, oib)
         if profile is None:
             if not settings.sudreg_client_id:
-                raise HTTPException(503, "Pristup Sudskom registru nije podešen (SUDREG_CLIENT_ID).")
+                raise HTTPException(
+                    503, "Pristup Sudskom registru nije podešen (SUDREG_CLIENT_ID)."
+                )
             job = lookup.submit(oib)
             job.event.wait(timeout=LOOKUP_WAIT_S)
             if job.status == "done":
@@ -130,13 +139,19 @@ def make_router(
             elif not job.finished:
                 wait = lookup.retry_after()
                 return JSONResponse(
-                    {"status": "queued", "oib": oib, "retry_after": wait,
-                     "detail": "Upit prema Sudskom registru je u redu čekanja (ograničenje 6 upita u minuti)."},
+                    {
+                        "status": "queued",
+                        "oib": oib,
+                        "retry_after": wait,
+                        "detail": "Upit prema Sudskom registru je u redu čekanja (ograničenje 6 upita u minuti).",
+                    },
                     status_code=202,
                     headers={"Retry-After": str(wait)},
                 )
             elif job.status == "excluded":
-                raise HTTPException(404, "Subjekt nije u obuhvatu (trgovac pojedinac, stečaj ili likvidacija).")
+                raise HTTPException(
+                    404, "Subjekt nije u obuhvatu (trgovac pojedinac, stečaj ili likvidacija)."
+                )
             elif job.status == "unavailable":
                 raise HTTPException(503, "Sudski registar trenutno nije dostupan za ovaj upit.")
             elif job.status == "error":
@@ -165,27 +180,20 @@ def make_router(
         require_county(county)
         wait = match_limit.check(request.client.host if request.client else "unknown")
         if wait > 0:
-            return problem(request, 429, detail="Ograničenje: najviše 30 upita u minuti na /match.", headers={"Retry-After": str(int(wait))})
-        activities: list[Activity] = []
-        company_nuts3: str | None = None
-        if oib is not None:
-            company = session.get(Company, oib)
-            if company is None:
-                raise HTTPException(404, "Tvrtka nije učitana; prvo pozovite /api/v1/company/{oib}.")
-            company_nuts3 = company.nuts3
-            activities = load_activities(session, oib)
-        divisions_extra: list[dict[str, float]] = []
-        if q and q.strip():
-            vec = np.asarray(_encode([q.strip()])[0], dtype=np.float32)
-            activities = [Activity(label=q.strip()[:120], vec=vec, code=None), *activities]
-            idx = cpv_index(session)
-            sims = idx.emb @ vec
-            divisions_extra.append(_division_sims(idx.codes, sims))
+            return problem(
+                request,
+                429,
+                detail="Ograničenje: najviše 30 upita u minuti na /match.",
+                headers={"Retry-After": str(int(wait))},
+            )
+        try:
+            activities, company_nuts3, ranked = build_profile(session, oib=oib, q=q, encode=_encode)
+        except CompanyNotLoaded as exc:
+            raise HTTPException(
+                404, "Tvrtka nije učitana; prvo pozovite /api/v1/company/{oib}."
+            ) from exc
         if not activities:
             return []
-        ranked = rank_divisions(
-            [*divisions_extra, *crosswalk_maps(session, activities)]
-        )
         return engine.match(
             session,
             activities=activities,
@@ -264,26 +272,31 @@ def make_router(
             return competition_for(session, prefix[:3], nuts2)
         rows = session.scalars(
             select(CompetitionStat)
-            .where(CompetitionStat.nuts2 == (nuts2 or "HR"), CompetitionStat.cpv_group.like(f"{prefix}%"))
+            .where(
+                CompetitionStat.nuts2 == (nuts2 or "HR"),
+                CompetitionStat.cpv_group.like(f"{prefix}%"),
+            )
             .order_by(CompetitionStat.n_awards.desc())
         ).all()
         return {
             "division": prefix,
             "scope": nuts2 or "HR",
-            "groups": [
-                competition_for(session, r.cpv_group, nuts2) for r in rows
-            ],
+            "groups": [competition_for(session, r.cpv_group, nuts2) for r in rows],
         }
 
     # ------------------------------------------------------------------ sounding
     @router.post("/sounding")
     def sounding(body: SoundingRequest, session: Session = Depends(get_session)) -> Any:
         if bool(body.text) == bool(body.cpv):
-            raise HTTPException(422, "Navedite točno jedno: opis nabave (text) ili CPV šifru (cpv).")
+            raise HTTPException(
+                422, "Navedite točno jedno: opis nabave (text) ili CPV šifru (cpv)."
+            )
         if body.cpv:
             require_cpv(body.cpv)
         require_county(body.county)
-        return sound_market(session, text_input=body.text, cpv=body.cpv, county=body.county, encode=_encode)
+        return sound_market(
+            session, text_input=body.text, cpv=body.cpv, county=body.county, encode=_encode
+        )
 
     # ------------------------------------------------------------------ validation, helpers
     @router.get("/validation")
@@ -295,10 +308,16 @@ def make_router(
 
     @router.get("/counties")
     def list_counties() -> Any:
-        return [{"code": c.code, "name": c.name, "nuts3": c.nuts3, "nuts2": c.nuts2} for c in counties()]
+        return [
+            {"code": c.code, "name": c.name, "nuts3": c.nuts3, "nuts2": c.nuts2} for c in counties()
+        ]
 
     @router.get("/cpv")
-    def search_cpv(q: Annotated[str, Query(min_length=2, max_length=100)], limit: Annotated[int, Query(ge=1, le=50)] = 15, session: Session = Depends(get_session)) -> Any:
+    def search_cpv(
+        q: Annotated[str, Query(min_length=2, max_length=100)],
+        limit: Annotated[int, Query(ge=1, le=50)] = 15,
+        session: Session = Depends(get_session),
+    ) -> Any:
         """CPV picker: search by code prefix or label text."""
         like = f"%{q.strip()}%"
         stmt = select(Cpv.code, Cpv.check_digit, Cpv.label_hr, Cpv.label_en)
@@ -308,7 +327,13 @@ def make_router(
             stmt = stmt.where(Cpv.label_hr.ilike(like) | Cpv.label_en.ilike(like))
         rows = session.execute(stmt.order_by(Cpv.code).limit(limit)).all()
         return [
-            {"code": r.code, "check_digit": r.check_digit, "label": r.label_hr or r.label_en, "division": r.code[:2], "group": r.code[:3]}
+            {
+                "code": r.code,
+                "check_digit": r.check_digit,
+                "label": r.label_hr or r.label_en,
+                "division": r.code[:2],
+                "group": r.code[:3],
+            }
             for r in rows
         ]
 
@@ -322,8 +347,3 @@ def make_router(
         }
 
     return router
-
-
-def _division_sims(codes: list[str], sims: Any) -> dict[str, float]:
-    """Similarity per CPV division, using the division's own code (``XX000000``)."""
-    return {c[:2]: float(s) for c, s in zip(codes, sims, strict=True) if c.endswith("000000")}

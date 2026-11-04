@@ -42,7 +42,9 @@ def settings() -> NabavaSettings:
 
 
 def detail_body() -> dict:
-    return json.loads((FIX / "2026-11-04_detalji_subjekta_oib92803032010.json").read_text(encoding="utf-8"))["body"]
+    return json.loads(
+        (FIX / "2026-11-04_detalji_subjekta_oib92803032010.json").read_text(encoding="utf-8")
+    )["body"]
 
 
 class Clock:
@@ -88,7 +90,15 @@ def test_parsed_record_holds_company_level_fields_only() -> None:
     rec = parse_detail(detail_body())
     assert rec is not None
     assert set(vars(rec)) == {
-        "oib", "mbs", "name", "status", "county_code", "nuts3", "activities", "snapshot_id", "snapshot_at",
+        "oib",
+        "mbs",
+        "name",
+        "status",
+        "county_code",
+        "nuts3",
+        "activities",
+        "snapshot_id",
+        "snapshot_at",
     }
     blob = json.dumps(detail_body()).lower()
     for forbidden in ("osobe", "funkcij", "osoba_rbr", "datum_rodjenja"):
@@ -103,10 +113,15 @@ def test_invalid_oib_in_detail_is_rejected() -> None:
 def test_exclusion_rules() -> None:
     base = detail_body()
     assert exclusion_reason(base) is None
-    sole = base | {"pravni_oblik": {"vrsta_pravnog_oblika": {"sifra": 6, "naziv": "trgovac pojedinac"}}}
+    sole = base | {
+        "pravni_oblik": {"vrsta_pravnog_oblika": {"sifra": 6, "naziv": "trgovac pojedinac"}}
+    }
     assert exclusion_reason(sole) == "sole_trader"
     assert exclusion_reason(base | {"stecajna_masa": 1}) == "estate"
-    assert exclusion_reason(base | {"postupak": {"postupak": {"znacenje": "Stečaj"}}}) == "bankruptcy_or_liquidation"
+    assert (
+        exclusion_reason(base | {"postupak": {"postupak": {"znacenje": "Stečaj"}}})
+        == "bankruptcy_or_liquidation"
+    )
     assert exclusion_reason(base | {"postupak": 3}) == "bankruptcy_or_liquidation"
     assert exclusion_reason(base | {"postupak": 1}) is None
 
@@ -143,7 +158,12 @@ def test_token_refused_raises_auth_error_without_leaking_secrets() -> None:
 
 
 def test_missing_credentials_fail_fast() -> None:
-    s = NabavaSettings(_env_file=None, contact_email="t@x.hr", sudreg_client_id="", sudreg_client_secret=SecretStr(""))
+    s = NabavaSettings(
+        _env_file=None,
+        contact_email="t@x.hr",
+        sudreg_client_id="",
+        sudreg_client_secret=SecretStr(""),
+    )
     with pytest.raises(SudregAuthError):
         SudregClient(s, http=httpx.Client()).token()
 
@@ -168,7 +188,11 @@ def test_seventh_detalji_call_is_deferred_not_sent() -> None:
     clock = Clock()
     respx.post(TOKEN_URL).mock(return_value=httpx.Response(200, json=token_json()))
     route = respx.get(f"{BASE}/detalji_subjekta").mock(
-        return_value=httpx.Response(200, json=detail_body(), headers={"x-snapshot-id": "1", "x-timestamp": "2024-06-16T20:57:57"})
+        return_value=httpx.Response(
+            200,
+            json=detail_body(),
+            headers={"x-snapshot-id": "1", "x-timestamp": "2024-06-16T20:57:57"},
+        )
     )
     client = SudregClient(settings(), http=httpx.Client(), clock=clock, sleep=clock.sleep)
     for _ in range(6):
@@ -191,7 +215,8 @@ def test_seventh_call_waits_when_blocking() -> None:
     client = SudregClient(settings(), http=httpx.Client(), clock=clock, sleep=clock.sleep)
     for _ in range(7):
         client.detalji_subjekta(OIB, wait=True)
-    assert clock.slept and clock.slept[-1] == pytest.approx(60.0)
+    assert clock.slept
+    assert clock.slept[-1] == pytest.approx(60.0)
 
 
 # ---------------------------------------------------------------------------- errors, paging
@@ -200,7 +225,9 @@ def test_seventh_call_waits_when_blocking() -> None:
 @respx.mock
 def test_data_call_401_means_unverified_account() -> None:
     respx.post(TOKEN_URL).mock(return_value=httpx.Response(200, json=token_json()))
-    respx.get(f"{BASE}/snapshots").mock(return_value=httpx.Response(401, json={"code": "Unauthorized"}))
+    respx.get(f"{BASE}/snapshots").mock(
+        return_value=httpx.Response(401, json={"code": "Unauthorized"})
+    )
     with pytest.raises(SudregAuthError, match="not verified"):
         SudregClient(settings(), http=httpx.Client()).snapshots()
 
@@ -209,7 +236,14 @@ def test_data_call_401_means_unverified_account() -> None:
 def test_unknown_oib_is_not_found() -> None:
     respx.post(TOKEN_URL).mock(return_value=httpx.Response(200, json=token_json()))
     respx.get(f"{BASE}/detalji_subjekta").mock(
-        return_value=httpx.Response(400, json={"error_code": 505, "error_message": "Vaš zahtjev nije vratio ni jedan redak", "log_id": 1})
+        return_value=httpx.Response(
+            400,
+            json={
+                "error_code": 505,
+                "error_message": "Vaš zahtjev nije vratio ni jedan redak",
+                "log_id": 1,
+            },
+        )
     )
     with pytest.raises(SudregNotFound):
         SudregClient(settings(), http=httpx.Client()).detalji_subjekta(OIB)
@@ -231,7 +265,11 @@ def test_bulk_table_is_pinned_to_one_snapshot_and_pages_until_total() -> None:
         return httpx.Response(200, json=pages[offset], headers={"x-total-count": "3"})
 
     route = respx.get(f"{BASE}/subjekti").mock(side_effect=handler)
-    got = [r["mbs"] for page in SudregClient(settings(), http=httpx.Client()).table("subjekti", 7, page_size=2) for r in page]
+    got = [
+        r["mbs"]
+        for page in SudregClient(settings(), http=httpx.Client()).table("subjekti", 7, page_size=2)
+        for r in page
+    ]
     assert got == [r["mbs"] for r in rows]
     assert route.call_count == 2
 

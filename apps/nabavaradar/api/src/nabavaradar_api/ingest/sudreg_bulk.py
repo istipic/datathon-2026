@@ -36,7 +36,9 @@ log = structlog.get_logger(__name__)
 BATCH = 5000
 
 
-def _upsert(session: Session, model: Any, rows: list[dict[str, Any]], keys: list[Any], update: list[str]) -> None:
+def _upsert(
+    session: Session, model: Any, rows: list[dict[str, Any]], keys: list[Any], update: list[str]
+) -> None:
     for i in range(0, len(rows), BATCH):
         stmt = insert(model).values(rows[i : i + BATCH])
         stmt = stmt.on_conflict_do_update(
@@ -71,7 +73,9 @@ def _current_entry(rows: list[dict[str, Any]]) -> dict[str, Any]:
     )
 
 
-def ingest_nkd(session: Session, client: SudregClient, snapshot: Snapshot) -> dict[int, tuple[str, str]]:
+def ingest_nkd(
+    session: Session, client: SudregClient, snapshot: Snapshot
+) -> dict[int, tuple[str, str]]:
     """Load the NKD code list (all versions) and return ``{register id: (code, version)}``.
 
     The register keeps several rows per (code, version) (renamed entries); every id is mapped to
@@ -79,7 +83,8 @@ def ingest_nkd(session: Session, client: SudregClient, snapshot: Snapshot) -> di
     label is the current one.
     """
     rows = client._get(
-        "nacionalna_klasifikacija_djelatnosti", {"snapshot_id": snapshot.id, "history_columns": "true"}
+        "nacionalna_klasifikacija_djelatnosti",
+        {"snapshot_id": snapshot.id, "history_columns": "true"},
     ).json()
     groups: dict[tuple[str, str], list[dict[str, Any]]] = {}
     for r in rows:
@@ -167,7 +172,9 @@ def ingest_sudreg(
             activities: dict[int, dict[tuple[str, str], bool]] = {m: {} for m in subjects}
             for mbs, s in subjects.items():
                 if s["glavna"]:
-                    activities[mbs][(nkd_code_from_number(s["glavna"]), MAIN_ACTIVITY_VERSION)] = True
+                    activities[mbs][(nkd_code_from_number(s["glavna"]), MAIN_ACTIVITY_VERSION)] = (
+                        True
+                    )
             has_main = {m for m, a in activities.items() if a}
             unknown_nkd = 0
             for table, mark_main in (
@@ -217,7 +224,15 @@ def ingest_sudreg(
                 Company,
                 company_rows,
                 [Company.oib],
-                ["mbs", "name", "status", "county_code", "nuts3", "updated_snapshot", "snapshot_at"],
+                [
+                    "mbs",
+                    "name",
+                    "status",
+                    "county_code",
+                    "nuts3",
+                    "updated_snapshot",
+                    "snapshot_at",
+                ],
             )
             session.execute(delete(CompanyActivity))
             act_rows = [

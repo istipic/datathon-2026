@@ -106,24 +106,52 @@ def _t_at_publication(deadline: datetime | None, pub: date) -> float | None:
     return 0.0 if days <= T_ZERO_DAYS else (days - T_ZERO_DAYS) / (T_FULL_DAYS - T_ZERO_DAYS)
 
 
-def build_month_index(session: Session, kind: str, month: str, nuts_pos: dict[str, int]) -> MonthIndex:
+def build_month_index(
+    session: Session, kind: str, month: str, nuts_pos: dict[str, int]
+) -> MonthIndex:
     """Candidates of a month: competition notices (or result notices in fallback mode)."""
     year, mon = int(month[:4]), int(month[5:7])
     start = date(year, mon, 1)
     end = date(year + (mon == 12), 1 if mon == 12 else mon + 1, 1)
     rows = session.execute(
         select(
-            Notice.pub_no, Notice.embedding, Notice.cpv_main, Notice.buyer_nuts, Notice.place_nuts,
-            Notice.deadline, Notice.pub_date,
-        ).where(Notice.type == kind, Notice.pub_date >= start, Notice.pub_date < end, Notice.embedding.is_not(None))
+            Notice.pub_no,
+            Notice.embedding,
+            Notice.cpv_main,
+            Notice.buyer_nuts,
+            Notice.place_nuts,
+            Notice.deadline,
+            Notice.pub_date,
+        ).where(
+            Notice.type == kind,
+            Notice.pub_date >= start,
+            Notice.pub_date < end,
+            Notice.embedding.is_not(None),
+        )
     ).all()
-    emb = np.stack([np.asarray(r.embedding, dtype=np.float32) for r in rows]) if rows else np.zeros((0, 384), np.float32)
+    emb = (
+        np.stack([np.asarray(r.embedding, dtype=np.float32) for r in rows])
+        if rows
+        else np.zeros((0, 384), np.float32)
+    )
     division = np.array([int(r.cpv_main[:2]) if r.cpv_main else -1 for r in rows], dtype=np.int64)
-    nuts = np.array([nuts_pos.get(r.buyer_nuts or r.place_nuts or "", -1) for r in rows], dtype=np.int64)
-    t_values = [_t_at_publication(r.deadline, r.pub_date) if kind == "competition" else 0.5 for r in rows]
+    nuts = np.array(
+        [nuts_pos.get(r.buyer_nuts or r.place_nuts or "", -1) for r in rows], dtype=np.int64
+    )
+    t_values = [
+        _t_at_publication(r.deadline, r.pub_date) if kind == "competition" else 0.5 for r in rows
+    ]
     valid = np.array([t is not None for t in t_values], dtype=bool)
     t = np.array([t if t is not None else 0.0 for t in t_values], dtype=np.float64)
-    return MonthIndex([r.pub_no for r in rows], emb, division, nuts, t, valid, {r.pub_no: i for i, r in enumerate(rows)})
+    return MonthIndex(
+        [r.pub_no for r in rows],
+        emb,
+        division,
+        nuts,
+        t,
+        valid,
+        {r.pub_no: i for i, r in enumerate(rows)},
+    )
 
 
 def g_table(nuts3_codes: list[str]) -> NDArray[np.float64]:
@@ -181,9 +209,19 @@ def load_company_activities(session: Session, oibs: set[str]) -> dict[str, list[
     """Per OIB: up to 10 (code, version) pairs, main first, newest NKD version first."""
     out: dict[str, list[tuple[str, str]]] = defaultdict(list)
     rows = session.execute(
-        select(CompanyActivity.oib, CompanyActivity.nkd_code, CompanyActivity.nkd_version, CompanyActivity.is_main)
+        select(
+            CompanyActivity.oib,
+            CompanyActivity.nkd_code,
+            CompanyActivity.nkd_version,
+            CompanyActivity.is_main,
+        )
         .where(CompanyActivity.oib.in_(oibs))
-        .order_by(CompanyActivity.oib, CompanyActivity.is_main.desc(), CompanyActivity.nkd_version.desc(), CompanyActivity.nkd_code)
+        .order_by(
+            CompanyActivity.oib,
+            CompanyActivity.is_main.desc(),
+            CompanyActivity.nkd_version.desc(),
+            CompanyActivity.nkd_code,
+        )
     ).all()
     for r in rows:
         if len(out[r.oib]) < MAX_ACTIVITIES:
@@ -202,7 +240,11 @@ def run_evaluation(session: Session, *, now: datetime | None = None) -> dict[str
     winners = load_winners(session)
     rows = winners["rows"]
     linked = [r for r in rows if r.competition_no]
-    mode = "linked" if len({(r.oib, r.competition_no) for r in linked}) >= MIN_LINKED_FOR_PRIMARY else "result_fallback"
+    mode = (
+        "linked"
+        if len({(r.oib, r.competition_no) for r in linked}) >= MIN_LINKED_FOR_PRIMARY
+        else "result_fallback"
+    )
     kind = "competition" if mode == "linked" else "result"
     log.info("eval_mode", mode=mode, eligible=len(rows), linked=len(linked))
 
@@ -217,14 +259,22 @@ def run_evaluation(session: Session, *, now: datetime | None = None) -> dict[str
 
     oibs = {w.oib for w in all_winners}
     activities = load_company_activities(session, oibs)
-    nkd_rows = session.execute(select(Nkd.code, Nkd.version, Nkd.label_hr, Nkd.embedding).where(Nkd.embedding.is_not(None))).all()
+    nkd_rows = session.execute(
+        select(Nkd.code, Nkd.version, Nkd.label_hr, Nkd.embedding).where(Nkd.embedding.is_not(None))
+    ).all()
     nkd_index = {(r.code, r.version): i for i, r in enumerate(nkd_rows)}
     nkd_emb = np.stack([np.asarray(r.embedding, dtype=np.float32) for r in nkd_rows])
     nkd_label = {(r.code, r.version): r.label_hr for r in nkd_rows}
     cw: dict[tuple[str, str], dict[str, float]] = defaultdict(dict)
-    for r in session.execute(select(Crosswalk.nkd_code, Crosswalk.nkd_version, Crosswalk.cpv_prefix, Crosswalk.similarity).where(Crosswalk.cpv_level == "division")):
+    for r in session.execute(
+        select(
+            Crosswalk.nkd_code, Crosswalk.nkd_version, Crosswalk.cpv_prefix, Crosswalk.similarity
+        ).where(Crosswalk.cpv_level == "division")
+    ):
         cw[(r.nkd_code, r.nkd_version)][r.cpv_prefix] = float(r.similarity)
-    company_nuts = dict(session.execute(select(Company.oib, Company.nuts3).where(Company.oib.in_(oibs))).all())
+    company_nuts = dict(
+        session.execute(select(Company.oib, Company.nuts3).where(Company.oib.in_(oibs))).all()
+    )
 
     nuts_codes = [c.nuts3 for c in counties()]
     nuts_pos = {n: i for i, n in enumerate(nuts_codes)}
@@ -264,7 +314,11 @@ def run_evaluation(session: Session, *, now: datetime | None = None) -> dict[str
             s = np.clip((sims.max(axis=1) - p5) / max(p95 - p5, 1e-9), 0.0, 1.0)
             c = c_vector(rank_divisions([cw[k] for k in acts]))[idx.division_idx]
             home = nuts_pos.get(company_nuts.get(w.oib) or "", -1)
-            g = gtab[home][np.where(idx.nuts_idx < 0, len(nuts_codes), idx.nuts_idx)] if home >= 0 else np.full(len(idx.pub_nos), G_UNKNOWN)
+            g = (
+                gtab[home][np.where(idx.nuts_idx < 0, len(nuts_codes), idx.nuts_idx)]
+                if home >= 0
+                else np.full(len(idx.pub_nos), G_UNKNOWN)
+            )
             fit = w_s * s + w_c * c + w_g * g + w_t * idx.t
             fit = np.where(idx.valid, fit, -1.0)
             ti = idx.position[w.target]
@@ -310,16 +364,34 @@ def run_evaluation(session: Session, *, now: datetime | None = None) -> dict[str
         "fit": {f"recall@{k}": recall_at(ranks_fit, k) for k in KS},
         "fts_baseline": {f"recall@{k}": recall_at(ranks_fts, k) for k in KS},
         "fit_scored_only": {
-            f"recall@{k}": recall_at([r for r, ok in zip(ranks_fit, scored_flags, strict=True) if ok], k) for k in KS
+            f"recall@{k}": recall_at(
+                [r for r, ok in zip(ranks_fit, scored_flags, strict=True) if ok], k
+            )
+            for k in KS
         },
         "fts_baseline_scored_only": {
-            f"recall@{k}": recall_at([r for r, ok in zip(ranks_fts, scored_flags, strict=True) if ok], k) for k in KS
+            f"recall@{k}": recall_at(
+                [r for r, ok in zip(ranks_fts, scored_flags, strict=True) if ok], k
+            )
+            for k in KS
         },
-        "random_baseline": {f"recall@{k}": float(np.mean([min(1.0, k / c) for c in candidate_counts])) if candidate_counts else None for k in KS},
-        "mean_candidates_per_target": float(np.mean(candidate_counts)) if candidate_counts else None,
-        "median_rank_fit": float(np.median([r for r in ranks_fit if r is not None])) if any(r is not None for r in ranks_fit) else None,
+        "random_baseline": {
+            f"recall@{k}": float(np.mean([min(1.0, k / c) for c in candidate_counts]))
+            if candidate_counts
+            else None
+            for k in KS
+        },
+        "mean_candidates_per_target": float(np.mean(candidate_counts))
+        if candidate_counts
+        else None,
+        "median_rank_fit": float(np.median([r for r in ranks_fit if r is not None]))
+        if any(r is not None for r in ranks_fit)
+        else None,
         "months": sorted(by_month),
-        "window": {"first_month": min(by_month) if by_month else None, "last_month": max(by_month) if by_month else None},
+        "window": {
+            "first_month": min(by_month) if by_month else None,
+            "last_month": max(by_month) if by_month else None,
+        },
         "linkage": {
             "award_winner_pairs_with_id": winners["awards_with_winner_id"],
             "valid_oib": winners["valid_oib"],
@@ -375,10 +447,19 @@ def select_tau(session: Session, winner_rows: list[Any]) -> dict[str, Any]:
                 "f1": round(f1, 4),
                 "precision": round(tp / max(tp + fp, 1), 4),
                 "recall": round(tp / max(tp + fn, 1), 4),
-                "tp": tp, "fp": fp, "fn": fn,
+                "tp": tp,
+                "fp": fp,
+                "fn": fn,
             }
         curve.append((round(float(tau), 4), round(f1, 4)))
-    best.update({"winners": len(oibs), "truth_pairs": int(truth_m.sum()), "grid": [lo, hi], "curve_sample": curve[::20]})
+    best.update(
+        {
+            "winners": len(oibs),
+            "truth_pairs": int(truth_m.sum()),
+            "grid": [lo, hi],
+            "curve_sample": curve[::20],
+        }
+    )
     return best
 
 
@@ -387,5 +468,7 @@ def store_evaluation(session: Session, result: dict[str, Any]) -> None:
     from sqlalchemy.dialects.postgresql import insert
 
     stmt = insert(Calibration).values(key=EVAL_KEY, value=result)
-    session.execute(stmt.on_conflict_do_update(index_elements=[Calibration.key], set_={"value": result}))
+    session.execute(
+        stmt.on_conflict_do_update(index_elements=[Calibration.key], set_={"value": result})
+    )
     session.commit()

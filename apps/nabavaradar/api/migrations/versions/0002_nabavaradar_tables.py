@@ -36,7 +36,9 @@ def upgrade() -> None:
         sa.Column("nuts3", sa.String(5)),
         sa.Column("updated_snapshot", sa.Integer, nullable=False),
         sa.Column("snapshot_at", sa.DateTime(timezone=True)),
-        sa.Column("retrieved_at", sa.DateTime(timezone=True), server_default=sa.func.now(), nullable=False),
+        sa.Column(
+            "retrieved_at", sa.DateTime(timezone=True), server_default=sa.func.now(), nullable=False
+        ),
     )
     op.create_index("ix_company_mbs", "company", ["mbs"])
     op.create_index("ix_company_county_code", "company", ["county_code"])
@@ -53,7 +55,9 @@ def upgrade() -> None:
 
     op.create_table(
         "company_activity",
-        sa.Column("oib", sa.String(11), sa.ForeignKey("company.oib", ondelete="CASCADE"), primary_key=True),
+        sa.Column(
+            "oib", sa.String(11), sa.ForeignKey("company.oib", ondelete="CASCADE"), primary_key=True
+        ),
         sa.Column("nkd_code", sa.String(8), primary_key=True),
         sa.Column("nkd_version", sa.String(16), primary_key=True),
         sa.Column("is_main", sa.Boolean, nullable=False),
@@ -95,7 +99,9 @@ def upgrade() -> None:
         sa.Column("url_pdf", sa.Text),
         sa.Column("embedding", Vector(DIM)),
         sa.Column("raw", JSON, nullable=False, server_default="{}"),
-        sa.Column("retrieved_at", sa.DateTime(timezone=True), server_default=sa.func.now(), nullable=False),
+        sa.Column(
+            "retrieved_at", sa.DateTime(timezone=True), server_default=sa.func.now(), nullable=False
+        ),
     )
     op.create_index("ix_notice_type", "notice", ["type"])
     op.create_index("ix_notice_pub_date", "notice", ["pub_date"])
@@ -110,7 +116,12 @@ def upgrade() -> None:
 
     op.create_table(
         "award",
-        sa.Column("pub_no", sa.String(20), sa.ForeignKey("notice.pub_no", ondelete="CASCADE"), primary_key=True),
+        sa.Column(
+            "pub_no",
+            sa.String(20),
+            sa.ForeignKey("notice.pub_no", ondelete="CASCADE"),
+            primary_key=True,
+        ),
         sa.Column("lot_id", sa.String(32), primary_key=True),
         sa.Column("seq", sa.SmallInteger, primary_key=True),
         sa.Column("lot_status", sa.String(16)),
@@ -145,7 +156,9 @@ def upgrade() -> None:
         "calibration",
         sa.Column("key", sa.String(64), primary_key=True),
         sa.Column("value", JSON, nullable=False),
-        sa.Column("updated_at", sa.DateTime(timezone=True), server_default=sa.func.now(), nullable=False),
+        sa.Column(
+            "updated_at", sa.DateTime(timezone=True), server_default=sa.func.now(), nullable=False
+        ),
     )
 
     op.create_table(
@@ -157,7 +170,9 @@ def upgrade() -> None:
         sa.Column("confirmed", sa.Boolean, nullable=False),
         sa.Column("token_hash", sa.String(64), nullable=False, unique=True),
         sa.Column("consent_text", sa.Text, nullable=False),
-        sa.Column("created_at", sa.DateTime(timezone=True), server_default=sa.func.now(), nullable=False),
+        sa.Column(
+            "created_at", sa.DateTime(timezone=True), server_default=sa.func.now(), nullable=False
+        ),
         sa.Column("last_sent_at", sa.DateTime(timezone=True)),
     )
     op.create_index("ix_subscription_email", "subscription", ["email"])

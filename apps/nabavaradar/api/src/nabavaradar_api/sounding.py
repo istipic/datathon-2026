@@ -53,7 +53,9 @@ class CpvIndex:
     @classmethod
     def load(cls, session: Session) -> CpvIndex:
         rows = session.execute(
-            select(Cpv.code, Cpv.label_hr, Cpv.label_en, Cpv.embedding).where(Cpv.embedding.is_not(None))
+            select(Cpv.code, Cpv.label_hr, Cpv.label_en, Cpv.embedding).where(
+                Cpv.embedding.is_not(None)
+            )
         ).all()
         return cls(
             [r.code for r in rows],
@@ -100,7 +102,10 @@ def label_for_prefix(session: Session, prefix: str) -> str | None:
     row = session.execute(select(Cpv.label_hr, Cpv.label_en).where(Cpv.code == code)).first()
     if row is None:
         row = session.execute(
-            select(Cpv.label_hr, Cpv.label_en).where(Cpv.code.like(f"{prefix}%")).order_by(Cpv.code).limit(1)
+            select(Cpv.label_hr, Cpv.label_en)
+            .where(Cpv.code.like(f"{prefix}%"))
+            .order_by(Cpv.code)
+            .limit(1)
         ).first()
     return (row.label_hr or row.label_en) if row else None
 
@@ -126,8 +131,14 @@ def suppliers_by_county(session: Session, division: str, tau: float) -> dict[int
 def competition_for(session: Session, group: str | None, nuts2: str | None) -> dict[str, Any]:
     """Competition statistics of a CPV group: the NUTS2 region when it has a row, else national."""
     empty: dict[str, Any] = {
-        "cpv_group": group, "scope": None, "n": 0, "median_submissions": None,
-        "single_bid_share": None, "flag": False, "window_start": None, "window_end": None,
+        "cpv_group": group,
+        "scope": None,
+        "n": 0,
+        "median_submissions": None,
+        "single_bid_share": None,
+        "flag": False,
+        "window_start": None,
+        "window_end": None,
     }
     if not group:
         return empty
@@ -141,7 +152,9 @@ def competition_for(session: Session, group: str | None, nuts2: str | None) -> d
                 "cpv_group": group,
                 "scope": scope,
                 "n": stat.n_awards,
-                "median_submissions": float(stat.median_submissions) if stat.median_submissions is not None else None,
+                "median_submissions": float(stat.median_submissions)
+                if stat.median_submissions is not None
+                else None,
                 "single_bid_share": share,
                 "flag": competition_flag(stat.n_awards, share),
                 "window_start": stat.window_start.isoformat(),
@@ -153,15 +166,23 @@ def competition_for(session: Session, group: str | None, nuts2: str | None) -> d
 def data_dates(session: Session) -> dict[str, str | None]:
     """When the underlying data was retrieved / how old it is (never present stale data as live)."""
     out: dict[str, str | None] = {}
-    for key, source in (("sudreg", "sudreg"), ("ted_result", "ted-result"), ("ted_competition", "ted-competition")):
+    for key, source in (
+        ("sudreg", "sudreg"),
+        ("ted_result", "ted-result"),
+        ("ted_competition", "ted-competition"),
+    ):
         run = session.scalars(
             select(_Run)
             .where(_Run.source_id == source, _Run.status == RunStatus.ok)
             .order_by(_Run.finished_at.desc())
             .limit(1)
         ).first()
-        out[f"{key}_retrieved_at"] = run.finished_at.isoformat() if run and run.finished_at else None
-        out[f"{key}_data_as_of"] = run.source_last_modified.isoformat() if run and run.source_last_modified else None
+        out[f"{key}_retrieved_at"] = (
+            run.finished_at.isoformat() if run and run.finished_at else None
+        )
+        out[f"{key}_data_as_of"] = (
+            run.source_last_modified.isoformat() if run and run.source_last_modified else None
+        )
     return out
 
 
@@ -181,7 +202,13 @@ def sound_market(
         prefix = normalise_cpv(cpv)
         label = label_for_prefix(session, prefix)
         suggestions = [
-            {"code": prefix.ljust(8, "0"), "label": label, "similarity": None, "division": prefix[:2], "group": prefix[:3] if len(prefix) >= 3 else None}
+            {
+                "code": prefix.ljust(8, "0"),
+                "label": label,
+                "similarity": None,
+                "division": prefix[:2],
+                "group": prefix[:3] if len(prefix) >= 3 else None,
+            }
         ]
         division = prefix[:2]
         group = prefix[:3] if len(prefix) >= 3 else None
@@ -199,7 +226,9 @@ def sound_market(
     if group is None:  # only a division was given: use its busiest group nationally
         row = session.execute(
             select(CompetitionStat.cpv_group)
-            .where(CompetitionStat.nuts2 == NATIONAL, CompetitionStat.cpv_group.like(f"{division}%"))
+            .where(
+                CompetitionStat.nuts2 == NATIONAL, CompetitionStat.cpv_group.like(f"{division}%")
+            )
             .order_by(CompetitionStat.n_awards.desc())
             .limit(1)
         ).first()
@@ -209,7 +238,13 @@ def sound_market(
 
     counts = suppliers_by_county(session, division, tau)
     by_county = [
-        {"county_code": c.code, "county": c.name, "nuts3": c.nuts3, "nuts2": c.nuts2, "count": counts.get(c.code, 0)}
+        {
+            "county_code": c.code,
+            "county": c.name,
+            "nuts3": c.nuts3,
+            "nuts2": c.nuts2,
+            "count": counts.get(c.code, 0),
+        }
         for c in counties()
     ]
     total = sum(counts.values())
@@ -240,7 +275,15 @@ def sound_market(
         },
         "suppliers_by_county": by_county,
         "competition": {**comp, "national": national},
-        "advice": [{"text": a["text"], "source_url": a["source_url"], "source_label": a["source_label"], "rule": a["rule"]} for a in advice],
+        "advice": [
+            {
+                "text": a["text"],
+                "source_url": a["source_url"],
+                "source_label": a["source_label"],
+                "rule": a["rule"],
+            }
+            for a in advice
+        ],
         "data": data_dates(session),
         "generated_at": datetime.now(UTC).isoformat(),
     }

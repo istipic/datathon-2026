@@ -30,7 +30,9 @@ def _run(name: str, step: Step) -> Any:
     if not settings.database_url:
         raise typer.BadParameter("DATABASE_URL is not set (see apps/nabavaradar/.env.example)")
     if not settings.contact_email:
-        raise typer.BadParameter("CONTACT_EMAIL is not set: external sources need an identifying User-Agent")
+        raise typer.BadParameter(
+            "CONTACT_EMAIL is not set: external sources need an identifying User-Agent"
+        )
     t0 = time.time()
     with make_session_factory(settings)() as session:
         result = step(session, settings)
@@ -55,7 +57,9 @@ def cpv() -> None:
 
 
 @ingest_app.command("sudreg")
-def sudreg(snapshot_id: int | None = typer.Option(None, help="Pin a snapshot (default: freshest)")) -> None:
+def sudreg(
+    snapshot_id: int | None = typer.Option(None, help="Pin a snapshot (default: freshest)"),
+) -> None:
     """Bulk-load companies, NKD codes and activities from the register (one pinned snapshot)."""
     from nabavaradar_api.ingest.sudreg_bulk import ingest_sudreg
 
@@ -141,8 +145,13 @@ def evaluate() -> None:
         return result
 
     result = _run("eval", step)
-    summary = {k: result[k] for k in ("mode", "n", "n_scored", "fit", "fts_baseline", "random_baseline", "window")}
-    summary["tau"] = {k: result["tau"].get(k) for k in ("tau", "f1", "precision", "recall", "winners")}
+    summary = {
+        k: result[k]
+        for k in ("mode", "n", "n_scored", "fit", "fts_baseline", "random_baseline", "window")
+    }
+    summary["tau"] = {
+        k: result["tau"].get(k) for k in ("tau", "f1", "precision", "recall", "winners")
+    }
     typer.echo(json.dumps(summary, indent=2, default=str))
 
 

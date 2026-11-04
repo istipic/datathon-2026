@@ -14,7 +14,9 @@ from nabavaradar_api.constants import SINGLE_BID_FLAG_MIN_N, SINGLE_BID_FLAG_SHA
 ZJN_URL = "https://narodne-novine.nn.hr/clanci/sluzbeni/2016_12_120_2607.html"
 SUDREG_URL = "https://sudreg-data.gov.hr/"
 TED_URL = "https://ted.europa.eu/"
-FEW_SUPPLIERS = 5  # task: fewer than 5 capable suppliers in the county -> suggest NUTS2-wide publication
+FEW_SUPPLIERS = (
+    5  # task: fewer than 5 capable suppliers in the county -> suggest NUTS2-wide publication
+)
 
 
 def build_advice(
@@ -79,7 +81,11 @@ def build_advice(
             }
         )
     if suppliers_in_county is not None and suppliers_in_county < FEW_SUPPLIERS:
-        region = f" (regija {region_code}: {suppliers_in_region} dobavljača)" if suppliers_in_region is not None else ""
+        region = (
+            f" (regija {region_code}: {suppliers_in_region} dobavljača)"
+            if suppliers_in_region is not None
+            else ""
+        )
         out.append(
             {
                 "rule": "few_suppliers_county",

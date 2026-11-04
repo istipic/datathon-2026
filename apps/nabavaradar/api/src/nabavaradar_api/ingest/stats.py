@@ -47,7 +47,7 @@ _STATS_SQL = text(
 
 
 def competition_flag(n_awards: int | None, single_bid_share: float | None) -> bool:
-    """"Niska konkurencija": single-bid share >= 0.40 on at least 10 awards."""
+    """ "Niska konkurencija": single-bid share >= 0.40 on at least 10 awards."""
     return (
         n_awards is not None
         and single_bid_share is not None
@@ -86,5 +86,16 @@ def compute_competition_stats(
         )
     session.commit()
     flagged = sum(1 for r in rows if competition_flag(r.n_awards, float(r.single_bid_share)))
-    log.info("competition_stats", rows=len(rows), flagged=flagged, start=start.isoformat(), end=end.isoformat())
-    return {"rows": len(rows), "flagged": flagged, "window_start": start.isoformat(), "window_end": end.isoformat()}
+    log.info(
+        "competition_stats",
+        rows=len(rows),
+        flagged=flagged,
+        start=start.isoformat(),
+        end=end.isoformat(),
+    )
+    return {
+        "rows": len(rows),
+        "flagged": flagged,
+        "window_start": start.isoformat(),
+        "window_end": end.isoformat(),
+    }

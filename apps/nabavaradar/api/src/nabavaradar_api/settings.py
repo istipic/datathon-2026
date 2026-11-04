@@ -26,6 +26,9 @@ class NabavaSettings(CoreSettings):
     sudreg_base_url: str = PROD_SUDREG_BASE
     sudreg_token_url: str = PROD_SUDREG_TOKEN
 
+    # signs unsubscribe tokens (HMAC); required in prod, a fixed dev value is used when env == "dev"
+    subscription_secret: SecretStr = SecretStr("")
+
     ted_search_url: str = "https://api.ted.europa.eu/v3/notices/search"
     competition_days: int = 120  # window of competition notices (spec: last 120 days)
     result_months: int = 36  # window of result notices (spec: last 36 months)

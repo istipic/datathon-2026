@@ -43,7 +43,11 @@ PAUSE_S = 0.25
 def load_fields(kind: str) -> list[str]:
     """TED field names to request for ``kind``, taken from config/ted_fields.yaml."""
     spec = yaml.safe_load((CONFIG_DIR / "ted_fields.yaml").read_text(encoding="utf-8"))["fields"]
-    fields = [f["ted_field"] for f in spec.values() if kind in f["applies_to"] and f["ted_field"] != "links"]
+    fields = [
+        f["ted_field"]
+        for f in spec.values()
+        if kind in f["applies_to"] and f["ted_field"] != "links"
+    ]
     if PAGE_LIMIT * len(fields) > MAX_FIELDS_PER_PAGE:
         raise ValueError(f"{len(fields)} fields x {PAGE_LIMIT} notices exceeds the API page budget")
     return fields
@@ -106,7 +110,11 @@ def upsert_notices(session: Session, parsed: list[ParsedNotice]) -> None:
         return
     stmt = insert(Notice).values(rows)
     keep = {"pub_no", "embedding"}
-    update = {c.name: getattr(stmt.excluded, c.name) for c in Notice.__table__.columns if c.name not in keep}
+    update = {
+        c.name: getattr(stmt.excluded, c.name)
+        for c in Notice.__table__.columns
+        if c.name not in keep
+    }
     update["embedding"] = case(
         (
             or_(
@@ -155,7 +163,13 @@ def ingest_kind(
         run.rows = stored
         if newest:
             run.source_last_modified = datetime.combine(newest, datetime.min.time(), tzinfo=UTC)
-    return {"kind": kind, "since": since.isoformat(), "fetched": seen, "awards": awards, "stored": stored}
+    return {
+        "kind": kind,
+        "since": since.isoformat(),
+        "fetched": seen,
+        "awards": awards,
+        "stored": stored,
+    }
 
 
 def ingest_ted(

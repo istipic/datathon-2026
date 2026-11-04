@@ -49,7 +49,9 @@ class Company(Base):
     nuts3: Mapped[str | None] = mapped_column(String(5), nullable=True)
     updated_snapshot: Mapped[int] = mapped_column(Integer)  # Sudreg snapshot id the row is from
     snapshot_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
-    retrieved_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+    retrieved_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), server_default=func.now()
+    )
 
 
 class CompanyActivity(Base):
@@ -57,7 +59,9 @@ class CompanyActivity(Base):
 
     __tablename__ = "company_activity"
 
-    oib: Mapped[str] = mapped_column(ForeignKey("company.oib", ondelete="CASCADE"), primary_key=True)
+    oib: Mapped[str] = mapped_column(
+        ForeignKey("company.oib", ondelete="CASCADE"), primary_key=True
+    )
     nkd_code: Mapped[str] = mapped_column(String(8), primary_key=True)
     nkd_version: Mapped[str] = mapped_column(String(16), primary_key=True)  # NKD 1994 / 2002 / 2007
     is_main: Mapped[bool] = mapped_column(Boolean, default=False)
@@ -106,7 +110,9 @@ class Notice(Base):
     cpv_main: Mapped[str | None] = mapped_column(String(8), nullable=True, index=True)
     title: Mapped[str | None] = mapped_column(Text, nullable=True)
     description: Mapped[str | None] = mapped_column(Text, nullable=True)
-    deadline: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True, index=True)
+    deadline: Mapped[datetime | None] = mapped_column(
+        DateTime(timezone=True), nullable=True, index=True
+    )
     value_eur: Mapped[Decimal | None] = mapped_column(Numeric(16, 2), nullable=True)
     currency: Mapped[str | None] = mapped_column(String(3), nullable=True)
     n_lots: Mapped[int | None] = mapped_column(SmallInteger, nullable=True)
@@ -114,7 +120,9 @@ class Notice(Base):
     url_pdf: Mapped[str | None] = mapped_column(Text, nullable=True)
     embedding: Mapped[Any] = mapped_column(Vector(EMBED_DIM), nullable=True)
     raw: Mapped[Any] = mapped_column(_JSON, default=dict)
-    retrieved_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+    retrieved_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), server_default=func.now()
+    )
 
 
 class Award(Base):
@@ -122,10 +130,14 @@ class Award(Base):
 
     __tablename__ = "award"
 
-    pub_no: Mapped[str] = mapped_column(ForeignKey("notice.pub_no", ondelete="CASCADE"), primary_key=True)
+    pub_no: Mapped[str] = mapped_column(
+        ForeignKey("notice.pub_no", ondelete="CASCADE"), primary_key=True
+    )
     lot_id: Mapped[str] = mapped_column(String(128), primary_key=True)
     seq: Mapped[int] = mapped_column(SmallInteger, primary_key=True, default=0)
-    lot_status: Mapped[str | None] = mapped_column(String(16), nullable=True)  # selec-w | clos-nw ...
+    lot_status: Mapped[str | None] = mapped_column(
+        String(16), nullable=True
+    )  # selec-w | clos-nw ...
     winner_name: Mapped[str | None] = mapped_column(Text, nullable=True)
     winner_national_id: Mapped[str | None] = mapped_column(String(128), nullable=True, index=True)
     received_submissions: Mapped[int | None] = mapped_column(Integer, nullable=True)

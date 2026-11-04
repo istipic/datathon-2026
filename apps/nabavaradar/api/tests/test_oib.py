@@ -31,7 +31,17 @@ def test_changing_any_other_digit_invalidates(oib: str) -> None:
 
 @pytest.mark.parametrize(
     "value",
-    ["", "123", "9280303201", "928030320100", "9280303201a", "abcdefghijk", " 92803032010", "12345678901", "00000000000"],
+    [
+        "",
+        "123",
+        "9280303201",
+        "928030320100",
+        "9280303201a",
+        "abcdefghijk",
+        " 92803032010",
+        "12345678901",
+        "00000000000",
+    ],
 )
 def test_malformed_or_wrong_oibs(value: str) -> None:
     assert not is_valid_oib(value)

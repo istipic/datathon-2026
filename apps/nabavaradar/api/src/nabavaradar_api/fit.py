@@ -34,7 +34,10 @@ class Components:
     def fit(self) -> float:
         """Weighted sum, rounded to 4 decimals."""
         return round(
-            WEIGHTS["S"] * self.S + WEIGHTS["C"] * self.C + WEIGHTS["G"] * self.G + WEIGHTS["T"] * self.T,
+            WEIGHTS["S"] * self.S
+            + WEIGHTS["C"] * self.C
+            + WEIGHTS["G"] * self.G
+            + WEIGHTS["T"] * self.T,
             4,
         )
 

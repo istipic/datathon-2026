@@ -95,12 +95,16 @@ def load_prefix_space(
     session: Session,
 ) -> tuple[list[tuple[str, str]], NDArray[np.float32], dict[str, dict[str, NDArray[np.float32]]]]:
     """NKD keys, their embedding matrix and the CPV prefix vectors per level (division/group)."""
-    nkd = session.execute(select(Nkd.code, Nkd.version, Nkd.embedding).where(Nkd.embedding.is_not(None))).all()
+    nkd = session.execute(
+        select(Nkd.code, Nkd.version, Nkd.embedding).where(Nkd.embedding.is_not(None))
+    ).all()
     if not nkd:
         raise RuntimeError("no NKD embeddings: run `ingest embed` first")
     keys = [(r.code, r.version) for r in nkd]
     matrix = np.stack([np.asarray(r.embedding, dtype=np.float32) for r in nkd])
-    cpv_rows = session.execute(select(Cpv.code, Cpv.embedding).where(Cpv.embedding.is_not(None))).all()
+    cpv_rows = session.execute(
+        select(Cpv.code, Cpv.embedding).where(Cpv.embedding.is_not(None))
+    ).all()
     cpv = {r.code: np.asarray(r.embedding, dtype=np.float32) for r in cpv_rows}
     notices = [
         (r.cpv_main, np.asarray(r.embedding, dtype=np.float32))
@@ -118,7 +122,9 @@ def load_prefix_space(
     return keys, matrix, levels
 
 
-def division_similarity(session: Session) -> tuple[list[tuple[str, str]], list[str], NDArray[np.float32]]:
+def division_similarity(
+    session: Session,
+) -> tuple[list[tuple[str, str]], list[str], NDArray[np.float32]]:
     """Full NKD x CPV-division cosine matrix (not truncated to the top 10)."""
     keys, matrix, levels = load_prefix_space(session)
     names = list(levels["division"])
@@ -139,7 +145,9 @@ def compute_crosswalk(session: Session) -> dict[str, int]:
     return {"nkd": len(keys), "rows": len(rows)}
 
 
-def percentiles_of(matrix: NDArray[np.float32], lo: float = 5, hi: float = 95) -> tuple[float, float]:
+def percentiles_of(
+    matrix: NDArray[np.float32], lo: float = 5, hi: float = 95
+) -> tuple[float, float]:
     """5th and 95th percentile of all values of a similarity matrix."""
     values = matrix.ravel()
     return float(np.percentile(values, lo)), float(np.percentile(values, hi))
@@ -154,7 +162,10 @@ def compute_calibration(
     since = (now - timedelta(days=settings.competition_days)).date()
     acts = session.execute(
         select(Nkd.code, Nkd.version, Nkd.embedding)
-        .join(CompanyActivity, (CompanyActivity.nkd_code == Nkd.code) & (CompanyActivity.nkd_version == Nkd.version))
+        .join(
+            CompanyActivity,
+            (CompanyActivity.nkd_code == Nkd.code) & (CompanyActivity.nkd_version == Nkd.version),
+        )
         .where(Nkd.embedding.is_not(None))
         .distinct()
     ).all()
@@ -177,7 +188,9 @@ def compute_calibration(
         "computed_at": now.isoformat(),
     }
     stmt = insert(Calibration).values(key=CALIBRATION_KEY, value=value)
-    session.execute(stmt.on_conflict_do_update(index_elements=[Calibration.key], set_={"value": value}))
+    session.execute(
+        stmt.on_conflict_do_update(index_elements=[Calibration.key], set_={"value": value})
+    )
     session.commit()
     log.info("calibration_stored", **value)
     return value
