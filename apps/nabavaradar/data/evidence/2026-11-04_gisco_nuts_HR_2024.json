@@ -1,0 +1,113 @@
+{
+ "url": "https://gisco-services.ec.europa.eu/distribution/v2/nuts/csv/NUTS_AT_2024.csv",
+ "rows": [
+  {
+   "NUTS_ID": "HR",
+   "NAME_LATN": "Hrvatska"
+  },
+  {
+   "NUTS_ID": "HR0",
+   "NAME_LATN": "Hrvatska"
+  },
+  {
+   "NUTS_ID": "HR02",
+   "NAME_LATN": "Panonska Hrvatska"
+  },
+  {
+   "NUTS_ID": "HR021",
+   "NAME_LATN": "Bjelovarsko-bilogorska županija"
+  },
+  {
+   "NUTS_ID": "HR022",
+   "NAME_LATN": "Virovitičko-podravska županija"
+  },
+  {
+   "NUTS_ID": "HR023",
+   "NAME_LATN": "Požeško-slavonska županija"
+  },
+  {
+   "NUTS_ID": "HR024",
+   "NAME_LATN": "Brodsko-posavska županija"
+  },
+  {
+   "NUTS_ID": "HR025",
+   "NAME_LATN": "Osječko-baranjska županija"
+  },
+  {
+   "NUTS_ID": "HR026",
+   "NAME_LATN": "Vukovarsko-srijemska županija"
+  },
+  {
+   "NUTS_ID": "HR027",
+   "NAME_LATN": "Karlovačka županija"
+  },
+  {
+   "NUTS_ID": "HR028",
+   "NAME_LATN": "Sisačko-moslavačka županija"
+  },
+  {
+   "NUTS_ID": "HR03",
+   "NAME_LATN": "Jadranska Hrvatska"
+  },
+  {
+   "NUTS_ID": "HR031",
+   "NAME_LATN": "Primorsko-goranska županija"
+  },
+  {
+   "NUTS_ID": "HR032",
+   "NAME_LATN": "Ličko-senjska županija"
+  },
+  {
+   "NUTS_ID": "HR033",
+   "NAME_LATN": "Zadarska županija"
+  },
+  {
+   "NUTS_ID": "HR034",
+   "NAME_LATN": "Šibensko-kninska županija"
+  },
+  {
+   "NUTS_ID": "HR035",
+   "NAME_LATN": "Splitsko-dalmatinska županija"
+  },
+  {
+   "NUTS_ID": "HR036",
+   "NAME_LATN": "Istarska županija"
+  },
+  {
+   "NUTS_ID": "HR037",
+   "NAME_LATN": "Dubrovačko-neretvanska županija"
+  },
+  {
+   "NUTS_ID": "HR05",
+   "NAME_LATN": "Grad Zagreb"
+  },
+  {
+   "NUTS_ID": "HR050",
+   "NAME_LATN": "Grad Zagreb"
+  },
+  {
+   "NUTS_ID": "HR06",
+   "NAME_LATN": "Sjeverna Hrvatska"
+  },
+  {
+   "NUTS_ID": "HR061",
+   "NAME_LATN": "Međimurska županija"
+  },
+  {
+   "NUTS_ID": "HR062",
+   "NAME_LATN": "Varaždinska županija"
+  },
+  {
+   "NUTS_ID": "HR063",
+   "NAME_LATN": "Koprivničko-križevačka županija"
+  },
+  {
+   "NUTS_ID": "HR064",
+   "NAME_LATN": "Krapinsko-zagorska županija"
+  },
+  {
+   "NUTS_ID": "HR065",
+   "NAME_LATN": "Zagrebačka županija"
+  }
+ ]
+}
