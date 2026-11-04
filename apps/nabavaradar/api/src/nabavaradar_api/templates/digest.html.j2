@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="hr">
+  <body style="font-family: Arial, sans-serif; color: #111827;">
+    <h1 style="font-size: 20px;">Novi natječaji ovaj tjedan</h1>
+    <ol style="padding-left: 20px;">
+    {% for it in items %}
+      <li style="margin-bottom: 14px;">
+        <strong>{{ (it.fit * 100) | round | int }} %</strong>
+        <a href="{{ base }}/natjecaj/{{ it.pub_no }}">{{ it.title or it.pub_no }}</a><br>
+        <span style="font-size: 14px; color: #475569;">
+          {{ it.buyer or 'Naručitelj nije naveden' }}{% if it.county %} · {{ it.county }}{% endif %}
+          {% if it.deadline %} · rok: {{ it.deadline[:10] }}{% endif %}
+          {% if it.competition.flag %} · niska konkurencija (n={{ it.competition.n }}){% endif %}
+        </span>
+      </li>
+    {% endfor %}
+    </ol>
+    <p style="font-size: 13px; color: #475569;">
+      Primate ovu poruku jer ste se pretplatili na tjedni pregled. <a href="{{ links.unsub }}">Otkaži pretplatu</a>.
+    </p>
+  </body>
+</html>

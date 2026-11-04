@@ -150,8 +150,8 @@ def make_router(get_session: Any, settings: NabavaSettings) -> APIRouter:
             oib=oib,
             query=query,
             confirmed=False,
-            token_hash="pending",
-            consent_text=CONSENT_TEXT,  # noqa: S106 - placeholder, replaced right below
+            token_hash="pending",  # noqa: S106 - placeholder, replaced right below
+            consent_text=CONSENT_TEXT,
         )
         if existing is None:
             session.add(sub)

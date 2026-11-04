@@ -1,0 +1,11 @@
+Novi natječaji ovaj tjedan
+{% for it in items %}
+
+{{ loop.index }}. [{{ (it.fit * 100) | round | int }} %] {{ it.title or it.pub_no }}
+   {{ it.buyer or 'Naručitelj nije naveden' }}{% if it.county %} · {{ it.county }}{% endif %}{% if it.deadline %} · rok: {{ it.deadline[:10] }}{% endif %}
+
+   {{ base }}/natjecaj/{{ it.pub_no }}
+{% endfor %}
+
+Primate ovu poruku jer ste se pretplatili na tjedni pregled.
+Otkaži pretplatu: {{ links.unsub }}

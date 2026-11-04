@@ -1,0 +1,765 @@
+{
+ "query": {
+  "q": "registar ugovora javna nabava",
+  "rows": 100
+ },
+ "count": 30,
+ "packages": [
+  {
+   "name": "biskupija-javna-nabava",
+   "title": "Javna nabava",
+   "org": "Općina Biskupija",
+   "resources": [
+    {
+     "id": "02344f03-c0d9-4cf3-bc81-0aa184fc914d",
+     "format": "XLSX",
+     "url": "https://data.gov.hr/ckan/dataset/3ea5afa3-99da-47af-8787-830643d4834e/resource/02344f03-c0d9-4cf3-bc81-0aa184fc914d/download/plan_nabave_za_2026.xlsx",
+     "last_modified": "2026-04-15T10:49:58.833825",
+     "name": "Plan javne nabave 2026"
+    },
+    {
+     "id": "03944d81-6341-4a0f-a276-4b285a7688a5",
+     "format": "XLSX",
+     "url": "https://data.gov.hr/ckan/dataset/3ea5afa3-99da-47af-8787-830643d4834e/resource/03944d81-6341-4a0f-a276-4b285a7688a5/download/registar_ugovora_31_12_25.xlsx",
+     "last_modified": "2026-04-16T12:14:30.099911",
+     "name": "Registar Ugovora za 2026.godinu"
+    }
+   ]
+  },
+  {
+   "name": "javna-nabava-vuka",
+   "title": "Javna nabava",
+   "org": "Općina Vuka",
+   "resources": [
+    {
+     "id": "7f3588b1-4b50-4a13-9ffe-10f2fffa4ca8",
+     "format": "",
+     "url": "https://www.opcina-vuka.hr/javna-nabava/",
+     "last_modified": null,
+     "name": "Javna nabava"
+    }
+   ]
+  },
+  {
+   "name": "https-www-baska-hr-javna-nabava-a",
+   "title": "Javna nabava",
+   "org": "Općina Baška",
+   "resources": [
+    {
+     "id": "05285057-5de0-4cc1-90ac-449a3b9b6020",
+     "format": "XLSX",
+     "url": "https://www.baska.hr/javna-nabava",
+     "last_modified": null,
+     "name": "Javna nabava"
+    }
+   ]
+  },
+  {
+   "name": "registar-ugovora-javnih-nabava",
+   "title": "Registar ugovora javnih nabava",
+   "org": "Primorsko-goranska županija",
+   "resources": [
+    {
+     "id": "98a6edb5-53ec-4e76-8617-7588fa8d70b3",
+     "format": "docx, xlsx",
+     "url": "https://www.pgz.hr/ustroj/upravna-tijela/upravni-odjel-za-proracun-financije-i-nabavu/nabava/?page=1&textSearch=&godina=Sve&mjesec=Svi&vrsta=Sve&nadleznost=Sve",
+     "last_modified": null,
+     "name": "Registar ugovora javnih nabava"
+    }
+   ]
+  },
+  {
+   "name": "https-www-obrovac-hr-javna-nabava-javna-nabava-pregled-skopljenih-ugovora",
+   "title": "https://www.obrovac.hr/javna-nabava/javna-nabava/pregled-skopljenih-ugovora",
+   "org": "Grad Obrovac",
+   "resources": [
+    {
+     "id": "ba406ec4-289c-4977-8e70-84059600face",
+     "format": "",
+     "url": "https://www.obrovac.hr/javna-nabava/javna-nabava/pregled-skopljenih-ugovora",
+     "last_modified": null,
+     "name": "Javna nabava"
+    }
+   ]
+  },
+  {
+   "name": "registar-ugovora-u-2022-godini",
+   "title": "Registar ugovora",
+   "org": "Grad Dugo Selo",
+   "resources": [
+    {
+     "id": "05dc3c2d-f613-4e3f-967f-7724252b53a6",
+     "format": "CSV",
+     "url": "https://data.gov.hr/ckan/dataset/21c141cc-fc0e-46d1-8734-6501225c8a89/resource/05dc3c2d-f613-4e3f-967f-7724252b53a6/download/evidencija-ugovora-javna-nabava-2022.csv",
+     "last_modified": "2026-04-15T11:44:00.475745",
+     "name": "Evidencija ugovora - javna nabava za 2022. godinu"
+    },
+    {
+     "id": "47efe4d7-f1bc-4bee-ae48-6555a4ccc393",
+     "format": "CSV",
+     "url": "https://data.gov.hr/ckan/dataset/21c141cc-fc0e-46d1-8734-6501225c8a89/resource/47efe4d7-f1bc-4bee-ae48-6555a4ccc393/download/evidencija-ugovora-jednostavna-nabava-2022.csv",
+     "last_modified": "2026-04-15T11:44:35.163864",
+     "name": "Evidencija ugovora - jednostavna nabava za 2022. godinu"
+    },
+    {
+     "id": "a3b2b640-8f10-4eea-9242-9dabbb682aa9",
+     "format": "CSV",
+     "url": "https://data.gov.hr/ckan/dataset/21c141cc-fc0e-46d1-8734-6501225c8a89/resource/a3b2b640-8f10-4eea-9242-9dabbb682aa9/download/evidencija-ugovora-ostali-ugovori-2022.csv",
+     "last_modified": "2026-04-15T11:45:07.042857",
+     "name": "Evidencija - ostali ugovori za 2022. godinu"
+    },
+    {
+     "id": "1a2dc829-a30f-4662-896a-f9a7de71c277",
+     "format": "CSV",
+     "url": "https://data.gov.hr/ckan/dataset/21c141cc-fc0e-46d1-8734-6501225c8a89/resource/1a2dc829-a30f-4662-896a-f9a7de71c277/download/evidencija-ugovora-javna-nabava-2023.csv",
+     "last_modified": "2026-04-15T11:48:17.739693",
+     "name": "Evidencija ugovora - javna nabava za 2023. godinu"
+    },
+    {
+     "id": "94833f31-d01a-4925-a0a9-3c2a950f7ac9",
+     "format": "CSV",
+     "url": "https://data.gov.hr/ckan/dataset/21c141cc-fc0e-46d1-8734-6501225c8a89/resource/94833f31-d01a-4925-a0a9-3c2a950f7ac9/download/evidencija-ugovora-jednostavna-nabava-2023.csv",
+     "last_modified": "2026-04-15T11:49:00.977138",
+     "name": "Evidencija ugovora - jednostavna nabava za 2023. godinu"
+    },
+    {
+     "id": "46c1265f-26b6-4d47-a394-09214f819592",
+     "format": "CSV",
+     "url": "https://data.gov.hr/ckan/dataset/21c141cc-fc0e-46d1-8734-6501225c8a89/resource/46c1265f-26b6-4d47-a394-09214f819592/download/evidencija-ugovora-ostali-ugovori-2023.csv",
+     "last_modified": "2026-04-15T11:49:36.546105",
+     "name": "Evidencija ugovora - ostali ugovori za 2023. godinu"
+    },
+    {
+     "id": "3a1070c4-f80d-4751-8bbe-77f749cf082d",
+     "format": "CSV",
+     "url": "https://data.gov.hr/ckan/dataset/21c141cc-fc0e-46d1-8734-6501225c8a89/resource/3a1070c4-f80d-4751-8bbe-77f749cf082d/download/evidencija-ugovora-javna-nabava-2024.csv",
+     "last_modified": "2026-04-15T12:05:49.403593",
+     "name": "Evidencija ugovora - javna nabava za 2024. godinu"
+    },
+    {
+     "id": "a2f10721-e364-42cb-bf6d-52da6039d0b4",
+     "format": "CSV",
+     "url": "https://data.gov.hr/ckan/dataset/21c141cc-fc0e-46d1-8734-6501225c8a89/resource/a2f10721-e364-42cb-bf6d-52da6039d0b4/download/evidencija-ugovora-jednostavna-nabava-2024.csv",
+     "last_modified": "2026-04-15T12:06:16.110020",
+     "name": "Evidencija ugovora - jednostavna nabava za 2024. godinu"
+    },
+    {
+     "id": "8c23c857-9883-4bfc-899b-8211ce4c6a6f",
+     "format": "CSV",
+     "url": "https://data.gov.hr/ckan/dataset/21c141cc-fc0e-46d1-8734-6501225c8a89/resource/8c23c857-9883-4bfc-899b-8211ce4c6a6f/download/evidencija-ugovora-ostali-ugovori-2024.csv",
+     "last_modified": "2026-04-15T12:06:41.867557",
+     "name": "Evidencija ugovora - ostali ugovori za 2024. godinu"
+    },
+    {
+     "id": "2c1411a8-73ae-4cdd-be36-469c7da024b6",
+     "format": "CSV",
+     "url": "https://data.gov.hr/ckan/dataset/21c141cc-fc0e-46d1-8734-6501225c8a89/resource/2c1411a8-73ae-4cdd-be36-469c7da024b6/download/evidencija-ugovora-javna-nabava-2025.csv",
+     "last_modified": "2026-04-15T12:13:33.796681",
+     "name": "Evidencija ugovora - javna nabava za 2025. godinu"
+    },
+    {
+     "id": "c17d2362-4940-416f-9b92-0dc15c7fe8da",
+     "format": "CSV",
+     "url": "https://data.gov.hr/ckan/dataset/21c141cc-fc0e-46d1-8734-6501225c8a89/resource/c17d2362-4940-416f-9b92-0dc15c7fe8da/download/evidencija-ugovora-jednostavna-nabava-2025.csv",
+     "last_modified": "2026-04-15T12:14:21.847315",
+     "name": "Evidencija ugovora - jednostavna nabava za 2025. godinu"
+    },
+    {
+     "id": "93ff7f7a-c160-4ec7-821e-2f551cc6979b",
+     "format": "CSV",
+     "url": "https://data.gov.hr/ckan/dataset/21c141cc-fc0e-46d1-8734-6501225c8a89/resource/93ff7f7a-c160-4ec7-821e-2f551cc6979b/download/evidencija-ugovora-ostali-ugovori-2025.csv",
+     "last_modified": "2026-04-15T12:14:52.744213",
+     "name": "Evidencija - ostali ugovori za 2025. godinu"
+    }
+   ]
+  },
+  {
+   "name": "https-www-staragradiska-com-nabava-registar-ugovora",
+   "title": "Registar ugovora",
+   "org": "Općina Stara Gradiška",
+   "resources": [
+    {
+     "id": "6a8faee5-c291-419e-b748-a97b05a8508e",
+     "format": "XLSX",
+     "url": "https://www.staragradiska.com/nabava/registar-ugovora#",
+     "last_modified": "2023-03-02T23:16:48.237744",
+     "name": "Registar ugovora"
+    }
+   ]
+  },
+  {
+   "name": "registar-ugovora-eojn-sustav",
+   "title": "Registar Ugovora - EOJN sustav",
+   "org": "Grad Zlatar",
+   "resources": [
+    {
+     "id": "fe4cd062-809a-4f7e-a803-4aaa44c893de",
+     "format": "JSON",
+     "url": "https://data.gov.hr/ckan/dataset/7fd9ab5a-5bee-4034-81fa-be6ffe337c6b/resource/fe4cd062-809a-4f7e-a803-4aaa44c893de/download/pegistar-ugovora-eojn-sustav_2026-4-11-13-40-17.json",
+     "last_modified": "2026-05-14T06:07:03.984069",
+     "name": "Registar Ugovora - EOJN sustav - Grad Zlatar"
+    }
+   ]
+  },
+  {
+   "name": "https-drnje-hr-kategorija-javna-nabava",
+   "title": "Registar ugovora javne i jednostavne nabave",
+   "org": "Općina Drnje",
+   "resources": [
+    {
+     "id": "a5f1ffa3-377c-4778-a445-43b805d8454e",
+     "format": "XLSX",
+     "url": "https://drnje.hr/kategorija/javna-nabava/",
+     "last_modified": null,
+     "name": "Registar ugovora javne i jednostavne nabave"
+    }
+   ]
+  },
+  {
+   "name": "registar-ugovora-do-praga-za-uvrstenje-u-plan-nabave",
+   "title": "Registar ugovora do praga za uvrštenje u plan nabave",
+   "org": "Primorsko-goranska županija",
+   "resources": [
+    {
+     "id": "0ebb3a81-79ec-404e-8dbb-43d368fad5e6",
+     "format": "XLSX",
+     "url": "https://www.pgz.hr/ustroj/upravna-tijela/upravni-odjel-za-proracun-financije-i-nabavu/nabava/?page=1&textSearch=&godina=Sve&mjesec=Svi&vrsta=Sve&nadleznost=Sve",
+     "last_modified": null,
+     "name": "Registar ugovora do praga za uvrštenje u plan nabave"
+    }
+   ]
+  },
+  {
+   "name": "registar-ugovora-o-javnoj-nabavihttps-eojn-hr-konzola",
+   "title": "Registar ugovora o javnoj nabavi",
+   "org": "Državna komisija za kontrolu postupaka javne nabave",
+   "resources": [
+    {
+     "id": "6b5e1dd6-222b-4ca8-87cc-2479f66b64de",
+     "format": "",
+     "url": "https://eojn.hr/konzola",
+     "last_modified": null,
+     "name": ""
+    }
+   ]
+  },
+  {
+   "name": "registar-ugovora-javne-nabave-opcine-kravarsko",
+   "title": "Registar ugovora javne nabave Općine Kravarsko",
+   "org": "Općina Kravarsko",
+   "resources": [
+    {
+     "id": "cf902aa3-cc99-4a7b-8541-929c15c4f37a",
+     "format": "XLSX",
+     "url": "https://data.gov.hr/ckan/dataset/e5e16cb4-f6e3-4808-b231-7a858ce7f3ff/resource/cf902aa3-cc99-4a7b-8541-929c15c4f37a/download/registar-ugovora-opina-kravarsko_eojn.xlsx",
+     "last_modified": "2026-04-17T11:25:48.749349",
+     "name": "Registar ugovora javne nabave Općine Kravarsko"
+    }
+   ]
+  },
+  {
+   "name": "https-www-topusko-hr-javna_nabava-html",
+   "title": "Registar ugovora o javnoj nabavi i okvirnih sporazuma",
+   "org": "Općina Topusko",
+   "resources": [
+    {
+     "id": "987a86fe-36fb-444d-8292-2877407c9e83",
+     "format": "HTML",
+     "url": "https://www.topusko.hr/javna_nabava.html",
+     "last_modified": "2023-03-05T23:15:22.121387",
+     "name": "Registar ugovora o javnoj nabavi i okvirnih sporazuma"
+    }
+   ]
+  },
+  {
+   "name": "registar-ugovora-i-okvirnih-sporazuma-opcine-brtonigla-verteneglio",
+   "title": "Registar ugovora i okvirnih sporazuma Općine Brtonigla-Verteneglio",
+   "org": "Općina Brtonigla-Verteneglio ",
+   "resources": [
+    {
+     "id": "625720e5-0cd6-472e-b72f-ff9a3b96a486",
+     "format": "DOCX",
+     "url": "https://brtonigla-verteneglio.hr/hr/javna-nabava/registar-ugovora-i-okvirnih-sporazuma",
+     "last_modified": null,
+     "name": "Registar ugovora i okvirnih sporazuma"
+    }
+   ]
+  },
+  {
+   "name": "registri-ugovora-grada-korcule",
+   "title": "Registri ugovora Grada Korčule",
+   "org": "Grad Korčula",
+   "resources": [
+    {
+     "id": "3f15ca5f-16e6-4e69-83e8-999ee77b33a3",
+     "format": "XLSX",
+     "url": "https://data.gov.hr/ckan/dataset/07c50d8a-79ba-481f-955e-3d9c8bfe87c7/resource/3f15ca5f-16e6-4e69-83e8-999ee77b33a3/download/registar-ugovora-2018..xlsx",
+     "last_modified": "2023-03-13T23:25:04.928744",
+     "name": "Registar ugovora javne nabave za 2018. godinu"
+    },
+    {
+     "id": "63721353-54bc-4e0e-8033-413739de8dbc",
+     "format": "XLSX",
+     "url": "https://data.gov.hr/ckan/dataset/07c50d8a-79ba-481f-955e-3d9c8bfe87c7/resource/63721353-54bc-4e0e-8033-413739de8dbc/download/registar-ugovora-2019..xlsx",
+     "last_modified": "2023-03-13T23:25:04.940206",
+     "name": "Registar ugovora javne nabave za 2019. godinu"
+    },
+    {
+     "id": "c1e93055-a208-4433-bbb4-3c9c3acd04d1",
+     "format": "XLSX",
+     "url": "https://data.gov.hr/ckan/dataset/07c50d8a-79ba-481f-955e-3d9c8bfe87c7/resource/c1e93055-a208-4433-bbb4-3c9c3acd04d1/download/registar-ugovora-2020..xlsx",
+     "last_modified": "2023-03-13T23:25:04.950310",
+     "name": "Registar ugovora javne nabave za 2020. godinu"
+    },
+    {
+     "id": "3a110b9f-e858-40b6-867f-c8a0f10a3efa",
+     "format": "XLSX",
+     "url": "https://data.gov.hr/ckan/dataset/07c50d8a-79ba-481f-955e-3d9c8bfe87c7/resource/3a110b9f-e858-40b6-867f-c8a0f10a3efa/download/registar-ugovora-2021..xlsx",
+     "last_modified": "2023-03-13T23:25:04.957950",
+     "name": "Registar ugovora javne nabave za 2021. godinu"
+    },
+    {
+     "id": "1e20a09e-6e44-4f8e-a416-487f62f4914e",
+     "format": "XLSX",
+     "url": "https://data.gov.hr/ckan/dataset/07c50d8a-79ba-481f-955e-3d9c8bfe87c7/resource/1e20a09e-6e44-4f8e-a416-487f62f4914e/download/registar-ugovora-2022..xlsx",
+     "last_modified": "2023-03-13T23:25:04.968644",
+     "name": "Registar ugovora javne nabave za 2022. godinu"
+    }
+   ]
+  },
+  {
+   "name": "registar-ugovora-nabave-do-31-12-2025",
+   "title": "REGISTAR UGOVORA - NABAVE DO 31.12.2025.",
+   "org": "Općina Kloštar Ivanić ",
+   "resources": [
+    {
+     "id": "37a6d498-a25a-4299-8c05-4b4b3fbae0ce",
+     "format": "XLSX",
+     "url": "https://data.gov.hr/ckan/dataset/add4ed02-7347-4377-83ab-57a1982f927d/resource/37a6d498-a25a-4299-8c05-4b4b3fbae0ce/download/registar-ugovora-do-31.12.2025..xlsx",
+     "last_modified": "2026-04-16T13:13:35.638596",
+     "name": "REGISTAR UGOVORA - NABAVE DO 31.12.2025."
+    }
+   ]
+  },
+  {
+   "name": "registar-ugovora-o-javnoj-nabavi-i-njihovih-izvr-enja",
+   "title": "Registar ugovora o javnoj nabavi i njihovih izvršenja",
+   "org": "Ministarstvo graditeljstva i prostornoga uređenja (NEAKTIVAN)",
+   "resources": [
+    {
+     "id": "f68bbc23-060f-4fdb-b629-71351047cd58",
+     "format": "CSV",
+     "url": "http://www.mgipu.hr/doc/OpenData/Registar_sklopljenih_ugovora_2014.csv",
+     "last_modified": "2023-04-27T22:13:44.318705",
+     "name": null
+    },
+    {
+     "id": "9d3c524c-2f0c-45c1-9316-4377a807a6ea",
+     "format": "CSV",
+     "url": "http://www.mgipu.hr/doc/OpenData/Registar_sklopljenih_ugovora-2015.csv",
+     "last_modified": "2023-04-27T22:13:44.327184",
+     "name": null
+    },
+    {
+     "id": "286ea88b-2f15-471e-a1cf-c346dd311664",
+     "format": "CSV",
+     "url": "http://www.mgipu.hr/doc/OpenData/Registar_sklopljenih_ugovora_za_2016.csv",
+     "last_modified": "2023-04-27T22:13:44.333666",
+     "name": null
+    },
+    {
+     "id": "a55ea397-1b00-457a-a221-e823cdcb0681",
+     "format": "CSV",
+     "url": "http://www.mgipu.hr/doc/OpenData/Registar_sklopljenih_ugovora_za_2016_2.csv",
+     "last_modified": "2023-04-27T22:13:44.338376",
+     "name": null
+    },
+    {
+     "id": "8c7a637f-8bca-477f-ad0f-8f8f75fb6102",
+     "format": "CSV",
+     "url": "http://www.mgipu.hr/doc/OpenData/Registar_sklopljenih_ugovora_za_2017_1.csv",
+     "last_modified": "2023-04-27T22:13:44.342952",
+     "name": null
+    },
+    {
+     "id": "f857431b-2e3f-450d-85cb-098e2cc07e34",
+     "format": "CSV",
+     "url": "http://www.mgipu.hr/doc/OpenData/Registar_sklopljenih_ugovora_za_2016_3.csv",
+     "last_modified": "2023-04-27T22:13:44.345971",
+     "name": null
+    }
+   ]
+  },
+  {
+   "name": "pregled-ugovora-o-javnoj-nabavi-ispod-zakonskog-praga-20-000kn-do-31-12-2017",
+   "title": "Registri javne i jednostavne nabave",
+   "org": "Grad Rijeka",
+   "resources": [
+    {
+     "id": "229d93e0-8b47-48e6-96b5-77fa22b88981",
+     "format": "XLSX",
+     "url": "https://data.rijeka.hr/dataset/29487097-5f25-4a04-b194-1f20de728386/resource/229d93e0-8b47-48e6-96b5-77fa22b88981/download/eojn-stari-objava-na-dan-31.01.2026..xlsx",
+     "last_modified": "2026-03-02T11:16:33.497182",
+     "name": "2026 - 1.Registar ugovora o javnoj nabavi i okvirnih sporazuma vrijednosti 20.000 kuna, odnosno  2.650,00 eura i veće od 1.1.2018. (stari EOJN)  - (dokument u excelu EOJN (stari) – objava na dan 31.01.26.)"
+    },
+    {
+     "id": "2711a348-3fb5-42a4-a58f-efdf1cc516e9",
+     "format": "XLSX",
+     "url": "https://data.rijeka.hr/dataset/29487097-5f25-4a04-b194-1f20de728386/resource/2711a348-3fb5-42a4-a58f-efdf1cc516e9/download/eojn-novi-objava-na-dan-31.01.2026..xlsx",
+     "last_modified": "2026-03-02T11:17:51.281345",
+     "name": "2026 - 2.\tRegistar ugovora o javnoj nabavi i okvirnih sporazuma vrijednosti 2.650,00 eura i veće od 1.1.2024. (novi EOJN) - (dokument u excelu EOJN (novi) – objava na dan 31.01.26.)"
+    },
+    {
+     "id": "d5b41cb8-bca3-48f4-a526-3c6600ff9f77",
+     "format": "XLSX",
+     "url": "https://data.rijeka.hr/dataset/29487097-5f25-4a04-b194-1f20de728386/resource/d5b41cb8-bca3-48f4-a526-3c6600ff9f77/download/pregled-ugovora-do-2.65000-na-dan-31.01.2026.-objava.xlsx",
+     "last_modified": "2026-03-02T11:18:48.375648",
+     "name": "2026 - 3. Pregled ugovora o jednostavnoj nabavi do 20.000 kn, odnosno 2.650,00 eura od 01.01.2018. - (dokument u excelu Pregled ugovora do 2.650,00 € na objava na dan 31.01.26.)"
+    },
+    {
+     "id": "08a3d62b-6465-4f45-a394-b0130ade15c0",
+     "format": "XLSX",
+     "url": "https://data.rijeka.hr/dataset/29487097-5f25-4a04-b194-1f20de728386/resource/08a3d62b-6465-4f45-a394-b0130ade15c0/download/registar-ugovora-o-jn-i-os-31.12.17.-objava.xlsx",
+     "last_modified": "2026-03-02T11:19:34.772078",
+     "name": "2026.- 4.Registar ugovora o javnoj nabavi i okvirnih sporazuma do 31.12.2017. (dokument u excelu Registar ugovora o JN i OS – 31.12.17. - OBJAVA)"
+    },
+    {
+     "id": "a60fd6ce-737f-423f-9a36-f986bd0eea87",
+     "format": "XLSX",
+     "url": "https://data.rijeka.hr/dataset/29487097-5f25-4a04-b194-1f20de728386/resource/a60fd6ce-737f-423f-9a36-f986bd0eea87/download/bagatelne-nabave-na-31.12.2017.-objava.xlsx",
+     "last_modified": "2026-03-02T11:20:17.916389",
+     "name": "2026 - 5.Pregled ugovora o javnoj nabavi ispod zakonskog praga do 31.12.2017. (dokument u excelu Bagatelne nabave – na 31.12.2017.  – OBJAVA)"
+    }
+   ]
+  },
+  {
+   "name": "https-www-safu-hr-javna-nabava",
+   "title": "Registar ugovora o javnoj nabavi i okvirnih sporazuma",
+   "org": "Središnja agencija za financiranje i ugovaranje  programa i projekata Europske unije",
+   "resources": [
+    {
+     "id": "af8999e9-adbc-4d68-a29c-0451977b5b7b",
+     "format": "PDF",
+     "url": "https://data.gov.hr/ckan/dataset/88c18cdb-e279-46da-925f-ba2e01d1b495/resource/af8999e9-adbc-4d68-a29c-0451977b5b7b/download/registar_ugovora_29.06.2018.pdf",
+     "last_modified": "2023-03-02T23:16:48.295461",
+     "name": "Registar ugovora o javnoj nabavi i okvirnih sporazuma zaključno s 29.6.2018."
+    },
+    {
+     "id": "3029b7db-5806-42e5-a449-02b0828e144f",
+     "format": "PDF",
+     "url": "https://data.gov.hr/ckan/dataset/88c18cdb-e279-46da-925f-ba2e01d1b495/resource/3029b7db-5806-42e5-a449-02b0828e144f/download/registar_ugovora_31.12.2018.pdf",
+     "last_modified": "2023-03-02T23:16:48.300567",
+     "name": "Registar ugovora o javnoj nabavi i okvirnih sporazuma zaključno s 31.12.2018."
+    },
+    {
+     "id": "eb0dadc9-c885-48e5-b3c6-68d2589ee8d1",
+     "format": "PDF",
+     "url": "https://data.gov.hr/ckan/dataset/88c18cdb-e279-46da-925f-ba2e01d1b495/resource/eb0dadc9-c885-48e5-b3c6-68d2589ee8d1/download/registar_ugovora_30.06.2019.pdf",
+     "last_modified": "2023-03-02T23:16:48.306862",
+     "name": "Registar ugovora o javnoj nabavi i okvirnih sporazuma zaključno s 30.6.2019."
+    },
+    {
+     "id": "aa9c6e87-028b-40ec-87b2-f203eaa411a0",
+     "format": "PDF",
+     "url": "https://data.gov.hr/ckan/dataset/88c18cdb-e279-46da-925f-ba2e01d1b495/resource/aa9c6e87-028b-40ec-87b2-f203eaa411a0/download/registar_ugovora_31.12.2019.pdf",
+     "last_modified": "2023-03-02T23:16:48.311934",
+     "name": "Registar ugovora o javnoj nabavi i okvirnih sporazuma zaključno s 31.12.2019."
+    },
+    {
+     "id": "c3cd4fbd-df1c-4c08-8ae3-76c409b3c59b",
+     "format": "PDF",
+     "url": "https://data.gov.hr/ckan/dataset/88c18cdb-e279-46da-925f-ba2e01d1b495/resource/c3cd4fbd-df1c-4c08-8ae3-76c409b3c59b/download/registar_ugovora_30.06.2020.pdf",
+     "last_modified": "2023-03-02T23:16:48.317452",
+     "name": "Registar ugovora o javnoj nabavi i okvirnih sporazuma zaključno s 30.6.2020."
+    },
+    {
+     "id": "ecf1c3e4-7cb0-49b2-aba5-eaa3afc1d5f8",
+     "format": "PDF",
+     "url": "https://data.gov.hr/ckan/dataset/88c18cdb-e279-46da-925f-ba2e01d1b495/resource/ecf1c3e4-7cb0-49b2-aba5-eaa3afc1d5f8/download/registar_ugovora_31.12.2020.pdf",
+     "last_modified": "2023-03-02T23:16:48.324225",
+     "name": "Registar ugovora o javnoj nabavi i okvirnih sporazuma zaključno s 31.12.2020."
+    },
+    {
+     "id": "612afe94-3fa4-454a-b585-2713dea459db",
+     "format": "PDF",
+     "url": "https://data.gov.hr/ckan/dataset/88c18cdb-e279-46da-925f-ba2e01d1b495/resource/612afe94-3fa4-454a-b585-2713dea459db/download/registar_ugovora_30.6.2021.pdf",
+     "last_modified": "2023-03-02T23:16:48.329736",
+     "name": "Registar ugovora o javnoj nabavi i okvirnih sporazuma zaključno s 30.6.2021."
+    },
+    {
+     "id": "e9f8f86d-77bf-4125-aead-19d6f80f652c",
+     "format": "PDF",
+     "url": "https://data.gov.hr/ckan/dataset/88c18cdb-e279-46da-925f-ba2e01d1b495/resource/e9f8f86d-77bf-4125-aead-19d6f80f652c/download/registar_ugovora_31.12.2021.pdf",
+     "last_modified": "2023-03-02T23:16:48.334739",
+     "name": "Registar ugovora o javnoj nabavi i okvirnih sporazuma zaključno s 31.12.2021."
+    },
+    {
+     "id": "ce0a0711-1fb1-4420-807e-59c21e647f10",
+     "format": "PDF",
+     "url": "https://data.gov.hr/ckan/dataset/88c18cdb-e279-46da-925f-ba2e01d1b495/resource/ce0a0711-1fb1-4420-807e-59c21e647f10/download/registar_ugovora_30.6.2022.pdf",
+     "last_modified": "2023-03-02T23:16:48.340585",
+     "name": "Registar ugovora o javnoj nabavi i okvirnih sporazuma zaključno s 30.6.2022."
+    },
+    {
+     "id": "40bfda87-44d2-49fd-aa40-c7e4043da1b6",
+     "format": "PDF",
+     "url": "https://data.gov.hr/ckan/dataset/88c18cdb-e279-46da-925f-ba2e01d1b495/resource/40bfda87-44d2-49fd-aa40-c7e4043da1b6/download/registar-ugovora-o-javnoj-nabavi-i-okvirnih-sporazuma-na-dan-31.12.2022..pdf",
+     "last_modified": "2023-03-02T23:16:48.345458",
+     "name": "Registar ugovora o javnoj nabavi i okvirnih sporazuma na dan 31.12.2022."
+    },
+    {
+     "id": "1dddac16-c577-444e-b39f-c874d2cca9a1",
+     "format": "PDF",
+     "url": "https://data.gov.hr/ckan/dataset/88c18cdb-e279-46da-925f-ba2e01d1b495/resource/1dddac16-c577-444e-b39f-c874d2cca9a1/download/registar-30.06.2023..pdf",
+     "last_modified": "2023-09-28T22:22:40.361053",
+     "name": "Registar ugovora o javnoj nabavi i okvirnih sporazuma zaključno s 30.6.2023."
+    }
+   ]
+  },
+  {
+   "name": "evidencija-ugovora-jednostavne-nabave",
+   "title": "Evidencija ugovora jednostavne nabave",
+   "org": "Općina Starigrad",
+   "resources": [
+    {
+     "id": "3ba26371-c854-4874-b6d6-9ca17831f602",
+     "format": "",
+     "url": "https://www.opcina-starigrad.hr/javna-nabava/bagatelna-nabava/",
+     "last_modified": "2023-03-05T23:15:22.259396",
+     "name": "Evidencija ugovora jednostavne nabave"
+    },
+    {
+     "id": "50ef5ed0-6100-4a39-a59c-0f738011c46f",
+     "format": "XLSX",
+     "url": "https://www.opcina-starigrad.hr/javna-nabava/bagatelna-nabava/",
+     "last_modified": "2023-03-05T23:15:22.262338",
+     "name": "Evidencija ugovora javne nabave"
+    }
+   ]
+  },
+  {
+   "name": "registar-ugovora-o-javnoj-nabavi-okvirnih-sporazumai-jednostavne-nabave-na-dan-30-lipnja-2022",
+   "title": "Registar ugovora o javnoj nabavi, okvirnih sporazumai jednostavne nabave na dan 30. lipnja 2022.",
+   "org": "Grad Rovinj-Rovigno",
+   "resources": [
+    {
+     "id": "8e822839-8168-4d6d-a519-770ac9c41a4f",
+     "format": "XLSX",
+     "url": "https://data.gov.hr/ckan/dataset/e9e7b65a-a701-4f08-8fc3-faf6a0f69326/resource/8e822839-8168-4d6d-a519-770ac9c41a4f/download/registar-ugovora-o-javnoj-nabavi-okvirnih-sporazuma-i-jednostavne-nabave-na-dan-30.-lipnja-2022.xlsx",
+     "last_modified": "2022-10-11T12:40:17.500914",
+     "name": "Registar ugovora o javnoj nabavi, okvirnih sporazumai jednostavne nabave na dan 30. lipnja 2022."
+    }
+   ]
+  },
+  {
+   "name": "registar-ugovora-o-javnoj-nabavi-okvirnih-sporazuma-i-jednostavne-nabave-na-dan-30-lipnja-2020",
+   "title": "Registar ugovora o javnoj nabavi, okvirnih sporazuma i jednostavne nabave na dan 30. lipnja 2020",
+   "org": "Grad Rovinj-Rovigno",
+   "resources": [
+    {
+     "id": "b0602f0a-b683-4b6d-94f9-2dd105291245",
+     "format": "XLS",
+     "url": "https://data.gov.hr/ckan/dataset/eae78344-af1d-423b-985a-598833122f4d/resource/b0602f0a-b683-4b6d-94f9-2dd105291245/download/registar-ugovora-o-javnoj-nabavi-okvirnih-sporazuma-i-jednostavne-nabave-na-dan-30.-lipnja-2020.xlsx",
+     "last_modified": "2022-10-11T12:26:30.323712",
+     "name": "Registar ugovora o javnoj nabavi, okvirnih sporazuma i jednostavne nabave na dan 30. lipnja 2020"
+    }
+   ]
+  },
+  {
+   "name": "registar-javne-nabave",
+   "title": "Registar javne nabave",
+   "org": "Upravni sud u Splitu",
+   "resources": [
+    {
+     "id": "ab87500d-29d1-47f3-86c2-20abcd04b128",
+     "format": "",
+     "url": "",
+     "last_modified": null,
+     "name": "Registar javne nabave"
+    }
+   ]
+  },
+  {
+   "name": "registar-ugovora-o-javnoj-nabavi-i-okvirnih-sporazuma-20-000-kn-do-31-12-2017",
+   "title": "Registar ugovora o javnoj nabavi i okvirnih sporazuma > 20.000 kn do 31.12.2017.",
+   "org": "Grad Rijeka",
+   "resources": [
+    {
+     "id": "3819ed7f-47c4-4589-bdf1-db4ed626a24d",
+     "format": "XLS",
+     "url": "http://data.rijeka.hr/dataset/39927417-8f0c-4d75-9f74-5df20a937730/resource/3819ed7f-47c4-4589-bdf1-db4ed626a24d/download/registar-ugovora-o-jn-i-os-do-31.12.17.-objava-31012021.xls",
+     "last_modified": "2021-09-10T13:17:15.255196",
+     "name": "Registar ugovora o JN i OS - 31.01.2021."
+    },
+    {
+     "id": "89c1bb61-4189-4cef-9f4d-d72c742d0e71",
+     "format": "PDF",
+     "url": "http://data.rijeka.hr/dataset/39927417-8f0c-4d75-9f74-5df20a937730/resource/89c1bb61-4189-4cef-9f4d-d72c742d0e71/download/registar-ugovora-o-jn-i-os-311217objava-30092020.pdf",
+     "last_modified": "2021-05-07T09:11:19.255283",
+     "name": "Registar ugovora o JN i OS - 30.09.2020."
+    },
+    {
+     "id": "5ef9ec97-9cce-4671-8ed1-b6dc4c3659a8",
+     "format": "XLS",
+     "url": "http://data.rijeka.hr/dataset/39927417-8f0c-4d75-9f74-5df20a937730/resource/5ef9ec97-9cce-4671-8ed1-b6dc4c3659a8/download/registar-ugovora-o-jn-i-os-do-31.12.17.-objava-31.05.2020.xls",
+     "last_modified": "2021-09-10T13:17:56.095486",
+     "name": "Registar ugovora o JN i OS - 31.05.2020."
+    },
+    {
+     "id": "71b08e58-b5e7-4a13-a87d-cebabf07e0d1",
+     "format": "XLS",
+     "url": "http://data.rijeka.hr/dataset/39927417-8f0c-4d75-9f74-5df20a937730/resource/71b08e58-b5e7-4a13-a87d-cebabf07e0d1/download/registar-ugovora-o-jn-i-os-do-31.12.17.-objava-22.01.2019.xls",
+     "last_modified": "2021-09-10T13:18:43.114638",
+     "name": "Registar ugovora o JN i OS - 22.01.2019."
+    }
+   ]
+  },
+  {
+   "name": "registar-ugovora-o-javnoj-nabavi-i-okvirnih-sporazuma-vrijednosti-2-650-00-eura-i-vise-od-01-01-2018",
+   "title": "Registar ugovora o javnoj nabavi i okvirnih sporazuma vrijednosti 2.650,00 eura i više od 01.01.2018.",
+   "org": "Grad Varaždinske Toplice",
+   "resources": [
+    {
+     "id": "a46d152b-b113-4a22-914c-6cdb5bc948c3",
+     "format": "XML",
+     "url": "https://data.gov.hr/ckan/dataset/21f0a9ff-a3cc-411b-8e79-700f33b600bd/resource/a46d152b-b113-4a22-914c-6cdb5bc948c3/download/1.1.2018.-31.12.2025-2.xlsx",
+     "last_modified": "2026-04-24T06:00:21.501948",
+     "name": "Registar ugovora o javnoj nabavi i okvirnih sporazuma"
+    }
+   ]
+  },
+  {
+   "name": "registar-certifikata",
+   "title": "Registar certifikata",
+   "org": "Ministarstvo gospodarstva",
+   "resources": [
+    {
+     "id": "f0e93e20-4695-4dbe-a5a4-d2603b594c6d",
+     "format": "HTML",
+     "url": "http://javnanabava.hr/default.aspx?id=3762",
+     "last_modified": "2023-02-10T23:17:02.940843",
+     "name": ""
+    },
+    {
+     "id": "f65e8097-54f3-41b3-8518-ebbe14d36fa9",
+     "format": "XLS",
+     "url": "http://www.javnanabava.hr/userdocsimages/userfiles/file/IZOBRAZBA/Certifikati/Registar%20certifikata/2012/Prema%20Uredbi/03-Registar-Uredba-OBJAVA-18072013.xls",
+     "last_modified": "2023-02-10T23:17:02.947531",
+     "name": null
+    },
+    {
+     "id": "3560445c-42a3-420c-9c7b-edbe2be8bcd6",
+     "format": "XLSX",
+     "url": "http://www.javnanabava.hr/userdocsimages/Registar%20certifikata%20(Pravilnik)%202012-2014%2030.09.2014..xlsx",
+     "last_modified": "2023-02-10T23:17:02.952324",
+     "name": null
+    }
+   ]
+  },
+  {
+   "name": "https-sudovi-hr-hr-oskc-javna-nabava-registar-javne-nabave-i-okvirnih-sporazuma",
+   "title": "Registar javne nabave i okvirnih sporazuma",
+   "org": "Općinski sud u Koprivnici",
+   "resources": [
+    {
+     "id": "640cd2ef-bc49-454d-bfcc-6fe85b9c43ee",
+     "format": "",
+     "url": "https://sudovi.hr/hr/oskc/javna-nabava/registar-javne-nabave-i-okvirnih-sporazuma",
+     "last_modified": "2023-06-10T22:12:31.401045",
+     "name": "Registar javne nabave i okvirnih sporazuma"
+    }
+   ]
+  },
+  {
+   "name": "pojedinacni-registri-ugovora-o-javnoj-nabavi-i-okvirnih-sporazuma",
+   "title": "Pojedinačni registri ugovora o javnoj nabavi i okvirnih sporazuma",
+   "org": "Ministarstvo gospodarstva",
+   "resources": [
+    {
+     "id": "b5b83c30-e3a0-4871-be7a-15971e26795a",
+     "format": "PDF",
+     "url": "http://www.javnanabava.hr/userdocsimages/userfiles/file/Registri%20ugovora/Registar%20ugovora%202012-2016.pdf",
+     "last_modified": "2023-02-10T23:17:02.906119",
+     "name": null
+    },
+    {
+     "id": "bb6fcd47-0b8d-4c72-9dc6-6f8b035cf112",
+     "format": "ZIP",
+     "url": "http://www.javnanabava.hr/userdocsimages/userfiles/file/Registri%20ugovora/Registri%202012-2016.zip",
+     "last_modified": "2023-02-10T23:17:02.917334",
+     "name": null
+    }
+   ]
+  },
+  {
+   "name": "plan-nabave-opcine-sodolovci-za-2026-godinu",
+   "title": "Plan nabave Općine Šodolovci za 2026. godinu",
+   "org": "Općina Šodolovci",
+   "resources": [
+    {
+     "id": "42694171-e2ea-4f5d-a7aa-3f320f6c3688",
+     "format": "",
+     "url": "https://www.sodolovci.hr/registar-dokumenata/javna-nabava-2026-godina/",
+     "last_modified": null,
+     "name": "Plan nabave Općine Šodolovci 2026. godina"
+    },
+    {
+     "id": "a2deb1d4-70d9-409a-bbb8-1a453d33b9cc",
+     "format": "XLSX",
+     "url": "https://www.sodolovci.hr/registar-dokumenata/javna-nabava-2026-godina/",
+     "last_modified": null,
+     "name": "Plan nabave Općine Šodolovci 2026. godina"
+    }
+   ]
+  },
+  {
+   "name": "plan-nabave-i-registar-ugovora-aztn",
+   "title": "Plan nabave AZTN-a",
+   "org": "Agencija za zaštitu tržišnog natjecanja",
+   "resources": [
+    {
+     "id": "b722d727-140a-4223-9638-1d3a44e83607",
+     "format": "PDF",
+     "url": "https://www.aztn.hr/ea/wp-content/uploads/2026/01/Copy-of-Plan-nabave-2026-OBJAVLJENO.pdf",
+     "last_modified": null,
+     "name": "Plan nabave 2026."
+    },
+    {
+     "id": "afed0a90-064c-406d-a303-e38e04586921",
+     "format": "PDF",
+     "url": "https://www.aztn.hr/ea/wp-content/uploads//2025/01/Copy-of-Plan-nabave-2025-unesen-u-EOJN.pdf",
+     "last_modified": null,
+     "name": "Plan nabave 2025."
+    },
+    {
+     "id": "d20b26a1-6918-46a0-8c3f-031fc154ee1b",
+     "format": "PDF",
+     "url": "https://www.aztn.hr/ea/wp-content/uploads//2024/12/II.-Izmjena-i-dopuna-Plana-nabave-2024.pdf",
+     "last_modified": null,
+     "name": "Plan nabave 2024."
+    },
+    {
+     "id": "77b7632d-c2a2-4adc-8ecb-df8f7ddeeec6",
+     "format": "PDF",
+     "url": "https://www.aztn.hr/ea/wp-content/uploads//2023/12/II.-Izmijenjeni-i-dopunjeni-Plan-nabave-za-2023.-godinu.pdf",
+     "last_modified": null,
+     "name": "Plan nabave 2023."
+    },
+    {
+     "id": "5c799ba1-34ca-459b-a363-e7d653a98b5f",
+     "format": "PDF",
+     "url": "https://data.gov.hr/ckan/dataset/bd8c7e3f-8fde-46db-8a92-712d3da428ed/resource/5c799ba1-34ca-459b-a363-e7d653a98b5f/download/plan-nabave-aztn-za-2022..pdf",
+     "last_modified": "2022-09-09T09:20:29.248984",
+     "name": "Plan nabave AZTN 2022."
+    },
+    {
+     "id": "91711e62-27c1-4982-bb2e-9bf9324ddbf2",
+     "format": "PDF",
+     "url": "https://data.gov.hr/ckan/dataset/bd8c7e3f-8fde-46db-8a92-712d3da428ed/resource/91711e62-27c1-4982-bb2e-9bf9324ddbf2/download/izmjene-i-dopune-plana-nabave-2022.pdf",
+     "last_modified": "2022-09-09T09:20:50.973060",
+     "name": "Izmjene i dopune Plana nabave - 2022."
+    }
+   ]
+  }
+ ]
+}

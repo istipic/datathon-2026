@@ -11,6 +11,7 @@ const BuyerPage = page(() => import('./pages/BuyerPage'), 'BuyerPage');
 const MethodologyPage = page(() => import('./pages/MethodologyPage'), 'MethodologyPage');
 const SourcesPage = page(() => import('./pages/SourcesPage'), 'SourcesPage');
 const ConfirmPage = page(() => import('./pages/ConfirmPage'), 'ConfirmPage');
+const UnsubscribePage = page(() => import('./pages/UnsubscribePage'), 'UnsubscribePage');
 const NotFoundPage = page(() => import('./pages/NotFoundPage'), 'NotFoundPage');
 
 /** Adapter so the shared AppShell navigates client-side. */
@@ -67,6 +68,7 @@ export function App() {
           <Route path="/metodologija" element={<MethodologyPage />} />
           <Route path="/izvori" element={<SourcesPage />} />
           <Route path="/pretplata/potvrda" element={<ConfirmPage />} />
+          <Route path="/pretplata/odjava" element={<UnsubscribePage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>

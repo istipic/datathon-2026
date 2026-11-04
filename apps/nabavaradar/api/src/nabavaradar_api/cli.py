@@ -80,6 +80,33 @@ def ted(
     typer.echo(json.dumps(reports, indent=2, ensure_ascii=False))
 
 
+@ingest_app.command("municipal")
+def municipal() -> None:
+    """P1: load municipal contract registers (CKAN, XLSX/CSV) and report coverage."""
+    from sqlalchemy.dialects.postgresql import insert
+
+    from nabavaradar_api.db import Calibration
+    from nabavaradar_api.ingest.municipal import ingest_municipal
+
+    def step(session: Session, settings: NabavaSettings) -> dict[str, Any]:
+        summary = ingest_municipal(session, settings)
+        stmt = insert(Calibration).values(
+            key="municipal_coverage", value=json.loads(json.dumps(summary, default=str))
+        )
+        session.execute(
+            stmt.on_conflict_do_update(
+                index_elements=[Calibration.key], set_={"value": stmt.excluded.value}
+            )
+        )
+        session.commit()
+        return summary
+
+    summary = _run("municipal", step)
+    typer.echo(
+        json.dumps({k: v for k, v in summary.items() if k != "files"}, indent=2, ensure_ascii=False)
+    )
+
+
 @ingest_app.command("embed")
 def embed() -> None:
     """Embed NKD labels, CPV labels and notices (multilingual-e5-small)."""
@@ -153,6 +180,27 @@ def evaluate() -> None:
         k: result["tau"].get(k) for k in ("tau", "f1", "precision", "recall", "winners")
     }
     typer.echo(json.dumps(summary, indent=2, default=str))
+
+
+digest_app = typer.Typer(help="Weekly e-mail digest", no_args_is_help=True)
+app.add_typer(digest_app, name="digest")
+
+
+@digest_app.command("send")
+def digest_send(
+    dry_run: bool = typer.Option(False, help="Compute but do not send or update last_sent_at"),
+) -> None:
+    """Send the weekly digest to every confirmed subscription (cron: Monday 07:00)."""
+    from nabavaradar_api.match import MatchEngine
+    from nabavaradar_api.subscriptions import send_digests
+    from opendata_core import semantic
+
+    def step(session: Session, settings: NabavaSettings) -> dict[str, int]:
+        return send_digests(
+            session, settings, MatchEngine(), semantic.encode_queries, dry_run=dry_run
+        )
+
+    typer.echo(json.dumps(_run("digest", step)))
 
 
 if __name__ == "__main__":  # pragma: no cover

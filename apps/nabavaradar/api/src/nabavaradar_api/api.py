@@ -306,6 +306,16 @@ def make_router(
             raise HTTPException(404, "Validacija još nije provedena (nabavaradar eval).")
         return {**row.value, "stored_at": row.updated_at.isoformat()}
 
+    @router.get("/municipal/coverage")
+    def municipal_coverage(session: Session = Depends(get_session)) -> Any:
+        """P1: how many municipal registers were found, parsed and rejected (and why)."""
+        row = session.get(Calibration, "municipal_coverage")
+        if row is None:
+            raise HTTPException(
+                404, "Registri ugovora još nisu učitani (nabavaradar ingest municipal)."
+            )
+        return {**row.value, "stored_at": row.updated_at.isoformat()}
+
     @router.get("/counties")
     def list_counties() -> Any:
         return [
