@@ -39,6 +39,15 @@ export interface CompetitionInfo {
   scope: string | null;
 }
 
+export interface GroupedNotice {
+  pub_no: string;
+  pub_date: string;
+  title: string | null;
+  fit: number;
+  deadline: string | null;
+  url_html: string | null;
+}
+
 export interface MatchItem {
   pub_no: string;
   title: string | null;
@@ -53,6 +62,11 @@ export interface MatchItem {
   similarity: number;
   components: { S: number; C: number; G: number; T: number };
   best_activity: { label: string; code: string | null; version: string | null };
+  procedure_id?: string | null;
+  notice_type?: string;
+  signals?: { main_activity: boolean; cpv_group_match: boolean; disliked_group: boolean };
+  group?: { size: number; others: GroupedNotice[] };
+  cpv_group?: string | null;
   cpv_main: string | null;
   cpv_division: string | null;
   cpv_division_label: string | null;
@@ -184,4 +198,36 @@ export interface CountyOption {
   name: string;
   nuts3: string;
   nuts2: string;
+}
+
+export interface Highlights {
+  open_notices: number;
+  total_value_eur: number;
+  retrieved_at: string | null;
+  top_buyers: { name: string; open_notices: number }[];
+  top_cpv_areas: { division: string; label: string | null; open_notices: number }[];
+}
+
+export type Frequency = 'daily' | 'weekly';
+
+export interface AlertPrefs {
+  min_fit: number;
+  min_value_eur: number | null;
+  counties: number[];
+  cpv_divisions: string[];
+  frequency: Frequency;
+}
+
+export interface AlertSettings extends AlertPrefs {
+  email: string;
+  oib: string | null;
+  query: string | null;
+  paused: boolean;
+  confirmed: boolean;
+  excluded: number;
+}
+
+export interface AlertPreview {
+  count: number;
+  top: { pub_no: string; title: string | null; fit: number }[];
 }

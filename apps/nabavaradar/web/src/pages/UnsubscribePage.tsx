@@ -2,7 +2,7 @@ import { ErrorState } from '@dt/ui';
 import { useMutation } from '@tanstack/react-query';
 import { Link, useSearchParams } from 'react-router-dom';
 
-/** Target of the unsubscribe link in every digest e-mail; the click asks for confirmation first. */
+/** Target of the unsubscribe link in every e-mail; the click asks for confirmation first. */
 export function UnsubscribePage() {
   const [params] = useSearchParams();
   const token = params.get('token') ?? '';
@@ -17,8 +17,8 @@ export function UnsubscribePage() {
     },
   });
   return (
-    <div className="mx-auto max-w-3xl p-4">
-      <h1 className="text-2xl font-semibold">Odjava s tjednog pregleda</h1>
+    <div className="nb-wrap py-10">
+      <h1 className="nb-h2">Odjava s obavijesti</h1>
       {!token ? <ErrorState message="Poveznica nije potpuna (nedostaje token)." /> : null}
       {token && !remove.data ? (
         <>
@@ -40,7 +40,7 @@ export function UnsubscribePage() {
         </p>
       ) : null}
       <p className="mt-4">
-        <Link to="/" className="text-brand-700 underline">
+        <Link to="/" className="underline">
           Početna
         </Link>
       </p>

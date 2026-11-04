@@ -10,7 +10,7 @@ import sounding from '../__fixtures__/2026-11-04_sounding_cpv45_split.json';
 import validation from '../__fixtures__/2026-11-04_validation.json';
 import { explain } from '../lib/explain';
 import type { CompetitionInfo, MatchItem, SoundingResult, ValidationResult } from '../lib/types';
-import { MethodologyPage } from '../pages/MethodologyPage';
+import { SourcesPage } from '../pages/SourcesPage';
 import { CompetitionChip } from './CompetitionChip';
 import { CountyMap, type CountyGeo } from './CountyMap';
 import { OibForm } from './OibForm';
@@ -179,29 +179,29 @@ describe('OibForm', () => {
   });
 });
 
-describe('MethodologyPage (live validation numbers)', () => {
+describe('SourcesPage (live validation numbers)', () => {
   it('renders recall of both methods from /validation', async () => {
     vi.stubGlobal(
       'fetch',
       vi.fn(
-        async () =>
-          new Response(JSON.stringify(validation), {
+        async (url: string) =>
+          new Response(JSON.stringify(url.includes('/validation') ? validation : { sources: [] }), {
             status: 200,
             headers: { 'Content-Type': 'application/json' },
           }),
       ),
     );
-    render(inRouter(<MethodologyPage />));
+    render(inRouter(<SourcesPage />));
     const v = validation as unknown as ValidationResult;
     await waitFor(() => expect(screen.getByText('Birokratko (S/C/G/T)')).toBeTruthy());
     const row = screen.getByText('Birokratko (S/C/G/T)').closest('tr') as HTMLElement;
     expect(row.textContent).toContain(
       `${((v.fit['recall@10'] as number) * 100).toFixed(1).replace('.', ',')} %`,
     );
-    expect(screen.getByText('Osnovna: Postgres full-text').closest('tr')?.textContent).toContain(
+    expect(screen.getByText('Osnovna: pretraživanje teksta').closest('tr')?.textContent).toContain(
       `${((v.fts_baseline['recall@20'] as number) * 100).toFixed(1).replace('.', ',')} %`,
     );
-    expect(document.body.textContent).toContain(`n = ${v.n}`);
+    expect(document.body.textContent).toContain(v.n.toLocaleString('hr-HR'));
   });
 });
 

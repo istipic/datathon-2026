@@ -1,7 +1,11 @@
 import type {
+  AlertPreview,
+  AlertPrefs,
+  AlertSettings,
   CompanyProfile,
   CountyOption,
   CpvHit,
+  Highlights,
   MatchItem,
   NoticeDetail,
   Queued,
@@ -60,10 +64,15 @@ export interface MatchParams {
   oib?: string;
   q?: string;
   county?: number;
+  counties?: string;
+  cpv?: string;
   deadline_min_days?: number;
   limit?: number;
   value_min?: number;
   value_max?: number;
+  hide?: string;
+  dislike?: string;
+  group_lots?: boolean;
 }
 
 export const api = {
@@ -73,7 +82,12 @@ export const api = {
     return status === 202 ? { ...(body as Queued), status: 'queued' } : (body as CompanyProfile);
   },
   match: async (params: MatchParams, signal?: AbortSignal) =>
-    (await request<MatchItem[]>(`/match?${qs({ ...params })}`, { signal })).body,
+    (
+      await request<MatchItem[]>(
+        `/match?${qs({ ...params, group_lots: params.group_lots === false ? 'false' : undefined })}`,
+        { signal },
+      )
+    ).body,
   notice: async (pubNo: string, signal?: AbortSignal) =>
     (await request<NoticeDetail>(`/notices/${encodeURIComponent(pubNo)}`, { signal })).body,
   sounding: async (body: { text?: string; cpv?: string; county?: number }, signal?: AbortSignal) =>
@@ -92,12 +106,78 @@ export const api = {
   cpvSearch: async (q: string, signal?: AbortSignal) =>
     (await request<CpvHit[]>(`/cpv?${qs({ q })}`, { signal })).body,
   status: async (signal?: AbortSignal) => (await request<StatusInfo>('/status', { signal })).body,
-  subscribe: async (body: { email: string; oib?: string; query?: string; consent: boolean }) =>
+  highlights: async (signal?: AbortSignal) =>
+    (await request<Highlights>('/highlights', { signal })).body,
+  consentText: async (frequency: string, minFit: number, signal?: AbortSignal) =>
+    (
+      await request<{ text: string }>(
+        `/subscriptions/consent?${qs({ frequency, min_fit: minFit })}`,
+        { signal },
+      )
+    ).body.text,
+  alertPreview: async (
+    p: { oib?: string; q?: string } & Pick<AlertPrefs, 'min_fit'> & {
+        min_value_eur?: number | null;
+        counties?: number[];
+        cpv?: string[];
+      },
+    signal?: AbortSignal,
+  ) =>
+    (
+      await request<AlertPreview>(
+        `/subscriptions/preview?${qs({
+          oib: p.oib,
+          q: p.q,
+          min_fit: p.min_fit,
+          min_value_eur: p.min_value_eur,
+          counties: p.counties?.join(','),
+          cpv: p.cpv?.join(','),
+        })}`,
+        { signal },
+      )
+    ).body,
+  subscribe: async (
+    body: {
+      email: string;
+      oib?: string;
+      query?: string;
+      consent: boolean;
+    } & Partial<AlertPrefs>,
+  ) =>
     (
       await request<{ detail: string }>('/subscriptions', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
+      })
+    ).body,
+  alertSettings: async (token: string, signal?: AbortSignal) =>
+    (await request<AlertSettings>(`/subscriptions/settings?${qs({ token })}`, { signal })).body,
+  updateAlertSettings: async (
+    token: string,
+    body: Partial<AlertPrefs> & { paused?: boolean; clear_min_value?: boolean },
+  ) =>
+    (
+      await request<AlertSettings>(`/subscriptions/settings?${qs({ token })}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      })
+    ).body,
+  excludeNotice: async (token: string, pubNo: string) =>
+    (
+      await request<{ detail: string }>(`/subscriptions/exclude?${qs({ token })}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ pub_no: pubNo }),
+      })
+    ).body,
+  confirmSubscription: async (token: string) =>
+    (await request<{ detail: string }>(`/subscriptions/confirm?${qs({ token })}`)).body,
+  unsubscribe: async (token: string) =>
+    (
+      await request<{ detail: string }>(`/subscriptions?${qs({ token })}`, {
+        method: 'DELETE',
       })
     ).body,
 };

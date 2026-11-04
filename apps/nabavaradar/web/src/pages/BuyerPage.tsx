@@ -21,7 +21,7 @@ function Results({ r }: { r: SoundingResult }) {
   return (
     <div className="mt-6 grid gap-6">
       <section aria-labelledby="cpv-h">
-        <h2 id="cpv-h" className="text-xl font-semibold">
+        <h2 id="cpv-h" className="text-2xl">
           Predloženi CPV kodovi
         </h2>
         <ul className="mt-2 grid gap-2">
@@ -29,7 +29,7 @@ function Results({ r }: { r: SoundingResult }) {
             <li key={s.code} className="nr-card" style={{ padding: '8px 12px' }}>
               <span className="num font-semibold">{s.code}</span> {s.label}
               {s.similarity !== null ? (
-                <span className="num text-neutral-600"> · sličnost {s.similarity.toFixed(2)}</span>
+                <span className="num text-neutral-700"> · sličnost {s.similarity.toFixed(2)}</span>
               ) : null}
             </li>
           ))}
@@ -41,7 +41,7 @@ function Results({ r }: { r: SoundingResult }) {
       </section>
 
       <section aria-labelledby="sup-h">
-        <h2 id="sup-h" className="text-xl font-semibold">
+        <h2 id="sup-h" className="text-2xl">
           Sposobni dobavljači po županijama
         </h2>
         <p className="mt-1">
@@ -98,7 +98,7 @@ function Results({ r }: { r: SoundingResult }) {
       </section>
 
       <section aria-labelledby="comp-h">
-        <h2 id="comp-h" className="text-xl font-semibold">
+        <h2 id="comp-h" className="text-2xl">
           Povijesna konkurencija
         </h2>
         {comp.n === 0 ? (
@@ -145,7 +145,7 @@ function Results({ r }: { r: SoundingResult }) {
       </section>
 
       <section aria-labelledby="adv-h">
-        <h2 id="adv-h" className="text-xl font-semibold">
+        <h2 id="adv-h" className="text-2xl">
           Preporuke
         </h2>
         {r.advice.length === 0 ? (
@@ -164,7 +164,7 @@ function Results({ r }: { r: SoundingResult }) {
                     href={a.source_url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-brand-700 underline"
+                    className="underline"
                   >
                     {a.source_label}
                   </a>
@@ -179,7 +179,7 @@ function Results({ r }: { r: SoundingResult }) {
         </p>
       </section>
 
-      <p className="text-sm text-neutral-600">
+      <p className="text-sm text-neutral-700">
         Izračunato {formatDateTime(r.generated_at)}. Registar: snimka{' '}
         {formatDate(r.data.sudreg_data_as_of)}, dohvaćeno{' '}
         {formatDateTime(r.data.sudreg_retrieved_at)}; TED dodjele dohvaćene{' '}
@@ -223,8 +223,8 @@ export function BuyerPage() {
   };
 
   return (
-    <div className="mx-auto max-w-5xl p-4">
-      <h1 className="text-2xl font-semibold">Provjera tržišta za javne naručitelje</h1>
+    <div className="nb-wrap py-10">
+      <h1 className="nb-h2">Provjera tržišta za javne naručitelje</h1>
       <p className="mt-2 max-w-3xl">
         Prije objave nabave procijenite koliko je sposobnih dobavljača u županiji i kakva je bila
         konkurencija u sličnim nabavama.
@@ -245,7 +245,7 @@ export function BuyerPage() {
           }}
           placeholder="npr. održavanje sustava videonadzora u školama"
         />
-        <p className="text-sm text-neutral-600 num">
+        <p className="text-sm text-neutral-700 num">
           {text.length} / {MAX_TEXT}
         </p>
 
@@ -287,7 +287,7 @@ export function BuyerPage() {
           {cpv ? (
             <p className="mt-2 text-sm">
               Odabrano: <strong className="num">{cpv}</strong>{' '}
-              <button type="button" className="text-brand-700 underline" onClick={() => setCpv('')}>
+              <button type="button" className="underline" onClick={() => setCpv('')}>
                 ukloni
               </button>
             </p>

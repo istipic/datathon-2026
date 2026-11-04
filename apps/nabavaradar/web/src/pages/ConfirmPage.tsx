@@ -18,8 +18,8 @@ export function ConfirmPage() {
     },
   });
   return (
-    <div className="mx-auto max-w-3xl p-4">
-      <h1 className="text-2xl font-semibold">Potvrda pretplate</h1>
+    <div className="nb-wrap py-10">
+      <h1 className="nb-h2">Potvrda pretplate</h1>
       {!token ? <ErrorState message="Poveznica nije potpuna (nedostaje token)." /> : null}
       {q.isLoading ? <LoadingSkeleton lines={2} label="Potvrđujem pretplatu…" /> : null}
       {q.error ? <ErrorState message={(q.error as Error).message} /> : null}
@@ -29,7 +29,7 @@ export function ConfirmPage() {
         </p>
       ) : null}
       <p className="mt-4">
-        <Link to="/" className="text-brand-700 underline">
+        <Link to="/" className="underline">
           Početna
         </Link>
       </p>

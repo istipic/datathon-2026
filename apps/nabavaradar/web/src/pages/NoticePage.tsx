@@ -2,6 +2,7 @@ import { EmptyState, ErrorState, LoadingSkeleton } from '@dt/ui';
 import { useQuery } from '@tanstack/react-query';
 import { Link, useParams } from 'react-router-dom';
 import { ApiError, api } from '../lib/api';
+import { buildIcs, download } from '../lib/export';
 import {
   countdown,
   formatDate,
@@ -20,13 +21,13 @@ export function NoticePage() {
   });
   if (q.isLoading)
     return (
-      <div className="mx-auto max-w-5xl p-4">
+      <div className="nb-wrap py-10">
         <LoadingSkeleton lines={4} label="Učitavam obavijest…" />
       </div>
     );
   if (q.error) {
     return (
-      <div className="mx-auto max-w-5xl p-4">
+      <div className="nb-wrap py-10">
         {q.error instanceof ApiError && q.error.status === 404 ? (
           <EmptyState title="Obavijest nije pronađena" body={q.error.message} />
         ) : (
@@ -42,26 +43,40 @@ export function NoticePage() {
     ? (new Date(n.deadline).getTime() - Date.now()) / 86_400_000
     : null;
   return (
-    <div className="mx-auto max-w-5xl p-4">
+    <div className="nb-wrap py-10">
       <p className="text-sm">
-        <Link to="/" className="text-brand-700 underline">
+        <Link to="/" className="underline">
           ← Početna
         </Link>
       </p>
-      <h1 className="mt-2 text-2xl font-semibold">{n.title ?? `Obavijest ${n.pub_no}`}</h1>
-      <p className="mt-1 text-neutral-600">
+      <h1 className="nb-h2 mt-2">{n.title ?? `Obavijest ${n.pub_no}`}</h1>
+      <p className="mt-1 text-neutral-700">
         {n.buyer ?? 'Naručitelj nije naveden'} · <span className="num">{n.pub_no}</span> ·{' '}
         {n.type === 'competition' ? 'Poziv na nadmetanje' : 'Obavijest o dodjeli ugovora'}
       </p>
+      {n.type === 'competition' && n.deadline ? (
+        <p className="mt-3">
+          <button
+            type="button"
+            className="nb-btn nb-btn--light nb-btn--sm"
+            onClick={() => {
+              const ics = buildIcs(n);
+              if (ics) download(`rok-${n.pub_no}.ics`, ics, 'text/calendar');
+            }}
+          >
+            Dodaj rok u kalendar
+          </button>
+        </p>
+      ) : null}
 
       <dl className="nr-card mt-4 grid gap-x-6 gap-y-2 sm:grid-cols-2">
         <div>
-          <dt className="text-sm text-neutral-600">Objavljeno</dt>
+          <dt className="text-sm text-neutral-700">Objavljeno</dt>
           <dd className="num">{formatDate(n.pub_date)}</dd>
         </div>
         {n.type === 'competition' ? (
           <div>
-            <dt className="text-sm text-neutral-600">
+            <dt className="text-sm text-neutral-700">
               {n.deadline_kind === 'request' ? 'Rok za zahtjeve za sudjelovanje' : 'Rok za ponude'}
             </dt>
             <dd>
@@ -71,44 +86,34 @@ export function NoticePage() {
           </div>
         ) : null}
         <div>
-          <dt className="text-sm text-neutral-600">Procijenjena vrijednost</dt>
+          <dt className="text-sm text-neutral-700">Procijenjena vrijednost</dt>
           <dd className="num">
             {formatEur(n.value_eur)}
             {n.currency && n.currency !== 'EUR' ? ` (${n.currency}, nije preračunato)` : ''}
           </dd>
         </div>
         <div>
-          <dt className="text-sm text-neutral-600">Broj grupa (lotova)</dt>
+          <dt className="text-sm text-neutral-700">Broj grupa (lotova)</dt>
           <dd className="num">{n.n_lots ?? '–'}</dd>
         </div>
         <div>
-          <dt className="text-sm text-neutral-600">Lokacija naručitelja</dt>
+          <dt className="text-sm text-neutral-700">Lokacija naručitelja</dt>
           <dd className="num">{n.buyer_nuts ?? n.place_nuts ?? 'nepoznata'}</dd>
         </div>
         <div>
-          <dt className="text-sm text-neutral-600">Glavni CPV</dt>
+          <dt className="text-sm text-neutral-700">Glavni CPV</dt>
           <dd className="num">{n.cpv_main ?? '–'}</dd>
         </div>
       </dl>
 
       <p className="mt-4 flex flex-wrap gap-4">
         {n.url_html ? (
-          <a
-            href={n.url_html}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-brand-700 underline"
-          >
+          <a href={n.url_html} target="_blank" rel="noopener noreferrer" className="underline">
             Otvori na TED-u (HTML)
           </a>
         ) : null}
         {n.url_pdf ? (
-          <a
-            href={n.url_pdf}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-brand-700 underline"
-          >
+          <a href={n.url_pdf} target="_blank" rel="noopener noreferrer" className="underline">
             PDF
           </a>
         ) : null}
@@ -116,7 +121,7 @@ export function NoticePage() {
 
       {n.description ? (
         <section className="mt-6" aria-labelledby="desc-h">
-          <h2 id="desc-h" className="text-xl font-semibold">
+          <h2 id="desc-h" className="text-2xl">
             Opis
           </h2>
           <p className="mt-2 whitespace-pre-line">{n.description}</p>
@@ -124,7 +129,7 @@ export function NoticePage() {
       ) : null}
 
       <section className="mt-6" aria-labelledby="comp-h">
-        <h2 id="comp-h" className="text-xl font-semibold">
+        <h2 id="comp-h" className="text-2xl">
           Konkurencija u sličnim nabavama
         </h2>
         {c.n === 0 ? (
@@ -174,7 +179,7 @@ export function NoticePage() {
 
       {n.awards.length > 0 ? (
         <section className="mt-6" aria-labelledby="aw-h">
-          <h2 id="aw-h" className="text-xl font-semibold">
+          <h2 id="aw-h" className="text-2xl">
             Dodjele po grupama
           </h2>
           <div className="dt-table-wrap mt-2">
@@ -203,7 +208,7 @@ export function NoticePage() {
                     </td>
                     <td>
                       {a.winner_oib ? (
-                        <Link to={`/tvrtka/${a.winner_oib}`} className="text-brand-700 underline">
+                        <Link to={`/tvrtka/${a.winner_oib}`} className="underline">
                           {a.winner}
                         </Link>
                       ) : (
@@ -216,7 +221,7 @@ export function NoticePage() {
               </tbody>
             </table>
           </div>
-          <p className="mt-2 text-sm text-neutral-600">
+          <p className="mt-2 text-sm text-neutral-700">
             Pobjednici se imenuju samo kad su upisani u Sudski registar kao tvrtke.
           </p>
         </section>
