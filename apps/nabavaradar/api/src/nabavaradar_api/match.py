@@ -101,9 +101,9 @@ def load_activities(session: Session, oib: str) -> list[Activity]:
     ]
 
 
-def load_index(session: Session) -> OpenIndex:
+def load_index(session: Session, now: datetime | None = None) -> OpenIndex:
     """Read open competition notices (deadline in the future or unknown), stats and calibration."""
-    now = datetime.now(UTC)
+    now = now or datetime.now(UTC)
     notices = session.execute(
         select(
             Notice.pub_no,
@@ -205,11 +205,13 @@ class MatchEngine:
         self._index: OpenIndex | None = None
         self._lock = threading.Lock()
 
-    def index(self, session: Session, *, force: bool = False) -> OpenIndex:
+    def index(
+        self, session: Session, *, force: bool = False, now: datetime | None = None
+    ) -> OpenIndex:
         """The cached index, reloaded when older than the TTL."""
         with self._lock:
             if force or self._index is None or time.monotonic() - self._index.loaded_at > self._ttl:
-                self._index = load_index(session)
+                self._index = load_index(session, now)
             return self._index
 
     def match(
@@ -228,7 +230,7 @@ class MatchEngine:
     ) -> list[dict[str, Any]]:
         """Rank open notices; returns the items of the ``/match`` response."""
         now = now or datetime.now(UTC)
-        idx = self.index(session)
+        idx = self.index(session, now=now)
         if not activities or not idx.rows:
             return []
         sims = idx.emb @ np.stack([a.vec for a in activities]).T  # (notices, activities)

@@ -16,6 +16,7 @@ from nabavaradar_api.company import LookupQueue
 from nabavaradar_api.match import MatchEngine
 from nabavaradar_api.settings import NabavaSettings
 from nabavaradar_api.sounding import cpv_index
+from nabavaradar_api.sudreg.client import SudregClient
 from opendata_core.app_factory import create_app
 
 log = structlog.get_logger(__name__)
@@ -27,10 +28,11 @@ def create_nabava_app(
     session_factory: sessionmaker[Session],
     *,
     extra_routers: list[Any] | None = None,
+    lookup_client: SudregClient | None = None,
 ) -> FastAPI:
     """Build the app; the open-notice index is warmed in the background at start-up."""
     engine = MatchEngine()
-    lookup = LookupQueue(settings, session_factory)
+    lookup = LookupQueue(settings, session_factory, lookup_client)
 
     def warm() -> None:
         try:
