@@ -26,9 +26,9 @@ from nabavaradar_api.ingest.embed import embed_nkd, embed_notices
 from nabavaradar_api.ingest.ted import upsert_notices
 from nabavaradar_api.ingest.ted_parse import parse_notice
 from nabavaradar_api.settings import NabavaSettings
+from nabavaradar_api.subscriptions import make_router as subscriptions_router
 from nabavaradar_api.sudreg.client import SlidingWindowLimiter, SudregClient
 from nabavaradar_api.sudreg.parse import parse_detail
-from nabavaradar_api.subscriptions import make_router as subscriptions_router
 from opendata_core.db import make_engine, make_session_dependency
 
 pytestmark = pytest.mark.db
@@ -330,10 +330,13 @@ def test_subscription_double_opt_in_and_unsubscribe(
         subs, "send_confirmation", lambda _settings, email, token: sent.append((email, token))
     )
     with make_client(test_db_url, factory) as client:
-        post = lambda **kw: client.post(
-            "/api/v1/subscriptions",
-            json={"email": "ana@example.hr", "oib": OIB, "consent": True} | kw,
-        )  # noqa: E731
+
+        def post(**kw):
+            return client.post(
+                "/api/v1/subscriptions",
+                json={"email": "ana@example.hr", "oib": OIB, "consent": True} | kw,
+            )  # noqa: E731
+
         assert post(consent=False).status_code == 422  # consent is required
         assert post(email="not-an-email").status_code == 422
         assert post(oib="12345678901").status_code == 422
