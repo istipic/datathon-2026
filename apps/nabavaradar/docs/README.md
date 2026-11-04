@@ -75,16 +75,19 @@ ponedjeljkom u 07:00 (`nabavaradar digest send`).
 
 ## API (`/api/v1`)
 
-| Ruta                                                   | Opis                                                                                                           |
-| ------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------- |
-| `GET /company/{oib}`                                   | profil iz baze, inače živi `detalji_subjekta` kroz red (6/min); **202 + `Retry-After`** dok čeka; nema osoba   |
-| `GET /match?oib=&q=&county=&deadline_min_days=&limit=` | rangirani otvoreni natječaji s `fit`, `components{S,C,G,T}`, `best_activity`, `competition{…}`; 30/min po IP-u |
-| `GET /notices/{pub_no}`                                | pojedinosti, konkurencija CPV skupine, dodjele po grupama (pobjednici samo ako su tvrtke u registru)           |
-| `GET /competition?cpv=&nuts2=`                         | medijan ponuda, udio jedne ponude, n, oznaka „niska konkurencija”                                              |
-| `POST /sounding`                                       | `{text\|cpv, county}` → CPV prijedlozi, sposobni dobavljači po županijama, konkurencija, savjeti s izvorima    |
-| `POST/GET/DELETE /subscriptions`                       | tjedni sažetak, dvostruka potvrda, odjava tokenom (P1)                                                         |
-| `GET /validation`, `/sources`, `/status`, `/health`    | rezultati zadnje validacije, izvori s svježinom, brojevi i datumi podataka                                     |
-| `GET /cpv?q=`, `GET /counties`                         | CPV odabir, popis županija                                                                                     |
+| Ruta                                                                           | Opis                                                                                                                                                   |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `GET /company/{oib}`                                                           | profil iz baze, inače živi `detalji_subjekta` kroz red (6/min); **202 + `Retry-After`** dok čeka; nema osoba                                           |
+| `GET /match?oib=&q=&county=&counties=&cpv=&hide=&dislike=&group_lots=&limit=`  | rangirani otvoreni natječaji s `fit`, `components{S,C,G,T}`, `signals`, `group{size,others}` (objave istog postupka), `competition{…}`; 30/min po IP-u |
+| `GET /notices/{pub_no}`                                                        | pojedinosti, konkurencija CPV skupine, dodjele po grupama (pobjednici samo ako su tvrtke u registru)                                                   |
+| `GET /competition?cpv=&nuts2=`                                                 | medijan ponuda, udio jedne ponude, n, oznaka „niska konkurencija”                                                                                      |
+| `POST /sounding`                                                               | `{text\|cpv, county}` → CPV prijedlozi, sposobni dobavljači po županijama, konkurencija, savjeti s izvorima                                            |
+| `POST /subscriptions`, `GET /subscriptions/confirm`, `DELETE /subscriptions`   | upozorenja po pragu (dnevno ili tjedno), dvostruka potvrda, odjava tokenom                                                                             |
+| `GET /subscriptions/consent`, `/subscriptions/preview`                         | točan tekst privole za odabrane postavke; koliko bi natječaja danas stiglo                                                                             |
+| `GET/PUT /subscriptions/settings?token=`, `POST /subscriptions/exclude?token=` | promjena praga i filtera, pauza, „Ne zanima me” (HMAC token iz svake poruke)                                                                           |
+| `GET /highlights`                                                              | otvoreni natječaji po naručiteljima i CPV područjima (naslovnica)                                                                                      |
+| `GET /validation`, `/sources`, `/status`, `/health`                            | rezultati zadnje validacije, izvori s svježinom, brojevi i datumi podataka                                                                             |
+| `GET /cpv?q=`, `GET /counties`                                                 | CPV odabir, popis županija                                                                                                                             |
 
 Validacija ulaza: OIB (kontrolna znamenka, 422 prije bilo kojeg vanjskog poziva), CPV `^\d{8}(-\d)?$` ili prefiks od 2–8
 znamenki, županije iz fiksnog popisa (`config/counties.yaml`, DGU šifre ↔ NUTS3, provjereno prema Eurostat GISCO),
@@ -95,7 +98,23 @@ tekst ≤ 2000 znakova, e-adresa RFC 5322 (osnovno).
 `prilagodba = 0,55·S + 0,25·C + 0,10·G + 0,10·T` — S: najveći kosinus djelatnost↔natječaj, skaliran 5.–95. percentilom
 (pohranjeno pri učitavanju); C: CPV odjeljak u top-3 (1,0) / top-10 (0,5) crosswalka; G: ista županija 1,0, ista regija
 0,5, inače 0,2, nepoznato 0,5; T: 1,0 od 15 dana, linearno do 0 na 3 dana, istekli izuzeti. Jednaki rezultati
-razrješavaju se sirovom sličnošću. Detalji i živi brojevi: stranica `/metodologija`.
+razrješavaju se sirovom sličnošću. Parametri (težine, popust sporednih djelatnosti 0,5, bonus CPV skupine +0,25, isključeni tipovi obavijesti) su u
+`config/fit.yaml`; izmjena se prihvaća samo ako `nabavaradar eval` ne pogorša rezultat (tablica i sirovi rezultati u
+[validation.md](validation.md), „Prilagodba rangiranja”). Živi brojevi: stranica `/izvori`.
+
+## Upozorenja e-poštom (v2)
+
+Gumb „Pošalji mi relevantne natječaje” otvara dijalog: e-adresa, OIB ili opis, **prag prilagodbe** (50–95 %, zadano 75),
+filteri (županije, CPV područja, najmanja vrijednost) i učestalost (odmah = jednom dnevno u 7:00, ili tjedni pregled).
+Uz postavke se pokazuje koliko bi natječaja danas stiglo i točan tekst privole koji se pohranjuje. Nakon dvostruke
+potvrde `nabavaradar alerts send` (cron 07:00) šalje po jednu poruku (najviše 20 natječaja, s razlozima „Zašto?”) o
+natječajima čija je prilagodba **barem** prag, koji prolaze filtere, kojima rok nije istekao i koji nisu već poslani
+istoj osobi (`alert_sent`). Svaka poruka ima poveznicu za odjavu jednim klikom i za promjenu postavki. Detalji odluka:
+[ADR 0008](../../../docs/adr/0008-birokratko-v2.md).
+
+Dodatno u pregledniku (bez računa): sortiranje i pretraga rezultata, „Prati” (`/spremljeno`), `.ics` rok, CSV izvoz,
+podjela poveznicom (filteri su u URL-u), „Ne zanima me” i mala novčanica koja pluta ekranom (brojač u podnožju;
+uz smanjeno kretanje miruje u kutu, može se sakriti).
 
 ## Testovi
 
@@ -105,7 +124,7 @@ TEST_DATABASE_URL=postgresql+psycopg://postgres:<lozinka>@127.0.0.1:5432/postgre
 TEST_REAL_DATABASE_URL=postgresql+psycopg://postgres:<lozinka>@127.0.0.1:5432/nabavaradar \
   uv run pytest apps/nabavaradar/api                    # + migracije, red 6/min, pretplate, sken učitanih podataka
 pnpm --filter nabavaradar-web test                      # vitest nad snimljenim odgovorima
-NABAVARADAR_API_URL=http://127.0.0.1:8000 pnpm --filter nabavaradar-web e2e   # Playwright (treba API + podaci + Mailpit)
+NABAVARADAR_API_URL=http://127.0.0.1:8030 pnpm --filter nabavaradar-web e2e   # Playwright (treba API + podaci + Mailpit; pokreće i `alerts send`)
 ```
 
 Playwright koristi OIB 45050126417 (KONČAR – Elektroindustrija d.d., uvrštena na Zagrebačkoj burzi; OIB je u službenim
