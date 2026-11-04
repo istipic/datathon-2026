@@ -1,0 +1,12 @@
+# NabavaRadar scheduled jobs (host crontab; times are server local time).
+# Adjust the path and make sure CONTACT_EMAIL, DATABASE_URL, SMTP_* and SUBSCRIPTION_SECRET are set in the
+# environment used by `make` (the repository-root .env).
+
+# TED notices: every day at 06:00 (incremental: re-reads the last week; idempotent upsert by publication number)
+0 6 * * *  cd /opt/datathon-2026 && make ingest APP=nabavaradar STEP=ted PROD=1 >> /var/log/nabavaradar-ted.log 2>&1
+
+# Derived data after the TED job (embeddings of new notices, crosswalk, statistics): 06:30
+30 6 * * * cd /opt/datathon-2026 && make ingest APP=nabavaradar STEP=derive PROD=1 >> /var/log/nabavaradar-derive.log 2>&1
+
+# Weekly digest: Mondays at 07:00 (double opt-in subscribers only)
+0 7 * * 1  cd /opt/datathon-2026 && docker compose -f docker-compose.prod.yml run --rm nabavaradar-api python -m nabavaradar_api.cli digest send >> /var/log/nabavaradar-digest.log 2>&1

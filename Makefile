@@ -31,6 +31,7 @@ down: ## Stop the dev stack (data volume is kept)
 test: ## Python (no live network) and web tests
 	uv run pytest packages/core
 	uv run pytest apps/blizu/api
+	uv run pytest apps/nabavaradar/api
 	pnpm -r test
 
 lint: ## ruff, mypy, eslint, prettier

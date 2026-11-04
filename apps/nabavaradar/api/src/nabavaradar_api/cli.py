@@ -158,27 +158,33 @@ def derive() -> None:
 
 
 @app.command("eval")
-def evaluate() -> None:
+def evaluate(
+    from_stored: bool = typer.Option(
+        False, "--from-stored", help="Only re-render docs/validation.md and config/market.yaml from the stored result"
+    ),
+) -> None:
     """Validate against real winners: recall@10/@20, full-text baseline, tau. Writes docs/validation.md."""
     from pathlib import Path
 
-    from nabavaradar_api.evaluation import run_evaluation, store_evaluation
+    from nabavaradar_api.db import Calibration
+    from nabavaradar_api.evaluation import EVAL_KEY, run_evaluation, store_evaluation
     from nabavaradar_api.validation_report import write_outputs
 
     def step(session: Session, settings: NabavaSettings) -> dict[str, Any]:
-        result = run_evaluation(session)
-        store_evaluation(session, result)
+        if from_stored:
+            row = session.get(Calibration, EVAL_KEY)
+            if row is None:
+                raise typer.BadParameter("no stored evaluation: run `nabavaradar eval` first")
+            result = dict(row.value)
+        else:
+            result = run_evaluation(session)
+            store_evaluation(session, result)
         write_outputs(result, Path("apps/nabavaradar/docs/validation.md"))
         return result
 
     result = _run("eval", step)
-    summary = {
-        k: result[k]
-        for k in ("mode", "n", "n_scored", "fit", "fts_baseline", "random_baseline", "window")
-    }
-    summary["tau"] = {
-        k: result["tau"].get(k) for k in ("tau", "f1", "precision", "recall", "winners")
-    }
+    summary = {k: result[k] for k in ("mode", "n", "n_scored", "fit", "fts_baseline", "random_baseline", "window")}
+    summary["tau"] = {k: result["tau"].get(k) for k in ("tau", "f1", "precision", "recall", "winners")}
     typer.echo(json.dumps(summary, indent=2, default=str))
 
 

@@ -35,7 +35,7 @@ def render_validation_md(r: dict[str, Any]) -> str:
         "",
         "1. Uzimaju se obavijesti o dodjeli ugovora (TED) u kojima je pobjednik valjan OIB (ISO 7064, MOD 11,10) "
         "koji postoji u tablici `company` (Sudski registar).",
-        f"2. Cilj: {r['mode_note']}",
+        f"2. {r['mode_note']}",
         "3. Za svakog pobjednika rangiraju se **sve** natječajne obavijesti (naručitelj iz Hrvatske) objavljene u "
         "mjesecu cilja. Svaka obavijest ocjenjuje se na dan svoje objave (komponenta T računa se od objave do roka).",
         "4. Metoda: ocjena prilagodbe `0,55·S + 0,25·C + 0,10·G + 0,10·T` (profil = do 10 NKD djelatnosti, glavna prva). "

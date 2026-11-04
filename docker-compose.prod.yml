@@ -79,6 +79,13 @@ services:
       APP_NAME: nabavaradar
       DATABASE_URL: postgresql+psycopg://postgres:${POSTGRES_PASSWORD}@db:5432/nabavaradar
       PUBLIC_BASE_URL: https://${NABAVA_HOST:?set NABAVA_HOST in .env}
+      SUDREG_CLIENT_ID: ${SUDREG_CLIENT_ID:-}
+      SUDREG_CLIENT_SECRET: ${SUDREG_CLIENT_SECRET:-}
+      SUDREG_BASE_URL: ${SUDREG_BASE_URL:-https://sudreg-data.gov.hr/api/javni}
+      SUDREG_TOKEN_URL: ${SUDREG_TOKEN_URL:-https://sudreg-data.gov.hr/api/oauth/token}
+      SUBSCRIPTION_SECRET: ${SUBSCRIPTION_SECRET:?set SUBSCRIPTION_SECRET in .env}
+    volumes:
+      - nabavaradar-data:/data
 
   # One-shot publishers: copy the built SPA into the shared "srv" volume, then exit.
   blizu-web:
@@ -124,6 +131,7 @@ services:
 volumes:
   pgdata:
   blizu-data:
+  nabavaradar-data:
   srv:
   caddy_data:
   caddy_config:
