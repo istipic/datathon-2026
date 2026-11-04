@@ -1,4 +1,4 @@
-"""Application factory for the NabavaRadar API."""
+"""Application factory for the Birokratko API."""
 
 from __future__ import annotations
 
@@ -62,6 +62,6 @@ def create_nabava_app(
         routers,
         settings.cors_origin_list,
         get_session=get_session,
-        title="NabavaRadar API",
+        title="Birokratko API",
         lifespan=lifespan,
     )

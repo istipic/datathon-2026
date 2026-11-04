@@ -1,11 +1,11 @@
-# ADR 0006: NabavaRadar – odluke o podacima
+# ADR 0006: Birokratko – odluke o podacima
 
 - Status: accepted
 - Datum: 2026-11-04
 
 ## Kontekst
 
-Specifikacija NabavaRadara pretpostavlja produkcijski Sudski registar, jedinstvene NKD šifre i TED obavijesti u
+Specifikacija Birokratka pretpostavlja produkcijski Sudski registar, jedinstvene NKD šifre i TED obavijesti u
 jednom obliku. Prave probe (dokazi u `apps/nabavaradar/data/evidence/`) pokazale su sljedeće činjenice i dovele
 do odluka u nastavku. Nijedna nova ovisnost nije dodana (openpyxl, rapidfuzz, pgvector, sentence-transformers već
 su u jezgri).

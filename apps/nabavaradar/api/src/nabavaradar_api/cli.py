@@ -15,7 +15,7 @@ from nabavaradar_api.db import make_session_factory
 from nabavaradar_api.settings import NabavaSettings, get_settings
 from opendata_core.logging import configure_logging
 
-app = typer.Typer(help="NabavaRadar: ingestion, validation, digest", no_args_is_help=True)
+app = typer.Typer(help="Birokratko: ingestion, validation, digest", no_args_is_help=True)
 ingest_app = typer.Typer(help="Load data sources and derive artefacts", no_args_is_help=True)
 app.add_typer(ingest_app, name="ingest")
 

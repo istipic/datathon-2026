@@ -1,4 +1,4 @@
-# NabavaRadar – validacija
+# Birokratko – validacija
 
 _Generirano naredbom `nabavaradar eval` (2026-11-04T01:23:34.538132+00:00). Brojevi se ne uređuju ručno._
 
@@ -22,7 +22,7 @@ Kad bismo tvrtki koja je stvarno dobila ugovor pokazali natječaje tog mjeseca, 
 
 | Metoda | recall@10 | recall@20 |
 |---|---:|---:|
-| **NabavaRadar (prilagodba S/C/G/T)** | 8.6 % | 14.6 % |
+| **Birokratko (prilagodba S/C/G/T)** | 8.6 % | 14.6 % |
 | Osnovna: Postgres full-text | 4.7 % | 7.2 % |
 | Slučajan poredak (očekivanje) | 1.6 % | 3.3 % |
 
@@ -30,10 +30,10 @@ Samo pobjednici s NKD profilom (isključeni oni bez djelatnosti):
 
 | Metoda | recall@10 | recall@20 |
 |---|---:|---:|
-| NabavaRadar | 9.9 % | 16.7 % |
+| Birokratko | 9.9 % | 16.7 % |
 | Full-text | 5.4 % | 8.2 % |
 
-Medijan ranga cilja (NabavaRadar): 126.0
+Medijan ranga cilja (Birokratko): 126.0
 
 ### Obuhvat podataka
 

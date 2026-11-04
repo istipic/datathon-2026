@@ -1,4 +1,4 @@
-"""Registration of NabavaRadar's data sources (``data_source`` rows)."""
+"""Registration of Birokratko's data sources (``data_source`` rows)."""
 
 from __future__ import annotations
 
@@ -83,8 +83,8 @@ def register_all(session: Session, settings: NabavaSettings) -> None:
     register_source(
         session,
         id=SRC_DERIVED,
-        title="NabavaRadar - izvedeni podaci (NKD-CPV povezivanje, statistika konkurencije)",
-        publisher="NabavaRadar",
+        title="Birokratko - izvedeni podaci (NKD-CPV povezivanje, statistika konkurencije)",
+        publisher="Birokratko",
         url="https://github.com/",
         access_method=AccessMethod.derived,
         tier=Tier.derived,

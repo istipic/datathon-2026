@@ -1,4 +1,4 @@
-"""Alembic environment for NabavaRadar (DATABASE_URL from env / .env via NabavaSettings)."""
+"""Alembic environment for Birokratko (DATABASE_URL from env / .env via NabavaSettings)."""
 
 from alembic import context
 from sqlalchemy import create_engine

@@ -1,11 +1,17 @@
-# NabavaRadar
+# Birokratko
 
-**Natječaji koji odgovaraju tvojoj djelatnosti.** Za tvrtku (po OIB-u) NabavaRadar rangira otvorene javne natječaje
+**Natječaji koji odgovaraju tvojoj djelatnosti.** Za tvrtku (po OIB-u) Birokratko rangira otvorene javne natječaje
 prema upisanim NKD djelatnostima i objašnjava zašto (sličnost opisa, CPV područje, lokacija, preostalo vrijeme), uz
 povijesnu konkurenciju za svaki natječaj. Javnom naručitelju procjenjuje tržište dobavljača po županijama i povijesnu
 konkurenciju prije objave nabave.
 
 Datathon Portala otvorenih podataka 2026., izazov C „Gospodarstvo i učinkovito upravljanje”. Kod: EUPL-1.2.
+
+> **Naziv.** Aplikacija se prije zvala NabavaRadar; vidljivo ime je sada **Birokratko** (sučelje, e-pošta, OpenAPI,
+> dokumentacija). Tehnički identifikatori ostaju `apps/nabavaradar`, paket `nabavaradar_api`, CLI `nabavaradar`,
+> baza `nabavaradar` i varijable `NABAVARADAR_*`, da migracije, `docker-compose.prod.yml` i `make APP=nabavaradar`
+> rade nepromijenjeni. Sučelje je 2026-11-04 preoblikovano u „službeni dosje” (crna traka, bordo žig, numerirane
+> kartice, ravnalo umjesto trake postotka), različito od Blizua i Otporka.
 
 > **Važno o podacima.** Podaci o tvrtkama iz Sudskog registra dolaze iz **testnog okruženja portala (snimka od
 > 2024-06-16)**: produkcijski pristupni podaci vraćaju HTTP 401 dok račun nije potvrđen. Aplikacija to svugdje

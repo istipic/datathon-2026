@@ -22,7 +22,7 @@ def render_validation_md(r: dict[str, Any]) -> str:
     """Markdown report of one ``run_evaluation`` result."""
     ks = r["ks"]
     lines = [
-        "# NabavaRadar – validacija",
+        "# Birokratko – validacija",
         "",
         f"_Generirano naredbom `nabavaradar eval` ({r['computed_at']}). Brojevi se ne uređuju ručno._",
         "",
@@ -56,7 +56,7 @@ def render_validation_md(r: dict[str, Any]) -> str:
         "",
         "| Metoda | " + " | ".join(f"recall@{k}" for k in ks) + " |",
         "|---|" + "|".join("---:" for _ in ks) + "|",
-        "| **NabavaRadar (prilagodba S/C/G/T)** | "
+        "| **Birokratko (prilagodba S/C/G/T)** | "
         + " | ".join(pct(r["fit"][f"recall@{k}"]) for k in ks)
         + " |",
         "| Osnovna: Postgres full-text | "
@@ -70,14 +70,12 @@ def render_validation_md(r: dict[str, Any]) -> str:
         "",
         "| Metoda | " + " | ".join(f"recall@{k}" for k in ks) + " |",
         "|---|" + "|".join("---:" for _ in ks) + "|",
-        "| NabavaRadar | "
-        + " | ".join(pct(r["fit_scored_only"][f"recall@{k}"]) for k in ks)
-        + " |",
+        "| Birokratko | " + " | ".join(pct(r["fit_scored_only"][f"recall@{k}"]) for k in ks) + " |",
         "| Full-text | "
         + " | ".join(pct(r["fts_baseline_scored_only"][f"recall@{k}"]) for k in ks)
         + " |",
         "",
-        f"Medijan ranga cilja (NabavaRadar): {r['median_rank_fit']}",
+        f"Medijan ranga cilja (Birokratko): {r['median_rank_fit']}",
         "",
         "### Obuhvat podataka",
         "",

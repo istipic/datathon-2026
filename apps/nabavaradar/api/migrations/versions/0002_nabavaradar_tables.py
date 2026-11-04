@@ -1,4 +1,4 @@
-"""NabavaRadar tables with pgvector HNSW indexes
+"""Birokratko tables with pgvector HNSW indexes
 
 Revision ID: 0002
 Revises: 0001

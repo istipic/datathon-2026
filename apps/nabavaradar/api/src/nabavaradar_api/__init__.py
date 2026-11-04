@@ -1,3 +1,3 @@
-"""NabavaRadar API and ingestion CLI."""
+"""Birokratko API and ingestion CLI."""
 
 __version__ = "0.1.0"

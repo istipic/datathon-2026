@@ -1,4 +1,4 @@
-"""NabavaRadar settings (extends the shared CoreSettings)."""
+"""Birokratko settings (extends the shared CoreSettings)."""
 
 from __future__ import annotations
 

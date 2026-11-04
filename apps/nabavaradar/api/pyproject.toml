@@ -1,7 +1,7 @@
 [project]
 name = "nabavaradar-api"
 version = "0.1.0"
-description = "NabavaRadar: open public tenders ranked by company activity, and supplier-market sounding (API + ingestion CLI)"
+description = "Birokratko: open public tenders ranked by company activity, and supplier-market sounding (API + ingestion CLI)"
 requires-python = ">=3.12,<3.13"
 license = { text = "EUPL-1.2" }
 dependencies = [

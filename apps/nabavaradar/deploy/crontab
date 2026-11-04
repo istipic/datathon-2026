@@ -1,4 +1,4 @@
-# NabavaRadar scheduled jobs (host crontab; times are server local time).
+# Birokratko scheduled jobs (host crontab; times are server local time).
 # Adjust the path and make sure CONTACT_EMAIL, DATABASE_URL, SMTP_* and SUBSCRIPTION_SECRET are set in the
 # environment used by `make` (the repository-root .env).
 

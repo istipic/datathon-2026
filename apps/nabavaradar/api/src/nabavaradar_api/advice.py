@@ -95,7 +95,7 @@ def build_advice(
                     "razini cijele NUTS2 regije, a ne samo županije, kako biste osigurali dovoljno ponuda."
                 ),
                 "source_url": SUDREG_URL,
-                "source_label": "Sudski registar (aktivni subjekti s NKD djelatnostima); izračun NabavaRadar",
+                "source_label": "Sudski registar (aktivni subjekti s NKD djelatnostima); izračun Birokratko",
             }
         )
     return out

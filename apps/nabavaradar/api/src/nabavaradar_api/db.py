@@ -1,4 +1,4 @@
-"""Database models and session factory for NabavaRadar.
+"""Database models and session factory for Birokratko.
 
 Only company-level data is stored: no natural persons (the public Sudreg service does not return
 them, and ``tests/test_no_persons.py`` scans the company tables for person-name columns).

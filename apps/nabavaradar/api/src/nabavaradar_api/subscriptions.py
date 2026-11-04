@@ -32,7 +32,7 @@ from opendata_core.email import make_template_env, render_email, send_email
 log = structlog.get_logger(__name__)
 
 CONSENT_TEXT = (
-    "Pristajem da NabavaRadar na ovu e-adresu jednom tjedno (ponedjeljkom u 7:00) šalje pregled do 10 novih "
+    "Pristajem da Birokratko na ovu e-adresu jednom tjedno (ponedjeljkom u 7:00) šalje pregled do 10 novih "
     "natječaja koji odgovaraju mojoj pretrazi. Pohranjuje se samo e-adresa. Pretplatu mogu otkazati "
     "poveznicom u svakoj poruci."
 )
@@ -107,7 +107,7 @@ def send_confirmation(settings: NabavaSettings, email: str, confirm_token: str) 
     ctx = {"links": _links(settings, confirm=confirm_token), "consent": CONSENT_TEXT}
     send_email(
         email,
-        "NabavaRadar: potvrdite pretplatu",
+        "Birokratko: potvrdite pretplatu",
         render_email(env, "confirm.html.j2", **ctx),
         render_email(env, "confirm.txt.j2", **ctx),
         settings=settings,
@@ -239,7 +239,7 @@ def send_digests(
         if not dry_run:
             send_email(
                 sub.email,
-                f"NabavaRadar: {len(items)} novih natječaja ovaj tjedan",
+                f"Birokratko: {len(items)} novih natječaja ovaj tjedan",
                 render_email(env, "digest.html.j2", **ctx),
                 render_email(env, "digest.txt.j2", **ctx),
                 settings=settings,
