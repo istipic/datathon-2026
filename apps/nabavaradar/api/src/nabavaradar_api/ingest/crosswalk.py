@@ -111,7 +111,7 @@ def load_prefix_space(
         for r in session.execute(
             select(Notice.cpv_main, Notice.embedding)
             .where(Notice.embedding.is_not(None), Notice.cpv_main.is_not(None))
-            .order_by(Notice.pub_date.desc())
+            .order_by(Notice.pub_date.desc(), Notice.pub_no)
         )
     ]
     levels = {

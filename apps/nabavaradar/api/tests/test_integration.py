@@ -429,3 +429,47 @@ def test_digest_picks_new_matches_and_marks_sent(
         out2 = subs.send_digests(s, settings, MatchEngine(), semantic.encode_queries, dry_run=False)
         assert out2["sent"] == 0
         assert not mails
+
+
+def test_open_index_excludes_expired_and_stale_undated_notices(
+    factory: sessionmaker[Session],
+) -> None:
+    """Expired notices are never open; a notice without any deadline stays only while it is recent."""
+    from nabavaradar_api.match import load_index
+
+    with factory() as s:
+        before = {r["pub_no"] for r in load_index(s, NOW).rows}
+        assert before == {FOOD_TENDER, MACHINE_TENDER}
+        # 1. the machinery tender is undated and was published long ago -> dropped
+        s.execute(
+            text(
+                "update notice set deadline = null, pub_date = date '2025-01-10' where pub_no = :p"
+            ),
+            {"p": MACHINE_TENDER},
+        )
+        s.commit()
+        assert {r["pub_no"] for r in load_index(s, NOW).rows} == {FOOD_TENDER}
+        # 2. undated but recent -> kept (neutral T)
+        s.execute(
+            text("update notice set pub_date = date '2026-10-20' where pub_no = :p"),
+            {"p": MACHINE_TENDER},
+        )
+        s.commit()
+        assert {r["pub_no"] for r in load_index(s, NOW).rows} == {FOOD_TENDER, MACHINE_TENDER}
+        # 3. a deadline in the past -> expired
+        s.execute(
+            text(
+                "update notice set deadline = timestamptz '2026-11-01 10:00+01' where pub_no = :p"
+            ),
+            {"p": MACHINE_TENDER},
+        )
+        s.commit()
+        assert {r["pub_no"] for r in load_index(s, NOW).rows} == {FOOD_TENDER}
+        # restore the recorded values for the other tests
+        s.execute(
+            text(
+                "update notice set deadline = timestamptz '2026-11-17 12:00+02', pub_date = date '2026-10-20' where pub_no = :p"
+            ),
+            {"p": MACHINE_TENDER},
+        )
+        s.commit()

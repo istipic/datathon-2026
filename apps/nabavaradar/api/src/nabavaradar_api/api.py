@@ -17,6 +17,7 @@ from sqlalchemy.orm import Session
 from nabavaradar_api.company import LookupQueue, company_profile
 from nabavaradar_api.counties import counties, valid_county_codes
 from nabavaradar_api.db import Award, Calibration, Company, CompetitionStat, Cpv, Notice
+from nabavaradar_api.ingest.ted_parse import deadline_kind
 from nabavaradar_api.match import CompanyNotLoaded, MatchEngine, build_profile
 from nabavaradar_api.oib import is_valid_oib
 from nabavaradar_api.settings import NabavaSettings
@@ -247,6 +248,7 @@ def make_router(
             "cpv_codes": notice.cpv_codes,
             "cpv_main": notice.cpv_main,
             "deadline": notice.deadline.isoformat() if notice.deadline else None,
+            "deadline_kind": deadline_kind(notice.raw or {}),
             "value_eur": float(notice.value_eur) if notice.value_eur is not None else None,
             "currency": notice.currency,
             "n_lots": notice.n_lots,

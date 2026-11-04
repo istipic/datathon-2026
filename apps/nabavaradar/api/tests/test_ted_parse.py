@@ -164,3 +164,27 @@ def test_result_lot_result_repeated_for_two_winners_gives_unique_award_keys() ->
     assert [a["winner_national_id"] for a in awards] == ["79873237024", "69702906688"]
     assert [a["received_submissions"] for a in awards] == [10, 10]
     assert {a["lot_status"] for a in awards} == {"selec-w"}
+
+
+def test_restricted_procedure_uses_the_request_to_participate_deadline() -> None:
+    """Real notice 759307-2026: no tender deadline, only deadline-receipt-request-* (restricted procedure)."""
+    raw = json.loads(
+        (FIX / "2026-11-04_competition_restricted_759307-2026.json").read_text(encoding="utf-8")
+    )
+    assert "deadline-receipt-tender-date-lot" not in raw
+    p = tp.parse_notice(raw, "competition")
+    assert p.row["deadline"].isoformat() == "2026-11-06T14:00:00+01:00"
+    assert tp.deadline_kind(raw) == "request"
+
+
+def test_tender_deadline_wins_when_both_exist() -> None:
+    raw = {
+        "publication-number": "1-2026",
+        "deadline-receipt-tender-date-lot": ["2026-12-01+01:00"],
+        "deadline-receipt-tender-time-lot": ["10:00:00+01:00"],
+        "deadline-receipt-request-date-lot": ["2026-11-01+01:00"],
+        "deadline-receipt-request-time-lot": ["09:00:00+01:00"],
+    }
+    assert tp.notice_deadline(raw).isoformat() == "2026-12-01T10:00:00+01:00"
+    assert tp.deadline_kind(raw) == "tender"
+    assert tp.deadline_kind({}) is None

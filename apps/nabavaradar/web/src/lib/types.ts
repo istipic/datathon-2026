@@ -46,6 +46,7 @@ export interface MatchItem {
   nuts3: string | null;
   county: string | null;
   deadline: string | null;
+  deadline_kind: 'tender' | 'request' | null;
   days_left: number | null;
   value_eur: number | null;
   fit: number;
@@ -88,6 +89,7 @@ export interface NoticeDetail {
   cpv_codes: string[];
   cpv_main: string | null;
   deadline: string | null;
+  deadline_kind: 'tender' | 'request' | null;
   value_eur: number | null;
   currency: string | null;
   n_lots: number | null;

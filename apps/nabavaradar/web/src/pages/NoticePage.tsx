@@ -61,7 +61,9 @@ export function NoticePage() {
         </div>
         {n.type === 'competition' ? (
           <div>
-            <dt className="text-sm text-neutral-600">Rok za ponude</dt>
+            <dt className="text-sm text-neutral-600">
+              {n.deadline_kind === 'request' ? 'Rok za zahtjeve za sudjelovanje' : 'Rok za ponude'}
+            </dt>
             <dd>
               <span className="num">{n.deadline ? formatDateTime(n.deadline) : '–'}</span> (
               {countdown(deadlineDays)})

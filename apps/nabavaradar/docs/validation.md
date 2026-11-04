@@ -1,6 +1,6 @@
 # NabavaRadar – validacija
 
-_Generirano naredbom `nabavaradar eval` (2026-11-04T00:52:00.087764+00:00). Brojevi se ne uređuju ručno._
+_Generirano naredbom `nabavaradar eval` (2026-11-04T01:23:34.538132+00:00). Brojevi se ne uređuju ručno._
 
 ## Pitanje
 
@@ -22,7 +22,7 @@ Kad bismo tvrtki koja je stvarno dobila ugovor pokazali natječaje tog mjeseca, 
 
 | Metoda | recall@10 | recall@20 |
 |---|---:|---:|
-| **NabavaRadar (prilagodba S/C/G/T)** | 8.7 % | 14.7 % |
+| **NabavaRadar (prilagodba S/C/G/T)** | 8.6 % | 14.6 % |
 | Osnovna: Postgres full-text | 4.7 % | 7.2 % |
 | Slučajan poredak (očekivanje) | 1.6 % | 3.3 % |
 
@@ -30,7 +30,7 @@ Samo pobjednici s NKD profilom (isključeni oni bez djelatnosti):
 
 | Metoda | recall@10 | recall@20 |
 |---|---:|---:|
-| NabavaRadar | 10.0 % | 16.8 % |
+| NabavaRadar | 9.9 % | 16.7 % |
 | Full-text | 5.4 % | 8.2 % |
 
 Medijan ranga cilja (NabavaRadar): 126.0
@@ -47,8 +47,8 @@ Medijan ranga cilja (NabavaRadar): 126.0
 
 Prag `tau` odabran je maksimizacijom F1 između djelatnosti pobjednika i CPV odjeljka u kojem su dobili ugovor (2070 pobjednika, 2934 parova pobjednik–odjeljak).
 
-- **tau = 0.8949**, F1 = 0.1321, preciznost = 0.0958, odziv = 0.2127 (TP 624, FP 5891, FN 2310)
-- pretraženi raspon: 0.8690 – 0.9265 (201 korak)
+- **tau = 0.8947**, F1 = 0.1323, preciznost = 0.0955, odziv = 0.2154 (TP 632, FP 5987, FN 2302)
+- pretraženi raspon: 0.8691 – 0.9266 (201 korak)
 
 ## Ograničenja
 

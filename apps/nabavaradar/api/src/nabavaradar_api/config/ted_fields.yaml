@@ -5,6 +5,7 @@ evidence:
 - 2026-11-04_ted_search_field_names.txt
 - 2026-11-04_ted_search_competition_sample.json
 - 2026-11-04_ted_search_result_sample.json
+- 2026-11-04_ted_search_competition_restricted_procedure.json
 query:
   competition: buyer-country=HRV AND notice-type IN (cn-standard cn-social cn-desg) AND publication-date>={YYYYMMDD}
   result: buyer-country=HRV AND notice-type IN (can-standard can-social can-desg) AND publication-date>={YYYYMMDD}
@@ -20,6 +21,8 @@ notes:
 - 'Result notices published before about 2024-02 are legacy TED notices: the API returns no winner and no submissions
   fields for them (measured 2026-11-04).'
 - Lists are flattened over lots/tenders; the alignment rules are implemented and tested in nabavaradar_api.ingest.ted_parse.
+- Restricted procedures carry deadline-receipt-request-* (requests to participate) instead of deadline-receipt-tender-*;
+  the parser uses the tender deadline when present, else the request deadline.
 fields:
   pub_no:
     ted_field: publication-number
@@ -400,3 +403,22 @@ fields:
       pdf:
         HRV: https://ted.europa.eu/hr/notice/722712-2026/pdf
     sample_from: 2026-11-04_ted_search_competition_sample.json (publication 722712-2026)
+  deadline_request_date:
+    ted_field: deadline-receipt-request-date-lot
+    applies_to:
+    - competition
+    shape: list
+    note: 'Per lot. Restricted procedures have no tender deadline in the first stage: this is the deadline for requests
+      to participate'
+    sample:
+    - 2026-11-06+01:00
+    sample_from: 2026-11-04_ted_search_competition_restricted_procedure.json (publication 759307-2026)
+  deadline_request_time:
+    ted_field: deadline-receipt-request-time-lot
+    applies_to:
+    - competition
+    shape: list
+    note: Per lot, 'HH:MM:SS+TZ'
+    sample:
+    - 14:00:00+01:00
+    sample_from: 2026-11-04_ted_search_competition_restricted_procedure.json (publication 759307-2026)

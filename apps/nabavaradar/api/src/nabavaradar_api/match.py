@@ -6,12 +6,12 @@ import threading
 import time
 from collections.abc import Callable
 from dataclasses import dataclass, field
-from datetime import UTC, datetime
+from datetime import UTC, datetime, timedelta
 from typing import Any
 
 import numpy as np
 from numpy.typing import NDArray
-from sqlalchemy import select
+from sqlalchemy import literal_column, select
 from sqlalchemy.orm import Session
 
 from nabavaradar_api.counties import by_code, by_nuts3, nuts2_of
@@ -39,6 +39,7 @@ from nabavaradar_api.ingest.stats import NATIONAL, competition_flag
 
 MAX_ACTIVITIES = 10  # task: max 10 activities, main first
 INDEX_TTL_S = 300.0
+UNKNOWN_DEADLINE_DAYS = 120
 DEFAULT_PERCENTILES = (0.0, 1.0)
 
 
@@ -118,12 +119,21 @@ def load_index(session: Session, now: datetime | None = None) -> OpenIndex:
             Notice.url_html,
             Notice.pub_date,
             Notice.n_lots,
+            literal_column("(notice.raw ? 'deadline-receipt-tender-date-lot')").label(
+                "has_tender_deadline"
+            ),
             Notice.embedding,
             Notice.retrieved_at,
         ).where(
             Notice.type == "competition",
             Notice.embedding.is_not(None),
-            (Notice.deadline.is_(None)) | (Notice.deadline > now),
+            # a notice without any deadline is kept only while it is recent: old ones would be shown as
+            # open forever
+            (Notice.deadline > now)
+            | (
+                Notice.deadline.is_(None)
+                & (Notice.pub_date >= (now - timedelta(days=UNKNOWN_DEADLINE_DAYS)).date())
+            ),
         )
     ).all()
     rows = [
@@ -138,6 +148,9 @@ def load_index(session: Session, now: datetime | None = None) -> OpenIndex:
             "cpv_main": n.cpv_main,
             "url_html": n.url_html,
             "pub_date": n.pub_date,
+            "deadline_kind": ("tender" if n.has_tender_deadline else "request")
+            if n.deadline
+            else None,
             "n_lots": n.n_lots,
             "retrieved_at": n.retrieved_at,
         }
@@ -267,6 +280,7 @@ class MatchEngine:
                     "nuts3": row["nuts3"],
                     "county": county_obj.name if county_obj else None,
                     "deadline": row["deadline"].isoformat() if row["deadline"] else None,
+                    "deadline_kind": row["deadline_kind"],
                     "days_left": round(days, 1) if days is not None else None,
                     "value_eur": value,
                     "fit": comp.fit(),

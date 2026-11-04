@@ -117,6 +117,22 @@ def parse_deadline(dates: Any, times: Any) -> datetime | None:
     return max(found) if found else None
 
 
+def notice_deadline(raw: dict[str, Any]) -> datetime | None:
+    """Tender deadline; restricted procedures only carry the deadline for requests to participate."""
+    return parse_deadline(
+        raw.get("deadline-receipt-tender-date-lot"), raw.get("deadline-receipt-tender-time-lot")
+    ) or parse_deadline(
+        raw.get("deadline-receipt-request-date-lot"), raw.get("deadline-receipt-request-time-lot")
+    )
+
+
+def deadline_kind(raw: dict[str, Any]) -> str | None:
+    """``tender`` or ``request`` (requests to participate, restricted procedures) or ``None``."""
+    if raw.get("deadline-receipt-tender-date-lot"):
+        return "tender"
+    return "request" if raw.get("deadline-receipt-request-date-lot") else None
+
+
 def pick_link(links: Any, kind: str) -> str | None:
     """Croatian, else English link of kind ``html`` / ``pdf``."""
     group = (links or {}).get(kind) or {}
@@ -191,11 +207,7 @@ def parse_notice(raw: dict[str, Any], kind: str) -> ParsedNotice:
         "cpv_main": main or (cpv[0] if cpv else None),
         "title": title,
         "description": description,
-        "deadline": parse_deadline(
-            raw.get("deadline-receipt-tender-date-lot"), raw.get("deadline-receipt-tender-time-lot")
-        )
-        if kind == "competition"
-        else None,
+        "deadline": notice_deadline(raw) if kind == "competition" else None,
         "value_eur": value if currency == "EUR" else None,
         "currency": currency,
         "n_lots": len(lots) or None,

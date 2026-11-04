@@ -103,7 +103,7 @@ def embed_notices(
     query = (
         select(Notice.pub_no, Notice.title, Notice.description, Notice.cpv_codes)
         .where(Notice.embedding.is_(None))
-        .order_by(Notice.pub_date.desc())
+        .order_by(Notice.pub_date.desc(), Notice.pub_no)
     )
     if limit:
         query = query.limit(limit)

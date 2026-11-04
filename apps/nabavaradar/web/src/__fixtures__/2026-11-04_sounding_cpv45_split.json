@@ -19,7 +19,7 @@
  },
  "cpv_group": "452",
  "suppliers": {
-  "tau": 0.8949,
+  "tau": 0.8947,
   "tau_calibrated": true,
   "total": 5494,
   "in_county": 695,
@@ -199,10 +199,10 @@
  "data": {
   "sudreg_retrieved_at": "2026-11-04T00:18:51.736204+00:00",
   "sudreg_data_as_of": "2024-06-16T20:57:57.667074+00:00",
-  "ted_result_retrieved_at": "2026-11-04T00:16:07.559973+00:00",
+  "ted_result_retrieved_at": "2026-11-04T01:12:26.688519+00:00",
   "ted_result_data_as_of": "2026-11-04T00:00:00+00:00",
-  "ted_competition_retrieved_at": "2026-11-04T00:11:00.225246+00:00",
+  "ted_competition_retrieved_at": "2026-11-04T01:17:01.428699+00:00",
   "ted_competition_data_as_of": "2026-11-04T00:00:00+00:00"
  },
- "generated_at": "2026-11-04T01:01:42.899860+00:00"
+ "generated_at": "2026-11-04T01:28:00.874304+00:00"
 }

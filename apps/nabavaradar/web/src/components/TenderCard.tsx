@@ -32,7 +32,13 @@ export function TenderCard({ item }: { item: MatchItem }) {
       <div className="mt-3 flex flex-wrap items-center gap-2">
         <span className={`dt-chip ${chip}`}>
           {glyph} {countdown(item.days_left)}
-          {item.deadline ? <span className="num"> · do {formatDate(item.deadline)}</span> : null}
+          {item.deadline ? (
+            <span className="num">
+              {' '}
+              · do {formatDate(item.deadline)}
+              {item.deadline_kind === 'request' ? ' (zahtjevi za sudjelovanje)' : ''}
+            </span>
+          ) : null}
         </span>
         <CompetitionChip competition={item.competition} />
       </div>
