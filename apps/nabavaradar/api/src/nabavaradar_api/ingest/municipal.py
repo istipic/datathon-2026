@@ -412,10 +412,12 @@ def ingest_municipal(session: Session, settings: NabavaSettings) -> dict[str, An
                     stored += len(rows)
         # rows of resources that are no longer parsed (rejected now, or gone from CKAN) are removed
         parsed_ids = [r.resource_id for r in reports if r.status == "parsed"]
-        session.execute(delete(MunicipalContract).where(MunicipalContract.source_id.not_in(parsed_ids)))
+        session.execute(
+            delete(MunicipalContract).where(MunicipalContract.source_id.not_in(parsed_ids))
+        )
         session.commit()
         run.rows = stored
-    reasons =Counter(r.reason.split(":")[0].split(" (")[0] for r in reports if r.reason)
+    reasons = Counter(r.reason.split(":")[0].split(" (")[0] for r in reports if r.reason)
     summary = {
         "query": QUERY,
         "packages": len(packages),

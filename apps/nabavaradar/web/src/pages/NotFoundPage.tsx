@@ -7,7 +7,11 @@ export function NotFoundPage() {
       <EmptyState
         title="Stranica nije pronađena"
         body="Adresa ne postoji ili je uklonjena."
-        action={<Link to="/" className="text-brand-700 underline">Natrag na početnu</Link>}
+        action={
+          <Link to="/" className="text-brand-700 underline">
+            Natrag na početnu
+          </Link>
+        }
       />
     </div>
   );

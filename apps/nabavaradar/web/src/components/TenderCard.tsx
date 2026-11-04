@@ -48,7 +48,12 @@ export function TenderCard({ item }: { item: MatchItem }) {
         </ul>
         <p className="mt-3 text-sm">
           {item.url_html ? (
-            <a href={item.url_html} target="_blank" rel="noopener noreferrer" className="text-brand-700 underline">
+            <a
+              href={item.url_html}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-brand-700 underline"
+            >
               Otvori obavijest na TED-u
             </a>
           ) : null}

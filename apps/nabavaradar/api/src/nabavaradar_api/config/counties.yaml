@@ -6,24 +6,24 @@
 #          data/evidence/2026-11-04_gisco_nuts_HR_2021.json
 # nuts2  = first four characters of nuts3
 counties:
-  - { code: 1,  name: "Zagrebačka županija",             nuts3: HR065, nuts2: HR06 }
-  - { code: 2,  name: "Krapinsko-zagorska županija",     nuts3: HR064, nuts2: HR06 }
-  - { code: 3,  name: "Sisačko-moslavačka županija",     nuts3: HR028, nuts2: HR02 }
-  - { code: 4,  name: "Karlovačka županija",             nuts3: HR027, nuts2: HR02 }
-  - { code: 5,  name: "Varaždinska županija",            nuts3: HR062, nuts2: HR06 }
-  - { code: 6,  name: "Koprivničko-križevačka županija", nuts3: HR063, nuts2: HR06 }
-  - { code: 7,  name: "Bjelovarsko-bilogorska županija", nuts3: HR021, nuts2: HR02 }
-  - { code: 8,  name: "Primorsko-goranska županija",     nuts3: HR031, nuts2: HR03 }
-  - { code: 9,  name: "Ličko-senjska županija",          nuts3: HR032, nuts2: HR03 }
-  - { code: 10, name: "Virovitičko-podravska županija",  nuts3: HR022, nuts2: HR02 }
-  - { code: 11, name: "Požeško-slavonska županija",      nuts3: HR023, nuts2: HR02 }
-  - { code: 12, name: "Brodsko-posavska županija",       nuts3: HR024, nuts2: HR02 }
-  - { code: 13, name: "Zadarska županija",               nuts3: HR033, nuts2: HR03 }
-  - { code: 14, name: "Osječko-baranjska županija",      nuts3: HR025, nuts2: HR02 }
-  - { code: 15, name: "Šibensko-kninska županija",       nuts3: HR034, nuts2: HR03 }
-  - { code: 16, name: "Vukovarsko-srijemska županija",   nuts3: HR026, nuts2: HR02 }
-  - { code: 17, name: "Splitsko-dalmatinska županija",   nuts3: HR035, nuts2: HR03 }
-  - { code: 18, name: "Istarska županija",               nuts3: HR036, nuts2: HR03 }
-  - { code: 19, name: "Dubrovačko-neretvanska županija", nuts3: HR037, nuts2: HR03 }
-  - { code: 20, name: "Međimurska županija",             nuts3: HR061, nuts2: HR06 }
-  - { code: 21, name: "Grad Zagreb",                     nuts3: HR050, nuts2: HR05 }
+  - { code: 1, name: 'Zagrebačka županija', nuts3: HR065, nuts2: HR06 }
+  - { code: 2, name: 'Krapinsko-zagorska županija', nuts3: HR064, nuts2: HR06 }
+  - { code: 3, name: 'Sisačko-moslavačka županija', nuts3: HR028, nuts2: HR02 }
+  - { code: 4, name: 'Karlovačka županija', nuts3: HR027, nuts2: HR02 }
+  - { code: 5, name: 'Varaždinska županija', nuts3: HR062, nuts2: HR06 }
+  - { code: 6, name: 'Koprivničko-križevačka županija', nuts3: HR063, nuts2: HR06 }
+  - { code: 7, name: 'Bjelovarsko-bilogorska županija', nuts3: HR021, nuts2: HR02 }
+  - { code: 8, name: 'Primorsko-goranska županija', nuts3: HR031, nuts2: HR03 }
+  - { code: 9, name: 'Ličko-senjska županija', nuts3: HR032, nuts2: HR03 }
+  - { code: 10, name: 'Virovitičko-podravska županija', nuts3: HR022, nuts2: HR02 }
+  - { code: 11, name: 'Požeško-slavonska županija', nuts3: HR023, nuts2: HR02 }
+  - { code: 12, name: 'Brodsko-posavska županija', nuts3: HR024, nuts2: HR02 }
+  - { code: 13, name: 'Zadarska županija', nuts3: HR033, nuts2: HR03 }
+  - { code: 14, name: 'Osječko-baranjska županija', nuts3: HR025, nuts2: HR02 }
+  - { code: 15, name: 'Šibensko-kninska županija', nuts3: HR034, nuts2: HR03 }
+  - { code: 16, name: 'Vukovarsko-srijemska županija', nuts3: HR026, nuts2: HR02 }
+  - { code: 17, name: 'Splitsko-dalmatinska županija', nuts3: HR035, nuts2: HR03 }
+  - { code: 18, name: 'Istarska županija', nuts3: HR036, nuts2: HR03 }
+  - { code: 19, name: 'Dubrovačko-neretvanska županija', nuts3: HR037, nuts2: HR03 }
+  - { code: 20, name: 'Međimurska županija', nuts3: HR061, nuts2: HR06 }
+  - { code: 21, name: 'Grad Zagreb', nuts3: HR050, nuts2: HR05 }

@@ -25,7 +25,9 @@ export const formatNumber = (value: number | null | undefined) =>
   value === null || value === undefined ? '–' : num1.format(value);
 
 export const formatPercent = (value: number | null | undefined, digits = 0) =>
-  value === null || value === undefined ? '–' : `${(value * 100).toFixed(digits).replace('.', ',')} %`;
+  value === null || value === undefined
+    ? '–'
+    : `${(value * 100).toFixed(digits).replace('.', ',')} %`;
 
 export function formatDate(value: string | null | undefined): string {
   if (!value) return '–';

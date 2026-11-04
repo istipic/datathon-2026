@@ -160,7 +160,9 @@ def derive() -> None:
 @app.command("eval")
 def evaluate(
     from_stored: bool = typer.Option(
-        False, "--from-stored", help="Only re-render docs/validation.md and config/market.yaml from the stored result"
+        False,
+        "--from-stored",
+        help="Only re-render docs/validation.md and config/market.yaml from the stored result",
     ),
 ) -> None:
     """Validate against real winners: recall@10/@20, full-text baseline, tau. Writes docs/validation.md."""
@@ -183,8 +185,13 @@ def evaluate(
         return result
 
     result = _run("eval", step)
-    summary = {k: result[k] for k in ("mode", "n", "n_scored", "fit", "fts_baseline", "random_baseline", "window")}
-    summary["tau"] = {k: result["tau"].get(k) for k in ("tau", "f1", "precision", "recall", "winners")}
+    summary = {
+        k: result[k]
+        for k in ("mode", "n", "n_scored", "fit", "fts_baseline", "random_baseline", "window")
+    }
+    summary["tau"] = {
+        k: result["tau"].get(k) for k in ("tau", "f1", "precision", "recall", "winners")
+    }
     typer.echo(json.dumps(summary, indent=2, default=str))
 
 

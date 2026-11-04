@@ -41,7 +41,20 @@ export function OibForm({ onSubmit, initial = '', onDark = false }: OibFormProps
           aria-describedby={hintId}
           onChange={(e) => setValue(e.target.value.replace(/\s/g, ''))}
         />
-        <button type="submit" className="nr-btn" style={onDark ? { background: 'rgb(var(--white))', color: 'rgb(var(--brand-700))', borderColor: 'rgb(var(--white))' } : undefined} disabled={!valid}>
+        <button
+          type="submit"
+          className="nr-btn"
+          style={
+            onDark
+              ? {
+                  background: 'rgb(var(--white))',
+                  color: 'rgb(var(--brand-700))',
+                  borderColor: 'rgb(var(--white))',
+                }
+              : undefined
+          }
+          disabled={!valid}
+        >
           Pronađi natječaje
         </button>
       </div>

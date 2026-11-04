@@ -1,0 +1,38 @@
+{
+ "pub_no": "718660-2026",
+ "type": "competition",
+ "notice_type": "cn-standard",
+ "pub_date": "2026-10-16",
+ "procedure_id": "b1663718-d6ac-4158-ac2f-8c701dc0ed4a",
+ "title": "Nabava plovila za uklanjanje onečišćenja i opreme",
+ "description": "Nabava plovila za uklanjanje onečišćenja i opreme Grupa 1: Plovilo za uklanjanje onečišćenja, sukladno pripadajućoj tehničkoj specifikaciji Grupa 2: Servisno pomoćno plovilo s vanbrodskim motorima i prikolicom za vuču (trailer), sukladno pripadajućoj tehničkoj specifikaciji Grupa 3: Vodeni skuter sa prikolicom za vuču (trailer), sukladno pripadajućoj tehničkoj specifikaciji Grupa 4: Terensko vozilo, sukladno pripadajućoj tehničkoj specifikaciji Grupa 5: Bespilotne letjelice, tip 1, sukladno pripadajućoj tehničkoj specifikaciji Grupa 6: Bespilotne letjelice, tip 2, sukladno pripadajućoj tehničkoj specifikaciji Grupa 7: Podvodna autonomna ronilica, sukladno pripadajućoj tehničkoj specifikaciji Prethodno savjetovanje - početak 06.05.2026., završetak 13.05.2026., Izvješće o provedenom savjetovanju 02.06.2026., https://eojn.hr/prior-consultation-ca/83211 Prethodno savjetovanje - početak 05.06.2026., završetak 14.06.2026., Izvješće o provedenom savjetovanju 02.07.2026., https://eojn.hr/prior-consultation-ca/86543 Plovilo za uklanjanje onečišćenja, sukladno pripadajućoj tehničkoj specifikaciji Servisno pomoćno plovilo s vanbrodskim motorima i prikolicom za vuču (trailer), sukladno pripadajućoj tehničkoj specifikaciji Vodeni skuter sa prikolicom za vuču (trailer) , sukladno pripadajućoj tehničkoj specifikaciji Terensko vozilo, sukladno pripadajućoj tehničkoj specifikaciji Grupa 5: Bespilotne letjelice, tip 1, sukladno pripadajućoj tehničkoj specifikaciji Bespilotne letjelice, tip 2, sukladno pripadajućoj tehničkoj specifikaciji Podvodna autonomna ronilica, sukladno pripadajućoj tehničkoj specifikaciji",
+ "buyer": "MINISTARSTVO UNUTARNJIH POSLOVA",
+ "buyer_nuts": "HR050",
+ "place_nuts": "HR031",
+ "cpv_codes": [
+  "34513600",
+  "34512000",
+  "34113200",
+  "34711200",
+  "35512400"
+ ],
+ "cpv_main": "34513600",
+ "deadline": "2026-11-20T08:00:00+00:00",
+ "value_eur": 4534400.0,
+ "currency": "EUR",
+ "n_lots": 7,
+ "url_html": "https://ted.europa.eu/hr/notice/-/detail/718660-2026",
+ "url_pdf": "https://ted.europa.eu/hr/notice/718660-2026/pdf",
+ "retrieved_at": "2026-11-04T00:10:58.584948+00:00",
+ "competition": {
+  "cpv_group": "345",
+  "scope": "HR05",
+  "n": 6,
+  "median_submissions": 1.5,
+  "single_bid_share": 0.5,
+  "flag": false,
+  "window_start": "2023-11-04",
+  "window_end": "2026-11-04"
+ },
+ "awards": []
+}

@@ -1,0 +1,208 @@
+{
+ "input": {
+  "text": null,
+  "cpv": "45000000-7",
+  "county": 17
+ },
+ "cpv_suggestions": [
+  {
+   "code": "45000000",
+   "label": "Građevinski radovi",
+   "similarity": null,
+   "division": "45",
+   "group": null
+  }
+ ],
+ "division": {
+  "code": "45",
+  "label": "Građevinski radovi"
+ },
+ "cpv_group": "452",
+ "suppliers": {
+  "tau": 0.8949,
+  "tau_calibrated": true,
+  "total": 5494,
+  "in_county": 695,
+  "in_region": 2139,
+  "companies_in_register": 170796
+ },
+ "suppliers_by_county": [
+  {
+   "county_code": 1,
+   "county": "Zagrebačka županija",
+   "nuts3": "HR065",
+   "nuts2": "HR06",
+   "count": 423
+  },
+  {
+   "county_code": 2,
+   "county": "Krapinsko-zagorska županija",
+   "nuts3": "HR064",
+   "nuts2": "HR06",
+   "count": 105
+  },
+  {
+   "county_code": 3,
+   "county": "Sisačko-moslavačka županija",
+   "nuts3": "HR028",
+   "nuts2": "HR02",
+   "count": 119
+  },
+  {
+   "county_code": 4,
+   "county": "Karlovačka županija",
+   "nuts3": "HR027",
+   "nuts2": "HR02",
+   "count": 117
+  },
+  {
+   "county_code": 5,
+   "county": "Varaždinska županija",
+   "nuts3": "HR062",
+   "nuts2": "HR06",
+   "count": 271
+  },
+  {
+   "county_code": 6,
+   "county": "Koprivničko-križevačka županija",
+   "nuts3": "HR063",
+   "nuts2": "HR06",
+   "count": 89
+  },
+  {
+   "county_code": 7,
+   "county": "Bjelovarsko-bilogorska županija",
+   "nuts3": "HR021",
+   "nuts2": "HR02",
+   "count": 68
+  },
+  {
+   "county_code": 8,
+   "county": "Primorsko-goranska županija",
+   "nuts3": "HR031",
+   "nuts2": "HR03",
+   "count": 515
+  },
+  {
+   "county_code": 9,
+   "county": "Ličko-senjska županija",
+   "nuts3": "HR032",
+   "nuts2": "HR03",
+   "count": 38
+  },
+  {
+   "county_code": 10,
+   "county": "Virovitičko-podravska županija",
+   "nuts3": "HR022",
+   "nuts2": "HR02",
+   "count": 40
+  },
+  {
+   "county_code": 11,
+   "county": "Požeško-slavonska županija",
+   "nuts3": "HR023",
+   "nuts2": "HR02",
+   "count": 50
+  },
+  {
+   "county_code": 12,
+   "county": "Brodsko-posavska županija",
+   "nuts3": "HR024",
+   "nuts2": "HR02",
+   "count": 117
+  },
+  {
+   "county_code": 13,
+   "county": "Zadarska županija",
+   "nuts3": "HR033",
+   "nuts2": "HR03",
+   "count": 237
+  },
+  {
+   "county_code": 14,
+   "county": "Osječko-baranjska županija",
+   "nuts3": "HR025",
+   "nuts2": "HR02",
+   "count": 312
+  },
+  {
+   "county_code": 15,
+   "county": "Šibensko-kninska županija",
+   "nuts3": "HR034",
+   "nuts2": "HR03",
+   "count": 104
+  },
+  {
+   "county_code": 16,
+   "county": "Vukovarsko-srijemska županija",
+   "nuts3": "HR026",
+   "nuts2": "HR02",
+   "count": 153
+  },
+  {
+   "county_code": 17,
+   "county": "Splitsko-dalmatinska županija",
+   "nuts3": "HR035",
+   "nuts2": "HR03",
+   "count": 695
+  },
+  {
+   "county_code": 18,
+   "county": "Istarska županija",
+   "nuts3": "HR036",
+   "nuts2": "HR03",
+   "count": 374
+  },
+  {
+   "county_code": 19,
+   "county": "Dubrovačko-neretvanska županija",
+   "nuts3": "HR037",
+   "nuts2": "HR03",
+   "count": 176
+  },
+  {
+   "county_code": 20,
+   "county": "Međimurska županija",
+   "nuts3": "HR061",
+   "nuts2": "HR06",
+   "count": 161
+  },
+  {
+   "county_code": 21,
+   "county": "Grad Zagreb",
+   "nuts3": "HR050",
+   "nuts2": "HR05",
+   "count": 1322
+  }
+ ],
+ "competition": {
+  "cpv_group": "452",
+  "scope": "HR03",
+  "n": 149,
+  "median_submissions": 3.0,
+  "single_bid_share": 0.26846,
+  "flag": false,
+  "window_start": "2023-11-04",
+  "window_end": "2026-11-04",
+  "national": {
+   "cpv_group": "452",
+   "scope": "HR",
+   "n": 839,
+   "median_submissions": 3.0,
+   "single_bid_share": 0.23719,
+   "flag": false,
+   "window_start": "2023-11-04",
+   "window_end": "2026-11-04"
+  }
+ },
+ "advice": [],
+ "data": {
+  "sudreg_retrieved_at": "2026-11-04T00:18:51.736204+00:00",
+  "sudreg_data_as_of": "2024-06-16T20:57:57.667074+00:00",
+  "ted_result_retrieved_at": "2026-11-04T00:16:07.559973+00:00",
+  "ted_result_data_as_of": "2026-11-04T00:00:00+00:00",
+  "ted_competition_retrieved_at": "2026-11-04T00:11:00.225246+00:00",
+  "ted_competition_data_as_of": "2026-11-04T00:00:00+00:00"
+ },
+ "generated_at": "2026-11-04T01:01:42.899860+00:00"
+}

@@ -21,12 +21,16 @@ function Results({ r }: { r: SoundingResult }) {
   return (
     <div className="mt-6 grid gap-6">
       <section aria-labelledby="cpv-h">
-        <h2 id="cpv-h" className="text-xl font-semibold">Predloženi CPV kodovi</h2>
+        <h2 id="cpv-h" className="text-xl font-semibold">
+          Predloženi CPV kodovi
+        </h2>
         <ul className="mt-2 grid gap-2">
           {r.cpv_suggestions.map((s) => (
             <li key={s.code} className="nr-card" style={{ padding: '8px 12px' }}>
               <span className="num font-semibold">{s.code}</span> {s.label}
-              {s.similarity !== null ? <span className="num text-neutral-600"> · sličnost {s.similarity.toFixed(2)}</span> : null}
+              {s.similarity !== null ? (
+                <span className="num text-neutral-600"> · sličnost {s.similarity.toFixed(2)}</span>
+              ) : null}
             </li>
           ))}
         </ul>
@@ -37,21 +41,33 @@ function Results({ r }: { r: SoundingResult }) {
       </section>
 
       <section aria-labelledby="sup-h">
-        <h2 id="sup-h" className="text-xl font-semibold">Sposobni dobavljači po županijama</h2>
+        <h2 id="sup-h" className="text-xl font-semibold">
+          Sposobni dobavljači po županijama
+        </h2>
         <p className="mt-1">
-          Ukupno <strong className="num">{r.suppliers.total.toLocaleString('hr-HR')}</strong> aktivnih tvrtki (od{' '}
-          <span className="num">{r.suppliers.companies_in_register.toLocaleString('hr-HR')}</span> u bazi) ima djelatnost čija je sličnost
-          tom CPV području najmanje τ = <span className="num">{r.suppliers.tau}</span>
-          {r.suppliers.tau_calibrated ? ' (prag odabran validacijom).' : ' (zadani prag: validacija još nije provedena).'}
+          Ukupno <strong className="num">{r.suppliers.total.toLocaleString('hr-HR')}</strong>{' '}
+          aktivnih tvrtki (od{' '}
+          <span className="num">{r.suppliers.companies_in_register.toLocaleString('hr-HR')}</span> u
+          bazi) ima djelatnost čija je sličnost tom CPV području najmanje τ ={' '}
+          <span className="num">{r.suppliers.tau}</span>
+          {r.suppliers.tau_calibrated
+            ? ' (prag odabran validacijom).'
+            : ' (zadani prag: validacija još nije provedena).'}
           {r.suppliers.in_county !== null ? (
             <>
-              {' '}U odabranoj županiji: <strong className="num">{r.suppliers.in_county}</strong>.
+              {' '}
+              U odabranoj županiji: <strong className="num">{r.suppliers.in_county}</strong>.
             </>
           ) : null}
         </p>
         <div className="mt-3 grid gap-4 lg:grid-cols-2">
           {geo.data ? (
-            <CountyMap geo={geo.data} values={values} unit="dobavljača" label={`Karta sposobnih dobavljača po županijama, ukupno ${r.suppliers.total}`} />
+            <CountyMap
+              geo={geo.data}
+              values={values}
+              unit="dobavljača"
+              label={`Karta sposobnih dobavljača po županijama, ukupno ${r.suppliers.total}`}
+            />
           ) : geo.error ? (
             <ErrorState message="Karta županija nije dostupna." />
           ) : (
@@ -63,7 +79,9 @@ function Results({ r }: { r: SoundingResult }) {
               <thead>
                 <tr>
                   <th scope="col">Županija</th>
-                  <th scope="col" className="num">Dobavljača</th>
+                  <th scope="col" className="num">
+                    Dobavljača
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -80,9 +98,13 @@ function Results({ r }: { r: SoundingResult }) {
       </section>
 
       <section aria-labelledby="comp-h">
-        <h2 id="comp-h" className="text-xl font-semibold">Povijesna konkurencija</h2>
+        <h2 id="comp-h" className="text-xl font-semibold">
+          Povijesna konkurencija
+        </h2>
         {comp.n === 0 ? (
-          <p className="mt-2">Za CPV skupinu {comp.cpv_group ?? '–'} nema dovoljno povijesnih dodjela (n = 0).</p>
+          <p className="mt-2">
+            Za CPV skupinu {comp.cpv_group ?? '–'} nema dovoljno povijesnih dodjela (n = 0).
+          </p>
         ) : (
           <div className="dt-table-wrap mt-2">
             <table className="nr-table">
@@ -90,9 +112,15 @@ function Results({ r }: { r: SoundingResult }) {
               <thead>
                 <tr>
                   <th scope="col">Područje</th>
-                  <th scope="col" className="num">Dodjela (n)</th>
-                  <th scope="col" className="num">Medijan ponuda</th>
-                  <th scope="col" className="num">Samo jedna ponuda</th>
+                  <th scope="col" className="num">
+                    Dodjela (n)
+                  </th>
+                  <th scope="col" className="num">
+                    Medijan ponuda
+                  </th>
+                  <th scope="col" className="num">
+                    Samo jedna ponuda
+                  </th>
                   <th scope="col">Oznaka</th>
                 </tr>
               </thead>
@@ -111,14 +139,20 @@ function Results({ r }: { r: SoundingResult }) {
           </div>
         )}
         <p className="mt-2 text-sm text-neutral-700">
-          CPV skupina <span className="num">{comp.cpv_group ?? '–'}</span>, dodjele {formatDate(comp.window_start)} – {formatDate(comp.window_end)}.
+          CPV skupina <span className="num">{comp.cpv_group ?? '–'}</span>, dodjele{' '}
+          {formatDate(comp.window_start)} – {formatDate(comp.window_end)}.
         </p>
       </section>
 
       <section aria-labelledby="adv-h">
-        <h2 id="adv-h" className="text-xl font-semibold">Preporuke</h2>
+        <h2 id="adv-h" className="text-xl font-semibold">
+          Preporuke
+        </h2>
         {r.advice.length === 0 ? (
-          <p className="mt-2">Na temelju dostupnih podataka nema posebnih preporuka (nije zadovoljeno nijedno pravilo).</p>
+          <p className="mt-2">
+            Na temelju dostupnih podataka nema posebnih preporuka (nije zadovoljeno nijedno
+            pravilo).
+          </p>
         ) : (
           <ul className="mt-2 grid gap-3">
             {r.advice.map((a) => (
@@ -126,7 +160,12 @@ function Results({ r }: { r: SoundingResult }) {
                 <p>{a.text}</p>
                 <p className="mt-2 text-sm">
                   Izvor:{' '}
-                  <a href={a.source_url} target="_blank" rel="noopener noreferrer" className="text-brand-700 underline">
+                  <a
+                    href={a.source_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-brand-700 underline"
+                  >
                     {a.source_label}
                   </a>
                 </p>
@@ -135,13 +174,16 @@ function Results({ r }: { r: SoundingResult }) {
           </ul>
         )}
         <p className="mt-2 text-sm text-neutral-700">
-          Preporuke su pravila temeljena na podacima, ne pravni savjet. Zakonski tekst se mijenja: provjerite važeću verziju.
+          Preporuke su pravila temeljena na podacima, ne pravni savjet. Zakonski tekst se mijenja:
+          provjerite važeću verziju.
         </p>
       </section>
 
       <p className="text-sm text-neutral-600">
-        Izračunato {formatDateTime(r.generated_at)}. Registar: snimka {formatDate(r.data.sudreg_data_as_of)}, dohvaćeno{' '}
-        {formatDateTime(r.data.sudreg_retrieved_at)}; TED dodjele dohvaćene {formatDateTime(r.data.ted_result_retrieved_at)}.
+        Izračunato {formatDateTime(r.generated_at)}. Registar: snimka{' '}
+        {formatDate(r.data.sudreg_data_as_of)}, dohvaćeno{' '}
+        {formatDateTime(r.data.sudreg_retrieved_at)}; TED dodjele dohvaćene{' '}
+        {formatDateTime(r.data.ted_result_retrieved_at)}.
       </p>
     </div>
   );
@@ -170,19 +212,27 @@ export function BuyerPage() {
     const c = cpv.trim();
     if (!t && !c) return setFormError('Opišite nabavu ili odaberite CPV kod.');
     if (t && c) return setFormError('Navedite ili opis ili CPV kod, ne oboje.');
-    if (c && !CPV_RE.test(c)) return setFormError('CPV kod: 8 znamenki (npr. 45000000-7) ili prefiks od 2 do 8 znamenki.');
+    if (c && !CPV_RE.test(c))
+      return setFormError('CPV kod: 8 znamenki (npr. 45000000-7) ili prefiks od 2 do 8 znamenki.');
     setFormError('');
-    run.mutate({ text: t || undefined, cpv: c || undefined, county: county ? Number(county) : undefined });
+    run.mutate({
+      text: t || undefined,
+      cpv: c || undefined,
+      county: county ? Number(county) : undefined,
+    });
   };
 
   return (
     <div className="mx-auto max-w-5xl p-4">
       <h1 className="text-2xl font-semibold">Provjera tržišta za javne naručitelje</h1>
       <p className="mt-2 max-w-3xl">
-        Prije objave nabave procijenite koliko je sposobnih dobavljača u županiji i kakva je bila konkurencija u sličnim nabavama.
+        Prije objave nabave procijenite koliko je sposobnih dobavljača u županiji i kakva je bila
+        konkurencija u sličnim nabavama.
       </p>
       <form className="nr-card mt-4" onSubmit={submit} noValidate aria-label="Opis nabave">
-        <label htmlFor={`${ids}-t`} className="block font-semibold">Opis predmeta nabave</label>
+        <label htmlFor={`${ids}-t`} className="block font-semibold">
+          Opis predmeta nabave
+        </label>
         <textarea
           id={`${ids}-t`}
           className="nr-input mt-1"
@@ -195,11 +245,15 @@ export function BuyerPage() {
           }}
           placeholder="npr. održavanje sustava videonadzora u školama"
         />
-        <p className="text-sm text-neutral-600 num">{text.length} / {MAX_TEXT}</p>
+        <p className="text-sm text-neutral-600 num">
+          {text.length} / {MAX_TEXT}
+        </p>
 
         <fieldset className="mt-3">
           <legend className="font-semibold">ili odaberite CPV kod</legend>
-          <label htmlFor={`${ids}-p`} className="dt-sr-only">Pretraži CPV po nazivu ili šifri</label>
+          <label htmlFor={`${ids}-p`} className="dt-sr-only">
+            Pretraži CPV po nazivu ili šifri
+          </label>
           <input
             id={`${ids}-p`}
             className="nr-input mt-1"
@@ -209,7 +263,10 @@ export function BuyerPage() {
             placeholder="pretraži po nazivu ili šifri, npr. 45 ili cestogradnja"
           />
           {hits.data && hits.data.length > 0 ? (
-            <ul className="mt-2 max-h-56 overflow-auto rounded border border-neutral-300 bg-white" aria-label="Rezultati pretrage CPV-a">
+            <ul
+              className="mt-2 max-h-56 overflow-auto rounded border border-neutral-300 bg-white"
+              aria-label="Rezultati pretrage CPV-a"
+            >
               {hits.data.map((h) => (
                 <li key={h.code}>
                   <button
@@ -230,30 +287,57 @@ export function BuyerPage() {
           {cpv ? (
             <p className="mt-2 text-sm">
               Odabrano: <strong className="num">{cpv}</strong>{' '}
-              <button type="button" className="text-brand-700 underline" onClick={() => setCpv('')}>ukloni</button>
+              <button type="button" className="text-brand-700 underline" onClick={() => setCpv('')}>
+                ukloni
+              </button>
             </p>
           ) : null}
         </fieldset>
 
         <div className="mt-3">
-          <label htmlFor={`${ids}-c`} className="block font-semibold">Županija naručitelja</label>
-          <select id={`${ids}-c`} className="nr-input" style={{ maxWidth: '22rem' }} value={county} onChange={(e) => setCounty(e.target.value)}>
+          <label htmlFor={`${ids}-c`} className="block font-semibold">
+            Županija naručitelja
+          </label>
+          <select
+            id={`${ids}-c`}
+            className="nr-input"
+            style={{ maxWidth: '22rem' }}
+            value={county}
+            onChange={(e) => setCounty(e.target.value)}
+          >
             <option value="">Nije odabrana</option>
             {counties.data?.map((c) => (
-              <option key={c.code} value={c.code}>{c.name}</option>
+              <option key={c.code} value={c.code}>
+                {c.name}
+              </option>
             ))}
           </select>
         </div>
-        <button type="submit" className="nr-btn mt-4" disabled={run.isPending}>Provjeri tržište</button>
-        <p role="alert" className="mt-2 text-sm font-semibold" style={{ color: 'rgb(var(--danger-fg))' }}>{formError}</p>
+        <button type="submit" className="nr-btn mt-4" disabled={run.isPending}>
+          Provjeri tržište
+        </button>
+        <p
+          role="alert"
+          className="mt-2 text-sm font-semibold"
+          style={{ color: 'rgb(var(--danger-fg))' }}
+        >
+          {formError}
+        </p>
       </form>
 
       {run.isPending ? <LoadingSkeleton lines={5} label="Računam tržište…" /> : null}
-      {run.error ? <div className="mt-4"><ErrorState message={(run.error as Error).message} onRetry={() => run.reset()} /></div> : null}
+      {run.error ? (
+        <div className="mt-4">
+          <ErrorState message={(run.error as Error).message} onRetry={() => run.reset()} />
+        </div>
+      ) : null}
       {run.data ? <Results r={run.data} /> : null}
       {!run.data && !run.isPending && !run.error ? (
         <div className="mt-6">
-          <EmptyState title="Još nema rezultata" body="Unesite opis nabave ili odaberite CPV kod pa pokrenite provjeru." />
+          <EmptyState
+            title="Još nema rezultata"
+            body="Unesite opis nabave ili odaberite CPV kod pa pokrenite provjeru."
+          />
         </div>
       ) : null}
     </div>

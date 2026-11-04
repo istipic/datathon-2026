@@ -268,6 +268,7 @@ class MatchEngine:
                     "days_left": round(days, 1) if days is not None else None,
                     "value_eur": value,
                     "fit": comp.fit(),
+                    "similarity": round(float(best_cos[i]), 4),
                     "components": {
                         "S": round(comp.S, 4),
                         "C": comp.C,
@@ -286,7 +287,8 @@ class MatchEngine:
                     "pub_date": row["pub_date"].isoformat(),
                 }
             )
-        items.sort(key=lambda x: (-x["fit"], x["deadline"] or "9999"))
+        # S saturates at the 95th percentile, so ties are common at the top: break them by the raw cosine
+        items.sort(key=lambda x: (-x["fit"], -x["similarity"], x["deadline"] or "9999"))
         return items[:limit]
 
 

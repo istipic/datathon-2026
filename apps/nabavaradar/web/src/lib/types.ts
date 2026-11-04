@@ -49,6 +49,7 @@ export interface MatchItem {
   days_left: number | null;
   value_eur: number | null;
   fit: number;
+  similarity: number;
   components: { S: number; C: number; G: number; T: number };
   best_activity: { label: string; code: string | null; version: string | null };
   cpv_main: string | null;

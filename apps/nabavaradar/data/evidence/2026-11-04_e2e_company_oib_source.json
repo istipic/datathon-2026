@@ -1,0 +1,10 @@
+{
+ "company": "KONČAR - Elektroindustrija d.d.",
+ "oib": "45050126417",
+ "why": "Playwright smoke test and examples: a company listed on the Zagreb Stock Exchange (ticker KOEI) whose OIB is public",
+ "public_source": "https://eho.zse.hr/fileadmin/issuers/migrated/financials/KOEI-fin2015-1Q-NotREV-N-EN.pdf",
+ "retrieved": "2026-11-04",
+ "oib_found_in_document": true,
+ "excerpt": "Registrirano: Trgovački sud Zagreb, MBS 0800409036 ... MB: 3282635, OIB: 45050126417  (company registration line of the KONČAR Group report, Q1 2015; board member names omitted here)",
+ "also_in": "Sudreg test snapshot 1 (2024-06-16): company.oib = 45050126417, 9 NKD activities; 93 awarded lots in TED result notices"
+}

@@ -42,6 +42,17 @@ def normalise_cpv(value: str) -> str:
     return value.split("-")[0]
 
 
+def effective_prefix(value: str) -> str:
+    """The level a CPV input stands for: an 8-digit code loses its trailing zeros
+    (``45000000`` -> ``45`` division, ``45200000`` -> ``452`` group, ``45214200`` -> ``4521420``);
+    shorter inputs are explicit prefixes and are kept. At least two digits remain."""
+    digits = normalise_cpv(value)
+    if len(digits) == 8:
+        stripped = digits.rstrip("0")
+        return stripped if len(stripped) >= 2 else digits[:2]
+    return digits
+
+
 @dataclass
 class CpvIndex:
     """All CPV labels and embeddings in memory (about 14 MB)."""
@@ -199,7 +210,7 @@ def sound_market(
     tau = float(cfg["tau"])
     suggestions: list[dict[str, Any]] = []
     if cpv:
-        prefix = normalise_cpv(cpv)
+        prefix = effective_prefix(cpv)
         label = label_for_prefix(session, prefix)
         suggestions = [
             {

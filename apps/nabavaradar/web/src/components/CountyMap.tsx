@@ -47,7 +47,9 @@ export function project(geo: CountyGeo): {
     name: f.properties.name ?? f.properties.nuts3,
     d: polygons(f)
       .map((poly) =>
-        poly.map((ring) => `M${ring.map(([lon, lat]) => `${x(lon)},${y(lat)}`).join('L')}Z`).join(''),
+        poly
+          .map((ring) => `M${ring.map(([lon, lat]) => `${x(lon)},${y(lat)}`).join('L')}Z`)
+          .join(''),
       )
       .join(''),
   }));
@@ -58,7 +60,9 @@ export function project(geo: CountyGeo): {
 export function breaks(values: number[]): number[] {
   const positive = values.filter((v) => v > 0).sort((a, b) => a - b);
   if (positive.length === 0) return [];
-  return [0.2, 0.4, 0.6, 0.8].map((q) => positive[Math.min(positive.length - 1, Math.floor(q * positive.length))] ?? 0);
+  return [0.2, 0.4, 0.6, 0.8].map(
+    (q) => positive[Math.min(positive.length - 1, Math.floor(q * positive.length))] ?? 0,
+  );
 }
 
 export function classOf(value: number, thresholds: number[]): number {
@@ -86,7 +90,10 @@ export function CountyMap({ geo, values, unit, label }: CountyMapProps) {
     return RAMP.map((color, i) => {
       const lo = edges[i] ?? edges[edges.length - 1] ?? 0;
       const hi = thresholds[i];
-      return { color, text: hi === undefined ? `više od ${lo}` : i === 0 ? `1–${hi}` : `${lo + 1}–${hi}` };
+      return {
+        color,
+        text: hi === undefined ? `više od ${lo}` : i === 0 ? `1–${hi}` : `${lo + 1}–${hi}`,
+      };
     });
   }, [thresholds]);
 

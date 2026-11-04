@@ -76,10 +76,7 @@ export const api = {
     (await request<MatchItem[]>(`/match?${qs({ ...params })}`, { signal })).body,
   notice: async (pubNo: string, signal?: AbortSignal) =>
     (await request<NoticeDetail>(`/notices/${encodeURIComponent(pubNo)}`, { signal })).body,
-  sounding: async (
-    body: { text?: string; cpv?: string; county?: number },
-    signal?: AbortSignal,
-  ) =>
+  sounding: async (body: { text?: string; cpv?: string; county?: number }, signal?: AbortSignal) =>
     (
       await request<SoundingResult>('/sounding', {
         method: 'POST',

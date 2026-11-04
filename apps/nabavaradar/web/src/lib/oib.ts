@@ -18,7 +18,8 @@ export type OibStatus = 'empty' | 'incomplete' | 'invalid' | 'valid';
 export function oibStatus(raw: string): { status: OibStatus; message: string } {
   const value = raw.trim();
   if (value === '') return { status: 'empty', message: '' };
-  if (/\D/.test(value)) return { status: 'invalid', message: 'OIB smije sadržavati samo znamenke.' };
+  if (/\D/.test(value))
+    return { status: 'invalid', message: 'OIB smije sadržavati samo znamenke.' };
   if (value.length < 11)
     return { status: 'incomplete', message: `Još ${11 - value.length} znamenki do 11.` };
   if (value.length > 11) return { status: 'invalid', message: 'OIB ima točno 11 znamenki.' };

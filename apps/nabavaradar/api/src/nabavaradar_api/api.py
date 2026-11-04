@@ -25,7 +25,7 @@ from nabavaradar_api.sounding import (
     MAX_TEXT,
     competition_for,
     data_dates,
-    normalise_cpv,
+    effective_prefix,
     sound_market,
 )
 from opendata_core.errors import problem
@@ -267,7 +267,7 @@ def make_router(
         require_cpv(cpv)
         if nuts2 is not None and nuts2 not in NUTS2_CODES:
             raise HTTPException(422, f"Nepoznata NUTS2 regija; dopuštene: {NUTS2_CODES}")
-        prefix = normalise_cpv(cpv)
+        prefix = effective_prefix(cpv)
         if len(prefix) >= 3:
             return competition_for(session, prefix[:3], nuts2)
         rows = session.scalars(

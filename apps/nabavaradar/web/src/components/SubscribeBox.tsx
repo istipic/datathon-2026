@@ -41,7 +41,10 @@ export function SubscribeBox({ oib, query }: SubscribeBoxProps) {
             const res = await api.subscribe({ email, oib, query, consent });
             setState({ kind: 'ok', text: res.detail });
           } catch (err) {
-            setState({ kind: 'error', text: err instanceof ApiError ? err.message : 'Pretplata nije uspjela.' });
+            setState({
+              kind: 'error',
+              text: err instanceof ApiError ? err.message : 'Pretplata nije uspjela.',
+            });
           }
         }}
       >
@@ -70,7 +73,11 @@ export function SubscribeBox({ oib, query }: SubscribeBoxProps) {
             {CONSENT_TEXT}
           </label>
         </div>
-        <button type="submit" className="nr-btn mt-3" disabled={!validEmail || !consent || state.kind === 'busy'}>
+        <button
+          type="submit"
+          className="nr-btn mt-3"
+          disabled={!validEmail || !consent || state.kind === 'busy'}
+        >
           Pretplati me
         </button>
         <p role="status" aria-live="polite" className="mt-2 text-sm">

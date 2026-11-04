@@ -23,8 +23,16 @@ export function ConfirmPage() {
       {!token ? <ErrorState message="Poveznica nije potpuna (nedostaje token)." /> : null}
       {q.isLoading ? <LoadingSkeleton lines={2} label="Potvrđujem pretplatu…" /> : null}
       {q.error ? <ErrorState message={(q.error as Error).message} /> : null}
-      {q.data ? <p className="mt-3" role="status">{q.data.detail ?? 'Pretplata je potvrđena.'}</p> : null}
-      <p className="mt-4"><Link to="/" className="text-brand-700 underline">Početna</Link></p>
+      {q.data ? (
+        <p className="mt-3" role="status">
+          {q.data.detail ?? 'Pretplata je potvrđena.'}
+        </p>
+      ) : null}
+      <p className="mt-4">
+        <Link to="/" className="text-brand-700 underline">
+          Početna
+        </Link>
+      </p>
     </div>
   );
 }

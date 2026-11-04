@@ -4,7 +4,14 @@ import { countdown, formatEur, formatPercent, urgency } from './format';
 import { isValidOib, oibStatus } from './oib';
 
 // real OIBs: Sudreg subjects and winners in TED result notices (2026-11-04)
-const VALID = ['92803032010', '76860791838', '65605433360', '70869514300', '49733628869', '61817894937'];
+const VALID = [
+  '92803032010',
+  '76860791838',
+  '65605433360',
+  '70869514300',
+  '49733628869',
+  '61817894937',
+];
 
 describe('OIB checksum', () => {
   it.each(VALID)('accepts %s', (oib) => {
@@ -17,7 +24,15 @@ describe('OIB checksum', () => {
   });
 
   it('rejects malformed values', () => {
-    for (const v of ['', '123', '9280303201', '928030320100', '9280303201a', '12345678901', '00000000000']) {
+    for (const v of [
+      '',
+      '123',
+      '9280303201',
+      '928030320100',
+      '9280303201a',
+      '12345678901',
+      '00000000000',
+    ]) {
       expect(isValidOib(v)).toBe(false);
     }
   });
@@ -61,13 +76,34 @@ describe('county map geometry', () => {
     features: [
       {
         properties: { nuts3: 'HR050', name: 'Grad Zagreb' },
-        geometry: { type: 'Polygon', coordinates: [[[15.8, 45.7], [16.2, 45.7], [16.2, 45.9], [15.8, 45.9], [15.8, 45.7]]] },
+        geometry: {
+          type: 'Polygon',
+          coordinates: [
+            [
+              [15.8, 45.7],
+              [16.2, 45.7],
+              [16.2, 45.9],
+              [15.8, 45.9],
+              [15.8, 45.7],
+            ],
+          ],
+        },
       },
       {
         properties: { nuts3: 'HR065', name: 'Zagrebačka županija' },
         geometry: {
           type: 'MultiPolygon',
-          coordinates: [[[[16.2, 45.7], [16.6, 45.7], [16.6, 45.9], [16.2, 45.9], [16.2, 45.7]]]],
+          coordinates: [
+            [
+              [
+                [16.2, 45.7],
+                [16.6, 45.7],
+                [16.6, 45.9],
+                [16.2, 45.9],
+                [16.2, 45.7],
+              ],
+            ],
+          ],
         },
       },
     ],

@@ -1,0 +1,74 @@
+{
+ "oib": "45050126417",
+ "mbs": 80040936,
+ "name": "KONČAR - Elektroindustrija d.d. za proizvodnju i usluge",
+ "status": 1,
+ "county": {
+  "code": 21,
+  "name": "Grad Zagreb",
+  "nuts3": "HR050"
+ },
+ "activities": [
+  {
+   "code": "28",
+   "version": "NKD 1994",
+   "label": "PROIZVODNJA PROIZVODA OD METALA, OSIM STROJEVA I OPREME",
+   "is_main": false
+  },
+  {
+   "code": "29",
+   "version": "NKD 1994",
+   "label": "PROIZVODNJA STROJEVA I UREĐAJA, D. N.",
+   "is_main": false
+  },
+  {
+   "code": "31",
+   "version": "NKD 1994",
+   "label": "PROIZVODNJA ELEKTRIČNIH STROJEVA I APARATA, D.N.",
+   "is_main": false
+  },
+  {
+   "code": "35",
+   "version": "NKD 1994",
+   "label": "PROIZVODNJA OSTALIH PRIJEVOZNIH SREDSTAVA",
+   "is_main": false
+  },
+  {
+   "code": "51",
+   "version": "NKD 1994",
+   "label": "TRGOVINA NA VELIKO I POSREDOVANJE U TRGOVINI, OSIM TRGOVINE MOTORNIM VOZILIMA I MOTOCIKLIMA",
+   "is_main": false
+  },
+  {
+   "code": "52",
+   "version": "NKD 1994",
+   "label": "TRGOVINA NA MALO, OSIM TRGOVINE MOTORNIM VOZILIMA I MOTOCIKLIMA; POPRAVAK PREDMETA ZA OSOBNU UPORABU I KUĆANSTVO",
+   "is_main": false
+  },
+  {
+   "code": "65",
+   "version": "NKD 1994",
+   "label": "FINANCIJSKO POSREDOVANJE, OSIM OSIGURANJA I MIROVINSKIH FONDOVA",
+   "is_main": false
+  },
+  {
+   "code": "74.15",
+   "version": "NKD 1994",
+   "label": "Upravljačke djelatnosti holding-društava",
+   "is_main": false
+  },
+  {
+   "code": "74.20",
+   "version": "NKD 1994",
+   "label": "Arhitektonske djelatnosti i inženjerstvo te s njima povezano tehničko savjetovanje",
+   "is_main": false
+  }
+ ],
+ "data_as_of": "2024-06-16T20:57:57.667074+00:00",
+ "snapshot_id": 1,
+ "retrieved_at": "2026-11-04T00:09:24.920138+00:00",
+ "source": {
+  "id": "sudreg",
+  "environment": "test"
+ }
+}

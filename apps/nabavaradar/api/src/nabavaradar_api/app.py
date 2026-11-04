@@ -15,6 +15,7 @@ from nabavaradar_api.api import make_router
 from nabavaradar_api.company import LookupQueue
 from nabavaradar_api.match import MatchEngine
 from nabavaradar_api.settings import NabavaSettings
+from nabavaradar_api.sounding import cpv_index
 from opendata_core.app_factory import create_app
 
 log = structlog.get_logger(__name__)
@@ -35,7 +36,14 @@ def create_nabava_app(
         try:
             with session_factory() as session:
                 idx = engine.index(session)
+                cpv_index(session)
             log.info("nabavaradar_index_ready", open_notices=len(idx.rows))
+            from opendata_core import semantic
+
+            semantic.encode_queries(
+                ["zagrijavanje modela"]
+            )  # load the e5 model before the first request
+            log.info("nabavaradar_model_ready")
         except Exception as exc:  # noqa: BLE001 - data not ingested yet: serve /health and sources
             log.error("nabavaradar_index_not_loaded", error=str(exc)[:300])
 

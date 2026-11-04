@@ -16,7 +16,15 @@ export function useCountiesGeo() {
 }
 
 export const useCounties = () =>
-  useQuery({ queryKey: ['counties'], staleTime: Infinity, queryFn: ({ signal }) => api.counties(signal) });
+  useQuery({
+    queryKey: ['counties'],
+    staleTime: Infinity,
+    queryFn: ({ signal }) => api.counties(signal),
+  });
 
 export const useStatus = () =>
-  useQuery({ queryKey: ['status'], staleTime: 60_000, queryFn: ({ signal }) => api.status(signal) });
+  useQuery({
+    queryKey: ['status'],
+    staleTime: 60_000,
+    queryFn: ({ signal }) => api.status(signal),
+  });
