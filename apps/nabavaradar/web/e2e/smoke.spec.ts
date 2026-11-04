@@ -17,7 +17,9 @@ test('home: inline OIB validation, then a real company shows ranked tenders with
   await expect(
     page.getByRole('heading', { name: 'Natječaji koji odgovaraju tvojoj djelatnosti' }),
   ).toBeVisible();
-  await expect(page.getByRole('link', { name: /Javni naručitelj\? Provjerite tržište/ })).toBeVisible();
+  await expect(
+    page.getByRole('link', { name: /Javni naručitelj\? Provjerite tržište/ }),
+  ).toBeVisible();
 
   const input = page.getByLabel('OIB vaše tvrtke');
   const submit = page.getByRole('button', { name: 'Pronađi natječaje' });
@@ -58,7 +60,9 @@ test('company page: filters narrow the list and an impossible filter shows the e
   await expect(cards.first()).toBeVisible();
 });
 
-test('company page: invalid OIB in the URL is rejected without calling the API', async ({ page }) => {
+test('company page: invalid OIB in the URL is rejected without calling the API', async ({
+  page,
+}) => {
   let called = false;
   page.on('request', (r) => {
     if (r.url().includes('/api/v1/company/')) called = true;
@@ -76,7 +80,9 @@ test('notice details: opens from a card and shows competition history for the CP
   await link.click();
   await expect(page).toHaveURL(/\/natjecaj\/\d+-\d{4}$/);
   await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
-  await expect(page.getByRole('heading', { name: 'Konkurencija u sličnim nabavama' })).toBeVisible();
+  await expect(
+    page.getByRole('heading', { name: 'Konkurencija u sličnim nabavama' }),
+  ).toBeVisible();
   await expect(page.getByRole('link', { name: /Otvori na TED-u/ })).toBeVisible();
 });
 
@@ -91,14 +97,20 @@ test('buyer page: CPV picker + county returns suppliers map, competition and adv
   const results = page.getByRole('list', { name: 'Rezultati pretrage CPV-a' });
   await expect(results).toBeVisible();
   await results.getByRole('button').first().click();
-  await page.getByLabel('Županija naručitelja').selectOption({ label: 'Splitsko-dalmatinska županija' });
+  await page
+    .getByLabel('Županija naručitelja')
+    .selectOption({ label: 'Splitsko-dalmatinska županija' });
   await page.getByRole('button', { name: 'Provjeri tržište' }).click();
 
-  await expect(page.getByRole('heading', { name: 'Sposobni dobavljači po županijama' })).toBeVisible();
+  await expect(
+    page.getByRole('heading', { name: 'Sposobni dobavljači po županijama' }),
+  ).toBeVisible();
   const map = page.getByRole('img', { name: /Karta sposobnih dobavljača/ });
   await expect(map).toBeVisible();
   await expect(map.locator('path[data-nuts3]')).toHaveCount(21);
-  await expect(page.getByRole('table', { name: 'Broj sposobnih dobavljača po županijama' })).toBeVisible();
+  await expect(
+    page.getByRole('table', { name: 'Broj sposobnih dobavljača po županijama' }),
+  ).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Povijesna konkurencija' })).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Preporuke' })).toBeVisible();
 });
@@ -111,7 +123,9 @@ test('buyer page: free text works too', async ({ page }) => {
   await expect(page.getByRole('img', { name: /Karta sposobnih dobavljača/ })).toBeVisible();
 });
 
-test('methodology shows live validation numbers; sources lists the data sources', async ({ page }) => {
+test('methodology shows live validation numbers; sources lists the data sources', async ({
+  page,
+}) => {
   await page.goto('/metodologija');
   await expect(page.getByRole('heading', { name: 'Validacija (uživo)' })).toBeVisible();
   const row = page.getByRole('row', { name: /NabavaRadar \(S\/C\/G\/T\)/ });
@@ -140,7 +154,9 @@ test('digest sign-up is double opt-in: confirmation e-mail arrives and its link 
   await expect
     .poll(
       async () => {
-        const list = await request.get(`${MAILPIT}/api/v1/search`, { params: { query: `to:${email}` } });
+        const list = await request.get(`${MAILPIT}/api/v1/search`, {
+          params: { query: `to:${email}` },
+        });
         const messages = (await list.json()) as { messages?: { ID: string }[] };
         const id = messages.messages?.[0]?.ID;
         if (!id) return '';
