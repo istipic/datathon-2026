@@ -1,0 +1,180 @@
+{
+ "title-proc": {
+  "hrv": "Projektni natječaj za izradu idejnog arhitektonskog-urbanističkog rješenja uređenja kulturno-povijesne cjeline Solina, Travarice i Lokvica u Trogiru"
+ },
+ "notice-type": "can-desg",
+ "publication-number": "93705-2024",
+ "main-classification-proc": [
+  "71230000"
+ ],
+ "result-lot-identifier": [
+  "LOT-0000",
+  "LOT-0000"
+ ],
+ "procedure-identifier": "db9c27aa-14dc-41a0-abaf-4355cc8e1c65",
+ "buyer-country-sub": [
+  "HR035"
+ ],
+ "buyer-country": [
+  "HRV"
+ ],
+ "received-submissions-type-val": [
+  "10",
+  "10"
+ ],
+ "winner-identifier": [
+  "79873237024",
+  "69702906688"
+ ],
+ "classification-cpv": [
+  "71230000",
+  "71230000"
+ ],
+ "winner-selection-status": [
+  "selec-w",
+  "selec-w"
+ ],
+ "publication-date": "2024-02-14Z",
+ "received-submissions-type-code": [
+  "tenders",
+  "tenders"
+ ],
+ "buyer-name": {
+  "hrv": [
+   "GRAD TROGIR"
+  ]
+ },
+ "winner-decision-date": [
+  "2024-02-01+01:00",
+  "2024-02-01+01:00"
+ ],
+ "links": {
+  "xml": {
+   "MUL": "https://ted.europa.eu/en/notice/93705-2024/xml"
+  },
+  "pdf": {
+   "BUL": "https://ted.europa.eu/bg/notice/93705-2024/pdf",
+   "SPA": "https://ted.europa.eu/es/notice/93705-2024/pdf",
+   "CES": "https://ted.europa.eu/cs/notice/93705-2024/pdf",
+   "DAN": "https://ted.europa.eu/da/notice/93705-2024/pdf",
+   "DEU": "https://ted.europa.eu/de/notice/93705-2024/pdf",
+   "EST": "https://ted.europa.eu/et/notice/93705-2024/pdf",
+   "ELL": "https://ted.europa.eu/el/notice/93705-2024/pdf",
+   "ENG": "https://ted.europa.eu/en/notice/93705-2024/pdf",
+   "FRA": "https://ted.europa.eu/fr/notice/93705-2024/pdf",
+   "GLE": "https://ted.europa.eu/ga/notice/93705-2024/pdf",
+   "HRV": "https://ted.europa.eu/hr/notice/93705-2024/pdf",
+   "ITA": "https://ted.europa.eu/it/notice/93705-2024/pdf",
+   "LAV": "https://ted.europa.eu/lv/notice/93705-2024/pdf",
+   "LIT": "https://ted.europa.eu/lt/notice/93705-2024/pdf",
+   "HUN": "https://ted.europa.eu/hu/notice/93705-2024/pdf",
+   "MLT": "https://ted.europa.eu/mt/notice/93705-2024/pdf",
+   "NLD": "https://ted.europa.eu/nl/notice/93705-2024/pdf",
+   "POL": "https://ted.europa.eu/pl/notice/93705-2024/pdf",
+   "POR": "https://ted.europa.eu/pt/notice/93705-2024/pdf",
+   "RON": "https://ted.europa.eu/ro/notice/93705-2024/pdf",
+   "SLK": "https://ted.europa.eu/sk/notice/93705-2024/pdf",
+   "SLV": "https://ted.europa.eu/sl/notice/93705-2024/pdf",
+   "FIN": "https://ted.europa.eu/fi/notice/93705-2024/pdf",
+   "SWE": "https://ted.europa.eu/sv/notice/93705-2024/pdf"
+  },
+  "pdfs": {
+   "HRV": "https://ted.europa.eu/hr/notice/93705-2024/pdfs"
+  },
+  "html": {
+   "BUL": "https://ted.europa.eu/bg/notice/-/detail/93705-2024",
+   "SPA": "https://ted.europa.eu/es/notice/-/detail/93705-2024",
+   "CES": "https://ted.europa.eu/cs/notice/-/detail/93705-2024",
+   "DAN": "https://ted.europa.eu/da/notice/-/detail/93705-2024",
+   "DEU": "https://ted.europa.eu/de/notice/-/detail/93705-2024",
+   "EST": "https://ted.europa.eu/et/notice/-/detail/93705-2024",
+   "ELL": "https://ted.europa.eu/el/notice/-/detail/93705-2024",
+   "ENG": "https://ted.europa.eu/en/notice/-/detail/93705-2024",
+   "FRA": "https://ted.europa.eu/fr/notice/-/detail/93705-2024",
+   "GLE": "https://ted.europa.eu/ga/notice/-/detail/93705-2024",
+   "HRV": "https://ted.europa.eu/hr/notice/-/detail/93705-2024",
+   "ITA": "https://ted.europa.eu/it/notice/-/detail/93705-2024",
+   "LAV": "https://ted.europa.eu/lv/notice/-/detail/93705-2024",
+   "LIT": "https://ted.europa.eu/lt/notice/-/detail/93705-2024",
+   "HUN": "https://ted.europa.eu/hu/notice/-/detail/93705-2024",
+   "MLT": "https://ted.europa.eu/mt/notice/-/detail/93705-2024",
+   "NLD": "https://ted.europa.eu/nl/notice/-/detail/93705-2024",
+   "POL": "https://ted.europa.eu/pl/notice/-/detail/93705-2024",
+   "POR": "https://ted.europa.eu/pt/notice/-/detail/93705-2024",
+   "RON": "https://ted.europa.eu/ro/notice/-/detail/93705-2024",
+   "SLK": "https://ted.europa.eu/sk/notice/-/detail/93705-2024",
+   "SLV": "https://ted.europa.eu/sl/notice/-/detail/93705-2024",
+   "FIN": "https://ted.europa.eu/fi/notice/-/detail/93705-2024",
+   "SWE": "https://ted.europa.eu/sv/notice/-/detail/93705-2024"
+  },
+  "htmlDirect": {
+   "BUL": "https://ted.europa.eu/bg/notice/93705-2024/html",
+   "SPA": "https://ted.europa.eu/es/notice/93705-2024/html",
+   "CES": "https://ted.europa.eu/cs/notice/93705-2024/html",
+   "DAN": "https://ted.europa.eu/da/notice/93705-2024/html",
+   "DEU": "https://ted.europa.eu/de/notice/93705-2024/html",
+   "EST": "https://ted.europa.eu/et/notice/93705-2024/html",
+   "ELL": "https://ted.europa.eu/el/notice/93705-2024/html",
+   "ENG": "https://ted.europa.eu/en/notice/93705-2024/html",
+   "FRA": "https://ted.europa.eu/fr/notice/93705-2024/html",
+   "GLE": "https://ted.europa.eu/ga/notice/93705-2024/html",
+   "HRV": "https://ted.europa.eu/hr/notice/93705-2024/html",
+   "ITA": "https://ted.europa.eu/it/notice/93705-2024/html",
+   "LAV": "https://ted.europa.eu/lv/notice/93705-2024/html",
+   "LIT": "https://ted.europa.eu/lt/notice/93705-2024/html",
+   "HUN": "https://ted.europa.eu/hu/notice/93705-2024/html",
+   "MLT": "https://ted.europa.eu/mt/notice/93705-2024/html",
+   "NLD": "https://ted.europa.eu/nl/notice/93705-2024/html",
+   "POL": "https://ted.europa.eu/pl/notice/93705-2024/html",
+   "POR": "https://ted.europa.eu/pt/notice/93705-2024/html",
+   "RON": "https://ted.europa.eu/ro/notice/93705-2024/html",
+   "SLK": "https://ted.europa.eu/sk/notice/93705-2024/html",
+   "SLV": "https://ted.europa.eu/sl/notice/93705-2024/html",
+   "FIN": "https://ted.europa.eu/fi/notice/93705-2024/html",
+   "SWE": "https://ted.europa.eu/sv/notice/93705-2024/html"
+  }
+ },
+ "tender-identifier": [
+  "79873237024",
+  "69702906688"
+ ],
+ "identifier-lot": [
+  "LOT-0000"
+ ],
+ "winner-name": {
+  "hrv": [
+   "mikelić vreš arhitekti d.o.o.",
+   "STUDIO SOL LANDSCAPE & ARCHITECTURE j.d.o.o."
+  ]
+ },
+ "notice-title": {
+  "hun": "Horvátország – Építészeti tervpályázatok szervezése – Projektni natječaj za izradu idejnog arhitektonskog-urbanističkog rješenja uređenja kulturno-povijesne cjeline Solina, Travarice i Lokvica u Trogiru",
+  "lav": "Horvātija – Arhitektūras projektu konkursu organizēšana – Projektni natječaj za izradu idejnog arhitektonskog-urbanističkog rješenja uređenja kulturno-povijesne cjeline Solina, Travarice i Lokvica u Trogiru",
+  "swe": "Kroatien – Organisering av arkitektonisk formgivningstävling – Projektni natječaj za izradu idejnog arhitektonskog-urbanističkog rješenja uređenja kulturno-povijesne cjeline Solina, Travarice i Lokvica u Trogiru",
+  "gle": "An Chróit – Organisation of architectural design contests – Projektni natječaj za izradu idejnog arhitektonskog-urbanističkog rješenja uređenja kulturno-povijesne cjeline Solina, Travarice i Lokvica u Trogiru",
+  "ell": "Κροατία – Υπηρεσίες οργάνωσης διαγωνισμών αρχιτεκτονικής μελέτης – Projektni natječaj za izradu idejnog arhitektonskog-urbanističkog rješenja uređenja kulturno-povijesne cjeline Solina, Travarice i Lokvica u Trogiru",
+  "spa": "Croacia – Servicios de organización de concursos de proyectos de arquitectura – Projektni natječaj za izradu idejnog arhitektonskog-urbanističkog rješenja uređenja kulturno-povijesne cjeline Solina, Travarice i Lokvica u Trogiru",
+  "est": "Horvaatia – Arhitektuurialaste projektide võistluse organiseerimine – Projektni natječaj za izradu idejnog arhitektonskog-urbanističkog rješenja uređenja kulturno-povijesne cjeline Solina, Travarice i Lokvica u Trogiru",
+  "nld": "Kroatië – Organisatie van een architectenprijsvraag – Projektni natječaj za izradu idejnog arhitektonskog-urbanističkog rješenja uređenja kulturno-povijesne cjeline Solina, Travarice i Lokvica u Trogiru",
+  "fin": "Kroatia – Arkkitehtikilpailun järjestäminen – Projektni natječaj za izradu idejnog arhitektonskog-urbanističkog rješenja uređenja kulturno-povijesne cjeline Solina, Travarice i Lokvica u Trogiru",
+  "pol": "Chorwacja – Organizowanie architektonicznych konkursów projektowych – Projektni natječaj za izradu idejnog arhitektonskog-urbanističkog rješenja uređenja kulturno-povijesne cjeline Solina, Travarice i Lokvica u Trogiru",
+  "hrv": "Hrvatska – Organizacija natječaja za projekt u arhitekturi – Projektni natječaj za izradu idejnog arhitektonskog-urbanističkog rješenja uređenja kulturno-povijesne cjeline Solina, Travarice i Lokvica u Trogiru",
+  "ces": "Chorvatsko – Organizace architektonických soutěží – Projektni natječaj za izradu idejnog arhitektonskog-urbanističkog rješenja uređenja kulturno-povijesne cjeline Solina, Travarice i Lokvica u Trogiru",
+  "dan": "Kroatien – Organisering af arkitektkonkurrencer – Projektni natječaj za izradu idejnog arhitektonskog-urbanističkog rješenja uređenja kulturno-povijesne cjeline Solina, Travarice i Lokvica u Trogiru",
+  "ron": "Croaţia – Servicii de organizare a concursurilor de proiectare arhitecturală – Projektni natječaj za izradu idejnog arhitektonskog-urbanističkog rješenja uređenja kulturno-povijesne cjeline Solina, Travarice i Lokvica u Trogiru",
+  "por": "Croácia – Serviços de organisação de concursos de concepção de design de arquitectura – Projektni natječaj za izradu idejnog arhitektonskog-urbanističkog rješenja uređenja kulturno-povijesne cjeline Solina, Travarice i Lokvica u Trogiru",
+  "slk": "Chorvátsko – Usporadúvanie architektonických súťaží návrhov – Projektni natječaj za izradu idejnog arhitektonskog-urbanističkog rješenja uređenja kulturno-povijesne cjeline Solina, Travarice i Lokvica u Trogiru",
+  "fra": "Croatie – Services d'organisation de concours d'architecture – Projektni natječaj za izradu idejnog arhitektonskog-urbanističkog rješenja uređenja kulturno-povijesne cjeline Solina, Travarice i Lokvica u Trogiru",
+  "mlt": "Il-Kroazja – Servizzi ta' l-organizzazzjoni ta' l-arkitettura tad-disinn – Projektni natječaj za izradu idejnog arhitektonskog-urbanističkog rješenja uređenja kulturno-povijesne cjeline Solina, Travarice i Lokvica u Trogiru",
+  "deu": "Kroatien – Organisation von einem Architektenwettbewerb – Projektni natječaj za izradu idejnog arhitektonskog-urbanističkog rješenja uređenja kulturno-povijesne cjeline Solina, Travarice i Lokvica u Trogiru",
+  "lit": "Kroatija – Architektūros projektų konkursų organizavimas – Projektni natječaj za izradu idejnog arhitektonskog-urbanističkog rješenja uređenja kulturno-povijesne cjeline Solina, Travarice i Lokvica u Trogiru",
+  "ita": "Croazia – Servizi di organizzazione di concorsi di progettazione architettonica – Projektni natječaj za izradu idejnog arhitektonskog-urbanističkog rješenja uređenja kulturno-povijesne cjeline Solina, Travarice i Lokvica u Trogiru",
+  "bul": "Хърватия – Услуги по организиране на конкурси за изготвяне на архитектурен проект – Projektni natječaj za izradu idejnog arhitektonskog-urbanističkog rješenja uređenja kulturno-povijesne cjeline Solina, Travarice i Lokvica u Trogiru",
+  "slv": "Hrvaška – Organizacija arhitekturnih natečajev – Projektni natječaj za izradu idejnog arhitektonskog-urbanističkog rješenja uređenja kulturno-povijesne cjeline Solina, Travarice i Lokvica u Trogiru",
+  "eng": "Croatia – Organisation of architectural design contests – Projektni natječaj za izradu idejnog arhitektonskog-urbanističkog rješenja uređenja kulturno-povijesne cjeline Solina, Travarice i Lokvica u Trogiru"
+ },
+ "tender-lot-identifier": [
+  "LOT-0000",
+  "LOT-0000"
+ ]
+}

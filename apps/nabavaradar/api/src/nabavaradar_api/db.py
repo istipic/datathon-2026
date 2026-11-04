@@ -12,8 +12,8 @@ from typing import Any
 
 from pgvector.sqlalchemy import Vector
 from sqlalchemy import (
-    JSON,
     ARRAY,
+    JSON,
     BigInteger,
     Boolean,
     Date,
@@ -123,11 +123,11 @@ class Award(Base):
     __tablename__ = "award"
 
     pub_no: Mapped[str] = mapped_column(ForeignKey("notice.pub_no", ondelete="CASCADE"), primary_key=True)
-    lot_id: Mapped[str] = mapped_column(String(32), primary_key=True)
+    lot_id: Mapped[str] = mapped_column(String(128), primary_key=True)
     seq: Mapped[int] = mapped_column(SmallInteger, primary_key=True, default=0)
     lot_status: Mapped[str | None] = mapped_column(String(16), nullable=True)  # selec-w | clos-nw ...
     winner_name: Mapped[str | None] = mapped_column(Text, nullable=True)
-    winner_national_id: Mapped[str | None] = mapped_column(String(32), nullable=True, index=True)
+    winner_national_id: Mapped[str | None] = mapped_column(String(128), nullable=True, index=True)
     received_submissions: Mapped[int | None] = mapped_column(Integer, nullable=True)
 
 
