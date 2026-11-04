@@ -91,8 +91,10 @@ def top_k_rows(
     return rows
 
 
-def compute_crosswalk(session: Session) -> dict[str, int]:
-    """Recompute the whole crosswalk table."""
+def load_prefix_space(
+    session: Session,
+) -> tuple[list[tuple[str, str]], NDArray[np.float32], dict[str, dict[str, NDArray[np.float32]]]]:
+    """NKD keys, their embedding matrix and the CPV prefix vectors per level (division/group)."""
     nkd = session.execute(select(Nkd.code, Nkd.version, Nkd.embedding).where(Nkd.embedding.is_not(None))).all()
     if not nkd:
         raise RuntimeError("no NKD embeddings: run `ingest embed` first")
@@ -108,17 +110,33 @@ def compute_crosswalk(session: Session) -> dict[str, int]:
             .order_by(Notice.pub_date.desc())
         )
     ]
-    divisions = sorted({c[:2] for c in cpv})
-    groups = sorted({c[:3] for c in cpv})
+    levels = {
+        "division": prefix_vectors(cpv, notices, sorted({c[:2] for c in cpv})),
+        "group": prefix_vectors(cpv, notices, sorted({c[:3] for c in cpv})),
+    }
+    log.info("prefix_space", nkd=len(keys), cpv=len(cpv), notices_used=len(notices))
+    return keys, matrix, levels
+
+
+def division_similarity(session: Session) -> tuple[list[tuple[str, str]], list[str], NDArray[np.float32]]:
+    """Full NKD x CPV-division cosine matrix (not truncated to the top 10)."""
+    keys, matrix, levels = load_prefix_space(session)
+    names = list(levels["division"])
+    return keys, names, matrix @ np.stack([levels["division"][n] for n in names]).T
+
+
+def compute_crosswalk(session: Session) -> dict[str, int]:
+    """Recompute the whole crosswalk table."""
+    keys, matrix, levels = load_prefix_space(session)
     rows: list[dict[str, Any]] = []
-    for level, prefixes in (("division", divisions), ("group", groups)):
-        rows += top_k_rows(keys, matrix, prefix_vectors(cpv, notices, prefixes), level)
+    for level, vectors in levels.items():
+        rows += top_k_rows(keys, matrix, vectors, level)
     session.execute(delete(Crosswalk))
     for i in range(0, len(rows), 5000):
         session.execute(insert(Crosswalk).values(rows[i : i + 5000]))
     session.commit()
-    log.info("crosswalk_computed", nkd=len(keys), rows=len(rows), notices_used=len(notices))
-    return {"nkd": len(keys), "rows": len(rows), "notices_used": len(notices)}
+    log.info("crosswalk_computed", nkd=len(keys), rows=len(rows))
+    return {"nkd": len(keys), "rows": len(rows)}
 
 
 def percentiles_of(matrix: NDArray[np.float32], lo: float = 5, hi: float = 95) -> tuple[float, float]:

@@ -1,0 +1,211 @@
+@import '@dt/ui/styles.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* NabavaRadar brand: indigo #4F46E5 (white text 6.3:1), graphite neutrals #111827 */
+:root {
+  --brand-600: 79 70 229;
+  --brand-700: 67 56 202;
+  --accent-600: 180 83 9;
+  --neutral-900: 17 24 39;
+}
+
+body {
+  background: rgb(var(--neutral-50));
+}
+
+/* numbers always in Plex Mono, tabular */
+.num {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- tender card ---- */
+.nr-card {
+  background: rgb(var(--white));
+  border: 1px solid rgb(var(--neutral-300));
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+}
+.nr-card:hover {
+  border-color: rgb(var(--brand-600));
+}
+.nr-fit {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: var(--space-3);
+}
+.nr-fit__value {
+  font-size: var(--text-xl);
+  font-weight: 600;
+  min-width: 4.5rem;
+  color: rgb(var(--brand-700));
+}
+.nr-bar {
+  display: block;
+  height: 10px;
+  border-radius: var(--radius-full);
+  background: rgb(var(--neutral-200));
+  overflow: hidden;
+}
+.nr-bar > span {
+  display: block;
+  height: 100%;
+  border-radius: var(--radius-full);
+  background: rgb(var(--brand-600));
+}
+.nr-bar--thin {
+  height: 8px;
+}
+.nr-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+  color: rgb(var(--neutral-600));
+  font-size: var(--text-sm);
+}
+.nr-why {
+  margin-top: var(--space-3);
+  border-top: 1px solid rgb(var(--neutral-200));
+  padding-top: var(--space-3);
+}
+.nr-why summary {
+  cursor: pointer;
+  color: rgb(var(--brand-700));
+  font-weight: 600;
+}
+.nr-comp-row {
+  display: grid;
+  grid-template-columns: 11rem 1fr 3.5rem;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--text-sm);
+  margin: var(--space-2) 0;
+}
+@media (max-width: 40rem) {
+  .nr-comp-row {
+    grid-template-columns: 7.5rem 1fr 3rem;
+  }
+}
+
+/* ---- chips ---- */
+.nr-nkd {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 10px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgb(var(--neutral-300));
+  background: rgb(var(--white));
+  font-size: var(--text-sm);
+  color: rgb(var(--neutral-800));
+}
+.nr-nkd--main {
+  background: rgb(var(--brand-700));
+  border-color: rgb(var(--brand-700));
+  color: rgb(var(--white));
+  font-weight: 600;
+}
+
+/* ---- county map ---- */
+.nr-map {
+  width: 100%;
+  height: auto;
+  max-height: 32rem;
+}
+.nr-map path {
+  stroke: rgb(var(--white));
+  stroke-width: 0.6;
+  vector-effect: non-scaling-stroke;
+}
+.nr-map path:hover,
+.nr-map path:focus {
+  stroke: rgb(var(--neutral-900));
+  stroke-width: 2;
+  outline: none;
+}
+.nr-legend-swatch {
+  display: inline-block;
+  width: 1.25rem;
+  height: 1rem;
+  border: 1px solid rgb(var(--neutral-600));
+  vertical-align: middle;
+}
+
+/* ---- forms ---- */
+.nr-input {
+  width: 100%;
+  border: 2px solid rgb(var(--neutral-400));
+  border-radius: var(--radius-md);
+  padding: 10px 12px;
+  background: rgb(var(--white));
+  color: rgb(var(--neutral-900));
+  font-size: var(--text-base);
+}
+.nr-input[aria-invalid='true'] {
+  border-color: rgb(var(--danger-border));
+}
+.nr-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: var(--radius-md);
+  padding: 10px 18px;
+  font-weight: 600;
+  border: 2px solid rgb(var(--brand-700));
+  background: rgb(var(--brand-700));
+  color: rgb(var(--white));
+  cursor: pointer;
+}
+.nr-btn:disabled {
+  background: rgb(var(--neutral-600));
+  border-color: rgb(var(--neutral-600));
+  cursor: not-allowed;
+}
+.nr-btn--ghost {
+  background: rgb(var(--white));
+  color: rgb(var(--brand-700));
+}
+
+.nr-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+.nr-table th,
+.nr-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid rgb(var(--neutral-200));
+  text-align: left;
+  vertical-align: top;
+}
+.nr-table th {
+  background: rgb(var(--neutral-100));
+  color: rgb(var(--neutral-800));
+  font-weight: 600;
+}
+.nr-table td.num,
+.nr-table th.num {
+  text-align: right;
+}
+
+.nr-hero {
+  background: linear-gradient(180deg, rgb(var(--brand-700)) 0%, rgb(var(--brand-600)) 100%);
+  color: rgb(var(--white));
+}
+.nr-hero a {
+  color: rgb(var(--white));
+  text-decoration: underline;
+}
+
+@media print {
+  header,
+  footer,
+  .nr-filters,
+  .nr-no-print {
+    display: none !important;
+  }
+}

@@ -1,0 +1,9 @@
+{
+ "source": "Eurostat GISCO NUTS 2021 regions, level 3, 1:10 million, EPSG:4326",
+ "url": "https://gisco-services.ec.europa.eu/distribution/v2/nuts/geojson/NUTS_RG_10M_2021_4326_LEVL_3.geojson",
+ "retrieved": "2026-11-04",
+ "http_last_modified": "Thu, 14 May 2026 10:13:39 GMT",
+ "kept": "CNTR_CODE=HR only (21 counties incl. Grad Zagreb), coordinates rounded to 4 decimals",
+ "attribution": "\u00a9 EuroGeographics for the administrative boundaries",
+ "output": "apps/nabavaradar/web/public/data/counties-hr.geojson"
+}
