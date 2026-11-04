@@ -21,6 +21,9 @@ class OtpornoSettings(CoreSettings):
     overpass_url: str = "https://overpass-api.de/api/interpreter"
     gisco_lau_url: str = "https://gisco-services.ec.europa.eu/distribution/v2/lau/geojson/LAU_RG_01M_2024_4326.geojson"
     dhmz_url: str = "https://vrijeme.hr/hrvatska_n.xml"
+    corine_url: str = (
+        "https://image.discomap.eea.europa.eu/arcgis/rest/services/Corine/CLC2018_WM/MapServer"
+    )
     cors_origins: str = Field(
         default="http://localhost:5175,http://127.0.0.1:5175",
         description="Comma-separated list of allowed browser origins.",

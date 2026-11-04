@@ -1,6 +1,7 @@
 import type {
   CellCollection,
   CoolingResult,
+  DhmzLive,
   Exposure,
   GeocodeResponse,
   MunicipalityHit,
@@ -50,6 +51,8 @@ const qs = (params: Record<string, string | number>) =>
   new URLSearchParams(Object.entries(params).map(([k, v]) => [k, String(v)])).toString();
 
 export const api = {
+  liveDhmz: (lat: number, lon: number, signal?: AbortSignal) =>
+    request<DhmzLive>(`/live/dhmz?${qs({ lat, lon })}`, { signal }),
   geocode: (q: string, signal?: AbortSignal) =>
     request<GeocodeResponse>(`/geocode?${qs({ q })}`, { signal }),
   passport: (lat: number, lon: number, signal?: AbortSignal) =>

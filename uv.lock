@@ -1063,6 +1063,7 @@ name = "otporno-api"
 version = "0.1.0"
 source = { editable = "apps/otporno/api" }
 dependencies = [
+    { name = "jinja2" },
     { name = "opendata-core" },
     { name = "osmium" },
     { name = "pyyaml" },
@@ -1070,6 +1071,7 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
+    { name = "jinja2", specifier = ">=3" },
     { name = "opendata-core", editable = "packages/core" },
     { name = "osmium", specifier = ">=4" },
     { name = "pyyaml", specifier = ">=6" },

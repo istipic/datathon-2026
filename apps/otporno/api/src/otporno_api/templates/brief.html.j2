@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="hr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Izvješće o izloženosti: {{ m.name }} – Otporko</title>
+  <style>
+    @page { size: A4; margin: 14mm; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; color: #1c1917; line-height: 1.45; max-width: 46rem; margin: 1.5rem auto; padding: 0 1rem; }
+    h1, h2 { font-family: Georgia, 'Times New Roman', serif; }
+    h1 { font-size: 1.75rem; margin: 0 0 .25rem; }
+    h2 { font-size: 1.2rem; margin: 1.6rem 0 .5rem; border-bottom: 2px solid #1e3a8a; padding-bottom: .15rem; }
+    table { width: 100%; border-collapse: collapse; font-size: .92rem; }
+    th, td { text-align: left; padding: .3rem .4rem; border-bottom: 1px solid #d6cfc1; }
+    td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; }
+    .kpis { display: grid; grid-template-columns: repeat(2, 1fr); gap: .5rem; }
+    .kpi { border: 1px solid #d6cfc1; padding: .5rem .75rem; }
+    .kpi b { display: block; font-size: 1.4rem; font-family: Georgia, serif; }
+    .note { color: #57534e; font-size: .85rem; }
+    li { margin-bottom: .4rem; }
+    a { color: #1e3a8a; }
+  </style>
+</head>
+<body>
+  <p class="note">Otporko · izvješće za općinu / grad · izrađeno {{ generated }}</p>
+  <h1>{{ m.name }}</h1>
+  <p>{{ pop_total }} stanovnika, od toga {{ pop_65p }} starijih od 65 godina (popis 2021., mreža 1 km).</p>
+
+  <h2>Ključni pokazatelji</h2>
+  <div class="kpis">
+    <div class="kpi"><b>{{ heat_high_65p }}</b>stanovnika 65+ u područjima visoke ili vrlo visoke vrućine</div>
+    <div class="kpi"><b>nije dostupno</b>izloženost poplavi: Hrvatske vode objavljuju karte samo kao sliku, razina se ne računa automatski</div>
+  </div>
+
+  <h2>Vrućina po razinama</h2>
+  <table>
+    <thead><tr><th>Razina</th><th class="n">Ćelija</th><th class="n">Stanovnika</th><th class="n">od toga 65+</th></tr></thead>
+    <tbody>
+    {% for b in bands %}
+      <tr><td>{{ b.band }}</td><td class="n">{{ b.cells }}</td><td class="n">{{ b.pop_total }}</td><td class="n">{{ b.pop_65p }}</td></tr>
+    {% endfor %}
+    {% if without.cells %}
+      <tr><td>bez klimatskih podataka</td><td class="n">{{ without.cells }}</td><td class="n">{{ without.pop_total }}</td><td class="n">{{ without.pop_65p }}</td></tr>
+    {% endif %}
+    </tbody>
+  </table>
+
+  {% if top %}
+  <h2>Ćelije s najvišim prioritetom</h2>
+  <table>
+    <thead><tr><th>Ćelija (1 km)</th><th class="n">Stanovnika</th><th class="n">65+</th><th>Vrućina</th><th class="n">Prioritet</th></tr></thead>
+    <tbody>
+    {% for c in top %}
+      <tr><td>{{ c.cell }}</td><td class="n">{{ c.pop_total }}</td><td class="n">{{ c.pop_65p }}</td><td>{{ c.heat_band or '–' }}</td><td class="n">{{ c.priority }}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  <p class="note">Prioritet = Σ težina × razina opasnosti × (stanovnici 65+ + ½ ostalih); zadane težine poplava 50 %, vrućina 35 %, požar 15 %, a opasnosti bez podataka izuzimaju se i težine se preračunavaju.</p>
+  {% endif %}
+
+  {% for group in actions %}
+  {% if group.rows %}
+  <h2>Preporučene mjere za općinu: {{ group.title }}</h2>
+  <ol>
+    {% for a in group.rows %}
+    <li>{{ a.text }} <span class="note">Izvor: <a href="{{ a.source_url }}">{{ a.source_title }}</a></span></li>
+    {% endfor %}
+  </ol>
+  {% endif %}
+  {% endfor %}
+
+  <h2>Izvori i ograničenja</h2>
+  <ul class="note">
+    <li>Stanovništvo: Eurostat popis 2021., mreža 1 km; granice: GISCO LAU 2024. Ćelija pripada općini u kojoj joj je središte.</li>
+    <li>Vrućina: Open-Meteo Climate API (CMIP6), Open-Meteo.com, CC BY 4.0; razina je rang među točkama nacionalne mreže od 0,25°.{% if coverage %} Klimatski podaci: {{ coverage.heat_exact }} ćelija s vlastitom točkom, {{ coverage.heat_approximate }} s najbližom (do 25 km), {{ coverage.heat_missing }} bez podataka; mreža ima {{ coverage.grid_points }} točaka.{% endif %}</li>
+    <li>Poplava: {{ flood_disclaimer }}</li>
+  </ul>
+</body>
+</html>

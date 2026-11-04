@@ -271,3 +271,91 @@ def test_greedy_choice_covers_at_least_as_much_as_before() -> None:
     res3 = cooling.propose(problem, 1, covered_before_mask=mask)
     assert res3["covered_before"] == 10
     assert res3["covered_after"] == 18
+
+
+# ----------------------------------------------------------------------------- DHMZ feed (P1)
+def test_dhmz_feed_parses_real_snapshot(dhmz_xml: bytes) -> None:
+    from otporno_api import dhmz
+
+    observed, stations = dhmz.parse(dhmz_xml)
+    assert observed.isoformat() == "2026-11-04T22:00:00+01:00"
+    assert len(stations) == 60
+    karlovac = next(s for s in stations if s.name == "Karlovac")
+    assert (karlovac.lat, karlovac.lon) == (45.494, 15.565)
+    assert karlovac.temp_c == 7.3
+    assert karlovac.humidity_pct == 100.0
+    assert karlovac.wind_dir == "SW"
+    # a humidity of 0 is a sensor gap in the feed (Bosiljevo)
+    assert next(s for s in stations if s.name == "Bosiljevo").humidity_pct is None
+
+
+def test_dhmz_nearest_stations_and_staleness(dhmz_xml: bytes) -> None:
+    from datetime import UTC, datetime
+
+    from otporno_api import dhmz
+
+    live = dhmz.DhmzLive(lambda: dhmz_xml, clock=lambda: 1_000.0)
+    fresh = dhmz.payload(live, 45.4929, 15.5553, now=datetime(2026, 11, 4, 22, 40, tzinfo=UTC))
+    assert fresh["status"] == "ok"
+    assert fresh["stations"][0]["name"] == "Karlovac"
+    assert fresh["stations"][0]["distance_km"] < 2
+    assert len(fresh["stations"]) <= 3
+    assert fresh["attribution"].startswith("Izvor: Državni")
+    stale = dhmz.payload(live, None, None, now=datetime(2026, 11, 5, 2, 30, tzinfo=UTC))
+    assert stale["status"] == "stale"
+    assert stale["stations"] == []
+    far = dhmz.payload(live, 48.8566, 2.3522, now=datetime(2026, 11, 4, 22, 40, tzinfo=UTC))
+    assert far["stations"] == []
+
+
+def test_dhmz_cache_is_thirty_minutes(dhmz_xml: bytes) -> None:
+    from otporno_api import dhmz
+
+    now = [0.0]
+    calls = []
+    live = dhmz.DhmzLive(lambda: calls.append(1) or dhmz_xml, clock=lambda: now[0])
+    live.get()
+    now[0] = 29 * 60
+    live.get()
+    assert len(calls) == 1
+    now[0] = 31 * 60
+    live.get()
+    assert len(calls) == 2
+
+
+# ----------------------------------------------------------------------------- CORINE fire exposure (P1)
+def _fixture(name: str) -> dict[str, Any]:
+    import json
+
+    from conftest import FIXTURES
+
+    return json.loads((FIXTURES / name).read_text(encoding="utf-8"))
+
+
+def test_fire_class_at_point_decides_the_band() -> None:
+    from otporno_api import fire
+
+    forest = fire.classify(
+        _fixture("2026-11-04_corine_identify_velebit.json"),
+        _fixture("2026-11-04_corine_identify_velebit.json"),
+    )
+    assert forest.code_at_point == 311
+    assert forest.band == "visoka"
+    assert forest.label_at_point == "Bjelogorična šuma"
+    urban = fire.classify(
+        _fixture("2026-11-04_corine_identify_karlovac.json"),
+        _fixture("2026-11-04_corine_identify_karlovac_500m.json"),
+    )
+    assert urban.code_at_point == 112
+    assert urban.band == "niska"
+    assert urban.vegetation_nearby == {}
+
+
+def test_vegetation_next_to_the_point_gives_the_middle_band() -> None:
+    from otporno_api import fire
+
+    around = {"results": [{"layerId": 0, "attributes": {"Code_18": "312"}}]}
+    result = fire.classify(_fixture("2026-11-04_corine_identify_karlovac.json"), around)
+    assert result.band == "umjerena"
+    assert result.vegetation_nearby == {312: "Crnogorična šuma"}
+    assert set(fire.VEGETATION) == {311, 312, 313, 321, 322, 323, 324}

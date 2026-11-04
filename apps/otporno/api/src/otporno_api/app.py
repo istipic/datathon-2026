@@ -10,6 +10,7 @@ from sqlalchemy.orm import Session, sessionmaker
 
 from opendata_core.app_factory import create_app
 from otporno_api.api import make_router
+from otporno_api.dhmz import DhmzLive
 from otporno_api.settings import OtpornoSettings
 
 
@@ -17,11 +18,12 @@ def create_otporno_app(
     settings: OtpornoSettings,
     get_session: Callable[..., Any],
     factory: sessionmaker[Session],
+    dhmz_live: DhmzLive | None = None,
 ) -> FastAPI:
     """Build the app (settings, session dependency, and the factory used by background tasks)."""
     return create_app(
         settings,
-        [make_router(get_session, settings, factory)],
+        [make_router(get_session, settings, factory, dhmz_live)],
         settings.cors_origin_list,
         get_session=get_session,
         title="Otporko API",

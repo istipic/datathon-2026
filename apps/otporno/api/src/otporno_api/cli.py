@@ -157,11 +157,37 @@ def flood(lau: str = typer.Option(..., "--lau", help="Municipality id")) -> None
 
 @ingest_app.command("corine")
 def corine() -> None:
-    """CORINE Land Cover 2018 for the fire hazard (P1, not implemented yet)."""
-    typer.echo(
-        "corine: P1 (wildfire) is not implemented; the passport reports fire as unavailable."
-    )
-    raise typer.Exit(code=2)
+    """CORINE Land Cover 2018 (fire exposure): checks the EEA map service and records the check.
+
+    The service answers point queries, so nothing is stored per cell; the passport queries it on
+    demand (cached 24 h in memory)."""
+    import httpx
+
+    from opendata_core import http as http_mod
+    from opendata_core.provenance import record_ingestion
+    from otporno_api.constants import SRC_CORINE
+    from otporno_api.fire import VEGETATION, fetch
+
+    def step(session: Session, settings: OtpornoSettings) -> dict[str, Any]:
+        with record_ingestion(session, SRC_CORINE, settings.corine_url) as run:
+            with http_mod.make_client(settings) as client:
+                info = client.get(settings.corine_url, params={"f": "json"})
+                info.raise_for_status()
+                layers = [lyr["name"] for lyr in info.json().get("layers", [])[:3]]
+                try:  # centre of Karlovac: an end-to-end probe of both identify queries
+                    probe = fetch(settings, 15.5553, 45.4929, client)
+                except httpx.HTTPError as exc:
+                    raise RuntimeError(f"identify failed: {type(exc).__name__}") from exc
+            run.rows = 1
+        return {
+            "layers": layers,
+            "vegetation_classes": sorted(VEGETATION),
+            "probe_karlovac": {"code": probe.code_at_point, "band": probe.band},
+            "stored_cells": 0,
+            "note": "Point-query service: nothing is downloaded; see otporno_api/fire.py.",
+        }
+
+    _echo(_run("corine", step))
 
 
 @ingest_app.command("all-demo")

@@ -74,7 +74,7 @@ export function HomePage() {
           <FlameIcon />
           <h3 className="ot-display mt-2 text-lg">Požar</h3>
           <p className="mt-1 text-neutral-700">
-            Procjena opasnosti od požara otvorenog prostora u pripremi.
+            Nalazi li se šuma, travnjak ili makija (CORINE 2018) na vašoj adresi ili uz nju.
           </p>
         </article>
       </section>

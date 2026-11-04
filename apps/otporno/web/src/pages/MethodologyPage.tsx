@@ -53,6 +53,21 @@ export function MethodologyPage() {
         </p>
       </section>
 
+      <section aria-labelledby="m-fire">
+        <h2 id="m-fire" className="ot-display text-xl">
+          Požar
+        </h2>
+        <p className="mt-2">
+          Za požar otvorenog prostora prikazujemo <strong>izloženost vegetaciji</strong>, a ne
+          vjerojatnost požara. Iz usluge Europske agencije za okoliš (CORINE Land Cover 2018) čitamo
+          klasu pokrova zemljišta na adresi i unutar oko 500 m. Ako je adresa u prirodnoj vegetaciji
+          (klase 311–324: šume, travnjaci, vrištine, makija, prijelazno područje šuma–grmlje) razina
+          je „visoka”, ako je takva vegetacija u blizini „umjerena”, inače „niska”. CORINE kartira
+          površine od najmanje 25 ha pa je pouzdanost uvijek niska. Razina požara ne ulazi u
+          prioritet ćelija općine jer za ćelije nije učitan izvor.
+        </p>
+      </section>
+
       <section aria-labelledby="m-conf">
         <h2 id="m-conf" className="ot-display text-xl">
           Pouzdanost

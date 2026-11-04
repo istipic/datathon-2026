@@ -52,7 +52,7 @@ cd apps/otporno/web && pnpm dev                   # http://127.0.0.1:5175
 ```
 
 CLI: `ingest sources | municipalities | grid | flood --lau | heat-grid | heat-cells | buildings --lau | actions |
-all-demo`, `validate`. `ingest corine` je P1 (požar) i još nije implementiran.
+corine | all-demo`, `validate`. `ingest corine` provjerava EEA uslugu (upit po točki, ništa se ne preuzima).
 
 ## API (`/api/v1`)
 
@@ -66,6 +66,8 @@ all-demo`, `validate`. `ingest corine` je P1 (požar) i još nije implementiran.
 | `GET /cells?lau=&w_flood=&w_heat=&w_fire=`  | GeoJSON ćelija s prioritetom (težine zbroj 1 ± 0,01, inače 422)                        |
 | `POST /cooling-centres {lau_id,k,min_band}` | prijedlog 1–5 lokacija, pokrivenost 415 m                                              |
 | `GET /health/climate-quota`                 | potrošnja Open-Meteo kvote i broj spremljenih točaka                                   |
+| `GET /live/dhmz?lat=&lon=`                  | najbliže DHMZ postaje (cache 30 min, skriveno ako je mjerenje starije od 3 h)          |
+| `GET /municipalities/{lau}/brief`           | HTML izvješće za ispis (Jinja2): pokazatelji, ćelije, mjere za općinu s izvorima       |
 | `GET /sources`, `GET /health`               | provenijencija izvora, zdravlje                                                        |
 
 ## Testovi
@@ -84,4 +86,5 @@ Fixture su stvarni snimljeni odgovori (Open-Meteo 45,5 N 15,5 E, HV WMS capabili
 - Besplatna kvota Open-Meteo punu usporednu mrežu puni danima; do tada je rangiranje približno i pouzdanost niža.
 - Točka adrese zaokružuje se na 0,1° (oko 10 km): rezultat opisuje okolicu, ne zgradu.
 - Ćelije od 1 km dodjeljuju se općini po središtu; rubne ćelije mogu uključivati susjedne stanovnike.
-- P1 (požar CORINE, DHMZ uživo, općinsko izvješće) nije izrađen.
+- Požar je samo izloženost vegetaciji (CORINE 2018, adresa i krug od 500 m), ne vjerojatnost; ne ulazi u prioritet ćelija jer za ćelije nije učitan izvor (to bi tražilo tisuće upita).
+- DHMZ vrijeme uživo i općinsko izvješće (P1) izrađeni su; DHMZ vlaga 0 u izvoru tretira se kao nedostajuća vrijednost.

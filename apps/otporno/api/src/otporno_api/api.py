@@ -6,14 +6,18 @@ from collections.abc import Callable
 from typing import Annotated, Any, Literal
 
 from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException, Query, Response
+from fastapi.responses import HTMLResponse
 from pydantic import BaseModel, Field
 from sqlalchemy import text
 from sqlalchemy.orm import Session, sessionmaker
 
 from opendata_core import geocode as core_geocode
-from otporno_api import cooling, exposure
+from opendata_core import http as http_mod
+from otporno_api import brief as brief_mod
+from otporno_api import cooling, dhmz, exposure
 from otporno_api.compute import run_compute
 from otporno_api.constants import BAND_EDGES, DEFAULT_WEIGHTS
+from otporno_api.fire import FireCache
 from otporno_api.om_client import OpenMeteoClient
 from otporno_api.passport import OutsideCroatia, build_passport
 from otporno_api.priority import WeightError
@@ -52,9 +56,11 @@ def make_router(
     get_session: Callable[..., Any],
     settings: OtpornoSettings,
     factory: sessionmaker[Session],
+    dhmz_live: dhmz.DhmzLive | None = None,
 ) -> APIRouter:
     """Routes bound to the settings and the session factory."""
     router = APIRouter(prefix="/api/v1")
+    fire_cache = FireCache()
 
     def known(session: Session, lau_id: str) -> None:
         if exposure.municipality_info(session, lau_id) is None:
@@ -98,7 +104,7 @@ def make_router(
             return OpenMeteoClient(settings, factory, interactive=True)
 
         try:
-            return build_passport(session, settings, lat, lon, client)
+            return build_passport(session, settings, lat, lon, client, fire_cache)
         except OutsideCroatia as exc:
             raise HTTPException(422, str(exc)) from exc
 
@@ -207,5 +213,34 @@ def make_router(
             "daily_limit": 10000,
             "points_cached": int(pts),
         }
+
+    def fetch_dhmz() -> bytes:
+        with http_mod.make_client(settings) as client:
+            response = client.get(settings.dhmz_url)
+            response.raise_for_status()
+            return response.content
+
+    live = dhmz_live or dhmz.DhmzLive(fetch_dhmz)
+
+    @router.get("/live/dhmz")
+    def live_dhmz(
+        lat: Annotated[float | None, Query()] = None,
+        lon: Annotated[float | None, Query()] = None,
+    ) -> dict[str, Any]:
+        """Latest DHMZ observations (cached 30 min, hidden when older than 3 h); nearest stations when a point is given."""
+        if (lat is None) != (lon is None):
+            raise HTTPException(422, "Navedite i lat i lon.")
+        try:
+            return dhmz.payload(live, lat, lon)
+        except Exception as exc:
+            raise HTTPException(502, "Podaci DHMZ-a trenutno nisu dostupni.") from exc
+
+    @router.get("/municipalities/{lau_id}/brief", response_class=HTMLResponse)
+    def municipality_brief(lau_id: str, session: Session = Depends(get_session)) -> HTMLResponse:  # noqa: B008
+        """Printable HTML brief of a municipality (exposure, priority cells, cited measures)."""
+        html = brief_mod.build_brief(session, lau_id)
+        if html is None:
+            raise HTTPException(404, "Nepoznata općina ili grad.")
+        return HTMLResponse(html)
 
     return router

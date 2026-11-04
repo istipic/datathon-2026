@@ -54,11 +54,25 @@ export interface HeatBlock {
   note?: string;
 }
 
+export interface FireBlock {
+  status: string;
+  message: string | null;
+  band?: Band | null;
+  score?: number;
+  land_cover?: { code: number | null; label: string | null };
+  vegetation_nearby?: { code: number; label: string }[];
+  radius_m?: number;
+  confidence?: Confidence;
+  confidence_reasons?: string[];
+  method?: string;
+  attribution?: string;
+}
+
 export interface Passport {
   location: { lat: number; lon: number; municipality: { lau_id: string; name: string } };
   flood: FloodBlock;
   heat: HeatBlock;
-  fire: { status: string; message: string };
+  fire: FireBlock;
   actions: { flood: ActionItem[]; heat: ActionItem[]; fire: ActionItem[] };
   sources: { id: string; title: string; note: string | null }[];
   computed_at: string;
@@ -159,4 +173,26 @@ export interface CoolingResult {
   candidates: number;
   radius_m: number;
   note: string;
+}
+
+export interface DhmzStation {
+  name: string;
+  lat: number;
+  lon: number;
+  automatic: boolean;
+  temp_c: number | null;
+  humidity_pct: number | null;
+  pressure_hpa: number | null;
+  wind_dir: string | null;
+  wind_ms: number | null;
+  condition: string | null;
+  distance_km: number | null;
+}
+export interface DhmzLive {
+  status: 'ok' | 'stale';
+  message: string | null;
+  observed_at: string;
+  age_minutes: number;
+  attribution: string;
+  stations: DhmzStation[];
 }

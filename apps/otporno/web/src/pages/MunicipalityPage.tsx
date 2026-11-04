@@ -179,6 +179,18 @@ export function MunicipalityPage() {
           2021., mreža 1 km).
           {m.demo ? ' Unaprijed izračunato.' : ''}
         </p>
+        {ex.status === 'ready' ? (
+          <p className="ot-noprint mt-3">
+            <a
+              className="ot-btn ot-btn--ghost"
+              href={`/api/v1/municipalities/${encodeURIComponent(lau)}/brief`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Otvori izvješće za ispis
+            </a>
+          </p>
+        ) : null}
       </header>
 
       {ex.status === 'computing' ? (

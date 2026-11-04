@@ -156,3 +156,9 @@ def seeded(engine: Engine, om_response: dict[str, Any]) -> sessionmaker[Session]
         fetch_full_point(RecordedClient(om_response), s, 45.5, 15.5, batch=True, combined=True)  # type: ignore[arg-type]
         compute_municipality(s, KARLOVAC)
     return factory
+
+
+@pytest.fixture(scope="session")
+def dhmz_xml() -> bytes:
+    """Real DHMZ feed https://vrijeme.hr/hrvatska_n.xml recorded 2026-11-04 (observation 22:00)."""
+    return (FIXTURES / "2026-11-04_dhmz_hrvatska_n.xml").read_bytes()

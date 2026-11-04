@@ -61,3 +61,15 @@ Municipal heat and fire rules rest on laws and public health pages because no mu
 - Flood is the weakest part of the product and says so; the planned upgrade path is a vector source from HV.
 - Karlovac and Zagreb heat data depend on how many days the batch job has run; `GET /health/climate-quota` shows
   usage and cached points.
+
+## Addendum (P1, 2026-11-04)
+
+- **Fire exposure from CORINE 2018.** The EEA map service answers `identify` point queries with the official class
+  code (`2026-11-04_corine_identify_*.json`), so two queries per address (class at the point, classes within about
+  500 m) replace a download. Band: inside classes 311-324 `visoka`, such vegetation within 500 m `umjerena`, else
+  `niska`; confidence is always `niska` (minimum mapping unit 25 ha). It is an exposure, not a fire probability.
+  It is not computed per municipal cell (thousands of requests), so the cell priority keeps fire weight 0 and
+  renormalises, as for flood.
+- **DHMZ current observations** (`vrijeme.hr/hrvatska_n.xml`, 60 stations on 2026-11-04): cached 30 minutes, hidden
+  when older than 3 hours; a humidity of exactly 0 is treated as a sensor gap.
+- **Municipal brief** is rendered with Jinja2 (`jinja2>=3`, the second new dependency of this app after `pyyaml`).

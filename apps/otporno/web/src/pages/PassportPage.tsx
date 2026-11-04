@@ -5,6 +5,7 @@ import { ActionList } from '../components/ActionList';
 import { AddressSearch } from '../components/AddressSearch';
 import { FloodMap } from '../components/FloodMap';
 import { HeatBars } from '../components/HeatBars';
+import { LiveWeather } from '../components/LiveWeather';
 import { FlameIcon, SunIcon, WaveIcon } from '../components/icons';
 import { RingGauge } from '../components/RingGauge';
 import { ApiError, api } from '../lib/api';
@@ -122,9 +123,30 @@ function FireCard({ p }: { p: Passport }) {
         </h2>
       </header>
       <div className="mt-3 grid place-items-center">
-        <RingGauge band={null} hazard="Požar" unknownLabel="Još nije dostupno" />
+        <RingGauge band={p.fire.band ?? null} hazard="Požar" unknownLabel="Nije dostupno" />
       </div>
-      <p className="mt-3 text-neutral-700">{p.fire.message}</p>
+      {p.fire.status === 'ready' ? (
+        <>
+          <p className="mt-3">
+            <strong>Pokrov zemljišta na adresi:</strong> {p.fire.land_cover?.label ?? 'nepoznato'}
+            {p.fire.land_cover?.code ? ` (CORINE ${p.fire.land_cover.code})` : ''}.
+          </p>
+          <p className="mt-2">
+            {p.fire.vegetation_nearby && p.fire.vegetation_nearby.length > 0
+              ? `U krugu od oko ${p.fire.radius_m} m nalazi se prirodna vegetacija: ${p.fire.vegetation_nearby
+                  .map((v) => v.label.toLowerCase())
+                  .join(', ')}.`
+              : `U krugu od oko ${p.fire.radius_m} m nema kartirane prirodne vegetacije (šume, travnjaci, makija).`}
+          </p>
+          <div className="mt-3 flex flex-wrap gap-2">
+            {p.fire.confidence ? <ConfidenceBadge level={p.fire.confidence} /> : null}
+          </div>
+          <p className="mt-2 text-sm text-neutral-700">{p.fire.method}</p>
+          <p className="mt-1 text-sm text-neutral-700">{p.fire.attribution}.</p>
+        </>
+      ) : (
+        <p className="mt-3 text-neutral-700">{p.fire.message}</p>
+      )}
     </article>
   );
 }
@@ -237,9 +259,12 @@ export function PassportPage() {
           groups={[
             { key: 'flood', title: 'Poplava', items: p.actions.flood },
             { key: 'heat', title: 'Vrućina', items: p.actions.heat },
+            { key: 'fire', title: 'Požar', items: p.actions.fire },
           ]}
         />
       </section>
+
+      <LiveWeather lat={p.location.lat} lon={p.location.lon} />
 
       <section
         id="karta-poplava"

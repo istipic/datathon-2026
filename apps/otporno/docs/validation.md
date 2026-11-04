@@ -20,6 +20,9 @@ Stanje na 2026-11-04. Ovdje je samo ono što je stvarno provjereno ili što ček
 | Brojevi na `/opcina` (pojasevi, KPI) jednaki zbrojevima GeoJSON-a `/cells`                                                                   | `tests/test_integration.py`                          | prolazi         |
 | Web: kartice, pravila s izvorima, 422, ponovni pokušaj, ispravak težina                                                                      | `apps/otporno/web` (vitest)                          | prolazi         |
 | Playwright: adresa → putovnica; općina → optimizator radi                                                                                    | `apps/otporno/web/e2e/smoke.spec.ts`                 | prolazi         |
+| Požar (CORINE): klasa u točki i vegetacija u krugu 500 m na snimljenim odgovorima EEA usluge; `/passport` vraća blok `fire`                  | `tests/test_unit.py`, `tests/test_integration.py`    | prolazi         |
+| DHMZ: parsiranje stvarne snimke (60 postaja), najbliže postaje, skrivanje starijeg od 3 h, cache 30 min                                      | `tests/test_unit.py`, `tests/test_integration.py`    | prolazi         |
+| Izvješće općine (HTML) usklađeno s `/exposure`, uključuje izvore i HV napomenu                                                               | `tests/test_integration.py`                          | prolazi         |
 | Lighthouse pristupačnost `/putovnica`                                                                                                        | `data/evidence/2026-11-04_lighthouse_putovnica.json` | 100 (cilj ≥ 95) |
 
 Napomena: integracijski testovi i Playwright koriste bazu `otporno_test` sa stvarnim ćelijama i zgradama Karlovca

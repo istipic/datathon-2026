@@ -9,6 +9,7 @@ from typing import Any
 
 import pytest
 import respx
+from conftest import FIXTURES
 from fastapi.testclient import TestClient
 from httpx import Response
 from sqlalchemy.orm import Session, sessionmaker
@@ -30,7 +31,7 @@ PARIS = (48.8566, 2.3522)
 
 
 @pytest.fixture(scope="module")
-def client(seeded: sessionmaker[Session], om_response: dict[str, Any]) -> Any:
+def client(seeded: sessionmaker[Session], om_response: dict[str, Any], dhmz_xml: bytes) -> Any:
     settings = OtpornoSettings(
         _env_file=None,
         database_url=os.environ["TEST_DATABASE_URL"],
@@ -38,12 +39,24 @@ def client(seeded: sessionmaker[Session], om_response: dict[str, Any]) -> Any:
         rate_limit="1000/minute",
     )
     from opendata_core.db import make_engine, make_session_dependency
+    from otporno_api.dhmz import DhmzLive
 
-    app = create_otporno_app(settings, make_session_dependency(make_engine(settings)), seeded)
+    live = DhmzLive(lambda: dhmz_xml, clock=lambda: 0.0)
+    app = create_otporno_app(settings, make_session_dependency(make_engine(settings)), seeded, live)
     with respx.mock(assert_all_called=False) as router:
         router.get(settings.open_meteo_climate_url).mock(
             return_value=Response(200, json=om_response, headers={"x-ratelimit-cost": "939.2"})
         )
+
+        def corine(request: Any) -> Response:
+            # layers=all:0 is the neighbourhood query, layers=all the point query (both recorded 2026-11-04)
+            wanted = "karlovac_500m" if request.url.params.get("layers") == "all:0" else "karlovac"
+            body = (FIXTURES / f"2026-11-04_corine_identify_{wanted}.json").read_text(
+                encoding="utf-8"
+            )
+            return Response(200, content=body, headers={"content-type": "application/json"})
+
+        router.get(url__startswith=settings.corine_url).mock(side_effect=corine)
         yield TestClient(app)
 
 
@@ -67,7 +80,7 @@ def test_passport_in_karlovac_states_the_flood_ladder_honestly(
     assert f["disclaimer"] == FLOOD_DISCLAIMER
     assert f["map_year"] == 2019
     assert f["wms"]["layers"] == HV_LAYERS
-    assert body["fire"]["status"] == "unavailable"
+    assert body["fire"]["status"] == "ready"
 
 
 def test_passport_heat_block_for_a_point_without_cache_uses_one_request(client: TestClient) -> None:
@@ -214,3 +227,46 @@ def test_sources_endpoint_lists_the_registered_sources(client: TestClient) -> No
         "eurostat-census-grid-2021",
         "osm-public-buildings",
     } <= ids
+
+
+def test_live_dhmz_returns_nearest_stations_or_hides_stale_data(client: TestClient) -> None:
+    r = client.get("/api/v1/live/dhmz", params={"lat": KUPA[0], "lon": KUPA[1]})
+    assert r.status_code == 200
+    body = r.json()
+    # the recorded feed is from 2026-11-04 22:00; later runs see it as older than 3 hours and must hide it
+    assert body["status"] in {"ok", "stale"}
+    if body["status"] == "ok":
+        assert body["stations"][0]["name"] == "Karlovac"
+    else:
+        assert body["stations"] == []
+        assert "3 sata" in body["message"]
+    assert body["observed_at"].startswith("2026-11-04T22:00")
+    assert client.get("/api/v1/live/dhmz", params={"lat": 45.5}).status_code == 422
+
+
+def test_brief_is_html_and_reconciles_with_exposure(client: TestClient) -> None:
+    r = client.get(f"/api/v1/municipalities/{KARLOVAC}/brief")
+    assert r.status_code == 200
+    assert r.headers["content-type"].startswith("text/html")
+    exp = client.get(f"/api/v1/municipalities/{KARLOVAC}/exposure").json()
+    pop = f"{exp['municipality']['pop_total']:,}".replace(",", ".")
+    assert "Karlovac" in r.text
+    assert pop in r.text
+    assert "Hrvatske vode ne jamče" in r.text
+    assert r.text.count("Izvor: <a href=") >= 3
+    assert client.get("/api/v1/municipalities/HR_00000/brief").status_code == 404
+
+
+def test_passport_fire_block_uses_corine_and_lists_cited_actions(client: TestClient) -> None:
+    body = passport(client, KUPA).json()
+    fire = body["fire"]
+    assert fire["status"] == "ready"
+    # recorded response: the centre of Karlovac is "112 Discontinuous urban fabric"; no vegetation within 500 m
+    assert fire["land_cover"]["code"] == 112
+    assert fire["band"] == "niska"
+    assert fire["confidence"] == "niska"
+    assert "Copernicus" in fire["attribution"]
+    acts = body["actions"]["fire"]
+    assert 1 <= len(acts) <= 6
+    assert all(a["source_url"].startswith("https://") for a in acts)
+    assert any(s["id"] == "corine-2018" for s in body["sources"])

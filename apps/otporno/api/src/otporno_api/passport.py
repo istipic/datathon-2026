@@ -10,9 +10,17 @@ import structlog
 from sqlalchemy.orm import Session
 
 from opendata_core.geo import in_croatia
+from otporno_api import fire as fire_mod
 from otporno_api.actions import actions_for
-from otporno_api.constants import FLOOD_DISCLAIMER, MODELS, SRC_HV_FLOOD, SRC_OPEN_METEO
+from otporno_api.constants import (
+    FLOOD_DISCLAIMER,
+    MODELS,
+    SRC_CORINE,
+    SRC_HV_FLOOD,
+    SRC_OPEN_METEO,
+)
 from otporno_api.exposure import municipality_of_point
+from otporno_api.fire import FireCache
 from otporno_api.flood import flood_payload
 from otporno_api.heat import (
     APPROX_MAX_KM,
@@ -145,14 +153,29 @@ def _heat_block(
     return block
 
 
+def _fire_block(
+    settings: OtpornoSettings, cache: FireCache | None, lat: float, lon: float
+) -> dict[str, Any]:
+    try:
+        return fire_mod.payload((cache or FireCache()).get_or_fetch(settings, lon, lat))
+    except Exception as exc:  # the passport must still work when the EEA service is down
+        log.warning("fire_unavailable", error=type(exc).__name__)
+        return {
+            "status": "unavailable",
+            "band": None,
+            "message": "Podaci o pokrovu zemljišta (CORINE) trenutno nisu dostupni.",
+        }
+
+
 def build_passport(
     session: Session,
     settings: OtpornoSettings,
     lat: float,
     lon: float,
     client_factory: Callable[[], OpenMeteoClient] | None = None,
+    fire_cache: FireCache | None = None,
 ) -> dict[str, Any]:
-    """Flood + heat (+ fire placeholder) for a point in Croatia, with cited actions.
+    """Flood + heat + fire exposure for a point in Croatia, with cited actions.
 
     Raises :class:`OutsideCroatia` for points outside the country.
     """
@@ -163,17 +186,13 @@ def build_passport(
         raise OutsideCroatia("Točka nije unutar općine ili grada u Hrvatskoj.")
     flood = flood_payload(settings)
     heat = _heat_block(session, settings, client_factory, lat, lon)
-    fire = {
-        "status": "unavailable",
-        "band": None,
-        "message": "Procjena opasnosti od požara otvorenog prostora (P1) nije učitana.",
-    }
+    fire = _fire_block(settings, fire_cache, lat, lon)
     actions = {
         "flood": actions_for(
             session, "flood", None if flood["level"] is None else str(flood["band"] or "any")
         ),
         "heat": actions_for(session, "heat", heat.get("band")),
-        "fire": [],
+        "fire": actions_for(session, "fire", fire.get("band")) if fire["status"] == "ready" else [],
     }
     return {
         "location": {
@@ -192,6 +211,11 @@ def build_passport(
                 "note": FLOOD_DISCLAIMER,
             },
             {"id": SRC_OPEN_METEO, "title": "Open-Meteo Climate API", "note": ATTRIBUTION_HEAT},
+            {
+                "id": SRC_CORINE,
+                "title": "CORINE Land Cover 2018 (EEA, Copernicus)",
+                "note": fire_mod.ATTRIBUTION,
+            },
         ],
         "computed_at": datetime.now(UTC).isoformat(),
     }
