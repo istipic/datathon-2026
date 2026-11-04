@@ -327,7 +327,9 @@ def test_subscription_double_opt_in_and_unsubscribe(
 
     sent: list[tuple[str, str]] = []
     monkeypatch.setattr(
-        subs, "send_confirmation", lambda _settings, email, token: sent.append((email, token))
+        subs,
+        "send_confirmation",
+        lambda _settings, email, token, consent=None: sent.append((email, token)),
     )
     with make_client(test_db_url, factory) as client:
 
@@ -341,6 +343,11 @@ def test_subscription_double_opt_in_and_unsubscribe(
         assert post(email="not-an-email").status_code == 422
         assert post(oib="12345678901").status_code == 422
         assert post(oib=None).status_code == 422  # nothing to subscribe to
+        assert post(min_fit=0.4).status_code == 422  # threshold range is 0.5 - 0.95
+        assert post(min_fit=0.97).status_code == 422
+        assert post(counties=[99]).status_code == 422  # unknown county
+        assert post(min_value_eur=-1).status_code == 422
+        assert post(frequency="hourly").status_code == 422
         r = post()
         assert r.status_code == 202
         assert sent
@@ -348,13 +355,18 @@ def test_subscription_double_opt_in_and_unsubscribe(
         with factory() as s:
             row = s.execute(
                 text(
-                    "select confirmed, token_hash, consent_text from subscription where email='ana@example.hr'"
+                    "select confirmed, token_hash, consent_text, min_fit, frequency, paused "
+                    "from subscription where email='ana@example.hr'"
                 )
             ).one()
             assert row.confirmed is False
             assert token not in row.token_hash
             assert len(row.token_hash) == 64
-            assert "ponedjeljkom" in row.consent_text
+            assert "najviše jednom dnevno" in row.consent_text
+            assert "75 %" in row.consent_text
+            assert row.min_fit == pytest.approx(0.75)
+            assert row.frequency == "daily"
+            assert row.paused is False
         assert (
             client.get("/api/v1/subscriptions/confirm", params={"token": "1.nope"}).status_code
             == 404
@@ -380,6 +392,9 @@ def test_subscription_double_opt_in_and_unsubscribe(
             client.delete("/api/v1/subscriptions", params={"token": good + "0"}).status_code == 404
         )
         assert client.delete("/api/v1/subscriptions", params={"token": "abc"}).status_code == 404
+        # the settings token is a different purpose: it cannot unsubscribe
+        other = subs.make_settings_token(sub_id, settings)
+        assert client.delete("/api/v1/subscriptions", params={"token": other}).status_code == 404
         assert client.delete("/api/v1/subscriptions", params={"token": good}).status_code == 200
         with factory() as s:
             assert (
@@ -388,47 +403,332 @@ def test_subscription_double_opt_in_and_unsubscribe(
             )
 
 
-def test_digest_picks_new_matches_and_marks_sent(
+def test_consent_text_names_frequency_and_threshold(
+    test_db_url: str, factory: sessionmaker[Session]
+) -> None:
+    with make_client(test_db_url, factory) as client:
+        daily = client.get("/api/v1/subscriptions/consent", params={"min_fit": 0.8}).json()["text"]
+        weekly = client.get(
+            "/api/v1/subscriptions/consent", params={"frequency": "weekly", "min_fit": 0.6}
+        ).json()["text"]
+        assert "najviše jednom dnevno" in daily
+        assert "80 %" in daily
+        assert "ponedjeljkom" in weekly
+        assert "60 %" in weekly
+        assert (
+            client.get("/api/v1/subscriptions/consent", params={"min_fit": 0.2}).status_code == 422
+        )
+
+
+def test_subscribing_is_rate_limited_per_address(
     test_db_url: str, factory: sessionmaker[Session], monkeypatch: pytest.MonkeyPatch
 ) -> None:
     from nabavaradar_api import subscriptions as subs
+
+    monkeypatch.setattr(subs, "send_confirmation", lambda *a, **k: None)
+    with make_client(test_db_url, factory) as client:
+        body = {"email": "ratelimit@example.hr", "oib": OIB, "consent": True}
+        codes = [client.post("/api/v1/subscriptions", json=body).status_code for _ in range(5)]
+    assert codes[:3] == [202, 202, 202]
+    assert set(codes[3:]) == {429}
+
+
+# ---------------------------------------------------------------------------- threshold alerts
+
+FOOD_FIT = 0.6257  # fit of the food tender for KOESTLIN on DIGEST_NOW (recorded notice, real model)
+MACHINE_FIT = 0.5292
+
+
+def _confirmed_sub(s: Session, **over: object):
     from nabavaradar_api.db import Subscription
+
+    s.execute(text("delete from subscription"))  # fresh state: alerts go to this one subscriber
+    sub = Subscription(
+        email=str(over.pop("email", "alert@example.hr")),
+        oib=OIB,
+        query=None,
+        confirmed=bool(over.pop("confirmed", True)),
+        token_hash=f"{abs(hash(str(over))):064d}"[:64],
+        consent_text="x",
+        **over,
+    )
+    s.add(sub)
+    s.commit()
+    return sub
+
+
+def _run_alerts(factory, settings, monkeypatch, *, frequency="daily", dry_run=False):
+    from nabavaradar_api import subscriptions as subs
     from nabavaradar_api.match import MatchEngine
     from opendata_core import semantic
 
-    mails: list[tuple[str, str]] = []
+    mails: list[dict] = []
     monkeypatch.setattr(
-        subs, "send_email", lambda to, subject, html, text_, settings: mails.append((to, subject))
+        subs,
+        "send_email",
+        lambda to, subject, html, text_, settings: mails.append(
+            {"to": to, "subject": subject, "html": html, "text": text_}
+        ),
     )
+    with factory() as s:
+        out = subs.send_alerts(
+            s,
+            settings,
+            MatchEngine(),
+            semantic.encode_queries,
+            frequency=frequency,
+            dry_run=dry_run,
+            now=DIGEST_NOW,
+        )
+    return out, mails
+
+
+def _pubs_in(mails: list[dict]) -> set[str]:
+    body = " ".join(m["text"] for m in mails)
+    return {p for p in (FOOD_TENDER, MACHINE_TENDER) if f"/natjecaj/{p}" in body}
+
+
+def test_alert_is_sent_when_fit_reaches_the_threshold_and_never_twice(
+    test_db_url: str, factory: sessionmaker[Session], monkeypatch: pytest.MonkeyPatch
+) -> None:
     settings = settings_for(test_db_url)
     with factory() as s:
-        sub = Subscription(
-            email="bor@example.hr",
-            oib=OIB,
-            query=None,
-            confirmed=True,
-            token_hash="h" * 64,
-            consent_text="x",
-        )
-        s.add(sub)
+        sub = _confirmed_sub(s, min_fit=0.5)
+    out, mails = _run_alerts(factory, settings, monkeypatch)
+    assert out["sent"] == 1
+    assert out["notices"] == 2
+    assert _pubs_in(mails) == {FOOD_TENDER, MACHINE_TENDER}
+    assert "novih natječaja iznad vašeg praga" in mails[0]["subject"]
+    # the e-mail carries the reasons, the settings link and the one-click unsubscribe link
+    assert "Opis nabave sličan je vašoj djelatnosti" in mails[0]["text"]
+    assert "/pretplata/postavke?token=" in mails[0]["text"]
+    assert "/pretplata/odjava?token=" in mails[0]["text"]
+    with factory() as s:
+        assert s.scalar(text("select count(*) from alert_sent")) == 2
+    # the second run sends nothing: a notice is mailed at most once per subscriber
+    out2, mails2 = _run_alerts(factory, settings, monkeypatch)
+    assert out2["sent"] == 0
+    assert not mails2
+    assert sub.id
+
+
+def test_threshold_boundary_is_inclusive(
+    test_db_url: str, factory: sessionmaker[Session], monkeypatch: pytest.MonkeyPatch
+) -> None:
+    settings = settings_for(test_db_url)
+    with factory() as s:
+        s.execute(text("delete from alert_sent"))
+        _confirmed_sub(s, min_fit=FOOD_FIT)  # exactly the fit of the food tender
+    _out, mails = _run_alerts(factory, settings, monkeypatch)
+    assert _pubs_in(mails) == {FOOD_TENDER}
+    with factory() as s:
+        s.execute(text("delete from alert_sent"))
+        s.execute(text("update subscription set min_fit = :v"), {"v": FOOD_FIT + 0.0001})
         s.commit()
-        # the fixtures were published 2026-10-20: a "now" within 7 days of that finds them (first digest
-        # looks back 7 days), and their deadlines (Nov 17-20) are still in the future
-        monkeypatch.setattr(
-            subs, "datetime", type("D", (), {"now": staticmethod(lambda tz=None: DIGEST_NOW)})
+    out, mails = _run_alerts(factory, settings, monkeypatch)
+    assert out["sent"] == 0
+    assert not mails
+
+
+@pytest.mark.parametrize(
+    ("prefs", "expected"),
+    [
+        ({"counties": [17]}, {FOOD_TENDER}),  # Splitsko-dalmatinska
+        ({"counties": [21]}, {MACHINE_TENDER}),  # Grad Zagreb
+        ({"counties": [17, 21]}, {FOOD_TENDER, MACHINE_TENDER}),
+        ({"min_value_eur": 1_000_000}, {MACHINE_TENDER}),  # 3.79 M EUR vs 0.58 M EUR
+        ({"cpv_divisions": ["33"]}, {FOOD_TENDER}),
+        ({"cpv_divisions": ["43"]}, {MACHINE_TENDER}),
+        ({"cpv_divisions": ["45"]}, set()),
+    ],
+)
+def test_alert_filters(
+    test_db_url: str,
+    factory: sessionmaker[Session],
+    monkeypatch: pytest.MonkeyPatch,
+    prefs: dict,
+    expected: set[str],
+) -> None:
+    settings = settings_for(test_db_url)
+    with factory() as s:
+        s.execute(text("delete from alert_sent"))
+        _confirmed_sub(s, min_fit=0.5, **prefs)
+    _out, mails = _run_alerts(factory, settings, monkeypatch)
+    assert _pubs_in(mails) == expected
+
+
+def test_unconfirmed_paused_weekly_and_dry_run_get_nothing(
+    test_db_url: str, factory: sessionmaker[Session], monkeypatch: pytest.MonkeyPatch
+) -> None:
+    settings = settings_for(test_db_url)
+    with factory() as s:
+        s.execute(text("delete from alert_sent"))
+        _confirmed_sub(s, min_fit=0.5, confirmed=False)
+    assert _run_alerts(factory, settings, monkeypatch)[1] == []
+    with factory() as s:
+        _confirmed_sub(s, min_fit=0.5, paused=True)
+    assert _run_alerts(factory, settings, monkeypatch)[1] == []
+    with factory() as s:
+        _confirmed_sub(s, min_fit=0.5, frequency="weekly")
+    assert (
+        _run_alerts(factory, settings, monkeypatch, frequency="daily")[1] == []
+    )  # weekly != daily
+    with factory() as s:
+        _confirmed_sub(s, min_fit=0.5)
+    out, mails = _run_alerts(factory, settings, monkeypatch, dry_run=True)
+    assert out["sent"] == 1  # it would have been sent ...
+    assert out["dry_run"] == 1
+    assert mails == []  # ... but nothing was
+    with factory() as s:
+        assert s.scalar(text("select count(*) from alert_sent")) == 0
+        assert s.scalar(text("select last_sent_at from subscription")) is None
+
+
+def test_weekly_summary_uses_the_same_threshold_logic(
+    test_db_url: str, factory: sessionmaker[Session], monkeypatch: pytest.MonkeyPatch
+) -> None:
+    settings = settings_for(test_db_url)
+    with factory() as s:
+        s.execute(text("delete from alert_sent"))
+        _confirmed_sub(s, min_fit=0.5, frequency="weekly")
+    out, mails = _run_alerts(factory, settings, monkeypatch, frequency="weekly")
+    assert out["sent"] == 1
+    assert "tjedni pregled" in mails[0]["subject"]
+    assert _pubs_in(mails) == {FOOD_TENDER, MACHINE_TENDER}
+    assert _run_alerts(factory, settings, monkeypatch, frequency="weekly")[1] == []
+
+
+def test_settings_page_api_and_exclusion(
+    test_db_url: str, factory: sessionmaker[Session], monkeypatch: pytest.MonkeyPatch
+) -> None:
+    from nabavaradar_api import subscriptions as subs
+
+    settings = settings_for(test_db_url)
+    with factory() as s:
+        s.execute(text("delete from alert_sent"))
+        sub = _confirmed_sub(s, min_fit=0.5)
+        sub_id = sub.id
+    token = subs.make_settings_token(sub_id, settings)
+    with make_client(test_db_url, factory) as client:
+        url = "/api/v1/subscriptions/settings"
+        assert client.get(url, params={"token": token + "x"}).status_code == 404  # tampered
+        assert client.get(url, params={"token": f"{sub_id}.0"}).status_code == 404
+        assert (
+            client.get(url, params={"token": subs.make_unsub_token(sub_id, settings)}).status_code
+            == 404
         )
-        out = subs.send_digests(s, settings, MatchEngine(), semantic.encode_queries, dry_run=False)
-        assert out["sent"] == 1
-        assert mails
-        assert mails[0][0] == "bor@example.hr"
-        assert "novih natječaja" in mails[0][1]
-        s.refresh(sub)
-        assert sub.last_sent_at is not None
-        # nothing new since the last digest -> nothing is sent
-        mails.clear()
-        out2 = subs.send_digests(s, settings, MatchEngine(), semantic.encode_queries, dry_run=False)
-        assert out2["sent"] == 0
-        assert not mails
+        got = client.get(url, params={"token": token}).json()
+        assert got["min_fit"] == pytest.approx(0.5)
+        assert got["email"].startswith("a")
+        assert "*" in got["email"]
+        upd = client.put(
+            url, params={"token": token}, json={"min_fit": 0.9, "counties": [17], "paused": True}
+        )
+        assert upd.status_code == 200
+        assert upd.json()["min_fit"] == pytest.approx(0.9)
+        assert upd.json()["counties"] == [17]
+        assert upd.json()["paused"] is True
+        assert client.put(url, params={"token": token}, json={"min_fit": 0.3}).status_code == 422
+        assert client.put(url, params={"token": token}, json={"counties": [99]}).status_code == 422
+        client.put(
+            url, params={"token": token}, json={"min_fit": 0.5, "counties": [], "paused": False}
+        )
+        # "Ne zanima me": the food tender is never offered to this subscriber again
+        r = client.post(
+            "/api/v1/subscriptions/exclude", params={"token": token}, json={"pub_no": FOOD_TENDER}
+        )
+        assert r.status_code == 200
+        assert (
+            client.post(
+                "/api/v1/subscriptions/exclude", params={"token": token}, json={"pub_no": "bad"}
+            ).status_code
+            == 422
+        )
+        assert client.get(url, params={"token": token}).json()["excluded"] == 1
+    _out, mails = _run_alerts(factory, settings, monkeypatch)
+    assert _pubs_in(mails) == {MACHINE_TENDER}
+
+
+def test_preview_counts_what_the_settings_would_send_today(
+    test_db_url: str, factory: sessionmaker[Session]
+) -> None:
+    with make_client(test_db_url, factory) as client:
+        url = "/api/v1/subscriptions/preview"
+        # NOTE: the preview uses the real clock; the recorded notices are open until mid-November 2026
+        base = {"oib": OIB}
+        low = client.get(url, params=base | {"min_fit": 0.5}).json()
+        high = client.get(url, params=base | {"min_fit": 0.95}).json()
+        assert low["count"] >= high["count"]
+        assert client.get(url, params={"min_fit": 0.5}).status_code == 422  # needs OIB or text
+        assert client.get(url, params=base | {"min_fit": 0.2}).status_code == 422
+        assert client.get(url, params=base | {"counties": "99"}).status_code == 422
+
+
+def test_match_hides_dislikes_and_groups_lots(
+    test_db_url: str, factory: sessionmaker[Session]
+) -> None:
+    with make_client(test_db_url, factory) as client:
+        base = {"oib": OIB, "limit": 10}
+        plain = client.get("/api/v1/match", params=base).json()
+        by_pub = {i["pub_no"]: i for i in plain}
+        assert FOOD_TENDER in by_pub
+        hidden = client.get("/api/v1/match", params=base | {"hide": FOOD_TENDER}).json()
+        assert FOOD_TENDER not in {i["pub_no"] for i in hidden}
+        food = by_pub[FOOD_TENDER]
+        disliked = client.get("/api/v1/match", params=base | {"dislike": food["cpv_group"]}).json()
+        after = {i["pub_no"]: i for i in disliked}
+        assert after[FOOD_TENDER]["fit"] == pytest.approx(food["fit"] - 0.10, abs=1e-4)
+        assert after[FOOD_TENDER]["signals"]["disliked_group"] is True
+        # filters
+        only_zagreb = client.get("/api/v1/match", params=base | {"counties": "21"}).json()
+        assert {i["pub_no"] for i in only_zagreb} == {MACHINE_TENDER}
+        only_div = client.get("/api/v1/match", params=base | {"cpv": "33"}).json()
+        assert {i["pub_no"] for i in only_div} == {FOOD_TENDER}
+        assert all(i["group"]["size"] == 1 for i in plain)  # distinct procedures: nothing collapsed
+        for bad in ({"hide": "x"}, {"dislike": "1"}, {"counties": "abc"}, {"cpv": "9"}):
+            assert client.get("/api/v1/match", params=base | bad).status_code == 422
+
+
+def test_highlights_come_from_the_open_index(
+    test_db_url: str, factory: sessionmaker[Session]
+) -> None:
+    with make_client(test_db_url, factory) as client:
+        body = client.get("/api/v1/highlights").json()
+    assert body["open_notices"] == 2
+    assert body["total_value_eur"] == round(580952.0 + 3793000.0)
+    assert {b["open_notices"] for b in body["top_buyers"]} == {1}
+    assert {a["division"] for a in body["top_cpv_areas"]} == {"33", "43"}
+    assert body["retrieved_at"]
+
+
+def test_migration_0004_created_alert_tables_and_constraints(
+    factory: sessionmaker[Session],
+) -> None:
+    from sqlalchemy.exc import IntegrityError
+
+    with factory() as s:
+        tables = {r[0] for r in s.execute(text("select tablename from pg_tables"))}
+        assert {"alert_sent", "alert_exclusion"} <= tables
+        sub = _confirmed_sub(s, min_fit=0.7)
+        s.execute(
+            text("insert into alert_sent (subscription_id, pub_no, fit) values (:i, 'x-1', .8)"),
+            {"i": sub.id},
+        )
+        s.commit()
+        with pytest.raises(IntegrityError):  # (subscription, notice) is unique
+            s.execute(
+                text(
+                    "insert into alert_sent (subscription_id, pub_no, fit) values (:i, 'x-1', .8)"
+                ),
+                {"i": sub.id},
+            )
+        s.rollback()
+        with pytest.raises(IntegrityError):  # threshold range is enforced by the database too
+            s.execute(text("update subscription set min_fit = 0.2"))
+        s.rollback()
+        s.execute(text("delete from subscription"))  # cascades to alert_sent and alert_exclusion
+        s.commit()
+        assert s.scalar(text("select count(*) from alert_sent")) == 0
 
 
 def test_open_index_excludes_expired_and_stale_undated_notices(

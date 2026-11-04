@@ -1,0 +1,18 @@
+{% if frequency == 'daily' %}Novi natječaji iznad vašeg praga ({{ threshold }} %){% else %}Tjedni pregled natječaja (prag {{ threshold }} %){% endif %}
+
+{% for it in items %}
+
+{{ loop.index }}. [{{ (it.fit * 100) | round | int }} %] {{ it.title or it.pub_no }}
+   {{ it.buyer or 'Naručitelj nije naveden' }}{% if it.county %} · {{ it.county }}{% endif %}{% if it.deadline %} · rok: {{ it.deadline[:10] }}{% endif %}{% if it.value_eur %} · vrijednost: {{ '{:,.0f}'.format(it.value_eur).replace(',', '.') }} EUR{% endif %}
+
+{% for r in it.reasons %}
+   - {{ r }}
+{% endfor %}
+   {{ base }}/natjecaj/{{ it.pub_no }}
+{% if it.group.size > 1 %}
+   (+{{ it.group.size - 1 }} objava istog postupka)
+{% endif %}
+{% endfor %}
+
+Promijeni prag i filtre ili pauziraj obavijesti: {{ links.settings }}
+Otkaži pretplatu jednim klikom: {{ links.unsub }}

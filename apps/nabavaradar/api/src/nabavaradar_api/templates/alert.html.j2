@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="hr">
+  <body style="font-family: Arial, sans-serif; color: #000; background: #ffe17c; margin: 0; padding: 24px;">
+    <div style="max-width: 640px; margin: 0 auto; background: #fff; border: 2px solid #000; border-radius: 16px; padding: 24px;">
+      <h1 style="font-size: 22px; margin: 0 0 4px;">
+        {% if frequency == 'daily' %}Novi natječaji iznad vašeg praga ({{ threshold }} %){% else %}Tjedni pregled natječaja (prag {{ threshold }} %){% endif %}
+      </h1>
+      <p style="margin: 0 0 16px; color: #272727;">Birokratko je pronašao {{ items | length }} {% if items | length == 1 %}natječaj{% else %}natječaja{% endif %} koji odgovara vašem profilu.</p>
+      <ol style="padding-left: 20px;">
+      {% for it in items %}
+        <li style="margin-bottom: 18px;">
+          <strong style="background: #ffe17c; border: 2px solid #000; border-radius: 8px; padding: 1px 8px;">{{ (it.fit * 100) | round | int }} %</strong>
+          <a style="color: #000; font-weight: bold;" href="{{ base }}/natjecaj/{{ it.pub_no }}">{{ it.title or it.pub_no }}</a><br>
+          <span style="font-size: 14px; color: #272727;">
+            {{ it.buyer or 'Naručitelj nije naveden' }}{% if it.county %} · {{ it.county }}{% endif %}
+            {% if it.deadline %} · rok: {{ it.deadline[:10] }}{% endif %}
+            {% if it.value_eur %} · vrijednost: {{ '{:,.0f}'.format(it.value_eur).replace(',', '.') }} EUR{% endif %}
+            {% if it.competition.flag %} · niska konkurencija (n={{ it.competition.n }}){% endif %}
+            {% if it.group.size > 1 %} · +{{ it.group.size - 1 }} objava istog postupka{% endif %}
+          </span>
+          <ul style="font-size: 13px; color: #272727; margin: 6px 0 0; padding-left: 18px;">
+          {% for r in it.reasons %}
+            <li>{{ r }}</li>
+          {% endfor %}
+          </ul>
+        </li>
+      {% endfor %}
+      </ol>
+      <p style="font-size: 13px; color: #272727; border-top: 2px solid #000; padding-top: 12px;">
+        <a style="color: #000; font-weight: bold;" href="{{ links.settings }}">Promijeni prag i filtre ili pauziraj</a> ·
+        <a style="color: #000;" href="{{ links.unsub }}">Otkaži pretplatu jednim klikom</a>
+      </p>
+    </div>
+  </body>
+</html>

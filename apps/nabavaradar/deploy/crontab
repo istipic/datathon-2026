@@ -8,5 +8,9 @@
 # Derived data after the TED job (embeddings of new notices, crosswalk, statistics): 06:30
 30 6 * * * cd /opt/datathon-2026 && make ingest APP=nabavaradar STEP=derive PROD=1 >> /var/log/nabavaradar-derive.log 2>&1
 
-# Weekly digest: Mondays at 07:00 (double opt-in subscribers only)
+# Weekly summary: Mondays at 07:00 (double opt-in subscribers with frequency = weekly)
 0 7 * * 1  cd /opt/datathon-2026 && docker compose -f docker-compose.prod.yml run --rm nabavaradar-api python -m nabavaradar_api.cli digest send >> /var/log/nabavaradar-digest.log 2>&1
+
+# Threshold alerts: every day at 07:00 (after `derive` at 06:30); one e-mail per subscriber with notices that
+# reached the subscriber's fit threshold and were not sent before (double opt-in, unpaused, frequency = daily)
+0 7 * * *  cd /opt/datathon-2026 && docker compose -f docker-compose.prod.yml run --rm nabavaradar-api python -m nabavaradar_api.cli alerts send >> /var/log/nabavaradar-alerts.log 2>&1

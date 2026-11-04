@@ -164,6 +164,12 @@ def evaluate(
         "--from-stored",
         help="Only re-render docs/validation.md and config/market.yaml from the stored result",
     ),
+    config: str | None = typer.Option(
+        None, "--config", help="Experiment: use this fit config file instead of config/fit.yaml"
+    ),
+    no_write: bool = typer.Option(
+        False, "--no-write", help="Experiment: print the metrics only, store and write nothing"
+    ),
 ) -> None:
     """Validate against real winners: recall@10/@20, full-text baseline, tau. Writes docs/validation.md."""
     from pathlib import Path
@@ -179,7 +185,11 @@ def evaluate(
                 raise typer.BadParameter("no stored evaluation: run `nabavaradar eval` first")
             result = dict(row.value)
         else:
-            result = run_evaluation(session)
+            from nabavaradar_api.fit import load_fit_config
+
+            result = run_evaluation(session, cfg=load_fit_config(config))
+            if no_write:
+                return result
             store_evaluation(session, result)
         write_outputs(result, Path("apps/nabavaradar/docs/validation.md"))
         return result
@@ -193,6 +203,32 @@ def evaluate(
         k: result["tau"].get(k) for k in ("tau", "f1", "precision", "recall", "winners")
     }
     typer.echo(json.dumps(summary, indent=2, default=str))
+
+
+alerts_app = typer.Typer(help="Threshold e-mail alerts", no_args_is_help=True)
+app.add_typer(alerts_app, name="alerts")
+
+
+@alerts_app.command("send")
+def alerts_send(
+    dry_run: bool = typer.Option(False, help="Compute but send nothing and record nothing"),
+) -> None:
+    """Send threshold alerts to confirmed subscribers with frequency daily (cron: daily 07:00)."""
+    from nabavaradar_api.match import MatchEngine
+    from nabavaradar_api.subscriptions import send_alerts
+    from opendata_core import semantic
+
+    def step(session: Session, settings: NabavaSettings) -> dict[str, int]:
+        return send_alerts(
+            session,
+            settings,
+            MatchEngine(),
+            semantic.encode_queries,
+            frequency="daily",
+            dry_run=dry_run,
+        )
+
+    typer.echo(json.dumps(_run("alerts", step)))
 
 
 digest_app = typer.Typer(help="Weekly e-mail digest", no_args_is_help=True)

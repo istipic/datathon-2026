@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import re
 import threading
 import time
 from collections import defaultdict, deque
@@ -18,7 +19,7 @@ from nabavaradar_api.company import LookupQueue, company_profile
 from nabavaradar_api.counties import counties, valid_county_codes
 from nabavaradar_api.db import Award, Calibration, Company, CompetitionStat, Cpv, Notice
 from nabavaradar_api.ingest.ted_parse import deadline_kind
-from nabavaradar_api.match import CompanyNotLoaded, MatchEngine, build_profile
+from nabavaradar_api.match import CompanyNotLoaded, MatchEngine, build_profile_full
 from nabavaradar_api.oib import is_valid_oib
 from nabavaradar_api.settings import NabavaSettings
 from nabavaradar_api.sounding import (
@@ -87,6 +88,27 @@ def require_county(code: int | None) -> int | None:
             status_code=422, detail=f"Nepoznata županija; dopuštene šifre: {valid_county_codes()}"
         )
     return code
+
+
+def csv_set(value: str | None, pattern: str, name: str, limit: int = 50) -> set[str] | None:
+    """Comma-separated query value as a validated set (422 on any malformed or too many items)."""
+    if not value:
+        return None
+    items = {v.strip() for v in value.split(",") if v.strip()}
+    if len(items) > limit or any(not re.match(pattern, v) for v in items):
+        raise HTTPException(422, f"Neispravan parametar '{name}'.")
+    return items or None
+
+
+def nuts3_of_counties(value: str | None) -> set[str] | None:
+    """NUTS3 codes of a comma-separated list of county codes (422 for an unknown county)."""
+    codes = csv_set(value, r"^\d{1,2}$", "counties", 21)
+    if not codes:
+        return None
+    valid = {c.code: c.nuts3 for c in counties()}
+    if any(int(c) not in valid for c in codes):
+        raise HTTPException(422, "Nepoznata županija.")
+    return {valid[int(c)] for c in codes}
 
 
 class SoundingRequest(BaseModel):
@@ -172,6 +194,11 @@ def make_router(
         limit: Annotated[int, Query(ge=1, le=100)] = 20,
         value_min: Annotated[float | None, Query(ge=0)] = None,
         value_max: Annotated[float | None, Query(ge=0)] = None,
+        counties_csv: Annotated[str | None, Query(alias="counties", max_length=120)] = None,
+        cpv: Annotated[str | None, Query(max_length=120)] = None,
+        hide: Annotated[str | None, Query(max_length=4000)] = None,
+        dislike: Annotated[str | None, Query(max_length=400)] = None,
+        group_lots: bool = True,
         session: Session = Depends(get_session),
     ) -> Any:
         if oib is None and not (q and q.strip()):
@@ -179,6 +206,10 @@ def make_router(
         if oib is not None:
             require_oib(oib)
         require_county(county)
+        nuts3_set = nuts3_of_counties(counties_csv)
+        divisions = csv_set(cpv, r"^\d{2}$", "cpv")
+        hidden = csv_set(hide, r"^\d{1,7}-\d{4}$", "hide", 300)
+        disliked = csv_set(dislike, r"^\d{3}$", "dislike", 60)
         wait = match_limit.check(request.client.host if request.client else "unknown")
         if wait > 0:
             return problem(
@@ -188,19 +219,25 @@ def make_router(
                 headers={"Retry-After": str(int(wait))},
             )
         try:
-            activities, company_nuts3, ranked = build_profile(session, oib=oib, q=q, encode=_encode)
+            profile = build_profile_full(session, oib=oib, q=q, encode=_encode)
         except CompanyNotLoaded as exc:
             raise HTTPException(
                 404, "Tvrtka nije učitana; prvo pozovite /api/v1/company/{oib}."
             ) from exc
-        if not activities:
+        if not profile.activities:
             return []
         return engine.match(
             session,
-            activities=activities,
-            company_nuts3=company_nuts3,
-            ranked_divisions=ranked,
+            activities=profile.activities,
+            company_nuts3=profile.nuts3,
+            ranked_divisions=profile.ranked_divisions,
+            ranked_groups=profile.ranked_groups,
             county=county,
+            counties_nuts3=nuts3_set,
+            cpv_divisions=divisions,
+            hidden=hidden,
+            dislike_groups=disliked,
+            group_lots=group_lots,
             deadline_min_days=deadline_min_days,
             value_min=value_min,
             value_max=value_max,
@@ -348,6 +385,32 @@ def make_router(
             }
             for r in rows
         ]
+
+    @router.get("/highlights")
+    def highlights(session: Session = Depends(get_session)) -> Any:
+        """Facts about the currently open notices (home page badge and marquee); all from the index."""
+        idx = engine.index(session)
+        buyers: dict[str, int] = defaultdict(int)
+        areas: dict[str, int] = defaultdict(int)
+        values = 0.0
+        for row in idx.rows:
+            if row["buyer"]:
+                buyers[row["buyer"]] += 1
+            if row["cpv_main"]:
+                areas[row["cpv_main"][:2]] += 1
+            values += row["value_eur"] or 0.0
+        top_buyers = sorted(buyers.items(), key=lambda kv: (-kv[1], kv[0]))[:12]
+        top_areas = sorted(areas.items(), key=lambda kv: (-kv[1], kv[0]))[:12]
+        return {
+            "open_notices": len(idx.rows),
+            "total_value_eur": round(values),
+            "retrieved_at": max((r["retrieved_at"] for r in idx.rows), default=None),
+            "top_buyers": [{"name": n, "open_notices": c} for n, c in top_buyers],
+            "top_cpv_areas": [
+                {"division": d, "label": idx.division_labels.get(d), "open_notices": c}
+                for d, c in top_areas
+            ],
+        }
 
     @router.get("/status")
     def status(session: Session = Depends(get_session)) -> Any:

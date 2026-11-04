@@ -18,6 +18,7 @@ from sqlalchemy import (
     Boolean,
     Date,
     DateTime,
+    Float,
     ForeignKey,
     Integer,
     Numeric,
@@ -194,6 +195,41 @@ class Subscription(Base):
     consent_text: Mapped[str] = mapped_column(Text)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
     last_sent_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
+    # threshold alerts (migration 0004): the fit a notice must reach, filters, frequency, pause switch
+    min_fit: Mapped[float] = mapped_column(Float, default=0.75, server_default="0.75")
+    min_value_eur: Mapped[Decimal | None] = mapped_column(Numeric(16, 2), nullable=True)
+    counties: Mapped[list[int]] = mapped_column(_JSON, default=list, server_default="[]")
+    cpv_divisions: Mapped[list[str]] = mapped_column(_JSON, default=list, server_default="[]")
+    # rows created before migration 0004 were weekly digests (server default); new sign-ups default to daily
+    frequency: Mapped[str] = mapped_column(String(8), default="daily", server_default="weekly")
+    paused: Mapped[bool] = mapped_column(Boolean, default=False, server_default="false")
+
+
+class AlertSent(Base):
+    """A notice that was e-mailed to a subscriber: it is never sent to the same subscriber twice."""
+
+    __tablename__ = "alert_sent"
+
+    subscription_id: Mapped[int] = mapped_column(
+        ForeignKey("subscription.id", ondelete="CASCADE"), primary_key=True
+    )
+    pub_no: Mapped[str] = mapped_column(String(20), primary_key=True)
+    fit: Mapped[float] = mapped_column(Float)
+    sent_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+
+
+class AlertExclusion(Base):
+    """ "Ne zanima me" of an alert subscriber: a procedure and/or a CPV group that is not offered again."""
+
+    __tablename__ = "alert_exclusion"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    subscription_id: Mapped[int] = mapped_column(
+        ForeignKey("subscription.id", ondelete="CASCADE"), index=True
+    )
+    pub_no: Mapped[str | None] = mapped_column(String(20), nullable=True)
+    cpv_group: Mapped[str | None] = mapped_column(String(3), nullable=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
 
 
 class MunicipalContract(Base):
