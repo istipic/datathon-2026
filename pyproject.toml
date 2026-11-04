@@ -5,18 +5,19 @@ description = "Monorepo for blizu, otporno and nabavaradar (Datathon Portala otv
 requires-python = ">=3.12,<3.13"
 readme = "README.md"
 license = { text = "EUPL-1.2" }
-dependencies = ["opendata-core", "blizu-api", "nabavaradar-api"]
+dependencies = ["opendata-core", "blizu-api", "nabavaradar-api", "otporno-api"]
 
 [tool.uv]
 package = false
 
 [tool.uv.workspace]
-members = ["packages/core", "apps/blizu/api", "apps/nabavaradar/api"]
+members = ["packages/core", "apps/blizu/api", "apps/nabavaradar/api", "apps/otporno/api"]
 
 [tool.uv.sources]
 opendata-core = { workspace = true }
 blizu-api = { workspace = true }
 nabavaradar-api = { workspace = true }
+otporno-api = { workspace = true }
 
 [dependency-groups]
 dev = [
@@ -40,10 +41,10 @@ ignore = ["S101", "E501"]
 "**/tests/**" = ["S", "B011"]
 
 [tool.ruff.lint.flake8-bugbear]
-extend-immutable-calls = ["fastapi.Depends", "fastapi.Query"]
+extend-immutable-calls = ["fastapi.Depends", "fastapi.Query", "typer.Option"]
 
 [tool.ruff.lint.isort]
-known-first-party = ["opendata_core", "blizu_api", "nabavaradar_api"]
+known-first-party = ["opendata_core", "blizu_api", "nabavaradar_api", "otporno_api"]
 
 [tool.mypy]
 python_version = "3.12"

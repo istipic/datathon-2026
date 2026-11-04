@@ -66,6 +66,10 @@ services:
       APP_NAME: otporno
       DATABASE_URL: postgresql+psycopg://postgres:${POSTGRES_PASSWORD}@db:5432/otporno
       PUBLIC_BASE_URL: https://${OTPORNO_HOST:?set OTPORNO_HOST in .env}
+      CORS_ORIGINS: https://${OTPORNO_HOST}
+      RATE_LIMIT: ${OTPORNO_RATE_LIMIT:-300/minute}
+    volumes:
+      - otporno-data:/data
 
   nabavaradar-api:
     <<: *api-defaults
@@ -131,6 +135,7 @@ services:
 volumes:
   pgdata:
   blizu-data:
+  otporno-data:
   nabavaradar-data:
   srv:
   caddy_data:

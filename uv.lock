@@ -13,6 +13,7 @@ members = [
     "datathon-2026",
     "nabavaradar-api",
     "opendata-core",
+    "otporno-api",
 ]
 
 [[package]]
@@ -303,6 +304,7 @@ dependencies = [
     { name = "blizu-api" },
     { name = "nabavaradar-api" },
     { name = "opendata-core" },
+    { name = "otporno-api" },
 ]
 
 [package.dev-dependencies]
@@ -319,6 +321,7 @@ requires-dist = [
     { name = "blizu-api", editable = "apps/blizu/api" },
     { name = "nabavaradar-api", editable = "apps/nabavaradar/api" },
     { name = "opendata-core", editable = "packages/core" },
+    { name = "otporno-api", editable = "apps/otporno/api" },
 ]
 
 [package.metadata.requires-dev]
@@ -1053,6 +1056,23 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/0c/6d/42279fb31b09f0532ec4de90604ee8078adad66b89865887cdf014f651f1/osmnx-2.1.1.tar.gz", hash = "sha256:0785166487d4d8da5a551dac3d1562fe114fb39f3bf66f261c8b4d60baee9295", size = 90368, upload-time = "2026-07-21T19:24:06.779Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/ed/08/450c5c707493cf3a1da91050cf6b9b92e5279676f28e85d85b81d9e46f85/osmnx-2.1.1-py3-none-any.whl", hash = "sha256:6680c98312a8c327dea01da8ec59328bf1d7b0e0cab42db6ce500d0cb83b87e5", size = 104711, upload-time = "2026-07-21T19:24:05.274Z" },
+]
+
+[[package]]
+name = "otporno-api"
+version = "0.1.0"
+source = { editable = "apps/otporno/api" }
+dependencies = [
+    { name = "opendata-core" },
+    { name = "osmium" },
+    { name = "pyyaml" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "opendata-core", editable = "packages/core" },
+    { name = "osmium", specifier = ">=4" },
+    { name = "pyyaml", specifier = ">=6" },
 ]
 
 [[package]]

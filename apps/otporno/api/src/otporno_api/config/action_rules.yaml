@@ -1,0 +1,632 @@
+sources:
+  - id: cz_poplave
+    title: 'Ravnateljstvo civilne zaštite - Poplave'
+    publisher: 'Ravnateljstvo civilne zaštite, MUP RH'
+    url: 'https://civilna-zastita.gov.hr/poplave/7391'
+    retrieved: '2026-11-04'
+  - id: cz_toplinski_val
+    title: 'Ravnateljstvo civilne zaštite - Toplinski val'
+    publisher: 'Ravnateljstvo civilne zaštite, MUP RH'
+    url: 'https://civilna-zastita.gov.hr/toplinski-val/7494'
+    retrieved: '2026-11-04'
+  - id: cz_pozar
+    title: 'Ravnateljstvo civilne zaštite - Požar'
+    publisher: 'Ravnateljstvo civilne zaštite, MUP RH'
+    url: 'https://civilna-zastita.gov.hr/pozar/7492'
+    retrieved: '2026-11-04'
+  - id: cz_komplet
+    title: 'Ravnateljstvo civilne zaštite - Komplet za preživljavanje'
+    publisher: 'Ravnateljstvo civilne zaštite, MUP RH'
+    url: 'https://civilna-zastita.gov.hr/?id=7534&pregled=1'
+    retrieved: '2026-11-04'
+  - id: cz_obiteljski_plan
+    title: 'Ravnateljstvo civilne zaštite - Obiteljski plan'
+    publisher: 'Ravnateljstvo civilne zaštite, MUP RH'
+    url: 'https://civilna-zastita.gov.hr/?id=7535&pregled=1'
+    retrieved: '2026-11-04'
+  - id: cz_prije_nesrece
+    title: 'Ravnateljstvo civilne zaštite - Što je važno znati prije nesreće, za vrijeme trajanja nesreće i po završetku nesreće'
+    publisher: 'Ravnateljstvo civilne zaštite, MUP RH'
+    url: 'https://civilna-zastita.gov.hr/sto-je-vazno-znati-prije-nesrece-za-vrijeme-trajanja-nesrece-i-po-zavrsetku-nesrece/7526'
+    retrieved: '2026-11-04'
+  - id: voda_karte
+    title: 'Karte opasnosti od poplava i karte rizika od poplava - 2019. | Hrvatske vode'
+    publisher: 'Hrvatske vode'
+    url: 'https://www.voda.hr/hr/karte-opasnosti-od-poplava-i-karte-rizika-od-poplava-2019'
+    retrieved: '2026-11-04'
+  - id: voda_obrana
+    title: 'Obrana od poplava | Hrvatske vode'
+    publisher: 'Hrvatske vode'
+    url: 'https://www.voda.hr/hr/node/3509'
+    retrieved: '2026-11-04'
+  - id: hzjz_preporuke_vrucina
+    title: 'Preporuke za zaštitu od vrućina | Hrvatski zavod za javno zdravstvo'
+    publisher: 'Hrvatski zavod za javno zdravstvo (HZJZ)'
+    url: 'https://www.hzjz.hr/aktualnosti/preporuke-za-zastitu-od-vrucina/'
+    retrieved: '2026-11-04'
+  - id: hzjz_velike_vrucine
+    title: 'Preporuke za ponašanje tijekom velikih vrućina | Hrvatski zavod za javno zdravstvo'
+    publisher: 'Hrvatski zavod za javno zdravstvo (HZJZ)'
+    url: 'https://www.hzjz.hr/sluzba-zdravstvena-ekologija/preporuke-za-ponasanje-tijekom-velikih-vrucina/'
+    retrieved: '2026-11-04'
+  - id: hzjz_upozorenja_toplinski
+    title: 'Vrućina i zdravlje upozorenje na toplinske valove | Hrvatski zavod za javno zdravstvo'
+    publisher: 'Hrvatski zavod za javno zdravstvo (HZJZ)'
+    url: 'https://www.hzjz.hr/sluzba-zdravstvena-ekologija/upozorenje-na-toplinske-valove-koji-mogu-djelovati-na-zdravlje-3/'
+    retrieved: '2026-11-04'
+  - id: dhmz_upozorenja
+    title: 'DHMZ - Državni hidrometeorološki zavod (upozorenja)'
+    publisher: 'Državni hidrometeorološki zavod (DHMZ)'
+    url: 'https://meteo.hr/naslovnica-upozorenja-zupanije.php?tab=upozorenja&dan=0'
+    retrieved: '2026-11-04'
+  - id: dhmz_pozarni_indeks
+    title: 'DHMZ - Državni hidrometeorološki zavod (Indeks opasnosti od šumskog požara)'
+    publisher: 'Državni hidrometeorološki zavod (DHMZ)'
+    url: 'https://meteo.hr/podaci.php?section=podaci_agro&param=pozarind'
+    retrieved: '2026-11-04'
+  - id: hrsume_pozar
+    title: 'Zaštita šuma od požara - Hrvatske šume d.o.o.'
+    publisher: 'Hrvatske šume d.o.o.'
+    url: 'https://www.hrsume.hr/sume/zastita-suma-od-pozara/'
+    retrieved: '2026-11-04'
+  - id: zakon_csz
+    title: 'Zakon o sustavu civilne zaštite - Zakon.hr (pročišćeni tekst)'
+    publisher: 'Narodne novine / Zakon.hr'
+    url: 'https://www.zakon.hr/z/809/zakon-o-sustavu-civilne-zastite'
+    retrieved: '2026-11-04'
+  - id: zakon_zop
+    title: 'Zakon o zaštiti od požara - Zakon.hr (pročišćeni tekst)'
+    publisher: 'Narodne novine / Zakon.hr'
+    url: 'https://www.zakon.hr/z/349/zakon-o-zastiti-od-pozara'
+    retrieved: '2026-11-04'
+  - id: zagreb_protokol_vrucina
+    title: 'Protokol o postupanju i preporuke za zaštitu od vrućine (Grad Zagreb, prema Ministarstvu zdravstva)'
+    publisher: 'Grad Zagreb / Ministarstvo zdravstva RH'
+    url: 'https://zagreb.hr/en/protokol-o-postupanju-i-preporuke-za-zastitu-od-vr/188200'
+    retrieved: '2026-11-04'
+  - id: who_hhap
+    title: 'Akcijski planovi za toplinu i zdravlje: smjernice, drugo izdanje'
+    publisher: 'WHO Regionalni ured za Europu (putem EEA Climate-ADAPT)'
+    url: 'https://climate-adapt.eea.europa.eu/hr/metadata/publications/heat-health-action-plans-guidance-second-edition'
+    retrieved: '2026-11-04'
+
+actions:
+  # ---------------------------------------------------------------- FLOOD / gradanin
+  - id: flood-g-01
+    hazard: flood
+    audience: gradanin
+    min_band: vrlo visoka
+    priority: 1
+    text_hr: 'Ako nadležne službe pozovu na evakuaciju, odmah postupite prema pozivu i iskoristite preporučene evakuacijske rute prije nego se potope.'
+    source: cz_poplave
+    quote: 'ako nadležne službe pozovu na evakuaciju odmah postupite prema pozivu kako biste iskoristili preporučene evakuacijske rute prije njihovog potapanja'
+  - id: flood-g-02
+    hazard: flood
+    audience: gradanin
+    min_band: visoka
+    priority: 2
+    text_hr: 'Ne prolazite kroz poplavnu vodu automobilom, biciklom ni drugim prijevoznim sredstvom.'
+    source: cz_poplave
+    quote: 'ne prolazite kroz vodu automobilom, biciklom ili nekim drugim prijevoznim sredstvom'
+  - id: flood-g-03
+    hazard: flood
+    audience: gradanin
+    min_band: visoka
+    priority: 3
+    text_hr: 'Izbjegavajte hodanje kroz poplavnu vodu.'
+    source: cz_poplave
+    quote: 'izbjegavajte hodanje kroz sve poplavne vode'
+  - id: flood-g-04
+    hazard: flood
+    audience: gradanin
+    min_band: visoka
+    priority: 4
+    text_hr: 'U slučaju poplave isključite glavne izvore struje, plina i vode.'
+    source: cz_poplave
+    quote: 'isključite glavne izvore struje, plina i vode'
+  - id: flood-g-05
+    hazard: flood
+    audience: gradanin
+    min_band: niska
+    priority: 5
+    text_hr: 'Pratite vremenske prognoze i upozorenja DHMZ-a kako biste na vrijeme poduzeli potrebne mjere zaštite.'
+    source: cz_poplave
+    quote: 'Pratite vremenske prognoze i upozorenja DHMZ-a kako biste na vrijeme poduzeli potrebne mjere zaštite'
+  - id: flood-g-06
+    hazard: flood
+    audience: gradanin
+    min_band: niska
+    priority: 6
+    text_hr: 'Provjerite na službenim kartama opasnosti od poplava Hrvatskih voda pokazuju li moguće plavljenje u vašem području; karte prikazuju tri scenarija vjerojatnosti.'
+    source: voda_karte
+    quote: 'Karte opasnosti od poplava ukazuju na moguće obuhvate tri specifična poplavna scenarija:'
+  - id: flood-g-07
+    hazard: flood
+    audience: gradanin
+    min_band: niska
+    priority: 7
+    text_hr: 'Pripremite ruksak, torbu ili čvrstu vrećicu s neophodnim stvarima za slučaj evakuacije.'
+    source: cz_komplet
+    quote: 'U ruksak, torbu ili veću čvrstu vrećicu stavite neophodne stvari za slučaj evakuacije.'
+  - id: flood-g-08
+    hazard: flood
+    audience: gradanin
+    min_band: visoka
+    priority: 8
+    text_hr: 'Pomozite drugima u svojoj blizini, osobito ranjivim članovima obitelji, teško pokretnima, bolesnima, djeci i osobama s invaliditetom.'
+    source: cz_poplave
+    quote: 'pomozite drugima u vašoj blizini, osobito ranjivim članovima obitelji, teško pokretnima, bolesnima, djeci, osobama s invaliditetom te svima ostalima kojima je potrebno'
+  - id: flood-g-09
+    hazard: flood
+    audience: gradanin
+    min_band: umjerena
+    priority: 9
+    text_hr: 'Premjestite vrijedne stvari na povišena mjesta.'
+    source: cz_poplave
+    quote: 'premjestite vrijedne stvari na povišena mjesta'
+  - id: flood-g-10
+    hazard: flood
+    audience: gradanin
+    min_band: umjerena
+    priority: 10
+    text_hr: 'Pripremite pitku vodu jer nakon poplave može biti zagađena; tijekom poplave ne pijte vodu iz vodovoda, bunara i drugih izvora.'
+    source: cz_poplave
+    quote: 'pripremite pitku vodu jer će nakon poplave možda biti zagađena (tijekom poplave nemojte piti vodu iz vodovoda, bunara i drugih izvora)'
+  - id: flood-g-11
+    hazard: flood
+    audience: gradanin
+    min_band: niska
+    priority: 11
+    text_hr: 'Napravite obiteljski plan za izvanredne situacije i upoznajte s njim sve članove kućanstva.'
+    source: cz_obiteljski_plan
+    quote: 'S obiteljskim planom trebaju biti upoznati svi članovi kućanstva.'
+  - id: flood-g-12
+    hazard: flood
+    audience: gradanin
+    min_band: niska
+    priority: 12
+    text_hr: 'Nabavite tranzistorski radio prijemnik kako biste mogli primiti upute nadležnih institucija ako nestane struje.'
+    source: cz_prije_nesrece
+    quote: 'nabavite tranzistorski radio prijemnik kako biste mogli dobiti upute mjerodavnih institucija o poduzimanju zaštitnih mjera'
+
+  # ---------------------------------------------------------------- FLOOD / opcina
+  - id: flood-o-01
+    hazard: flood
+    audience: opcina
+    min_band: vrlo visoka
+    priority: 1
+    text_hr: 'Uključite povjerenike civilne zaštite u organiziranje i provođenje evakuacije, sklanjanja i zbrinjavanja stanovništva.'
+    source: zakon_csz
+    quote: 'sudjeluju u organiziranju i provođenju evakuacije, sklanjanja, zbrinjavanja i drugih mjera civilne zaštite'
+  - id: flood-o-02
+    hazard: flood
+    audience: opcina
+    min_band: visoka
+    priority: 2
+    text_hr: 'Putem stožera civilne zaštite i medija ili na drugi primjeren način javno pozovite građane na provedbu mjera civilne zaštite.'
+    source: zakon_csz
+    quote: 'Nadležni stožer civilne zaštite putem sredstava javnog informiranja ili na drugi primjereni način javno poziva građane na provedbu aktivnosti u sustavu civilne zaštite.'
+  - id: flood-o-03
+    hazard: flood
+    audience: opcina
+    min_band: visoka
+    priority: 3
+    text_hr: 'Koordinirajte djelovanje operativnih snaga civilne zaštite na svom području uz stručnu potporu stožera civilne zaštite.'
+    source: zakon_csz
+    quote: 'Izvršno tijelo jedinice lokalne i područne (regionalne) samouprave koordinira djelovanje operativnih snaga sustava civilne zaštite osnovanih za područje te jedinice u velikim nesrećama i katastrofama'
+  - id: flood-o-04
+    hazard: flood
+    audience: opcina
+    min_band: umjerena
+    priority: 4
+    text_hr: 'Neka stožer civilne zaštite prikuplja i obrađuje informacije ranog upozoravanja o mogućnosti nastanka velike nesreće.'
+    source: zakon_csz
+    quote: 'Stožer civilne zaštite obavlja zadaće koje se odnose na prikupljanje i obradu informacija ranog upozoravanja o mogućnosti nastanka velike nesreće i katastrofe'
+  - id: flood-o-05
+    hazard: flood
+    audience: opcina
+    min_band: niska
+    priority: 5
+    text_hr: 'Redovito pratite upozorenja DHMZ-a za svoje područje (odaberite područje na karti za detaljna upozorenja).'
+    source: dhmz_upozorenja
+    quote: 'Izvještaji o pripravnosti - odaberite područje na karti i pogledajte detaljna upozorenja.'
+  - id: flood-o-06
+    hazard: flood
+    audience: opcina
+    min_band: umjerena
+    priority: 6
+    text_hr: 'Osigurajte uvjete za premještanje, sklanjanje, evakuaciju i zbrinjavanje građana, materijalnih i kulturnih dobara.'
+    source: zakon_csz
+    quote: 'osigurava uvjete za premještanje, sklanjanje, evakuaciju i zbrinjavanje te izvršavanje zadaća u provedbi drugih mjera civilne zaštite u zaštiti i spašavanju građana, materijalnih i kulturnih dobara i okoliša'
+  - id: flood-o-07
+    hazard: flood
+    audience: opcina
+    min_band: niska
+    priority: 7
+    text_hr: 'Upoznajte se s državnim i provedbenim planovima obrane od poplava; javno su dostupni na stranicama Hrvatskih voda.'
+    source: voda_obrana
+    quote: 'Svi ovi planovi javno su dostupni na internetskim stranicama Hrvatskih voda.'
+  - id: flood-o-08
+    hazard: flood
+    audience: opcina
+    min_band: niska
+    priority: 8
+    text_hr: 'Surađujte s Hrvatskim vodama i ostalim tijelima sustava zaštite i spašavanja; za učinkovitu obranu od poplava nužna je i suradnja lokalne samouprave.'
+    source: voda_obrana
+    quote: 'Za učinkovitu obranu od poplava neophodna je suradnja svih nadležnih tijela u sustavu zaštite i spašavanja, uključujući i jedinice lokalne i područne(regionalne) samouprave'
+  - id: flood-o-09
+    hazard: flood
+    audience: opcina
+    min_band: niska
+    priority: 9
+    text_hr: 'Pregledajte karte opasnosti i rizika od poplava Hrvatskih voda za svoje područje; karte rizika daju prostorni pregled mogućih štetnih posljedica.'
+    source: voda_karte
+    quote: 'Karte rizika od poplava daju prostorni pregled mogućih štetnih posljedica koje se povezuju sa poplavnim scenarijima prikazanim na kartama opasnosti od poplava.'
+  - id: flood-o-10
+    hazard: flood
+    audience: opcina
+    min_band: niska
+    priority: 10
+    text_hr: 'Redovito ažurirajte procjenu rizika od velikih nesreća i plan djelovanja civilne zaštite te prijedlog dostavite predstavničkom tijelu.'
+    source: zakon_csz
+    quote: 'izrađuje i dostavlja predstavničkom tijelu prijedlog procjene rizika od velikih nesreća i redovito ažurira procjenu rizika i plan djelovanja civilne zaštite'
+  - id: flood-o-11
+    hazard: flood
+    audience: opcina
+    min_band: niska
+    priority: 11
+    text_hr: 'Jačajte svijest građana, osobito ranjivih skupina, o opasnostima i mjerama zaštite te o korištenju broja 112.'
+    source: zakon_csz
+    quote: 'jačanje svijesti građana, ranjivih i posebnih ciljanih društvenih skupina o opasnostima i mjerama za zaštitu te korištenje broja 112'
+
+  # ---------------------------------------------------------------- HEAT / gradanin
+  - id: heat-g-01
+    hazard: heat
+    audience: gradanin
+    min_band: vrlo visoka
+    priority: 1
+    text_hr: 'Ako nekome u blizini pozli od vrućine, premjestite ga u hlad ili rashlađen prostor i pozovite hitnu medicinsku pomoć.'
+    source: cz_toplinski_val
+    quote: 'ako je nekome u vašoj blizini pozlilo premjestite ga u hlad na otvorenom ili u rashlađeni prostor, otkopčajte ugroženoj osobi odjeću i ako je pri svijesti dajte piti vodu ili sok te pozovite hitnu medicinsku pomoć'
+  - id: heat-g-02
+    hazard: heat
+    audience: gradanin
+    min_band: visoka
+    priority: 2
+    text_hr: 'Izbjegavajte boravak na otvorenom između 10 i 17 sati.'
+    source: cz_toplinski_val
+    quote: 'izbjegavajte boravak na otvorenom između 10 i 17h'
+  - id: heat-g-03
+    hazard: heat
+    audience: gradanin
+    min_band: niska
+    priority: 3
+    text_hr: 'Pijte dovoljno tekućine (negazirana voda ili niskokalorična pića bez kofeina, alkohola i šećera) i to stalno, a ne tek kad ožednite.'
+    source: cz_toplinski_val
+    quote: 'pijte dovoljno tekućine, odnosno negazirane vode ili niskokaloričnih pića bez kofeina, alkohola i šećera, važno je stalno unositi tekućinu, a ne tek kad se pojavi osjećaj žeđi!'
+  - id: heat-g-04
+    hazard: heat
+    audience: gradanin
+    min_band: niska
+    priority: 4
+    text_hr: 'Nikada ne ostavljajte djecu ni životinje same u vozilu.'
+    source: cz_toplinski_val
+    quote: 'djecu i životinje ne ostavljajte same u vozilima!'
+  - id: heat-g-05
+    hazard: heat
+    audience: gradanin
+    min_band: visoka
+    priority: 5
+    text_hr: 'Ako ne možete rashladiti dom, provedite dva do tri sata dnevno u hladnom prostoru, npr. u hlađenoj javnoj zgradi.'
+    source: hzjz_preporuke_vrucina
+    quote: 'Ako stan ili kuću ne možete držati rashlađenim, provedite dva do tri sata dnevno u hladnom prostoru (npr. u hlađenoj javnoj zgradi).'
+  - id: heat-g-06
+    hazard: heat
+    audience: gradanin
+    min_band: umjerena
+    priority: 6
+    text_hr: 'Posjetite obitelj, prijatelje i susjede koji većinu vremena provode sami; mogli bi trebati vašu pomoć tijekom vrućih dana.'
+    source: hzjz_preporuke_vrucina
+    quote: 'Posjetite obitelj, prijatelje i susjede koji većinu vremena provode sami.'
+  - id: heat-g-07
+    hazard: heat
+    audience: gradanin
+    min_band: niska
+    priority: 7
+    text_hr: 'Informirajte se o nastupanju toplinskih valova na službenim stranicama Državnog hidrometeorološkog zavoda (DHMZ).'
+    source: hzjz_velike_vrucine
+    quote: 'Informirajte se o nastupanju toplinskih valova na službenim stranicama Državnog hidrometeorološkog zavoda'
+  - id: heat-g-08
+    hazard: heat
+    audience: gradanin
+    min_band: niska
+    priority: 8
+    text_hr: 'Noću otvorite prozore ili podignite rolete kako bi ušao hladniji zrak i rashladio dom.'
+    source: cz_toplinski_val
+    quote: 'koristite hladniji noćni zrak da rashladite svoj dom, otvorite sve prozore ili podignite rolete tijekom noći i ranih jutarnjih sati'
+  - id: heat-g-09
+    hazard: heat
+    audience: gradanin
+    min_band: umjerena
+    priority: 9
+    text_hr: 'Danju zatvorite prozore i spustite rolete, osobito one okrenute prema suncu.'
+    source: hzjz_velike_vrucine
+    quote: 'Danju zatvorite prozore i spustite rolete, naročito one koji su okrenuti prema suncu'
+  - id: heat-g-10
+    hazard: heat
+    audience: gradanin
+    min_band: visoka
+    priority: 10
+    text_hr: 'Ako radite ili trenirate na otvorenom, češće pravite pauze u hladu i pijte više tekućine.'
+    source: cz_toplinski_val
+    quote: 'ako radite ili trenirate na otvorenom uzimajte češće pauze u hladu i pijte više tekućine'
+  - id: heat-g-11
+    hazard: heat
+    audience: gradanin
+    min_band: umjerena
+    priority: 11
+    text_hr: 'Ako imate kroničnu bolest ili uzimate više lijekova, potražite savjet liječnika.'
+    source: hzjz_preporuke_vrucina
+    quote: 'Tražite savjet liječnika ako imate neku kroničnu bolest ili uzimate više lijekova'
+
+  # ---------------------------------------------------------------- HEAT / opcina
+  - id: heat-o-01
+    hazard: heat
+    audience: opcina
+    min_band: vrlo visoka
+    priority: 1
+    text_hr: 'Koordinirajte djelovanje operativnih snaga civilne zaštite na svom području uz stručnu potporu stožera civilne zaštite.'
+    source: zakon_csz
+    quote: 'Izvršno tijelo jedinice lokalne i područne (regionalne) samouprave koordinira djelovanje operativnih snaga sustava civilne zaštite osnovanih za područje te jedinice u velikim nesrećama i katastrofama'
+  - id: heat-o-02
+    hazard: heat
+    audience: opcina
+    min_band: umjerena
+    priority: 2
+    text_hr: 'Obavijestite stanovnike da starije osobe i bolesnike koji žive sami treba posjetiti barem jednom dnevno.'
+    source: hzjz_preporuke_vrucina
+    quote: 'Starije osobe i bolesnike koji žive sami treba posjetiti barem jednom dnevno.'
+  - id: heat-o-03
+    hazard: heat
+    audience: opcina
+    min_band: visoka
+    priority: 3
+    text_hr: 'Obavijestite stanovnike koji ne mogu rashladiti dom da se mogu dva do tri sata dnevno zadržati u hladnom prostoru, npr. u hlađenoj javnoj zgradi.'
+    source: hzjz_preporuke_vrucina
+    quote: 'Ako stan ili kuću ne možete držati rashlađenim, provedite dva do tri sata dnevno u hladnom prostoru (npr. u hlađenoj javnoj zgradi).'
+  - id: heat-o-04
+    hazard: heat
+    audience: opcina
+    min_band: visoka
+    priority: 4
+    text_hr: 'Tijekom velikih vrućina potaknite stanovnike da slijede preporuke lokalnih zdravstvenih ustanova koje javnost informiraju putem medija.'
+    source: hzjz_preporuke_vrucina
+    quote: 'Cijelo vrijeme trajanja velikih vrućina pridržavajte se preporuka lokalnih zdravstvenih ustanova koje informiraju javnost putem medija (radija, TV, interneta).'
+  - id: heat-o-05
+    hazard: heat
+    audience: opcina
+    min_band: niska
+    priority: 5
+    text_hr: 'Pratite HZJZ-ova upozorenja na toplinske valove: kad je za vaše područje označeno žuto, narančasto ili crveno, slijedite naputke za zaštitu od vrućina.'
+    source: hzjz_upozorenja_toplinski
+    quote: 'Ako je za Vaše klimatsko područje označeno ŽUTO, NARANČASTO ili CRVENO, ovdje pratite naputke za zaštitu od vrućina.'
+  - id: heat-o-06
+    hazard: heat
+    audience: opcina
+    min_band: niska
+    priority: 6
+    text_hr: 'U planiranju mjera za vrućinu uključite zaštitu stanovništva izloženog povećanom riziku; smjernice SZO-a taj element navode među ključnima.'
+    source: who_hhap
+    quote: 'zaštite stanovništvo izloženo povećanom riziku'
+  - id: heat-o-07
+    hazard: heat
+    audience: opcina
+    min_band: niska
+    priority: 7
+    text_hr: 'Upoznajte se s Protokolom o postupanju i preporukama za zaštitu od vrućine Ministarstva zdravstva, koji uključuje postupke pripravnosti i djelovanja na lokalnoj razini.'
+    source: zagreb_protokol_vrucina
+    quote: 'uključuje potrebne postupke za pripravnost i djelovanje na nacionalnoj i lokalnoj razini u slučaju opasnosti od toplinskog vala'
+  - id: heat-o-08
+    hazard: heat
+    audience: opcina
+    min_band: niska
+    priority: 8
+    text_hr: 'Razmotrite lokalni akcijski plan za zdravlje i toplinu; smjernice SZO-a podupiru razvoj i provedbu takvih planova i na lokalnoj razini.'
+    source: who_hhap
+    quote: 'podupire zemlje u razvoju, jačanju i provedbi takvih planova na nacionalnoj, regionalnoj i lokalnoj razini.'
+  - id: heat-o-09
+    hazard: heat
+    audience: opcina
+    min_band: niska
+    priority: 9
+    text_hr: 'Za informiranje stanovnika o vrućini poslužite se sažecima mjera i bankom poruka javnog zdravlja iz smjernica SZO-a.'
+    source: who_hhap
+    quote: 'Smjernice uključuju i sažetke mjera za korisnike za ključne sektore i banku poruka javnog zdravlja'
+  - id: heat-o-10
+    hazard: heat
+    audience: opcina
+    min_band: umjerena
+    priority: 10
+    text_hr: 'Jačajte svijest građana, osobito ranjivih skupina, o opasnostima i mjerama zaštite te o korištenju broja 112.'
+    source: zakon_csz
+    quote: 'jačanje svijesti građana, ranjivih i posebnih ciljanih društvenih skupina o opasnostima i mjerama za zaštitu te korištenje broja 112'
+
+  # ---------------------------------------------------------------- FIRE / gradanin
+  - id: fire-g-01
+    hazard: fire
+    audience: gradanin
+    min_band: vrlo visoka
+    priority: 1
+    text_hr: 'Ako lokalne vlasti zatraže evakuaciju stanovništva, odmah i bez odgađanja postupite prema njihovim uputama.'
+    source: cz_pozar
+    quote: 'ako su lokalne vlasti zatražile evakuaciju stanovništva, ODMAH, bez odgađanja postupite prema uputama'
+  - id: fire-g-02
+    hazard: fire
+    audience: gradanin
+    min_band: vrlo visoka
+    priority: 2
+    text_hr: 'Ne čekajte u vozilu da vam se vatra približi; izađite i potražite sigurnije mjesto na otvorenom, bez vegetacije i materijala koji podržavaju gorenje.'
+    source: cz_pozar
+    quote: 'ne čekajte u vozilu da vam se vatra približi, izađite i potražite sigurnije mjesto na otvorenom (prostor bez vegetacije i materijala koji podržavaju gorenje)'
+  - id: fire-g-03
+    hazard: fire
+    audience: gradanin
+    min_band: vrlo visoka
+    priority: 3
+    text_hr: 'Nikada ne prolazite kroz vatru.'
+    source: cz_pozar
+    quote: 'nikad ne prolazite kroz vatru!'
+  - id: fire-g-04
+    hazard: fire
+    audience: gradanin
+    min_band: visoka
+    priority: 4
+    text_hr: 'Na otvorenom potražite mjesto na kojem niste okruženi vegetacijom i materijalima koji podržavaju gorenje.'
+    source: cz_pozar
+    quote: 'pronađite mjesto na kojem niste okruženi vegetacijom i materijalima koji podržavaju gorenje'
+  - id: fire-g-05
+    hazard: fire
+    audience: gradanin
+    min_band: visoka
+    priority: 5
+    text_hr: 'Zaštitite lice (nos i usta) mokrom tkaninom kako ne biste udisali dim.'
+    source: cz_pozar
+    quote: 'lice (nos i usta) zaštitite mokrom tkaninom kako ne biste stradali zbog udisanja dima'
+  - id: fire-g-06
+    hazard: fire
+    audience: gradanin
+    min_band: niska
+    priority: 6
+    text_hr: 'Ako primijetite vatru ili dim u prirodi, odmah nazovite 193 ili 112.'
+    source: hrsume_pozar
+    quote: 'Primijetiš li vatru ili dim, odmah nazovi 193 ili 112.'
+  - id: fire-g-07
+    hazard: fire
+    audience: gradanin
+    min_band: niska
+    priority: 7
+    text_hr: 'Provjerite upozorenja DHMZ-a za svoje područje (odaberite područje na karti za detaljna upozorenja).'
+    source: dhmz_upozorenja
+    quote: 'Izvještaji o pripravnosti - odaberite područje na karti i pogledajte detaljna upozorenja.'
+  - id: fire-g-08
+    hazard: fire
+    audience: gradanin
+    min_band: niska
+    priority: 8
+    text_hr: 'Provjerite DHMZ-ov indeks opasnosti od šumskog požara prije boravka u prirodi.'
+    source: dhmz_pozarni_indeks
+    quote: 'Indeks opasnosti od šumskog požara'
+  - id: fire-g-09
+    hazard: fire
+    audience: gradanin
+    min_band: niska
+    priority: 9
+    text_hr: 'U prirodi pokupite opušak i staklo te do kraja ugasite plamen; to su jednostavne, ali važne protupožarne mjere.'
+    source: hrsume_pozar
+    quote: 'Opušak koji si pokupio za sobom, staklo koje si bacio u smeće ili plamen koji si ugasio do kraja jednostavne su radnje, a mogu biti presudna protupožarna mjera.'
+  - id: fire-g-10
+    hazard: fire
+    audience: gradanin
+    min_band: niska
+    priority: 10
+    text_hr: 'Ljeti budite oprezni u šumi i blizini raslinja; nemar je često prva iskra požara.'
+    source: hrsume_pozar
+    quote: 'U ljetnim mjesecima, šume diljem Hrvatske pod velikim su rizikom od požara, a nemar je često njihova prva iskra.'
+  - id: fire-g-11
+    hazard: fire
+    audience: gradanin
+    min_band: visoka
+    priority: 11
+    text_hr: 'Pomozite drugima u svojoj blizini, osobito teško pokretnima, bolesnima i djeci.'
+    source: cz_pozar
+    quote: 'pomozite drugima u vašoj blizini, osobito teško pokretnima, bolesnima, djeci i sl. te svima kojima je potrebno'
+
+  # ---------------------------------------------------------------- FIRE / opcina
+  - id: fire-o-01
+    hazard: fire
+    audience: opcina
+    min_band: vrlo visoka
+    priority: 1
+    text_hr: 'Koordinirajte djelovanje operativnih snaga civilne zaštite na svom području uz stručnu potporu stožera civilne zaštite.'
+    source: zakon_csz
+    quote: 'Izvršno tijelo jedinice lokalne i područne (regionalne) samouprave koordinira djelovanje operativnih snaga sustava civilne zaštite osnovanih za područje te jedinice u velikim nesrećama i katastrofama'
+  - id: fire-o-02
+    hazard: fire
+    audience: opcina
+    min_band: vrlo visoka
+    priority: 2
+    text_hr: 'Osigurajte uvjete za premještanje, sklanjanje, evakuaciju i zbrinjavanje građana, materijalnih i kulturnih dobara.'
+    source: zakon_csz
+    quote: 'osigurava uvjete za premještanje, sklanjanje, evakuaciju i zbrinjavanje te izvršavanje zadaća u provedbi drugih mjera civilne zaštite u zaštiti i spašavanju građana, materijalnih i kulturnih dobara i okoliša'
+  - id: fire-o-03
+    hazard: fire
+    audience: opcina
+    min_band: vrlo visoka
+    priority: 3
+    text_hr: 'Putem stožera civilne zaštite i medija ili na drugi primjeren način javno pozovite građane na provedbu mjera civilne zaštite.'
+    source: zakon_csz
+    quote: 'Nadležni stožer civilne zaštite putem sredstava javnog informiranja ili na drugi primjereni način javno poziva građane na provedbu aktivnosti u sustavu civilne zaštite.'
+  - id: fire-o-04
+    hazard: fire
+    audience: opcina
+    min_band: visoka
+    priority: 4
+    text_hr: 'Nastanak požara i sve informacije o požaru prijavite policijskoj upravi, neposredno ili putem centra 112.'
+    source: zakon_zop
+    quote: 'dužne su policijskoj upravi, neposredno ili putem centra 112, prijaviti nastanak požara i sve informacije o požaru.'
+  - id: fire-o-05
+    hazard: fire
+    audience: opcina
+    min_band: umjerena
+    priority: 5
+    text_hr: 'Neka stožer civilne zaštite prikuplja i obrađuje informacije ranog upozoravanja o mogućnosti nastanka velike nesreće.'
+    source: zakon_csz
+    quote: 'Stožer civilne zaštite obavlja zadaće koje se odnose na prikupljanje i obradu informacija ranog upozoravanja o mogućnosti nastanka velike nesreće i katastrofe'
+  - id: fire-o-06
+    hazard: fire
+    audience: opcina
+    min_band: umjerena
+    priority: 6
+    text_hr: 'Za gašenje požara i spašavanje ljudi i imovine osigurajte alat, opremu i prijevozna sredstva jedinice, sukladno planovima zaštite od požara.'
+    source: zakon_zop
+    quote: 'svojim alatom, opremom, tehničkim i prijevoznim sredstvima, a fizičke osobe i svojim radom, sudjelovati u gašenju požara i spašavanju ljudi i imovine ugroženih požarom.'
+  - id: fire-o-07
+    hazard: fire
+    audience: opcina
+    min_band: niska
+    priority: 7
+    text_hr: 'Donesite plan zaštite od požara za svoje područje na temelju procjene ugroženosti od požara, uz mišljenje nadležne policijske uprave.'
+    source: zakon_zop
+    quote: 'donose plan zaštite od požara za svoje područje na temelju procjene ugroženosti od požara, po prethodno pribavljenom mišljenju nadležne policijske uprave.'
+  - id: fire-o-08
+    hazard: fire
+    audience: opcina
+    min_band: niska
+    priority: 8
+    text_hr: 'Plan zaštite od požara usklađujte s novonastalim uvjetima najmanje jednom godišnje.'
+    source: zakon_zop
+    quote: 'najmanje jednom godišnje usklađuju planove iz stavka 1. ovoga članka s novonastalim uvjetima.'
+  - id: fire-o-09
+    hazard: fire
+    audience: opcina
+    min_band: niska
+    priority: 9
+    text_hr: 'Donesite godišnji provedbeni plan unapređenja zaštite od požara i osigurajte financijska sredstva za njegovu provedbu.'
+    source: zakon_zop
+    quote: 'donose godišnji provedbeni plan unapređenja zaštite od požara za svoje područje za čiju provedbu će osigurati financijska sredstva.'
+  - id: fire-o-10
+    hazard: fire
+    audience: opcina
+    min_band: niska
+    priority: 10
+    text_hr: 'Pratite DHMZ-ov indeks opasnosti od šumskog požara i upozorenja za svoje područje.'
+    source: dhmz_pozarni_indeks
+    quote: 'Indeks opasnosti od šumskog požara'
+  - id: fire-o-11
+    hazard: fire
+    audience: opcina
+    min_band: niska
+    priority: 11
+    text_hr: 'Predstavničko tijelo najmanje jednom godišnje razmatra izvješće o stanju zaštite od požara na području jedinice.'
+    source: zakon_zop
+    quote: 'najmanje jednom godišnje razmatraju izvješće o stanju zaštite od požara na svom području'
