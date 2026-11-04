@@ -99,10 +99,10 @@ def heat_grid(
 
 @ingest_app.command("heat-cells")
 def heat_cells(lau: str = typer.Option(..., "--lau", help="Municipality id")) -> None:
-    """Build heat_cell for a municipality from the stored heat points."""
-    from otporno_api.heat import build_heat_cells
+    """Build heat_cell for a municipality from the stored heat points and update its status."""
+    from otporno_api.exposure import compute_municipality
 
-    _echo(_run("heat-cells", lambda s, st: build_heat_cells(s, lau)))
+    _echo(_run("heat-cells", lambda s, st: compute_municipality(s, lau)))
 
 
 @ingest_app.command("buildings")
