@@ -1,0 +1,367 @@
+@import '@dt/ui/styles.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Otporko look: warm paper background, deep navy rail, serif display type, burnt-orange accent.
+ * Deliberately unlike Blizu (teal, top bar, slate greys, IBM Plex) and NabavaRadar.
+ * White text on --brand-600/--brand-700/--accent-600 stays >= 4.5:1.
+ */
+:root {
+  --brand-600: 30 58 138; /* #1E3A8A */
+  --brand-700: 23 44 107;
+  --accent-600: 194 65 12; /* #C2410C */
+
+  /* warm stone neutrals (replace the cool slate defaults) */
+  --neutral-50: 250 248 243;
+  --neutral-100: 245 241 232;
+  --neutral-200: 232 226 214;
+  --neutral-300: 214 207 193;
+  --neutral-400: 168 160 146;
+  --neutral-500: 120 113 108;
+  --neutral-600: 87 83 78;
+  --neutral-700: 68 64 60;
+  --neutral-800: 41 37 36;
+  --neutral-900: 28 25 23;
+
+  --paper: 245 241 232;
+  --flood-100: 219 234 254;
+  --flood-500: 37 99 235;
+  --flood-700: 30 64 175;
+  --heat-100: 255 237 213;
+  --heat-500: 232 102 31;
+  --heat-700: 154 42 11;
+
+  --font-sans: 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  --font-display:
+    'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, 'Times New Roman', serif;
+  --rail-width: 15rem;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background: rgb(var(--paper));
+  color: rgb(var(--neutral-900));
+  font-family: var(--font-sans);
+}
+
+.ot-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+  font-weight: 700;
+}
+.ot-eyebrow {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgb(var(--neutral-600));
+}
+.ot-num {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- shell: left rail on desktop, top bar + bottom tabs on phones ---------- */
+.ot-shell {
+  min-height: 100vh;
+}
+.ot-rail {
+  background: rgb(var(--brand-700));
+  color: #fff;
+}
+.ot-rail a {
+  color: #fff;
+}
+.ot-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+.ot-brand svg {
+  flex: none;
+}
+.ot-nav a {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  min-height: 44px;
+  padding: 0.5rem 0.875rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  font-weight: 600;
+  border-left: 4px solid transparent;
+}
+.ot-nav a:hover {
+  background: rgb(255 255 255 / 0.12);
+}
+.ot-nav a[aria-current='page'] {
+  background: rgb(255 255 255 / 0.16);
+  border-left-color: rgb(253 186 116);
+}
+.ot-rail a:focus-visible,
+.ot-rail button:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 2px;
+}
+@media (min-width: 1024px) {
+  .ot-shell {
+    display: grid;
+    grid-template-columns: var(--rail-width) minmax(0, 1fr);
+  }
+  .ot-rail {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem 1rem;
+  }
+  .ot-nav {
+    margin-top: 2rem;
+    display: grid;
+    gap: 0.25rem;
+  }
+  .ot-nav-label-short {
+    display: none;
+  }
+}
+@media (max-width: 1023.98px) {
+  .ot-rail {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+  }
+  .ot-rail-foot,
+  .ot-rail-tag {
+    display: none;
+  }
+  .ot-nav {
+    position: fixed;
+    inset: auto 0 0 0;
+    z-index: 30;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    background: rgb(var(--brand-700));
+    border-top: 1px solid rgb(255 255 255 / 0.25);
+    padding: 0.25rem;
+  }
+  .ot-nav a {
+    flex-direction: column;
+    gap: 0;
+    padding: 0.375rem 0.25rem;
+    font-size: 0.875rem;
+    text-align: center;
+    border-left: 0;
+    border-top: 4px solid transparent;
+  }
+  .ot-nav a[aria-current='page'] {
+    border-top-color: rgb(253 186 116);
+  }
+  .ot-main {
+    padding-bottom: 5rem;
+  }
+}
+.ot-main {
+  padding: 1.5rem 1rem 3rem;
+}
+@media (min-width: 640px) {
+  .ot-main {
+    padding: 2rem 2rem 4rem;
+  }
+}
+.ot-wrap {
+  max-width: 72rem;
+  margin: 0 auto;
+}
+
+/* ---------- surfaces ---------- */
+.ot-card {
+  background: #fff;
+  border: 1px solid rgb(var(--neutral-300));
+  border-radius: 0.75rem;
+  box-shadow: var(--shadow-sm);
+}
+.ot-ticket {
+  position: relative;
+  background: #fff;
+  border: 1px solid rgb(var(--neutral-300));
+  border-top: 8px solid rgb(var(--neutral-400));
+  border-radius: 0.375rem 0.375rem 1rem 1rem;
+  box-shadow: var(--shadow-md);
+  padding: 1.25rem;
+}
+.ot-ticket--flood {
+  border-top-color: rgb(var(--flood-500));
+}
+.ot-ticket--heat {
+  border-top-color: rgb(var(--heat-500));
+}
+.ot-ticket--fire {
+  border-top-color: rgb(var(--neutral-500));
+  border-top-style: dashed;
+}
+.ot-hero {
+  background: rgb(var(--brand-600));
+  color: #fff;
+  border-radius: 1rem;
+  padding: 2rem 1.5rem;
+  background-image:
+    radial-gradient(circle at 92% 12%, rgb(234 88 12 / 0.55) 0, transparent 38%),
+    repeating-linear-gradient(160deg, rgb(255 255 255 / 0.05) 0 2px, transparent 2px 22px);
+}
+.ot-hero .ot-eyebrow,
+.ot-hero p {
+  color: rgb(224 231 255);
+}
+.ot-hero label {
+  color: #fff;
+}
+
+.ot-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0.5rem 1.25rem;
+  border-radius: 0.5rem;
+  font-weight: 700;
+  border: 2px solid rgb(var(--brand-600));
+  background: rgb(var(--brand-600));
+  color: #fff;
+  cursor: pointer;
+  text-decoration: none;
+}
+.ot-btn:hover {
+  background: rgb(var(--brand-700));
+}
+.ot-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.ot-btn--ghost {
+  background: #fff;
+  color: rgb(var(--brand-700));
+}
+.ot-btn--ghost:hover {
+  background: rgb(var(--neutral-100));
+}
+.ot-btn--accent {
+  background: rgb(var(--accent-600));
+  border-color: rgb(var(--accent-600));
+}
+.ot-btn--accent:hover {
+  background: rgb(154 52 18);
+}
+
+.ot-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.125rem 0.625rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  border: 2px solid currentColor;
+}
+.ot-chip--niska {
+  background: rgb(var(--neutral-100));
+  color: rgb(var(--neutral-800));
+}
+.ot-chip--umjerena {
+  background: rgb(var(--heat-100));
+  color: rgb(124 45 18);
+}
+.ot-chip--visoka {
+  background: rgb(var(--heat-500));
+  border-color: rgb(var(--heat-700));
+  color: #fff;
+}
+.ot-chip--vrlo-visoka {
+  background: rgb(var(--heat-700));
+  color: #fff;
+}
+
+.ot-map {
+  height: 26rem;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  border: 1px solid rgb(var(--neutral-300));
+}
+.ot-map .dt-map,
+.ot-map .dt-map__canvas {
+  height: 100%;
+  min-height: 0;
+}
+.ot-pin {
+  width: 22px;
+  height: 22px;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  background: rgb(var(--accent-600));
+  border: 3px solid #fff;
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.5);
+}
+.ot-site {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 0.375rem;
+  background: rgb(var(--brand-700));
+  color: #fff;
+  font-weight: 700;
+  border: 2px solid #fff;
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.5);
+}
+
+input[type='range'] {
+  accent-color: rgb(var(--brand-600));
+  width: 100%;
+  min-height: 28px;
+}
+.ot-check {
+  display: grid;
+  grid-template-columns: 1.75rem 1fr;
+  gap: 0.75rem;
+  align-items: start;
+}
+.ot-check input {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-top: 0.125rem;
+  accent-color: rgb(var(--brand-600));
+}
+.ot-check input:checked + div .ot-check-text {
+  text-decoration: line-through;
+  color: rgb(var(--neutral-600));
+}
+
+@media print {
+  .ot-rail,
+  .ot-noprint,
+  .dt-map,
+  .ot-map {
+    display: none !important;
+  }
+  .ot-shell {
+    display: block;
+  }
+  body {
+    background: #fff;
+  }
+}
