@@ -2,7 +2,7 @@
   "name": "nabavaradar-web",
   "version": "0.1.0",
   "private": true,
-  "description": "NabavaRadar web app (React SPA)",
+  "description": "Birokratko web app (React SPA)",
   "license": "EUPL-1.2",
   "type": "module",
   "scripts": {

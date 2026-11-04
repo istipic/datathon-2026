@@ -3,7 +3,7 @@ import { ApiError, api } from '../lib/api';
 
 /** Consent shown next to the checkbox; the API stores the same text with the subscription. */
 export const CONSENT_TEXT =
-  'Pristajem da NabavaRadar na ovu e-adresu jednom tjedno (ponedjeljkom u 7:00) šalje pregled do 10 novih ' +
+  'Pristajem da Birokratko na ovu e-adresu jednom tjedno (ponedjeljkom u 7:00) šalje pregled do 10 novih ' +
   'natječaja koji odgovaraju mojoj pretrazi. Pohranjuje se samo e-adresa. Pretplatu mogu otkazati ' +
   'poveznicom u svakoj poruci.';
 

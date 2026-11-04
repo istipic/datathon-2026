@@ -3,16 +3,57 @@
 @tailwind components;
 @tailwind utilities;
 
-/* NabavaRadar brand: indigo #4F46E5 (white text 6.3:1), graphite neutrals #111827 */
+/*
+ * Birokratko look ("službeni dosje"): ink-black ministry strip, burgundy rubber stamp, numbered tabs,
+ * square paper-stack cards, ruler-style bars, monospace labels. Deliberately unlike Blizu (teal, rounded,
+ * top bar, Plex) and Otporko (warm paper, navy rail, serif). White text on --brand-600/--brand-700 >= 7:1.
+ */
 :root {
-  --brand-600: 79 70 229;
-  --brand-700: 67 56 202;
-  --accent-600: 180 83 9;
-  --neutral-900: 17 24 39;
+  --brand-600: 159 18 57; /* #9F1239 */
+  --brand-700: 131 24 67; /* #831843 */
+  --accent-600: 39 39 42; /* ink */
+
+  --neutral-50: 244 244 245;
+  --neutral-100: 235 236 238;
+  --neutral-200: 221 223 227;
+  --neutral-300: 196 199 205;
+  --neutral-400: 140 145 155;
+  --neutral-500: 100 105 115;
+  --neutral-600: 72 77 87;
+  --neutral-700: 52 56 65;
+  --neutral-800: 33 36 43;
+  --neutral-900: 17 19 24;
+
+  --ink: 24 24 27;
+  --font-sans:
+    'Trebuchet MS', 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  --font-display:
+    Bahnschrift, 'DIN Alternate', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+  --radius-sm: 0;
+  --radius-md: 2px;
+  --radius-lg: 3px;
+  --shadow-sm: 2px 2px 0 0 rgb(17 19 24 / 0.1);
+  --shadow-md: 3px 3px 0 0 rgb(17 19 24 / 0.14);
 }
 
 body {
-  background: rgb(var(--neutral-50));
+  font-family: var(--font-sans);
+  background-color: rgb(var(--neutral-100));
+  /* ledger paper: faint horizontal rules */
+  background-image: repeating-linear-gradient(
+    180deg,
+    transparent 0,
+    transparent 31px,
+    rgb(var(--neutral-200)) 31px,
+    rgb(var(--neutral-200)) 32px
+  );
+}
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  letter-spacing: 0.01em;
 }
 
 /* numbers always in Plex Mono, tabular */
@@ -20,16 +61,123 @@ body {
   font-family: var(--font-mono);
   font-variant-numeric: tabular-nums;
 }
+.bk-label {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
 
-/* ---- tender card ---- */
+/* ---------- shell ---------- */
+.bk-strip {
+  background: rgb(var(--ink));
+  color: rgb(235 236 238);
+}
+.bk-strip__inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.25rem 1rem;
+  padding: 0.375rem 1rem;
+  max-width: 64rem;
+  margin: 0 auto;
+}
+.bk-head {
+  background: #fff;
+  border-bottom: 4px double rgb(var(--ink));
+}
+.bk-head__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+  padding: 0.75rem 1rem;
+  max-width: 64rem;
+  margin: 0 auto;
+}
+.bk-stamp {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.75rem;
+  border: 3px solid rgb(var(--brand-600));
+  color: rgb(var(--brand-600));
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transform: rotate(-2deg);
+  outline: 2px dashed rgb(var(--brand-600));
+  outline-offset: 3px;
+  background: #fff;
+}
+.bk-stamp:hover {
+  background: rgb(var(--brand-600));
+  color: #fff;
+}
+.bk-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.5rem;
+}
+.bk-nav a {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0.5rem 0.75rem;
+  color: rgb(var(--neutral-900));
+  text-decoration: none;
+  border-bottom: 4px solid transparent;
+  font-weight: 600;
+}
+.bk-nav a small {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: rgb(var(--brand-700));
+}
+.bk-nav a:hover {
+  background: rgb(var(--neutral-100));
+}
+.bk-nav a[aria-current='page'] {
+  border-bottom-color: rgb(var(--brand-600));
+  background: rgb(var(--neutral-100));
+}
+.bk-foot {
+  margin-top: 3rem;
+  background: rgb(var(--ink));
+  color: rgb(221 223 227);
+  font-size: 0.875rem;
+}
+.bk-foot a {
+  color: #fff;
+  text-decoration: underline;
+}
+.bk-foot__inner {
+  display: grid;
+  gap: 0.5rem 2rem;
+  padding: 1.5rem 1rem;
+  max-width: 64rem;
+  margin: 0 auto;
+}
+
+/* ---------- tender card (dossier folder) ---------- */
 .nr-card {
+  position: relative;
   background: rgb(var(--white));
-  border: 1px solid rgb(var(--neutral-300));
-  border-radius: var(--radius-lg);
+  border: 1px solid rgb(var(--neutral-400));
+  border-left: 8px solid rgb(var(--brand-600));
+  border-radius: var(--radius-md);
   padding: var(--space-4);
+  box-shadow: var(--shadow-md);
 }
 .nr-card:hover {
-  border-color: rgb(var(--brand-600));
+  border-color: rgb(var(--ink));
+  border-left-color: rgb(var(--brand-700));
 }
 .nr-fit {
   display: grid;
@@ -38,26 +186,35 @@ body {
   gap: var(--space-3);
 }
 .nr-fit__value {
+  font-family: var(--font-mono);
   font-size: var(--text-xl);
   font-weight: 600;
   min-width: 4.5rem;
   color: rgb(var(--brand-700));
 }
+/* ruler bar: ticks every 10 % */
 .nr-bar {
   display: block;
-  height: 10px;
-  border-radius: var(--radius-full);
-  background: rgb(var(--neutral-200));
+  height: 14px;
+  background-color: rgb(var(--neutral-200));
+  background-image: repeating-linear-gradient(
+    90deg,
+    transparent 0,
+    transparent calc(10% - 1px),
+    rgb(var(--neutral-500)) calc(10% - 1px),
+    rgb(var(--neutral-500)) 10%
+  );
+  border: 1px solid rgb(var(--neutral-500));
   overflow: hidden;
 }
 .nr-bar > span {
   display: block;
   height: 100%;
-  border-radius: var(--radius-full);
   background: rgb(var(--brand-600));
+  opacity: 0.92;
 }
 .nr-bar--thin {
-  height: 8px;
+  height: 10px;
 }
 .nr-meta {
   display: flex;
@@ -68,13 +225,13 @@ body {
 }
 .nr-why {
   margin-top: var(--space-3);
-  border-top: 1px solid rgb(var(--neutral-200));
+  border-top: 2px dashed rgb(var(--neutral-400));
   padding-top: var(--space-3);
 }
 .nr-why summary {
   cursor: pointer;
   color: rgb(var(--brand-700));
-  font-weight: 600;
+  font-weight: 700;
 }
 .nr-comp-row {
   display: grid;
@@ -90,26 +247,27 @@ body {
   }
 }
 
-/* ---- chips ---- */
+/* ---------- chips ---------- */
 .nr-nkd {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 2px 10px;
-  border-radius: var(--radius-full);
-  border: 1px solid rgb(var(--neutral-300));
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgb(var(--neutral-500));
   background: rgb(var(--white));
-  font-size: var(--text-sm);
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
   color: rgb(var(--neutral-800));
 }
 .nr-nkd--main {
-  background: rgb(var(--brand-700));
-  border-color: rgb(var(--brand-700));
+  background: rgb(var(--ink));
+  border-color: rgb(var(--ink));
   color: rgb(var(--white));
   font-weight: 600;
 }
 
-/* ---- county map ---- */
+/* ---------- county map ---------- */
 .nr-map {
   width: 100%;
   height: auto;
@@ -134,11 +292,11 @@ body {
   vertical-align: middle;
 }
 
-/* ---- forms ---- */
+/* ---------- forms ---------- */
 .nr-input {
   width: 100%;
-  border: 2px solid rgb(var(--neutral-400));
-  border-radius: var(--radius-md);
+  border: 2px solid rgb(var(--neutral-700));
+  border-radius: var(--radius-sm);
   padding: 10px 12px;
   background: rgb(var(--white));
   color: rgb(var(--neutral-900));
@@ -152,13 +310,21 @@ body {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-sm);
   padding: 10px 18px;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
   font-weight: 600;
-  border: 2px solid rgb(var(--brand-700));
-  background: rgb(var(--brand-700));
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border: 2px solid rgb(var(--ink));
+  background: rgb(var(--ink));
   color: rgb(var(--white));
   cursor: pointer;
+}
+.nr-btn:hover:not(:disabled) {
+  background: rgb(var(--brand-600));
+  border-color: rgb(var(--brand-600));
 }
 .nr-btn:disabled {
   background: rgb(var(--neutral-600));
@@ -167,45 +333,86 @@ body {
 }
 .nr-btn--ghost {
   background: rgb(var(--white));
-  color: rgb(var(--brand-700));
+  color: rgb(var(--ink));
 }
 
 .nr-table {
   width: 100%;
   border-collapse: collapse;
   font-size: var(--text-sm);
+  background: rgb(var(--white));
 }
 .nr-table th,
 .nr-table td {
   padding: 8px 10px;
-  border-bottom: 1px solid rgb(var(--neutral-200));
+  border-bottom: 1px solid rgb(var(--neutral-300));
   text-align: left;
   vertical-align: top;
 }
 .nr-table th {
-  background: rgb(var(--neutral-100));
-  color: rgb(var(--neutral-800));
-  font-weight: 600;
+  background: rgb(var(--ink));
+  color: rgb(var(--white));
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 .nr-table td.num,
 .nr-table th.num {
   text-align: right;
 }
+.nr-table tbody th {
+  background: rgb(var(--neutral-100));
+  color: rgb(var(--neutral-900));
+  text-transform: none;
+  letter-spacing: 0;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: var(--text-sm);
+}
 
+/* ---------- hero: ink "naslovnica" with a ring stamp ---------- */
 .nr-hero {
-  background: linear-gradient(180deg, rgb(var(--brand-700)) 0%, rgb(var(--brand-600)) 100%);
+  position: relative;
+  overflow: hidden;
+  background: rgb(var(--ink));
   color: rgb(var(--white));
+  border-bottom: 8px solid rgb(var(--brand-600));
+}
+.nr-hero::after {
+  content: '';
+  position: absolute;
+  right: -4rem;
+  top: -3rem;
+  width: 22rem;
+  height: 22rem;
+  border-radius: 50%;
+  border: 14px double rgb(var(--brand-600));
+  opacity: 0.55;
+  transform: rotate(-12deg);
+  pointer-events: none;
 }
 .nr-hero a {
   color: rgb(var(--white));
   text-decoration: underline;
 }
+.nr-hero h1 {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
 
 @media print {
   header,
   footer,
+  .bk-strip,
+  .bk-foot,
   .nr-filters,
   .nr-no-print {
     display: none !important;
+  }
+  body {
+    background: #fff;
   }
 }

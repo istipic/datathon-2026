@@ -1,6 +1,6 @@
 import { defineConfig, devices } from '@playwright/test';
 
-// Runs against the dev stack: the NabavaRadar API must be up (NABAVARADAR_API_URL, default
+// Runs against the dev stack: the Birokratko API must be up (NABAVARADAR_API_URL, default
 // http://127.0.0.1:8000) with ingested data; Vite proxies /api to it. Use PW_CHANNEL=msedge to use an
 // installed Edge instead of the downloaded Chromium.
 const channel = process.env.PW_CHANNEL || undefined;

@@ -128,7 +128,7 @@ test('methodology shows live validation numbers; sources lists the data sources'
 }) => {
   await page.goto('/metodologija');
   await expect(page.getByRole('heading', { name: 'Validacija (uživo)' })).toBeVisible();
-  const row = page.getByRole('row', { name: /NabavaRadar \(S\/C\/G\/T\)/ });
+  const row = page.getByRole('row', { name: /Birokratko \(S\/C\/G\/T\)/ });
   await expect(row).toContainText('%');
   await expect(page.getByRole('row', { name: /Osnovna: Postgres full-text/ })).toContainText('%');
 

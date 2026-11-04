@@ -90,7 +90,7 @@ export function MethodologyPage() {
               </thead>
               <tbody>
                 <tr>
-                  <th scope="row">NabavaRadar (S/C/G/T)</th>
+                  <th scope="row">Birokratko (S/C/G/T)</th>
                   <td className="num">{formatPercent(v.data.fit['recall@10'], 1)}</td>
                   <td className="num">{formatPercent(v.data.fit['recall@20'], 1)}</td>
                 </tr>

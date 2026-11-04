@@ -193,8 +193,8 @@ describe('MethodologyPage (live validation numbers)', () => {
     );
     render(inRouter(<MethodologyPage />));
     const v = validation as unknown as ValidationResult;
-    await waitFor(() => expect(screen.getByText('NabavaRadar (S/C/G/T)')).toBeTruthy());
-    const row = screen.getByText('NabavaRadar (S/C/G/T)').closest('tr') as HTMLElement;
+    await waitFor(() => expect(screen.getByText('Birokratko (S/C/G/T)')).toBeTruthy());
+    const row = screen.getByText('Birokratko (S/C/G/T)').closest('tr') as HTMLElement;
     expect(row.textContent).toContain(
       `${((v.fit['recall@10'] as number) * 100).toFixed(1).replace('.', ',')} %`,
     );

@@ -22,7 +22,7 @@ export function UnsubscribePage() {
       {!token ? <ErrorState message="Poveznica nije potpuna (nedostaje token)." /> : null}
       {token && !remove.data ? (
         <>
-          <p className="mt-3">Odjavom se briše vaša e-adresa iz NabavaRadara.</p>
+          <p className="mt-3">Odjavom se briše vaša e-adresa iz Birokratka.</p>
           <button
             type="button"
             className="nr-btn mt-3"
