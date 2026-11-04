@@ -4,5 +4,5 @@ f1: 0.1323
 precision: 0.0955
 recall: 0.2154
 winners: 2070
-computed_at: '2026-11-04T01:23:34.538132+00:00'
+computed_at: '2026-11-04T23:13:22.157654+00:00'
 source: nabavaradar eval (maximises F1 of winners' activities vs awarded CPV division)

@@ -124,3 +124,123 @@ def test_days_to_deadline() -> None:
 )
 def test_single_bid_flag_thresholds(n: int | None, share: float | None, expected: bool) -> None:
     assert competition_flag(n, share) is expected
+
+
+# ---------------------------------------------------------------------------- config (config/fit.yaml)
+def test_shipped_config_loads_and_weights_sum_to_one() -> None:
+    from nabavaradar_api.fit import load_fit_config
+
+    cfg = load_fit_config()
+    assert sum(cfg.weights.values()) == pytest.approx(1.0)
+    assert set(cfg.weights) == {"S", "C", "G", "T"}
+    assert 0 < cfg.secondary_activity_discount <= 1
+    assert 0 <= cfg.c_group_bonus <= 1
+
+
+@pytest.mark.parametrize(
+    "bad",
+    [
+        {"weights": {"S": 0.5, "C": 0.5, "G": 0.5, "T": 0.5}},
+        {"weights": {"S": 1.0}},
+        {"secondary_activity_discount": 0},
+        {"secondary_activity_discount": 1.5},
+        {"c_group_bonus": -0.1},
+        {"typo_key": 1},
+    ],
+)
+def test_bad_fit_config_is_rejected(bad: dict) -> None:
+    from nabavaradar_api.fit import parse_fit_config
+
+    with pytest.raises(ValueError, match="fit config|weights|discount"):
+        parse_fit_config(bad)
+
+
+def test_group_bonus_only_for_the_companys_best_groups() -> None:
+    from nabavaradar_api.fit import FitConfig, group_component
+
+    cfg = FitConfig(c_group_bonus=0.25, c_group_top=2)
+    assert group_component("451", ["451", "452", "453"], cfg) == 0.25
+    assert group_component("453", ["451", "452", "453"], cfg) == 0.0  # outside the top 2
+    assert group_component(None, ["451"], cfg) == 0.0
+    assert group_component("451", ["451"], FitConfig(c_group_bonus=0.0)) == 0.0
+
+
+def test_components_fit_accepts_explicit_weights() -> None:
+    w = {"S": 1.0, "C": 0.0, "G": 0.0, "T": 0.0}
+    assert Components(0.4, 1, 1, 1).fit(w) == pytest.approx(0.4)
+
+
+# ---------------------------------------------------------------------------- lots / procedures
+def _item(pub_no: str, fit: float, procedure_id: str | None, title: str, pub: str = "2026-10-20"):
+    return {
+        "pub_no": pub_no,
+        "fit": fit,
+        "procedure_id": procedure_id,
+        "title": title,
+        "buyer": "GRAD ZAGREB",
+        "pub_date": pub,
+        "deadline": "2026-11-20T09:00:00+01:00",
+        "url_html": f"https://ted.europa.eu/{pub_no}",
+    }
+
+
+def test_notices_of_one_procedure_collapse_to_the_best_one() -> None:
+    from nabavaradar_api.match import collapse_procedures
+
+    items = [
+        _item("2-1", 0.9, "P1", "Obnova škole"),
+        _item("3-1", 0.8, "P2", "Nabava mlijeka"),
+        _item("4-1", 0.7, "P1", "Obnova škole", pub="2026-10-25"),
+    ]
+    out = collapse_procedures(items)
+    assert [i["pub_no"] for i in out] == ["2-1", "3-1"]
+    assert out[0]["group"]["size"] == 2
+    assert out[0]["group"]["others"][0]["pub_no"] == "4-1"
+    assert out[1]["group"] == {"size": 1, "others": []}
+
+
+def test_newest_publication_wins_a_tie_within_a_procedure() -> None:
+    from nabavaradar_api.match import collapse_procedures
+
+    out = collapse_procedures(
+        [
+            _item("2-1", 0.9, "P1", "Obnova škole", pub="2026-10-20"),
+            _item("4-1", 0.9, "P1", "Obnova škole", pub="2026-10-25"),
+        ]
+    )
+    assert len(out) == 1
+    assert out[0]["pub_no"] == "4-1"
+    assert [o["pub_no"] for o in out[0]["group"]["others"]] == ["2-1"]
+
+
+def test_lots_without_procedure_id_group_by_buyer_and_base_title() -> None:
+    from nabavaradar_api.match import procedure_key
+
+    a = _item("1-1", 0.5, None, "Nabava vozila - grupa 1")
+    b = _item("2-1", 0.5, None, "Nabava vozila - grupa 2")
+    c = _item("3-1", 0.5, None, "Nabava računala")
+    assert procedure_key(a) == procedure_key(b)
+    assert procedure_key(a) != procedure_key(c)
+    assert procedure_key({**a, "buyer": "DRUGI"}) != procedure_key(a)
+
+
+def test_explanation_lists_the_signals_in_plain_croatian() -> None:
+    from nabavaradar_api.subscriptions import explain_item
+
+    reasons = explain_item(
+        {
+            "components": {"S": 0.92, "C": 1.0, "G": 1.0, "T": 1.0},
+            "best_activity": {"label": "Proizvodnja kruha"},
+            "cpv_division_label": "Prehrambeni proizvodi",
+            "county": "Splitsko-dalmatinska županija",
+            "days_left": 12.4,
+            "signals": {"cpv_group_match": True},
+        }
+    )
+    text = " ".join(reasons)
+    assert "Proizvodnja kruha" in text
+    assert "92 %" in text
+    assert "Prehrambeni proizvodi" in text
+    assert "uža CPV skupina" in text
+    assert "vašoj županiji" in text
+    assert "12 dana" in text

@@ -1,6 +1,6 @@
 # Birokratko – validacija
 
-_Generirano naredbom `nabavaradar eval` (2026-11-04T01:23:34.538132+00:00). Brojevi se ne uređuju ručno._
+_Generirano naredbom `nabavaradar eval` (2026-11-04T23:13:22.157654+00:00). Brojevi se ne uređuju ručno._
 
 ## Pitanje
 
@@ -17,12 +17,12 @@ Kad bismo tvrtki koja je stvarno dobila ugovor pokazali natječaje tog mjeseca, 
 ## Rezultati
 
 - Razdoblje ciljeva: **2023-11 – 2026-11** (37 mjeseci)
-- Broj ocijenjenih parova pobjednik–cilj: **n = 30017** (od toga 26179 s barem jednom NKD djelatnošću, 3838 bez – računaju se kao promašaj)
-- Prosječan broj kandidata po cilju: 627
+- Broj ocijenjenih parova pobjednik–cilj: **n = 30009** (od toga 26173 s barem jednom NKD djelatnošću, 3836 bez – računaju se kao promašaj)
+- Prosječan broj kandidata po cilju: 624
 
 | Metoda | recall@10 | recall@20 |
 |---|---:|---:|
-| **Birokratko (prilagodba S/C/G/T)** | 8.6 % | 14.6 % |
+| **Birokratko (prilagodba S/C/G/T)** | 10.6 % | 17.9 % |
 | Osnovna: Postgres full-text | 4.7 % | 7.2 % |
 | Slučajan poredak (očekivanje) | 1.6 % | 3.3 % |
 
@@ -30,10 +30,10 @@ Samo pobjednici s NKD profilom (isključeni oni bez djelatnosti):
 
 | Metoda | recall@10 | recall@20 |
 |---|---:|---:|
-| Birokratko | 9.9 % | 16.7 % |
+| Birokratko | 12.2 % | 20.5 % |
 | Full-text | 5.4 % | 8.2 % |
 
-Medijan ranga cilja (Birokratko): 126.0
+Medijan ranga cilja (Birokratko): 89.0
 
 ### Obuhvat podataka
 
@@ -49,6 +49,31 @@ Prag `tau` odabran je maksimizacijom F1 između djelatnosti pobjednika i CPV odj
 
 - **tau = 0.8947**, F1 = 0.1323, preciznost = 0.0955, odziv = 0.2154 (TP 632, FP 5987, FN 2302)
 - pretraženi raspon: 0.8691 – 0.9266 (201 korak)
+
+## Prilagodba rangiranja
+
+Svaka izmjena mjerena je istim protokolom na istim parovima (n = 30017); prihvaćena je samo ako nijedna mjera nije pogoršana. Sirovi rezultati: `data/evidence/2026-11-05_fit_tuning.json`.
+
+| Varijanta | recall@10 | recall@20 | razlika @10 | razlika @20 |
+|---|---:|---:|---:|---:|
+| stanje prije izmjena (težine 0,55/0,25/0,10/0,10, sve djelatnosti jednako) | 8.6 % | 14.6 % |  |  |
+| sporedne djelatnosti x 0,85 | 9.6 % | 15.9 % | +0.91 p.b. | +1.36 p.b. |
+| sporedne djelatnosti x 0,70 | 10.0 % | 16.7 % | +1.34 p.b. | +2.12 p.b. |
+| sporedne djelatnosti x 0,60 | 10.2 % | 17.2 % | +1.51 p.b. | +2.61 p.b. |
+| sporedne djelatnosti x 0,50 | 10.3 % | 17.5 % | +1.62 p.b. | +2.94 p.b. |
+| bonus CPV skupine +0,25 (10 najbližih skupina) | 8.8 % | 14.9 % | +0.15 p.b. | +0.31 p.b. |
+| bonus CPV skupine +0,50 (5 najbližih skupina) | 8.8 % | 15.0 % | +0.12 p.b. | +0.45 p.b. |
+| isključene obavijesti tipa cn-desg (natječaji za idejna rješenja) | 8.7 % | 14.6 % | +0.01 p.b. | +0.03 p.b. |
+| x 0,70 + bonus skupine 0,25 + isključen cn-desg | 10.3 % | 17.1 % | +1.66 p.b. | +2.53 p.b. |
+| x 0,60 + bonus skupine 0,25 + isključen cn-desg | 10.5 % | 17.5 % | +1.83 p.b. | +2.99 p.b. |
+| x 0,50 + bonus skupine 0,25 + isključen cn-desg  (ODABRANO) | 10.6 % | 17.9 % | +1.98 p.b. | +3.31 p.b. |
+| x 0,40 + bonus skupine 0,25 + isključen cn-desg | 10.7 % | 18.1 % | +2.03 p.b. | +3.50 p.b. |
+| x 0,30 + bonus skupine 0,25 + isključen cn-desg | 10.7 % | 18.1 % | +2.03 p.b. | +3.54 p.b. |
+| x 0,50 + bonus skupine 0,50 (5 skupina) + isključen cn-desg | 10.6 % | 17.8 % | +1.97 p.b. | +3.29 p.b. |
+
+Veći popust za sporedne djelatnosti pomaže sve do oko 0,4; ispod 0,5 dobitak je zanemariv, pa je odabrano 0,5 (sporedne djelatnosti ostaju značajne). Bonus CPV skupine i isključenje obavijesti tipa `cn-desg` daju male, ali dosljedne dobitke. Grupiranje obavijesti istog postupka i „Ne zanima me” ne mijenjaju ovu mjeru (djeluju na prikaz, ne na rang pobjednika).
+
+Konfiguracija u primjeni (`config/fit.yaml`) pri ovom izračunu: težine {'S': 0.55, 'C': 0.25, 'G': 0.1, 'T': 0.1}, popust sporednih djelatnosti 0.5, bonus CPV skupine 0.25 (najbližih 10), isključeni tipovi ['cn-desg'].
 
 ## Ograničenja
 

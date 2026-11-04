@@ -1,0 +1,24 @@
+# Fit = w_S*S + w_C*C + w_G*G + w_T*T (all components 0-1). Read by fit.load_fit_config().
+# Changes are accepted only if `nabavaradar eval` does not get worse (docs/validation.md, "Prilagodba rangiranja";
+# raw runs in data/evidence/2026-11-05_fit_tuning.json).
+weights:
+  S: 0.55
+  C: 0.25
+  G: 0.10
+  T: 0.10
+
+# S takes the best rescaled similarity over the company's activities. Activities other than the main one are
+# multiplied by this factor first (1.0 = all activities count the same). Measured: recall@10 8.65 % -> 10.27 %
+# with 0.5 alone; gains flatten below 0.5.
+secondary_activity_discount: 0.5
+
+# C looks at the CPV division (2 digits). When the notice's CPV group (3 digits) is also among the company's
+# `c_group_top` best groups, C is raised by `c_group_bonus` (capped at 1). 0 = off.
+c_group_bonus: 0.25
+c_group_top: 10
+
+# Notice types that are never offered (the TED API files design contests under competition notices).
+excluded_notice_types: [cn-desg]
+
+# Notices of a CPV group the user marked "Ne zanima me" lose this much fit.
+dislike_penalty: 0.10

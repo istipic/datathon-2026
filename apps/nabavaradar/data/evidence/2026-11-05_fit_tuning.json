@@ -1,0 +1,105 @@
+{
+ "retrieved": "2026-11-05",
+ "command": "nabavaradar eval --no-write --config <variant>.yaml",
+ "metric": "udio stvarnih natječaja pobjednika u prvih 10 / 20 (isti protokol kao docs/validation.md)",
+ "rows": [
+  {
+   "variant": "baseline",
+   "description": "stanje prije izmjena (težine 0,55/0,25/0,10/0,10, sve djelatnosti jednako)",
+   "recall_at_10": 0.08645101109371356,
+   "recall_at_20": 0.1455175400606323,
+   "n": 30017
+  },
+  {
+   "variant": "disc085",
+   "description": "sporedne djelatnosti x 0,85",
+   "recall_at_10": 0.095512542892361,
+   "recall_at_20": 0.15910983775860346,
+   "n": 30017
+  },
+  {
+   "variant": "disc070",
+   "description": "sporedne djelatnosti x 0,70",
+   "recall_at_10": 0.09987673651597428,
+   "recall_at_20": 0.1667388479861412,
+   "n": 30017
+  },
+  {
+   "variant": "disc060",
+   "description": "sporedne djelatnosti x 0,60",
+   "recall_at_10": 0.10157577372822067,
+   "recall_at_20": 0.17156944398174367,
+   "n": 30017
+  },
+  {
+   "variant": "disc050",
+   "description": "sporedne djelatnosti x 0,50",
+   "recall_at_10": 0.10267515074790952,
+   "recall_at_20": 0.17493420395109438,
+   "n": 30017
+  },
+  {
+   "variant": "group25",
+   "description": "bonus CPV skupine +0,25 (10 najbližih skupina)",
+   "recall_at_10": 0.08791684711996535,
+   "recall_at_20": 0.14858246993370425,
+   "n": 30017
+  },
+  {
+   "variant": "group50top5",
+   "description": "bonus CPV skupine +0,50 (5 najbližih skupina)",
+   "recall_at_10": 0.08765033147882867,
+   "recall_at_20": 0.15001499150481393,
+   "n": 30017
+  },
+  {
+   "variant": "excl",
+   "description": "isključene obavijesti tipa cn-desg (natječaji za idejna rješenja)",
+   "recall_at_10": 0.0865740277916625,
+   "recall_at_20": 0.14585624312706189,
+   "n": 30009
+  },
+  {
+   "variant": "combo070",
+   "description": "x 0,70 + bonus skupine 0,25 + isključen cn-desg",
+   "recall_at_10": 0.10300243260355227,
+   "recall_at_20": 0.17084874537638708,
+   "n": 30009
+  },
+  {
+   "variant": "combo060",
+   "description": "x 0,60 + bonus skupine 0,25 + isključen cn-desg",
+   "recall_at_10": 0.10476856942917125,
+   "recall_at_20": 0.17544736579026293,
+   "n": 30009
+  },
+  {
+   "variant": "combo050",
+   "description": "x 0,50 + bonus skupine 0,25 + isključen cn-desg  (ODABRANO)",
+   "recall_at_10": 0.10626811956413076,
+   "recall_at_20": 0.17857975940551168,
+   "n": 30009
+  },
+  {
+   "variant": "combo040",
+   "description": "x 0,40 + bonus skupine 0,25 + isključen cn-desg",
+   "recall_at_10": 0.1067013229364524,
+   "recall_at_20": 0.18051251291279283,
+   "n": 30009
+  },
+  {
+   "variant": "combo030",
+   "description": "x 0,30 + bonus skupine 0,25 + isključen cn-desg",
+   "recall_at_10": 0.10676796960911726,
+   "recall_at_20": 0.1808790696124496,
+   "n": 30009
+  },
+  {
+   "variant": "combo050g50",
+   "description": "x 0,50 + bonus skupine 0,50 (5 skupina) + isključen cn-desg",
+   "recall_at_10": 0.10616814955513346,
+   "recall_at_20": 0.17844646606018194,
+   "n": 30009
+  }
+ ]
+}

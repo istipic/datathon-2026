@@ -10,11 +10,15 @@
 from __future__ import annotations
 
 from collections.abc import Iterable, Mapping, Sequence
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import datetime
+from functools import lru_cache
+from pathlib import Path
+
+import yaml  # type: ignore[import-untyped]
 
 from nabavaradar_api.constants import WEIGHTS
-from nabavaradar_api.counties import nuts2_of
+from nabavaradar_api.counties import CONFIG_DIR, nuts2_of
 
 T_FULL_DAYS = 15.0
 T_ZERO_DAYS = 3.0
@@ -31,15 +35,10 @@ class Components:
     G: float
     T: float
 
-    def fit(self) -> float:
-        """Weighted sum, rounded to 4 decimals."""
-        return round(
-            WEIGHTS["S"] * self.S
-            + WEIGHTS["C"] * self.C
-            + WEIGHTS["G"] * self.G
-            + WEIGHTS["T"] * self.T,
-            4,
-        )
+    def fit(self, weights: Mapping[str, float] | None = None) -> float:
+        """Weighted sum, rounded to 4 decimals (weights default to config/fit.yaml)."""
+        w = weights or load_fit_config().weights
+        return round(w["S"] * self.S + w["C"] * self.C + w["G"] * self.G + w["T"] * self.T, 4)
 
 
 def rescale_similarity(cosine: float, p5: float, p95: float) -> float:
@@ -99,3 +98,59 @@ def time_component(days: float | None) -> float | None:
     if days <= T_ZERO_DAYS:
         return 0.0
     return (days - T_ZERO_DAYS) / (T_FULL_DAYS - T_ZERO_DAYS)
+
+
+@dataclass(frozen=True)
+class FitConfig:
+    """Tunable parts of the fit (config/fit.yaml)."""
+
+    weights: Mapping[str, float] = field(default_factory=lambda: dict(WEIGHTS))
+    secondary_activity_discount: float = 1.0
+    c_group_bonus: float = 0.0
+    c_group_top: int = 10
+    excluded_notice_types: tuple[str, ...] = ()
+    dislike_penalty: float = 0.10
+
+
+def parse_fit_config(raw: Mapping[str, object]) -> FitConfig:
+    """Validated config; unknown keys are rejected so a typo cannot silently change the ranking."""
+    allowed = {
+        "weights",
+        "secondary_activity_discount",
+        "c_group_bonus",
+        "c_group_top",
+        "excluded_notice_types",
+        "dislike_penalty",
+    }
+    extra = set(raw) - allowed
+    if extra:
+        raise ValueError(f"unknown fit config keys: {sorted(extra)}")
+    weights = dict(raw.get("weights", WEIGHTS))  # type: ignore[call-overload]
+    if set(weights) != {"S", "C", "G", "T"} or abs(sum(weights.values()) - 1.0) > 1e-9:
+        raise ValueError("fit weights must be S, C, G, T and sum to 1")
+    discount = float(raw.get("secondary_activity_discount", 1.0))  # type: ignore[arg-type]
+    bonus = float(raw.get("c_group_bonus", 0.0))  # type: ignore[arg-type]
+    if not 0.0 < discount <= 1.0 or not 0.0 <= bonus <= 1.0:
+        raise ValueError("discount must be in (0, 1], group bonus in [0, 1]")
+    return FitConfig(
+        weights=weights,
+        secondary_activity_discount=discount,
+        c_group_bonus=bonus,
+        c_group_top=int(raw.get("c_group_top", 10)),  # type: ignore[call-overload]
+        excluded_notice_types=tuple(raw.get("excluded_notice_types", ())),  # type: ignore[arg-type]
+        dislike_penalty=float(raw.get("dislike_penalty", 0.10)),  # type: ignore[arg-type]
+    )
+
+
+@lru_cache
+def load_fit_config(path: str | None = None) -> FitConfig:
+    """The config of ``config/fit.yaml`` (or of ``path`` for experiments)."""
+    file = Path(path) if path else CONFIG_DIR / "fit.yaml"
+    return parse_fit_config(yaml.safe_load(file.read_text(encoding="utf-8")) or {})
+
+
+def group_component(group: str | None, ranked_groups: Sequence[str], cfg: FitConfig) -> float:
+    """Bonus added to C when the notice's 3-digit CPV group is among the company's best groups."""
+    if cfg.c_group_bonus <= 0 or not group or group not in ranked_groups[: cfg.c_group_top]:
+        return 0.0
+    return cfg.c_group_bonus

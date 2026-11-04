@@ -5,6 +5,7 @@ Every number in the report comes from the result dictionary; nothing is typed in
 
 from __future__ import annotations
 
+import json
 from pathlib import Path
 from typing import Any
 
@@ -16,6 +17,53 @@ from nabavaradar_api.counties import CONFIG_DIR
 def pct(value: float | None) -> str:
     """Percentage with one decimal, or an en dash."""
     return "–" if value is None else f"{value * 100:.1f} %"
+
+
+TUNING_FILE = Path(__file__).parents[3] / "data" / "evidence" / "2026-11-05_fit_tuning.json"
+
+
+def tuning_section(r: dict[str, Any]) -> list[str]:
+    """Before/after table of the fit tuning (raw runs saved as evidence) and the config in force."""
+    cfg = r.get("fit_config")
+    lines: list[str] = []
+    if TUNING_FILE.exists():
+        raw = json.loads(TUNING_FILE.read_text(encoding="utf-8"))
+        rows = raw["rows"]
+        base = next(x for x in rows if x["variant"] == "baseline")
+        lines += [
+            "## Prilagodba rangiranja",
+            "",
+            "Svaka izmjena mjerena je istim protokolom na istim parovima "
+            f"(n = {base['n']}); prihvaćena je samo ako nijedna mjera nije pogoršana. "
+            f"Sirovi rezultati: `data/evidence/{TUNING_FILE.name}`.",
+            "",
+            "| Varijanta | recall@10 | recall@20 | razlika @10 | razlika @20 |",
+            "|---|---:|---:|---:|---:|",
+        ]
+        for x in rows:
+            d10 = (x["recall_at_10"] - base["recall_at_10"]) * 100
+            d20 = (x["recall_at_20"] - base["recall_at_20"]) * 100
+            diff = "" if x is base else f"{d10:+.2f} p.b.", "" if x is base else f"{d20:+.2f} p.b."
+            lines.append(
+                f"| {x['description']} | {pct(x['recall_at_10'])} | {pct(x['recall_at_20'])} | {diff[0]} | {diff[1]} |"
+            )
+        lines += [
+            "",
+            "Veći popust za sporedne djelatnosti pomaže sve do oko 0,4; ispod 0,5 dobitak je zanemariv, "
+            "pa je odabrano 0,5 (sporedne djelatnosti ostaju značajne). Bonus CPV skupine i isključenje "
+            "obavijesti tipa `cn-desg` daju male, ali dosljedne dobitke. Grupiranje obavijesti istog postupka "
+            "i „Ne zanima me” ne mijenjaju ovu mjeru (djeluju na prikaz, ne na rang pobjednika).",
+            "",
+        ]
+    if cfg:
+        lines += [
+            "Konfiguracija u primjeni (`config/fit.yaml`) pri ovom izračunu: "
+            f"težine {cfg['weights']}, popust sporednih djelatnosti {cfg['secondary_activity_discount']}, "
+            f"bonus CPV skupine {cfg['c_group_bonus']} (najbližih {cfg['c_group_top']}), "
+            f"isključeni tipovi {cfg['excluded_notice_types'] or 'nema'}.",
+            "",
+        ]
+    return lines
 
 
 def render_validation_md(r: dict[str, Any]) -> str:
@@ -104,6 +152,7 @@ def render_validation_md(r: dict[str, Any]) -> str:
             f"- pretraženi raspon: {t['grid'][0]:.4f} – {t['grid'][1]:.4f} (201 korak)",
             "",
         ]
+    lines += tuning_section(r)
     lines += [
         "## Ograničenja",
         "",

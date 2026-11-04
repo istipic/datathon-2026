@@ -24,7 +24,6 @@ from numpy.typing import NDArray
 from sqlalchemy import select, text
 from sqlalchemy.orm import Session
 
-from nabavaradar_api.constants import WEIGHTS
 from nabavaradar_api.counties import counties, nuts2_of
 from nabavaradar_api.db import Calibration, Company, CompanyActivity, Crosswalk, Nkd, Notice
 from nabavaradar_api.fit import (
@@ -34,6 +33,8 @@ from nabavaradar_api.fit import (
     G_UNKNOWN,
     T_FULL_DAYS,
     T_ZERO_DAYS,
+    FitConfig,
+    load_fit_config,
     rank_divisions,
 )
 from nabavaradar_api.ingest.crosswalk import CALIBRATION_KEY, division_similarity
@@ -88,6 +89,7 @@ class MonthIndex:
     pub_nos: list[str]
     emb: NDArray[np.float32]
     division_idx: NDArray[np.int64]  # CPV division as int, -1 unknown
+    group_idx: NDArray[np.int64]  # CPV group (3 digits) as int, -1 unknown
     nuts_idx: NDArray[np.int64]  # index into the county list, -1 unknown
     t: NDArray[np.float64]  # time component at the candidate's own publication date
     valid: NDArray[np.bool_]
@@ -107,7 +109,11 @@ def _t_at_publication(deadline: datetime | None, pub: date) -> float | None:
 
 
 def build_month_index(
-    session: Session, kind: str, month: str, nuts_pos: dict[str, int]
+    session: Session,
+    kind: str,
+    month: str,
+    nuts_pos: dict[str, int],
+    excluded_types: tuple[str, ...] = (),
 ) -> MonthIndex:
     """Candidates of a month: competition notices (or result notices in fallback mode)."""
     year, mon = int(month[:4]), int(month[5:7])
@@ -127,6 +133,7 @@ def build_month_index(
             Notice.pub_date >= start,
             Notice.pub_date < end,
             Notice.embedding.is_not(None),
+            Notice.notice_type.not_in(excluded_types) if excluded_types else text("true"),
         )
     ).all()
     emb = (
@@ -135,6 +142,7 @@ def build_month_index(
         else np.zeros((0, 384), np.float32)
     )
     division = np.array([int(r.cpv_main[:2]) if r.cpv_main else -1 for r in rows], dtype=np.int64)
+    group = np.array([int(r.cpv_main[:3]) if r.cpv_main else -1 for r in rows], dtype=np.int64)
     nuts = np.array(
         [nuts_pos.get(r.buyer_nuts or r.place_nuts or "", -1) for r in rows], dtype=np.int64
     )
@@ -147,6 +155,7 @@ def build_month_index(
         [r.pub_no for r in rows],
         emb,
         division,
+        group,
         nuts,
         t,
         valid,
@@ -165,6 +174,15 @@ def g_table(nuts3_codes: list[str]) -> NDArray[np.float64]:
             else:
                 table[i, j] = G_SAME_NUTS2 if nuts2_of(a) == nuts2_of(b) else G_OTHER
     return table
+
+
+def group_vector(top_groups: list[str], bonus: float) -> NDArray[np.float64]:
+    """C bonus per CPV group number 0-999 (index -1 -> last slot) for the company's best groups."""
+    vec = np.zeros(1001)
+    for group in top_groups:
+        if group.isdigit():
+            vec[int(group)] = bonus
+    return vec
 
 
 def c_vector(ranked: list[str]) -> NDArray[np.float64]:
@@ -205,8 +223,12 @@ def load_winners(session: Session) -> dict[str, Any]:
     }
 
 
-def load_company_activities(session: Session, oibs: set[str]) -> dict[str, list[tuple[str, str]]]:
-    """Per OIB: up to 10 (code, version) pairs, main first, newest NKD version first."""
+def load_company_activities(
+    session: Session, oibs: set[str], mains: dict[tuple[str, str, str], bool] | None = None
+) -> dict[str, list[tuple[str, str]]]:
+    """Per OIB: up to 10 (code, version) pairs, main first, newest NKD version first.
+
+    When ``mains`` is given it is filled with ``(oib, code, version) -> is_main``."""
     out: dict[str, list[tuple[str, str]]] = defaultdict(list)
     rows = session.execute(
         select(
@@ -226,12 +248,19 @@ def load_company_activities(session: Session, oibs: set[str]) -> dict[str, list[
     for r in rows:
         if len(out[r.oib]) < MAX_ACTIVITIES:
             out[r.oib].append((r.nkd_code, r.nkd_version))
+            if mains is not None:
+                mains[(r.oib, r.nkd_code, r.nkd_version)] = bool(r.is_main)
     return out
 
 
-def run_evaluation(session: Session, *, now: datetime | None = None) -> dict[str, Any]:
-    """Run the whole validation and return the result document (stored by the caller)."""
+def run_evaluation(
+    session: Session, *, now: datetime | None = None, cfg: FitConfig | None = None
+) -> dict[str, Any]:
+    """Run the whole validation and return the result document (stored by the caller).
+
+    ``cfg`` defaults to config/fit.yaml; experiments pass their own."""
     now = now or datetime.now(UTC)
+    cfg = cfg or load_fit_config()
     cal = session.get(Calibration, CALIBRATION_KEY)
     if cal is None:
         raise RuntimeError("calibration missing: run `nabavaradar ingest derive` first")
@@ -258,7 +287,8 @@ def run_evaluation(session: Session, *, now: datetime | None = None) -> dict[str
     all_winners = list(pairs.values())
 
     oibs = {w.oib for w in all_winners}
-    activities = load_company_activities(session, oibs)
+    mains: dict[tuple[str, str, str], bool] = {}
+    activities = load_company_activities(session, oibs, mains)
     nkd_rows = session.execute(
         select(Nkd.code, Nkd.version, Nkd.label_hr, Nkd.embedding).where(Nkd.embedding.is_not(None))
     ).all()
@@ -266,12 +296,18 @@ def run_evaluation(session: Session, *, now: datetime | None = None) -> dict[str
     nkd_emb = np.stack([np.asarray(r.embedding, dtype=np.float32) for r in nkd_rows])
     nkd_label = {(r.code, r.version): r.label_hr for r in nkd_rows}
     cw: dict[tuple[str, str], dict[str, float]] = defaultdict(dict)
+    cwg: dict[tuple[str, str], dict[str, float]] = defaultdict(dict)
     for r in session.execute(
         select(
-            Crosswalk.nkd_code, Crosswalk.nkd_version, Crosswalk.cpv_prefix, Crosswalk.similarity
-        ).where(Crosswalk.cpv_level == "division")
+            Crosswalk.nkd_code,
+            Crosswalk.nkd_version,
+            Crosswalk.cpv_prefix,
+            Crosswalk.cpv_level,
+            Crosswalk.similarity,
+        ).where(Crosswalk.cpv_level.in_(("division", "group")))
     ):
-        cw[(r.nkd_code, r.nkd_version)][r.cpv_prefix] = float(r.similarity)
+        target = cw if r.cpv_level == "division" else cwg
+        target[(r.nkd_code, r.nkd_version)][r.cpv_prefix] = float(r.similarity)
     company_nuts = dict(
         session.execute(select(Company.oib, Company.nuts3).where(Company.oib.in_(oibs))).all()
     )
@@ -290,9 +326,9 @@ def run_evaluation(session: Session, *, now: datetime | None = None) -> dict[str
     unscored = 0
     candidate_counts: list[int] = []
     fts_cache: dict[tuple[str, str], list[str]] = {}
-    w_s, w_c, w_g, w_t = (WEIGHTS[k] for k in ("S", "C", "G", "T"))
+    w_s, w_c, w_g, w_t = (cfg.weights[k] for k in ("S", "C", "G", "T"))
     for month, group in sorted(by_month.items()):
-        idx = build_month_index(session, kind, month, nuts_pos)
+        idx = build_month_index(session, kind, month, nuts_pos, cfg.excluded_notice_types)
         if not len(idx.pub_nos):
             continue
         year, mon = int(month[:4]), int(month[5:7])
@@ -311,8 +347,17 @@ def run_evaluation(session: Session, *, now: datetime | None = None) -> dict[str
                 continue
             scored_flags.append(True)
             sims = idx.emb @ nkd_emb[[nkd_index[k] for k in acts]].T
-            s = np.clip((sims.max(axis=1) - p5) / max(p95 - p5, 1e-9), 0.0, 1.0)
+            flags = [mains.get((w.oib, *k), False) for k in acts]
+            if not any(flags):
+                flags[0] = True  # no flagged main activity: the first one counts as the main one
+            disc = np.where(flags, 1.0, cfg.secondary_activity_discount)
+            s_each = np.clip((sims - p5) / max(p95 - p5, 1e-9), 0.0, 1.0) * disc
+            s = s_each.max(axis=1)
             c = c_vector(rank_divisions([cw[k] for k in acts]))[idx.division_idx]
+            if cfg.c_group_bonus > 0:
+                top_groups = rank_divisions([cwg[k] for k in acts])[: cfg.c_group_top]
+                bonus = group_vector(top_groups, cfg.c_group_bonus)[idx.group_idx]
+                c = np.minimum(1.0, c + bonus)
             home = nuts_pos.get(company_nuts.get(w.oib) or "", -1)
             g = (
                 gtab[home][np.where(idx.nuts_idx < 0, len(nuts_codes), idx.nuts_idx)]
@@ -399,6 +444,13 @@ def run_evaluation(session: Session, *, now: datetime | None = None) -> dict[str
             "linked_to_competition_notice": len({(r.oib, r.competition_no) for r in linked}),
         },
         "calibration": {"p5": p5, "p95": p95},
+        "fit_config": {
+            "weights": dict(cfg.weights),
+            "secondary_activity_discount": cfg.secondary_activity_discount,
+            "c_group_bonus": cfg.c_group_bonus,
+            "c_group_top": cfg.c_group_top,
+            "excluded_notice_types": list(cfg.excluded_notice_types),
+        },
     }
     result["tau"] = select_tau(session, rows)
     return result
