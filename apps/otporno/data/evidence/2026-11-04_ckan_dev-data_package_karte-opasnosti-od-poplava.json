@@ -1,0 +1,92 @@
+{
+ "access_rights": "http://publications.europa.eu/resource/authority/access-right/PUBLIC",
+ "creator_user_id": "4cb1e73f-f256-44f2-bd35-e97d467c8263",
+ "data_refresh_frequency": "",
+ "id": "821f8e45-87ec-43df-9cd2-f1cae22999dc",
+ "isopen": false,
+ "license_title": null,
+ "maintainer": null,
+ "maintainer_email": null,
+ "metadata_created": "2021-05-05T10:22:24.170085",
+ "metadata_modified": "2025-05-10T20:43:05.028361",
+ "name": "karte-opasnosti-od-poplava",
+ "notes": "Preuzeto s Geoportal NIPP-a - http://geoportal.nipp.hr/hr\r\nPrema Zakonu o vodama Hrvatske vode dužne su izraditi karte opasnosti od poplava za vodna područja. Karte opasnosti od poplava (zemljovidi) sadrže prikaz mogućnosti razvoja određenih poplavnih scenarija. Analizirani su sljedeći poplavni scenariji: poplave velike vjerojatnosti pojavljivanja, poplave srednje vjerojatnosti pojavljivanja (povratno razdoblje 100 godina) te poplave male vjerojatnosti pojavljivanja uključujući umjetne poplave uslijed mogućih rušenja nasipa na većim vodotocima te rušenja visokih brana.\r\n\r\nJedinstvene poplavne linije za pojedine scenarije određene su kao anvelopne poplavne linije različitih izvora plavljenja (riječne, bujične i poplave mora). Dubine vode za jedinstvene poplavne linije određene su korištenjem digitalnog modela terena Državne geodetske uprave. Za izradu karata opasnosti od poplava korištene su i topografske podloge Državne geodetske uprave, hidrometeorološke podloge Državnog hidrometeorološkog zavoda i mareografske podloge Hrvatskog hidrografskog instituta.\r\n\r\nPodaci o položaju su dani u Hrvatskom terestičkom referentnom sustavu 1996 Transvers Merkatorove projekcije (HTRS96/TM).",
+ "num_resources": 1,
+ "num_tags": 0,
+ "openess": "0",
+ "organization": {
+  "id": "0089c75b-6812-4e9b-8a70-3af9c54f85e7",
+  "name": "hrvatske-vode",
+  "title": "Hrvatske vode",
+  "type": "organization",
+  "description": "Hrvatske vode upravljaju vodama prema Zakonu o vodama i drugim propisima vezanim za vode. Upravljanje vodama znači brigu o čistoći i  dostupnosti voda, brigu o zaštiti svih građana od poplava, te brigu o zdravlju i ljepoti naših voda.",
+  "image_url": "",
+  "created": "2021-05-05T10:17:24.112166",
+  "is_organization": true,
+  "approval_status": "approved",
+  "state": "active"
+ },
+ "owner_org": "0089c75b-6812-4e9b-8a70-3af9c54f85e7",
+ "private": false,
+ "state": "active",
+ "theme": "environment",
+ "title": "Karte opasnosti od poplava",
+ "type": "dataset",
+ "extras": [
+  {
+   "key": "contact-email",
+   "value": ""
+  },
+  {
+   "key": "contact-name",
+   "value": ""
+  },
+  {
+   "key": "contact-phone",
+   "value": ""
+  },
+  {
+   "key": "temporal_coverage-from",
+   "value": ""
+  },
+  {
+   "key": "temporal_coverage-to",
+   "value": ""
+  },
+  {
+   "key": "unpublished",
+   "value": "false"
+  }
+ ],
+ "resources": [
+  {
+   "cache_last_updated": null,
+   "cache_url": null,
+   "created": "2020-03-25T13:39:35.192059",
+   "datastore_active": false,
+   "datastore_contains_all_records_of_source_file": false,
+   "description": "Karte opasnosti od poplava",
+   "format": "XML",
+   "hash": "",
+   "id": "051ea0be-5dd4-45c7-9f8e-7f5ad58782ce",
+   "last_checked_date": "2023-12-03",
+   "last_modified": "2023-12-03T23:32:21.868614",
+   "metadata_modified": "2024-04-04T07:33:21.496933",
+   "mimetype": null,
+   "mimetype_inner": null,
+   "openess": 0,
+   "package_id": "821f8e45-87ec-43df-9cd2-f1cae22999dc",
+   "position": 0,
+   "resource_availability": "temporarily_unavailable",
+   "resource_type": "file",
+   "size": null,
+   "state": "active",
+   "url": "https://servisi.voda.hr/poplave_opasnosti/wms?SERVICE=WMS&REQUEST=GetCapabilities",
+   "url_type": null
+  }
+ ],
+ "tags": [],
+ "groups": [],
+ "relationships_as_subject": [],
+ "relationships_as_object": []
+}

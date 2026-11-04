@@ -1,0 +1,5 @@
+GET https://servisi.voda.hr/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=poplave_opasnosti_2019:hr.fd.opasnost-od-poplave-velika-vjerojatnost_2019&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&BBOX=1731000,5700000,1731800,5700800
+Origin: http://127.0.0.1:5173
+-> 200 image/png, access-control-allow-origin: *
+OPTIONS preflight -> 200, access-control-allow-origin: *, allow-methods HEAD,POST,GET,OPTIONS,PUT
+Retrieved 2026-11-04. Consequence: MapLibre may fetch the WMS tiles directly from the browser.

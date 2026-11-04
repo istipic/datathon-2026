@@ -1,0 +1,209 @@
+{
+ "retrieved": "2026-11-04",
+ "services": {
+  "https://servisi.voda.hr/wms": {
+   "version": "1.3.0",
+   "root_crs": [
+    "EPSG:3765",
+    "EPSG:4326",
+    "EPSG:3857",
+    "EPSG:3035",
+    "EPSG:900913",
+    "CRS:84"
+   ],
+   "getfeatureinfo_formats": [
+    "text/plain",
+    "application/vnd.ogc.gml",
+    "text/xml",
+    "application/vnd.ogc.gml/3.1.1",
+    "text/xml; subtype=gml/3.1.1",
+    "text/html",
+    "application/json"
+   ],
+   "hazard_layers": [
+    {
+     "name": "poplave_opasnosti:hr.fd.opasnost-od-poplave-mala-vjerojatnost",
+     "title": "Opasnosti od poplava, mala vjerojatnost pojavljivanja",
+     "queryable": "0",
+     "crs_declared": [
+      "EPSG:3765",
+      "CRS:84"
+     ],
+     "legend_urls": [
+      "http://servisi.voda.hr/geoserver/ows?service=WMS&version=1.3.0&request=GetLegendGraphic&format=image%2Fpng&width=20&height=20&layer=poplave_opasnosti%3Ahr.fd.opasnost-od-poplave-mala-vjerojatnost"
+     ]
+    },
+    {
+     "name": "poplave_opasnosti_2019:hr.fd.opasnost-od-poplave-mala-vjerojatnost_2019",
+     "title": "Opasnosti od poplava, mala vjerojatnost pojavljivanja 2019",
+     "queryable": "0",
+     "crs_declared": [
+      "EPSG:3765",
+      "CRS:84"
+     ],
+     "legend_urls": [
+      "http://servisi.voda.hr/geoserver/ows?service=WMS&version=1.3.0&request=GetLegendGraphic&format=image%2Fpng&width=20&height=20&layer=poplave_opasnosti_2019%3Ahr.fd.opasnost-od-poplave-mala-vjerojatnost_2019"
+     ]
+    },
+    {
+     "name": "poplave_opasnosti:hr.fd.opasnost-od-poplave-srednja-vjerojatnost",
+     "title": "Opasnosti od poplava, srednja vjerojatnost pojavljivanja",
+     "queryable": "0",
+     "crs_declared": [
+      "EPSG:3765",
+      "CRS:84"
+     ],
+     "legend_urls": [
+      "http://servisi.voda.hr/geoserver/ows?service=WMS&version=1.3.0&request=GetLegendGraphic&format=image%2Fpng&width=20&height=20&layer=poplave_opasnosti%3Ahr.fd.opasnost-od-poplave-srednja-vjerojatnost"
+     ]
+    },
+    {
+     "name": "poplave_opasnosti_2019:hr.fd.opasnost-od-poplave-srednja-vjerojatnost_2019",
+     "title": "Opasnosti od poplava, srednja vjerojatnost pojavljivanja 2019",
+     "queryable": "0",
+     "crs_declared": [
+      "EPSG:3765",
+      "CRS:84"
+     ],
+     "legend_urls": [
+      "http://servisi.voda.hr/geoserver/ows?service=WMS&version=1.3.0&request=GetLegendGraphic&format=image%2Fpng&width=20&height=20&layer=poplave_opasnosti_2019%3Ahr.fd.opasnost-od-poplave-srednja-vjerojatnost_2019"
+     ]
+    },
+    {
+     "name": "poplave_opasnosti:hr.fd.opasnost-od-poplave-velika-vjerojatnost",
+     "title": "Opasnosti od poplava, velika vjerojatnost pojavljivanja",
+     "queryable": "0",
+     "crs_declared": [
+      "EPSG:3765",
+      "CRS:84"
+     ],
+     "legend_urls": [
+      "http://servisi.voda.hr/geoserver/ows?service=WMS&version=1.3.0&request=GetLegendGraphic&format=image%2Fpng&width=20&height=20&layer=poplave_opasnosti%3Ahr.fd.opasnost-od-poplave-velika-vjerojatnost"
+     ]
+    },
+    {
+     "name": "poplave_opasnosti_2019:hr.fd.opasnost-od-poplave-velika-vjerojatnost_2019",
+     "title": "Opasnosti od poplava, velika vjerojatnost pojavljivanja 2019",
+     "queryable": "0",
+     "crs_declared": [
+      "EPSG:3765",
+      "CRS:84"
+     ],
+     "legend_urls": [
+      "http://servisi.voda.hr/geoserver/ows?service=WMS&version=1.3.0&request=GetLegendGraphic&format=image%2Fpng&width=20&height=20&layer=poplave_opasnosti_2019%3Ahr.fd.opasnost-od-poplave-velika-vjerojatnost_2019"
+     ]
+    },
+    {
+     "name": "poplave_opasnosti:hr.fd.vjerojatnost-pojavljivanja",
+     "title": "Opasnost od poplava, tri scenarija plavljenja",
+     "queryable": "0",
+     "crs_declared": [
+      "EPSG:3765",
+      "CRS:84"
+     ],
+     "legend_urls": [
+      "http://servisi.voda.hr/geoserver/ows?service=WMS&version=1.3.0&request=GetLegendGraphic&format=image%2Fpng&width=20&height=20&layer=poplave_opasnosti%3Ahr.fd.vjerojatnost-pojavljivanja"
+     ]
+    }
+   ]
+  },
+  "https://servisi.voda.hr/poplave_opasnosti/wms": {
+   "version": "1.3.0",
+   "root_crs": [
+    "EPSG:3765",
+    "EPSG:4326",
+    "EPSG:3857",
+    "EPSG:3035",
+    "EPSG:900913",
+    "CRS:84"
+   ],
+   "getfeatureinfo_formats": [
+    "text/plain",
+    "application/vnd.ogc.gml",
+    "text/xml",
+    "application/vnd.ogc.gml/3.1.1",
+    "text/xml; subtype=gml/3.1.1",
+    "text/html",
+    "application/json"
+   ],
+   "hazard_layers": [
+    {
+     "name": "hr.fd.opasnost-od-poplave-mala-vjerojatnost",
+     "title": "Opasnosti od poplava, mala vjerojatnost pojavljivanja",
+     "queryable": "0",
+     "crs_declared": [
+      "EPSG:3765",
+      "CRS:84"
+     ],
+     "legend_urls": [
+      "https://servisi.voda.hr/poplave_opasnosti/ows?service=WMS&version=1.3.0&request=GetLegendGraphic&format=image%2Fpng&width=20&height=20&layer=hr.fd.opasnost-od-poplave-mala-vjerojatnost"
+     ]
+    },
+    {
+     "name": "hr.fd.opasnost-od-poplave-srednja-vjerojatnost",
+     "title": "Opasnosti od poplava, srednja vjerojatnost pojavljivanja",
+     "queryable": "0",
+     "crs_declared": [
+      "EPSG:3765",
+      "CRS:84"
+     ],
+     "legend_urls": [
+      "https://servisi.voda.hr/poplave_opasnosti/ows?service=WMS&version=1.3.0&request=GetLegendGraphic&format=image%2Fpng&width=20&height=20&layer=hr.fd.opasnost-od-poplave-srednja-vjerojatnost"
+     ]
+    },
+    {
+     "name": "hr.fd.opasnost-od-poplave-velika-vjerojatnost",
+     "title": "Opasnosti od poplava, velika vjerojatnost pojavljivanja",
+     "queryable": "0",
+     "crs_declared": [
+      "EPSG:3765",
+      "CRS:84"
+     ],
+     "legend_urls": [
+      "https://servisi.voda.hr/poplave_opasnosti/ows?service=WMS&version=1.3.0&request=GetLegendGraphic&format=image%2Fpng&width=20&height=20&layer=hr.fd.opasnost-od-poplave-velika-vjerojatnost"
+     ]
+    },
+    {
+     "name": "hr.fd.vjerojatnost-pojavljivanja",
+     "title": "Opasnost od poplava, tri scenarija plavljenja",
+     "queryable": "0",
+     "crs_declared": [
+      "EPSG:3765",
+      "CRS:84"
+     ],
+     "legend_urls": [
+      "https://servisi.voda.hr/poplave_opasnosti/ows?service=WMS&version=1.3.0&request=GetLegendGraphic&format=image%2Fpng&width=20&height=20&layer=hr.fd.vjerojatnost-pojavljivanja"
+     ]
+    }
+   ]
+  }
+ },
+ "scenarios_used": {
+  "high": "poplave_opasnosti_2019:hr.fd.opasnost-od-poplave-velika-vjerojatnost_2019",
+  "medium": "poplave_opasnosti_2019:hr.fd.opasnost-od-poplave-srednja-vjerojatnost_2019",
+  "low": "poplave_opasnosti_2019:hr.fd.opasnost-od-poplave-mala-vjerojatnost_2019",
+  "all_three": "poplave_opasnosti:hr.fd.vjerojatnost-pojavljivanja (colours: velika / srednja / mala vjerojatnost)"
+ },
+ "return_periods_as_stated_by_HV": {
+  "source": "https://www.voda.hr/hr/karte-opasnosti-od-poplava-i-karte-rizika-od-poplava-2019",
+  "quote": "poplave velike vjerojatnosti pojavljivanja (povratno razdoblje približno 25 godina), poplave srednje vjerojatnosti pojavljivanja (povratno razdoblje približno 100 godina), poplave male vjerojatnosti pojavljivanja (povratno razdoblje približno 1000 godina)",
+  "scale": "1 : 25.000 (envelope lines of all relevant sources)"
+ },
+ "legend": {
+  "per_scenario_layers": "depth classes: < 0,5 m; 0,5-1,5 m; 1,5-2,5 m; > 2,5 m; stalne vodene površine (files 2026-11-04_hv_legend_*.png)",
+  "three_scenarios_layer": "Velika / Srednja / Mala vjerojatnost (2026-11-04_hv_legend_tri_scenarija.png)"
+ },
+ "getfeatureinfo_test": {
+  "file": "2026-11-04_hv_getfeatureinfo_probe.json",
+  "hazard_layers_result": "ServiceException code=LayerNotQueryable (all three 2019 scenario layers, application/json and text/plain)",
+  "risk_layers_result": "poplave_rizici_2019 layers are queryable=1 and answer, but are a different product (potential consequences)"
+ },
+ "vector_download_check": {
+  "ckan_data_gov_hr_package_karte-opasnosti-od-poplava": "404 on data.gov.hr; dev-data.gov.hr package lists only the WMS GetCapabilities URL (file 2026-11-04_ckan_dev-data_package_karte-opasnosti-od-poplava.json)",
+  "wfs_poplave_opasnosti": "ows:ExceptionText 'Service WFS is disabled' (file ..._hv_wfs_poplave_opasnosti_GetCapabilities.xml)",
+  "wfs_geoserver_ows": "HTTP 503 at probe time",
+  "nipp_registar": "izvori 935 (hazard 2019 WMS) and 936 (risk 2019 WMS) list WMS only; 934 (risk 2019 dataset) lists ESRI Shapefile but links to the HV page below",
+  "hv_page": "https://www.voda.hr/hr/karte-opasnosti-od-poplava-i-karte-rizika-od-poplava-2019 offers WMS via the NIPP geoportal and a viewer; data otherwise 'sukladno propisima o pravu na pristup informacijama' (no direct download)"
+ },
+ "decision": "Ladder step c): WMS overlay only. Flood level is null with the message 'Automatska procjena nije dostupna; pogledajte kartu'. No class is derived from pixel colours."
+}

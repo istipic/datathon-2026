@@ -1,0 +1,286 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>LAU 2024 files – GISCO data distribution</title>
+	<meta name="description" content="Download individual LAU 2024 files from GISCO, by file format.">
+	<link rel="icon" href="../favicon.ico">
+	<link rel="stylesheet" href="../europa.css">
+	<link rel="alternate" type="application/atom+xml" title="Updates (Atom feed)" href="../updates.xml">
+</head>
+<body>
+	<a class="skip-link" href="#main">Skip to main content</a>
+	<header class="site-header">
+		<div class="container site-header__inner">
+			<a class="site-header__brand" href="../">
+				<span class="site-header__org">GISCO</span>
+				<span class="site-header__name">Data distribution</span>
+			</a>
+		</div>
+	</header>
+	<div class="container page">
+<nav class="breadcrumb" aria-label="Breadcrumb">
+	<ol>
+		<li><a href="../">Home</a></li>
+		<li><a href="../lau/">Local Administrative Units</a></li>
+		<li><span aria-current="page">LAU 2024 files</span></li>
+	</ol>
+</nav>
+		<main id="main" tabindex="-1">
+<h1>LAU 2024 files</h1>
+<p class="lead">Individual files, grouped by format. To get all files of one scale and format in a single archive, use the <a href="download/">zipped packages</a>.</p>
+<ul class="inline-links">
+	<li><a href="lau-2024-release-notes.txt">Release notes</a></li>
+	<li><a href="lau-2024-files.json">File list as JSON (<code>lau-2024-files.json</code>)</a></li>
+	<li><a href="#naming">How files are named</a></li>
+</ul>
+<div class="notice" role="note">
+	<p>Specific <a href="https://ec.europa.eu/eurostat/web/gisco/geodata/administrative-units">download provisions</a> apply to these datasets. By downloading or using the data, you accept them.</p>
+	
+	<p>For thematic maps of NUTS data, try <a href="https://github.com/eurostat/eurostat-map">eurostat-map</a>. For gridded data, try <a href="https://github.com/eurostat/gridviz">gridviz</a>.</p>
+
+</div>
+
+<section id="files" class="section" aria-labelledby="files-heading">
+	<h2 id="files-heading">Files by format</h2>
+	<div class="filter" data-filter="files" hidden>
+	<label class="filter__label" for="filter-input">Filter files</label>
+	<p class="filter__hint" id="filter-hint">For example: 3035, LEVL_2 or RG_20M</p>
+	<input class="filter__input" id="filter-input" type="search" autocomplete="off" spellcheck="false" aria-describedby="filter-hint filter-status">
+	<p class="filter__status" id="filter-status" role="status" aria-live="polite"></p>
+</div>
+<script>
+// Runs once the whole list below has been parsed
+document.addEventListener('DOMContentLoaded', function () {
+	'use strict';
+	var MAX_OPEN = 400;  // open groups of files only while the result stays readable
+	var MAX_GROUPS = 60; // open groups of groups (e.g. countries) up to this number
+
+	function openTarget() {
+		var id = decodeURIComponent(location.hash.slice(1));
+		var el = id && document.getElementById(id);
+		if (!el) return;
+		for (var p = el; p; p = p.parentElement) {
+			if (p.tagName === 'DETAILS') p.open = true;
+		}
+		el.scrollIntoView();
+	}
+	window.addEventListener('hashchange', openTarget);
+	openTarget();
+
+	var box = document.querySelector('[data-filter]');
+	var root = box && document.getElementById(box.getAttribute('data-filter'));
+	if (!root) return;
+	box.hidden = false;
+	var input = box.querySelector('input');
+	var status = box.querySelector('[role=status]');
+
+	// Index the list once. A group is a <details> in an <li>; an item is an <li> with a file link.
+	function build(details) {
+		var node = { li: details.parentElement, details: details, groups: [], items: [],
+			text: details.querySelector('summary').textContent.toLowerCase() };
+		var lists = details.children;
+		for (var i = 0; i < lists.length; i++) {
+			if (lists[i].tagName !== 'UL') continue;
+			var lis = lists[i].children;
+			for (var j = 0; j < lis.length; j++) {
+				var first = lis[j].firstElementChild;
+				if (first && first.tagName === 'DETAILS') node.groups.push(build(first));
+				else node.items.push({ li: lis[j], text: lis[j].textContent.toLowerCase() });
+			}
+		}
+		return node;
+	}
+	var tops = Array.prototype.map.call(root.querySelectorAll(':scope > ul > li > details'), build);
+
+	function matches(text, terms) {
+		for (var i = 0; i < terms.length; i++) if (text.indexOf(terms[i]) < 0) return false;
+		return true;
+	}
+	// Shows the whole group; returns its number of items
+	function showAll(node) {
+		node.li.hidden = false;
+		for (var i = 0; i < node.items.length; i++) node.items[i].li.hidden = false;
+		var n = node.items.length;
+		for (var j = 0; j < node.groups.length; j++) n += showAll(node.groups[j]);
+		return n;
+	}
+	// Hides what does not match; returns the number of matching items and collects the groups to open
+	function filter(node, terms, toOpen) {
+		var n = 0;
+		if (matches(node.text, terms)) {
+			n = showAll(node);
+		} else {
+			for (var i = 0; i < node.items.length; i++) {
+				var ok = matches(node.items[i].text, terms);
+				node.items[i].li.hidden = !ok;
+				if (ok) n++;
+			}
+			for (var j = 0; j < node.groups.length; j++) n += filter(node.groups[j], terms, toOpen);
+		}
+		node.li.hidden = n === 0;
+		if (n) toOpen.push(node);
+		return n;
+	}
+	function expand(nodes) {
+		nodes.forEach(function (node) {
+			if (!node.details.open) { node.details.open = true; openedByFilter.push(node.details); }
+		});
+	}
+
+	var openedByFilter = [];
+	function run() {
+		var q = input.value.trim().toLowerCase();
+		var terms = q ? q.split(/\s+/) : [];
+		openedByFilter.forEach(function (d) { d.open = false; });
+		openedByFilter = [];
+		if (!terms.length) {
+			tops.forEach(showAll);
+			status.textContent = '';
+			return;
+		}
+		var total = 0, toOpen = [];
+		tops.forEach(function (node) { total += filter(node, terms, toOpen); });
+		// Groups of groups (countries) open up to MAX_GROUPS; groups of files open while the result stays short
+		var containers = toOpen.filter(function (node) { return node.groups.length; });
+		var leaves = toOpen.filter(function (node) { return !node.groups.length; });
+		if (containers.length <= MAX_GROUPS) expand(containers);
+		if (total <= MAX_OPEN) expand(leaves);
+		status.textContent = total === 0
+			? 'No files match “' + q + '”.'
+			: total + (total === 1 ? ' file matches' : ' files match')
+				+ (total > MAX_OPEN && leaves.length > 1 ? ' in ' + leaves.length + ' groups. Open one to see its files, or refine the filter.' : '.');
+	}
+	// Keep the filter in the URL (?filter=DE21), so a filtered list can be shared or reloaded
+	function saveToUrl() {
+		if (!window.URL || !history.replaceState) return;
+		var url = new URL(location.href);
+		if (input.value.trim()) url.searchParams.set('filter', input.value.trim());
+		else url.searchParams.delete('filter');
+		history.replaceState(null, '', url);
+	}
+	var timer;
+	input.addEventListener('input', function () {
+		clearTimeout(timer);
+		timer = setTimeout(function () { run(); saveToUrl(); }, 150);
+	});
+	var initial = window.URLSearchParams && new URLSearchParams(location.search).get('filter');
+	if (initial) {
+		input.value = initial;
+		run();
+	}
+});
+</script>
+	<ul class="accordion">
+		<li><details id="csv">
+			<summary><b>CSV</b> <small>3 files</small><span class="accordion__desc">Attribute table, no geometry</span></summary>
+			<ul>
+				<li><a href="csv/LAU_RG_01M_2024_3035.csv">LAU_RG_01M_2024_3035.csv</a></li>
+				<li><a href="csv/LAU_RG_01M_2024_3857.csv">LAU_RG_01M_2024_3857.csv</a></li>
+				<li><a href="csv/LAU_RG_01M_2024_4326.csv">LAU_RG_01M_2024_4326.csv</a></li>
+			</ul>
+		</details></li>
+		<li><details id="geojson">
+			<summary><b>GeoJSON</b> <small>3 files</small><span class="accordion__desc">Open standard, works in most web maps and GIS</span></summary>
+			<ul>
+				<li><a href="geojson/LAU_RG_01M_2024_3035.geojson">LAU_RG_01M_2024_3035.geojson</a></li>
+				<li><a href="geojson/LAU_RG_01M_2024_3857.geojson">LAU_RG_01M_2024_3857.geojson</a></li>
+				<li><a href="geojson/LAU_RG_01M_2024_4326.geojson">LAU_RG_01M_2024_4326.geojson</a></li>
+			</ul>
+		</details></li>
+		<li><details id="gpkg">
+			<summary><b>GeoPackage</b> <small>3 files</small><span class="accordion__desc">Open standard, works in most desktop GIS</span></summary>
+			<ul>
+				<li><a href="gpkg/LAU_RG_01M_2024_3035.gpkg">LAU_RG_01M_2024_3035.gpkg</a></li>
+				<li><a href="gpkg/LAU_RG_01M_2024_3857.gpkg">LAU_RG_01M_2024_3857.gpkg</a></li>
+				<li><a href="gpkg/LAU_RG_01M_2024_4326.gpkg">LAU_RG_01M_2024_4326.gpkg</a></li>
+			</ul>
+		</details></li>
+		<li><details id="pbf">
+			<summary><b>Geobuf</b> <small>3 files</small><span class="accordion__desc">GeoJSON compressed into protocol buffers</span></summary>
+			<ul>
+				<li><a href="pbf/LAU_RG_01M_2024_3035.pbf">LAU_RG_01M_2024_3035.pbf</a></li>
+				<li><a href="pbf/LAU_RG_01M_2024_3857.pbf">LAU_RG_01M_2024_3857.pbf</a></li>
+				<li><a href="pbf/LAU_RG_01M_2024_4326.pbf">LAU_RG_01M_2024_4326.pbf</a></li>
+			</ul>
+		</details></li>
+		<li><details id="shp">
+			<summary><b>Shapefile</b> <small>3 files</small><span class="accordion__desc">Esri shapefile, zipped</span></summary>
+			<ul>
+				<li><a href="shp/LAU_RG_01M_2024_3035.shp.zip">LAU_RG_01M_2024_3035.shp.zip</a></li>
+				<li><a href="shp/LAU_RG_01M_2024_3857.shp.zip">LAU_RG_01M_2024_3857.shp.zip</a></li>
+				<li><a href="shp/LAU_RG_01M_2024_4326.shp.zip">LAU_RG_01M_2024_4326.shp.zip</a></li>
+			</ul>
+		</details></li>
+		<li><details id="svg">
+			<summary><b>SVG</b> <small>3 files</small><span class="accordion__desc">Scalable vector graphics, zipped</span></summary>
+			<ul>
+				<li><a href="svg/LAU_RG_01M_2024_3035.svg.zip">LAU_RG_01M_2024_3035.svg.zip</a></li>
+				<li><a href="svg/LAU_RG_01M_2024_3857.svg.zip">LAU_RG_01M_2024_3857.svg.zip</a></li>
+				<li><a href="svg/LAU_RG_01M_2024_4326.svg.zip">LAU_RG_01M_2024_4326.svg.zip</a></li>
+			</ul>
+		</details></li>
+		<li><details id="topojson">
+			<summary><b>TopoJSON</b> <small>3 files</small><span class="accordion__desc">Topology-preserving JSON, small files for web maps</span></summary>
+			<ul>
+				<li><a href="topojson/LAU_RG_01M_2024_3035.json">LAU_RG_01M_2024_3035.json</a></li>
+				<li><a href="topojson/LAU_RG_01M_2024_3857.json">LAU_RG_01M_2024_3857.json</a></li>
+				<li><a href="topojson/LAU_RG_01M_2024_4326.json">LAU_RG_01M_2024_4326.json</a></li>
+			</ul>
+		</details></li>
+	</ul>
+</section>
+
+<section class="section" aria-labelledby="naming">
+	<h2 id="naming">How files are named</h2>
+	<p class="naming-pattern"><code>theme_spatialtype_resolution_year_projection_subset.format</code></p>
+	<p>For example <code>NUTS_RG_01M_2016_3035_LEVL_0.geojson</code> or <code>CNTR_BN_01M_2016_3035_INLAND.geojson</code>.</p>
+	<dl class="definitions">
+		<dt>theme</dt>
+		<dd>4-character code of the theme, for example <code>NUTS</code>.</dd>
+		<dt>spatialtype</dt>
+		<dd>
+			<ul>
+				<li><code>BN</code>: boundaries (multilines)</li>
+				<li><code>RG</code>: regions (multipolygons)</li>
+				<li><code>LB</code>: labels (points)</li>
+			</ul>
+		</dd>
+		<dt>resolution</dt>
+		<dd><code>60M</code>, <code>20M</code>, <code>10M</code>, <code>03M</code> or <code>01M</code>: the map scale the data is generalised for (1:60 million to 1:1 million).</dd>
+		<dt>year</dt>
+		<dd>The year of the dataset, for example the year of the <a href="https://ec.europa.eu/eurostat/web/nuts/history">NUTS regulation</a>.</dd>
+		<dt>projection</dt>
+		<dd>4-digit <a href="https://epsg.io/">EPSG code</a>:
+			<ul>
+				<li><code>4326</code>: WGS 84, coordinates in decimal degrees</li>
+				<li><code>3035</code>: ETRS89 Lambert azimuthal equal-area (centre E52 N10), coordinates in metres</li>
+				<li><code>3857</code>: WGS 84 Web Mercator (auxiliary sphere), coordinates in metres</li>
+			</ul>
+		</dd>
+		<dt>subset</dt>
+		<dd>Depends on the dataset. Without a subset code, the file contains everything. Common cases:
+			<ul>
+				<li>NUTS levels: <code>LEVL_0</code> (countries), <code>LEVL_1</code>, <code>LEVL_2</code>, <code>LEVL_3</code></li>
+				<li>Country boundaries: <code>INLAND</code> (inland boundaries) or <code>COASTL</code> (coastlines)</li>
+			</ul>
+		</dd>
+	</dl>
+</section>
+		</main>
+	</div>
+	<footer class="site-footer">
+		<div class="container">
+			<p class="site-footer__title">GISCO data distribution</p>			<ul class="site-footer__links">
+				<li><a href="https://ec.europa.eu/eurostat/web/gisco">About GISCO</a></li>
+				<li><a href="https://ec.europa.eu/eurostat/web/main/help/copyright-notice">Copyright notice and free re-use of data</a></li>
+				<li><a href="https://commission.europa.eu/legal-notice_en">Legal notice</a></li>
+				<li><a href="../themes.json">API: themes.json</a></li>
+				<li><a href="../updates.xml">Updates (Atom feed)</a></li>
+			</ul>
+		</div>
+	</footer>
+</body>
+</html>

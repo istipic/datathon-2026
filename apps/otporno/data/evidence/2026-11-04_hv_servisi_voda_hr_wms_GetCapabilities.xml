@@ -1,0 +1,1282 @@
+<?xml version="1.0" encoding="UTF-8"?><WMS_Capabilities xmlns:inspire_vs="http://inspire.ec.europa.eu/schemas/inspire_vs/1.0" xmlns:inspire_common="http://inspire.ec.europa.eu/schemas/common/1.0" version="1.3.0" updateSequence="10307" xmlns="http://www.opengis.net/wms" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengis.net/wms http://servisi.voda.hr/geoserver/schemas/wms/1.3.0/capabilities_1_3_0.xsd http://inspire.ec.europa.eu/schemas/inspire_vs/1.0 https://inspire.ec.europa.eu/schemas/inspire_vs/1.0/inspire_vs.xsd">
+  <Service>
+    <Name>WMS</Name>
+    <Title>Prostorne usluge Hrvatskih voda</Title>
+    <Abstract>WMS usluge (INSPIRE usluge pogleda) Hrvatskih voda prema NIPP-u.</Abstract>
+    <KeywordList>
+      <Keyword>WFS</Keyword>
+      <Keyword>WMS</Keyword>
+      <Keyword>Hrvatske vode</Keyword>
+    </KeywordList>
+    <OnlineResource xlink:type="simple" xlink:href="http://www.voda.hr"/>
+    <ContactInformation>
+      <ContactPersonPrimary>
+        <ContactPerson>Tijana Rosandić</ContactPerson>
+        <ContactOrganization>Hrvatske vode</ContactOrganization>
+      </ContactPersonPrimary>
+      <ContactPosition>GIS Technical Architect</ContactPosition>
+      <ContactAddress>
+        <AddressType>Work</AddressType>
+        <Address>Ulica grada Vukovara 220</Address>
+        <City>Zagreb</City>
+        <StateOrProvince>Zagrebačka županija</StateOrProvince>
+        <PostCode>10000</PostCode>
+        <Country>Hrvatska</Country>
+      </ContactAddress>
+      <ContactVoiceTelephone>+385 1 6307 446</ContactVoiceTelephone>
+      <ContactFacsimileTelephone>+385 1 6307 446</ContactFacsimileTelephone>
+      <ContactElectronicMailAddress>tijana.rosandic@voda.hr</ContactElectronicMailAddress>
+    </ContactInformation>
+    <Fees>NONE</Fees>
+    <AccessConstraints>NONE</AccessConstraints>
+  </Service>
+  <Capability>
+    <Request>
+      <GetCapabilities>
+        <Format>text/xml</Format>
+        <DCPType>
+          <HTTP>
+            <Get>
+              <OnlineResource xlink:type="simple" xlink:href="http://servisi.voda.hr/geoserver/ows?SERVICE=WMS&amp;"/>
+            </Get>
+            <Post>
+              <OnlineResource xlink:type="simple" xlink:href="http://servisi.voda.hr/geoserver/ows?SERVICE=WMS&amp;"/>
+            </Post>
+          </HTTP>
+        </DCPType>
+      </GetCapabilities>
+      <GetMap>
+        <Format>image/png</Format>
+        <Format>application/atom+xml</Format>
+        <Format>application/json;type=utfgrid</Format>
+        <Format>application/pdf</Format>
+        <Format>application/rss+xml</Format>
+        <Format>application/vnd.google-earth.kml+xml</Format>
+        <Format>application/vnd.google-earth.kml+xml;mode=networklink</Format>
+        <Format>application/vnd.google-earth.kmz</Format>
+        <Format>image/geotiff</Format>
+        <Format>image/geotiff8</Format>
+        <Format>image/gif</Format>
+        <Format>image/jpeg</Format>
+        <Format>image/png; mode=8bit</Format>
+        <Format>image/svg+xml</Format>
+        <Format>image/tiff</Format>
+        <Format>image/tiff8</Format>
+        <Format>image/vnd.jpeg-png</Format>
+        <Format>image/vnd.jpeg-png8</Format>
+        <Format>text/html; subtype=openlayers</Format>
+        <Format>text/html; subtype=openlayers2</Format>
+        <Format>text/html; subtype=openlayers3</Format>
+        <DCPType>
+          <HTTP>
+            <Get>
+              <OnlineResource xlink:type="simple" xlink:href="http://servisi.voda.hr/geoserver/ows?SERVICE=WMS&amp;"/>
+            </Get>
+          </HTTP>
+        </DCPType>
+      </GetMap>
+      <GetFeatureInfo>
+        <Format>text/plain</Format>
+        <Format>application/vnd.ogc.gml</Format>
+        <Format>text/xml</Format>
+        <Format>application/vnd.ogc.gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/html</Format>
+        <Format>application/json</Format>
+        <DCPType>
+          <HTTP>
+            <Get>
+              <OnlineResource xlink:type="simple" xlink:href="http://servisi.voda.hr/geoserver/ows?SERVICE=WMS&amp;"/>
+            </Get>
+          </HTTP>
+        </DCPType>
+      </GetFeatureInfo>
+    </Request>
+    <Exception>
+      <Format>XML</Format>
+      <Format>INIMAGE</Format>
+      <Format>BLANK</Format>
+      <Format>JSON</Format>
+    </Exception>
+    <inspire_vs:ExtendedCapabilities>
+      <inspire_common:MetadataUrl>
+        <inspire_common:URL>http://geoportal.nipp.hr/geonetwork/srv/hrv/csw</inspire_common:URL>
+        <inspire_common:MediaType>application/vnd.ogc.csw.GetRecordByIdResponse_xml</inspire_common:MediaType>
+      </inspire_common:MetadataUrl>
+      <inspire_common:SupportedLanguages>
+        <inspire_common:DefaultLanguage>
+          <inspire_common:Language>hrv</inspire_common:Language>
+        </inspire_common:DefaultLanguage>
+      </inspire_common:SupportedLanguages>
+      <inspire_common:ResponseLanguage>
+        <inspire_common:Language>hrv</inspire_common:Language>
+      </inspire_common:ResponseLanguage>
+    </inspire_vs:ExtendedCapabilities>
+    <Layer>
+      <Title>Prostorne usluge Hrvatskih voda</Title>
+      <Abstract>WMS usluge (INSPIRE usluge pogleda) Hrvatskih voda prema NIPP-u.</Abstract>
+      <!--Limited list of EPSG projections:-->
+      <CRS>EPSG:3765</CRS>
+      <CRS>EPSG:4326</CRS>
+      <CRS>EPSG:3857</CRS>
+      <CRS>EPSG:3035</CRS>
+      <CRS>EPSG:900913</CRS>
+      <CRS>CRS:84</CRS>
+      <EX_GeographicBoundingBox>
+        <westBoundLongitude>13.145702363371795</westBoundLongitude>
+        <eastBoundLongitude>19.647892491231794</eastBoundLongitude>
+        <southBoundLatitude>42.13458605596294</southBoundLatitude>
+        <northBoundLatitude>46.58118880865105</northBoundLatitude>
+      </EX_GeographicBoundingBox>
+      <BoundingBox CRS="CRS:84" minx="13.145702363371795" miny="42.13458605596294" maxx="19.647892491231794" maxy="46.58118880865105"/>
+      <Layer queryable="0" opaque="0">
+        <Name>public_ows:hr.fd.granica-podrucja-potencijalno-znacajnih-rizika-od-poplava</Name>
+        <Title>Područja sa potencijalno značajnim rizicima od poplava</Title>
+        <Abstract>Područja sa potencijalno značajnim rizicima od poplava prema Planu upravljanja vodnim područjima 2016.-2021.</Abstract>
+        <KeywordList>
+          <Keyword>PPZRP</Keyword>
+          <Keyword vocabulary="GEMET - INSPIRE themes, version 1.0">Hydrography</Keyword>
+          <Keyword vocabulary="GEMET - INSPIRE themes, version 1.0">Human health and safety</Keyword>
+          <Keyword vocabulary="GEMET - INSPIRE themes, version 1.0">Natural risk zones</Keyword>
+          <Keyword vocabulary="GEMET - INSPIRE themes, version 1.0">Area management/restriction/regulation zones and reporting units</Keyword>
+          <Keyword>Područja prirodnih opasnosti</Keyword>
+          <Keyword>Poplave</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3765</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>13.449919715460243</westBoundLongitude>
+          <eastBoundLongitude>19.517854271615267</eastBoundLongitude>
+          <southBoundLatitude>42.46946394134552</southBoundLatitude>
+          <northBoundLatitude>46.5550956269074</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="13.449919715460243" miny="42.46946394134552" maxx="19.517854271615267" maxy="46.5550956269074"/>
+        <BoundingBox CRS="EPSG:3765" minx="265958.93840000033" miny="4707239.9882" maxx="731564.7536000004" maxy="5157272.894300001"/>
+        <MetadataURL type="ISO19115:2003">
+          <Format>text/plain</Format>
+          <OnlineResource xlink:type="simple" xlink:href="http://geoportal.nipp.hr/geonetwork/srv/en/csw?service=CSW&amp;request=GetRecordById&amp;version=2.0.2&amp;outputSchema=http://www.isotc211.org/2005/gmd&amp;elementSetName=full&amp;id=868715ee-84d5-4a68-ae07-e27452b655aa"/>
+        </MetadataURL>
+        <Style>
+          <Name>PPZRP</Name>
+          <Title>PPZRP</Title>
+          <LegendURL width="66" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://servisi.voda.hr/geoserver/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=public_ows%3Ahr.fd.granica-podrucja-potencijalno-znacajnih-rizika-od-poplava"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="0" opaque="0">
+        <Name>poplave_rizici:hr.fd.koristenje-zemljista-mala-vjerojatnost</Name>
+        <Title>Korištenje zemljišta u zonama male vjerojatnosti od poplava</Title>
+        <Abstract>Sloj "Mala vjerojatnost od poplava" koristi se za potrebe "Karta rizika od poplava" i informativne je prirode. Prikazuje korištenje zemljišta u zonama male vjerojatnosti od poplava.</Abstract>
+        <KeywordList>
+          <Keyword>RIZICI_MV</Keyword>
+          <Keyword>features</Keyword>
+          <Keyword>pregeneralized)</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3765</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>13.433953935339488</westBoundLongitude>
+          <eastBoundLongitude>19.4910454004025</eastBoundLongitude>
+          <southBoundLatitude>42.47426252667477</southBoundLatitude>
+          <northBoundLatitude>46.55461471602942</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="13.433953935339488" miny="42.47426252667477" maxx="19.4910454004025" maxy="46.55461471602942"/>
+        <BoundingBox CRS="EPSG:3765" minx="264730.0" miny="4707815.0" maxx="729506.7999" maxy="5157220.0"/>
+        <Style>
+          <Name>koristenje_zemljista</Name>
+          <Title>Korištenje zemljišta</Title>
+          <LegendURL width="224" height="160">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://servisi.voda.hr/geoserver/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=poplave_rizici%3Ahr.fd.koristenje-zemljista-mala-vjerojatnost"/>
+          </LegendURL>
+        </Style>
+        <MinScaleDenominator>24999.0</MinScaleDenominator>
+        <MaxScaleDenominator>5000000.0</MaxScaleDenominator>
+      </Layer>
+      <Layer queryable="0" opaque="0">
+        <Name>poplave_rizici:hr.fd.koristenje-zemljista-srednja-vjerojatnost</Name>
+        <Title>Korištenje zemljišta u zonama srednje vjerojatnosti od poplava</Title>
+        <Abstract>Sloj "Srednja vjerojatnost od poplava" koristi se za potrebe "Karta rizika od poplava" i informativne je prirode. Prikazuje korištenje zemljišta u zonama srednje vjerojatnosti od poplava.</Abstract>
+        <KeywordList>
+          <Keyword>Flood risk</Keyword>
+          <Keyword>Rizici od poplava</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3765</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>13.43446458958363</westBoundLongitude>
+          <eastBoundLongitude>19.490547191640484</eastBoundLongitude>
+          <southBoundLatitude>42.47426252667477</southBoundLatitude>
+          <northBoundLatitude>46.545527975637505</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="13.43446458958363" miny="42.47426252667477" maxx="19.490547191640484" maxy="46.545527975637505"/>
+        <BoundingBox CRS="EPSG:3765" minx="264730.0" miny="4707815.0" maxx="729506.7999" maxy="5156210.0"/>
+        <Style>
+          <Name>koristenje_zemljista</Name>
+          <Title>Korištenje zemljišta</Title>
+          <LegendURL width="224" height="160">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://servisi.voda.hr/geoserver/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=poplave_rizici%3Ahr.fd.koristenje-zemljista-srednja-vjerojatnost"/>
+          </LegendURL>
+        </Style>
+        <MinScaleDenominator>24999.0</MinScaleDenominator>
+        <MaxScaleDenominator>5000000.0</MaxScaleDenominator>
+      </Layer>
+      <Layer queryable="0" opaque="0">
+        <Name>poplave_rizici:hr.fd.koristenje-zemljista-velika-vjerojatnost</Name>
+        <Title>Korištenje zemljišta u zonama velike vjerojatnosti od poplava</Title>
+        <Abstract>Sloj "Velika vjerojatnost od poplava" koristi se za potrebe "Karta rizika od poplava" i informativne je prirode. Prikazuje korištenje zemljišta u zonama velike vjerojatnosti od poplava.</Abstract>
+        <KeywordList>
+          <Keyword>RIZICI_VV</Keyword>
+          <Keyword>features</Keyword>
+          <Keyword>pregeneralized)</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3765</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>13.43446964433314</westBoundLongitude>
+          <eastBoundLongitude>19.490542260083636</eastBoundLongitude>
+          <southBoundLatitude>42.47426252667477</southBoundLatitude>
+          <northBoundLatitude>46.545438007838335</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="13.43446964433314" miny="42.47426252667477" maxx="19.490542260083636" maxy="46.545438007838335"/>
+        <BoundingBox CRS="EPSG:3765" minx="264730.0" miny="4707815.0" maxx="729506.7999" maxy="5156200.0"/>
+        <Style>
+          <Name>koristenje_zemljista</Name>
+          <Title>Korištenje zemljišta</Title>
+          <LegendURL width="224" height="160">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://servisi.voda.hr/geoserver/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=poplave_rizici%3Ahr.fd.koristenje-zemljista-velika-vjerojatnost"/>
+          </LegendURL>
+        </Style>
+        <MinScaleDenominator>24999.0</MinScaleDenominator>
+        <MaxScaleDenominator>5000000.0</MaxScaleDenominator>
+      </Layer>
+      <Layer queryable="0" opaque="0">
+        <Name>poplave_opasnosti:hr.fd.opasnost-od-poplave-mala-vjerojatnost</Name>
+        <Title>Opasnosti od poplava, mala vjerojatnost pojavljivanja</Title>
+        <Abstract>Obuhvat i dubinu poplava za scenarij male vjerojatnosti pojavljivanja prema Planu upravljanja vodnim područjima 2016.-2021.</Abstract>
+        <KeywordList>
+          <Keyword>Flood risk</Keyword>
+          <Keyword>Rizici od poplava</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3765</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>13.433953935306455</westBoundLongitude>
+          <eastBoundLongitude>19.491087047825907</eastBoundLongitude>
+          <southBoundLatitude>42.474262526670856</southBoundLatitude>
+          <northBoundLatitude>46.55461472288262</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="13.433953935306455" miny="42.474262526670856" maxx="19.491087047825907" maxy="46.55461472288262"/>
+        <BoundingBox CRS="EPSG:3765" minx="264729.99999746133" miny="4707814.999999652" maxx="729510.0000022559" maxy="5157219.999999999"/>
+        <MetadataURL type="ISO19115:2003">
+          <Format>text/plain</Format>
+          <OnlineResource xlink:type="simple" xlink:href="http://geoportal.nipp.hr/geonetwork/srv/eng/csw?service=CSW&amp;request=GetRecordById&amp;version=2.0.2&amp;outputSchema=http://www.isotc211.org/2005/gmd&amp;elementSetName=full&amp;id=9119600a-fb7f-42e3-ad16-d9d10402eca5"/>
+        </MetadataURL>
+        <Style>
+          <Name>opasnosti_od_poplava_MV</Name>
+          <Title>Opasnosti od poplava, mala vjerojatnost pojavljivanja</Title>
+          <LegendURL width="155" height="80">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://servisi.voda.hr/geoserver/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=poplave_opasnosti%3Ahr.fd.opasnost-od-poplave-mala-vjerojatnost"/>
+          </LegendURL>
+        </Style>
+        <MinScaleDenominator>20000.0</MinScaleDenominator>
+        <MaxScaleDenominator>5000000.0</MaxScaleDenominator>
+      </Layer>
+      <Layer queryable="0" opaque="0">
+        <Name>poplave_opasnosti_2019:hr.fd.opasnost-od-poplave-mala-vjerojatnost_2019</Name>
+        <Title>Opasnosti od poplava, mala vjerojatnost pojavljivanja 2019</Title>
+        <Abstract>Obuhvat i dubinu poplava za scenarij male vjerojatnosti pojavljivanja prema Planu upravljanja vodnim područjima 2022.-2027.</Abstract>
+        <KeywordList>
+          <Keyword>Opasnosti od poplava</Keyword>
+          <Keyword vocabulary="GEMET - INSPIRE themes, version 1.0">Hydrography</Keyword>
+          <Keyword vocabulary="GEMET - INSPIRE themes, version 1.0">Natural risk zones</Keyword>
+          <Keyword vocabulary="GEMET - INSPIRE themes, version 1.0">Human health and safety</Keyword>
+          <Keyword vocabulary="GEMET - INSPIRE themes, version 1.0">Area management/restriction/regulation zones and reporting units</Keyword>
+          <Keyword>Područja prirodnih opasnosti</Keyword>
+          <Keyword>Poplave</Keyword>
+          <Keyword>Karte opasnosti</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3765</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>13.433928649068296</westBoundLongitude>
+          <eastBoundLongitude>19.49111171814266</eastBoundLongitude>
+          <southBoundLatitude>42.426829630749566</southBoundLatitude>
+          <northBoundLatitude>46.55506456118138</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="13.433928649068296" miny="42.426829630749566" maxx="19.49111171814266" maxy="46.55506456118138"/>
+        <BoundingBox CRS="EPSG:3765" minx="264730.0" miny="4702539.9999" maxx="729510.0" maxy="5157269.9999"/>
+        <Style>
+          <Name>opasnost_od_poplava_raster_20</Name>
+          <Title>opasnost_od_poplava_raster_20</Title>
+          <LegendURL width="177" height="116">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://servisi.voda.hr/geoserver/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=poplave_opasnosti_2019%3Ahr.fd.opasnost-od-poplave-mala-vjerojatnost_2019"/>
+          </LegendURL>
+        </Style>
+        <MinScaleDenominator>24900.0</MinScaleDenominator>
+        <MaxScaleDenominator>250001.0</MaxScaleDenominator>
+      </Layer>
+      <Layer queryable="0" opaque="0">
+        <Name>poplave_opasnosti:hr.fd.opasnost-od-poplave-srednja-vjerojatnost</Name>
+        <Title>Opasnosti od poplava, srednja vjerojatnost pojavljivanja</Title>
+        <Abstract>Obuhvat i dubinu poplava za scenarij srednje vjerojatnosti pojavljivanja prema Planu upravljanja vodnim područjima 2016.-2021.</Abstract>
+        <KeywordList>
+          <Keyword vocabulary="GEMET - INSPIRE themes, version 1.0">Human health and safety</Keyword>
+          <Keyword vocabulary="GEMET - INSPIRE themes, version 1.0">Hydrography</Keyword>
+          <Keyword vocabulary="GEMET - INSPIRE themes, version 1.0">Natural risk zones</Keyword>
+          <Keyword vocabulary="GEMET - INSPIRE themes, version 1.0">Area management/restriction/regulation zones and reporting units</Keyword>
+          <Keyword>Područja prirodnih opasnosti</Keyword>
+          <Keyword>Poplave</Keyword>
+          <Keyword>Karte opasnosti</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3765</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>13.434464589550602</westBoundLongitude>
+          <eastBoundLongitude>19.490588832152028</eastBoundLongitude>
+          <southBoundLatitude>42.474262526670856</southBoundLatitude>
+          <northBoundLatitude>46.54552798248853</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="13.434464589550602" miny="42.474262526670856" maxx="19.490588832152028" maxy="46.54552798248853"/>
+        <BoundingBox CRS="EPSG:3765" minx="264729.99999746133" miny="4707814.999999652" maxx="729510.0000022559" maxy="5156209.999999999"/>
+        <MetadataURL type="ISO19115:2003">
+          <Format>text/plain</Format>
+          <OnlineResource xlink:type="simple" xlink:href="http://geoportal.nipp.hr/geonetwork/srv/eng/csw?service=CSW&amp;request=GetRecordById&amp;version=2.0.2&amp;outputSchema=http://www.isotc211.org/2005/gmd&amp;elementSetName=full&amp;id=9119600a-fb7f-42e3-ad16-d9d10402eca5"/>
+        </MetadataURL>
+        <Style>
+          <Name>opasnosti_od_poplava_SV</Name>
+          <Title>Opasnosti od poplava, srednja vjerojatnost pojavljivanja</Title>
+          <LegendURL width="155" height="80">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://servisi.voda.hr/geoserver/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=poplave_opasnosti%3Ahr.fd.opasnost-od-poplave-srednja-vjerojatnost"/>
+          </LegendURL>
+        </Style>
+        <MinScaleDenominator>20000.0</MinScaleDenominator>
+        <MaxScaleDenominator>5000000.0</MaxScaleDenominator>
+      </Layer>
+      <Layer queryable="0" opaque="0">
+        <Name>poplave_opasnosti_2019:hr.fd.opasnost-od-poplave-srednja-vjerojatnost_2019</Name>
+        <Title>Opasnosti od poplava, srednja vjerojatnost pojavljivanja 2019</Title>
+        <Abstract>Obuhvat i dubinu poplava za scenarij srednje vjerojatnosti pojavljivanja prema Planu upravljanja vodnim područjima 2022.-2027.</Abstract>
+        <KeywordList>
+          <Keyword>Opasnosti od poplava</Keyword>
+          <Keyword vocabulary="GEMET - INSPIRE themes, version 1.0">Hydrography</Keyword>
+          <Keyword vocabulary="GEMET - INSPIRE themes, version 1.0">Natural risk zones</Keyword>
+          <Keyword vocabulary="GEMET - INSPIRE themes, version 1.0">Human health and safety</Keyword>
+          <Keyword vocabulary="GEMET - INSPIRE themes, version 1.0">Area management/restriction/regulation zones and reporting units</Keyword>
+          <Keyword>Područja prirodnih opasnosti</Keyword>
+          <Keyword>Poplave</Keyword>
+          <Keyword>Karte opasnosti</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3765</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>13.433928649068296</westBoundLongitude>
+          <eastBoundLongitude>19.49111171814266</eastBoundLongitude>
+          <southBoundLatitude>42.426829630749566</southBoundLatitude>
+          <northBoundLatitude>46.55506456118138</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="13.433928649068296" miny="42.426829630749566" maxx="19.49111171814266" maxy="46.55506456118138"/>
+        <BoundingBox CRS="EPSG:3765" minx="264730.0" miny="4702539.9999" maxx="729510.0" maxy="5157269.9999"/>
+        <Style>
+          <Name>opasnost_od_poplava_raster_20</Name>
+          <Title>opasnost_od_poplava_raster_20</Title>
+          <LegendURL width="177" height="116">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://servisi.voda.hr/geoserver/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=poplave_opasnosti_2019%3Ahr.fd.opasnost-od-poplave-srednja-vjerojatnost_2019"/>
+          </LegendURL>
+        </Style>
+        <MinScaleDenominator>24900.0</MinScaleDenominator>
+        <MaxScaleDenominator>250001.0</MaxScaleDenominator>
+      </Layer>
+      <Layer queryable="0" opaque="0">
+        <Name>poplave_opasnosti:hr.fd.opasnost-od-poplave-velika-vjerojatnost</Name>
+        <Title>Opasnosti od poplava, velika vjerojatnost pojavljivanja</Title>
+        <Abstract>Obuhvat i dubinu poplava za scenarij velike vjerojatnosti pojavljivanja prema Planu upravljanja vodnim područjima 2016.-2021.</Abstract>
+        <KeywordList>
+          <Keyword>Flood risk</Keyword>
+          <Keyword>Rizici od poplava</Keyword>
+          <Keyword vocabulary="GEMET - INSPIRE themes, version 1.0">Hydrography</Keyword>
+          <Keyword vocabulary="GEMET - INSPIRE themes, version 1.0">Human health and safety</Keyword>
+          <Keyword vocabulary="GEMET - INSPIRE themes, version 1.0">Natural risk zones</Keyword>
+          <Keyword vocabulary="GEMET - INSPIRE themes, version 1.0">Area management/restriction/regulation zones and reporting units</Keyword>
+          <Keyword>Područja prirodnih opasnosti</Keyword>
+          <Keyword>Poplave</Keyword>
+          <Keyword>Karte opasnosti</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3765</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>13.434469644300108</westBoundLongitude>
+          <eastBoundLongitude>19.49058390052676</eastBoundLongitude>
+          <southBoundLatitude>42.474262526670856</southBoundLatitude>
+          <northBoundLatitude>46.545438014689374</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="13.434469644300108" miny="42.474262526670856" maxx="19.49058390052676" maxy="46.545438014689374"/>
+        <BoundingBox CRS="EPSG:3765" minx="264729.99999746133" miny="4707814.999999652" maxx="729510.0000022559" maxy="5156199.999999999"/>
+        <MetadataURL type="ISO19115:2003">
+          <Format>text/plain</Format>
+          <OnlineResource xlink:type="simple" xlink:href="http://geoportal.nipp.hr/geonetwork/srv/eng/csw?service=CSW&amp;request=GetRecordById&amp;version=2.0.2&amp;outputSchema=http://www.isotc211.org/2005/gmd&amp;elementSetName=full&amp;id=9119600a-fb7f-42e3-ad16-d9d10402eca5"/>
+        </MetadataURL>
+        <Style>
+          <Name>opasnosti_od_poplava_VV</Name>
+          <Title>Opasnosti od poplava, velika vjerojatnost pojavljivanja</Title>
+          <LegendURL width="155" height="80">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://servisi.voda.hr/geoserver/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=poplave_opasnosti%3Ahr.fd.opasnost-od-poplave-velika-vjerojatnost"/>
+          </LegendURL>
+        </Style>
+        <MinScaleDenominator>20000.0</MinScaleDenominator>
+        <MaxScaleDenominator>5000000.0</MaxScaleDenominator>
+      </Layer>
+      <Layer queryable="0" opaque="0">
+        <Name>poplave_opasnosti_2019:hr.fd.opasnost-od-poplave-velika-vjerojatnost_2019</Name>
+        <Title>Opasnosti od poplava, velika vjerojatnost pojavljivanja 2019</Title>
+        <Abstract>Obuhvat i dubinu poplava za scenarij velike vjerojatnosti pojavljivanja prema Planu upravljanja vodnim područjima 2022.-2027.</Abstract>
+        <KeywordList>
+          <Keyword vocabulary="GEMET - INSPIRE themes, version 1.0">Hydrography</Keyword>
+          <Keyword vocabulary="GEMET - INSPIRE themes, version 1.0">Natural risk zones</Keyword>
+          <Keyword vocabulary="GEMET - INSPIRE themes, version 1.0">Human health and safety</Keyword>
+          <Keyword vocabulary="GEMET - INSPIRE themes, version 1.0">Area management/restriction/regulation zones and reporting units</Keyword>
+          <Keyword>Područja prirodnih opasnosti</Keyword>
+          <Keyword>Poplave</Keyword>
+          <Keyword>Karte opasnosti</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3765</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>13.4344595348605</westBoundLongitude>
+          <eastBoundLongitude>19.490593763722213</eastBoundLongitude>
+          <southBoundLatitude>42.426829630749566</southBoundLatitude>
+          <northBoundLatitude>46.54561795032839</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="13.4344595348605" miny="42.426829630749566" maxx="19.490593763722213" maxy="46.54561795032839"/>
+        <BoundingBox CRS="EPSG:3765" minx="264730.0" miny="4702539.9999" maxx="729510.0" maxy="5156219.9999"/>
+        <Style>
+          <Name>opasnost_od_poplava_raster_20</Name>
+          <Title>opasnost_od_poplava_raster_20</Title>
+          <LegendURL width="177" height="116">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://servisi.voda.hr/geoserver/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=poplave_opasnosti_2019%3Ahr.fd.opasnost-od-poplave-velika-vjerojatnost_2019"/>
+          </LegendURL>
+        </Style>
+        <MinScaleDenominator>24900.0</MinScaleDenominator>
+        <MaxScaleDenominator>250001.0</MaxScaleDenominator>
+      </Layer>
+      <Layer queryable="0" opaque="0">
+        <Name>poplave_opasnosti:hr.fd.vjerojatnost-pojavljivanja</Name>
+        <Title>Opasnost od poplava, tri scenarija plavljenja</Title>
+        <Abstract>Obuhvat poplava za tri scenarija plavljenja prema Planu upravljanja vodnim područjima 2016.-2021.</Abstract>
+        <KeywordList>
+          <Keyword>Flood risk</Keyword>
+          <Keyword>Rizici od poplava</Keyword>
+          <Keyword vocabulary="GEMET - INSPIRE themes, version 1.0">Hydrography</Keyword>
+          <Keyword vocabulary="GEMET - INSPIRE themes, version 1.0">Human health and safety</Keyword>
+          <Keyword vocabulary="GEMET - INSPIRE themes, version 1.0">Natural risk zones</Keyword>
+          <Keyword vocabulary="GEMET - INSPIRE themes, version 1.0">Area management/restriction/regulation zones and reporting units</Keyword>
+          <Keyword>Područja prirodnih opasnosti</Keyword>
+          <Keyword>Poplave</Keyword>
+          <Keyword>Karte opasnosti</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3765</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>13.433953935339488</westBoundLongitude>
+          <eastBoundLongitude>19.4910454004025</eastBoundLongitude>
+          <southBoundLatitude>42.47426252667477</southBoundLatitude>
+          <northBoundLatitude>46.55461471602942</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="13.433953935339488" miny="42.47426252667477" maxx="19.4910454004025" maxy="46.55461471602942"/>
+        <BoundingBox CRS="EPSG:3765" minx="264730.0" miny="4707815.0" maxx="729506.7999" maxy="5157220.0"/>
+        <MetadataURL type="ISO19115:2003">
+          <Format>text/plain</Format>
+          <OnlineResource xlink:type="simple" xlink:href="http://geoportal.nipp.hr/geonetwork/srv/eng/csw?service=CSW&amp;request=GetRecordById&amp;version=2.0.2&amp;outputSchema=http://www.isotc211.org/2005/gmd&amp;elementSetName=full&amp;id=9119600a-fb7f-42e3-ad16-d9d10402eca5"/>
+        </MetadataURL>
+        <Style>
+          <Name>vjerojatnost_pojavljivanja</Name>
+          <Title>Opasnost od poplava, tri scenarija plavljenja</Title>
+          <LegendURL width="151" height="60">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://servisi.voda.hr/geoserver/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=poplave_opasnosti%3Ahr.fd.vjerojatnost-pojavljivanja"/>
+          </LegendURL>
+        </Style>
+        <MinScaleDenominator>20000.0</MinScaleDenominator>
+        <MaxScaleDenominator>5000000.0</MaxScaleDenominator>
+      </Layer>
+      <Layer queryable="1" opaque="0" cascaded="1">
+        <Name>poplave_rizici_2019:hr.karta-rizika-od-poplava-mala-vjerojatnost_2019</Name>
+        <Title>Karta rizika od poplava, mala vjerojatnost pojavljivanja 2019</Title>
+        <Abstract>Potencijalne štetne posljedice na područjima koja su prethodno određena kartama opasnosti od poplava za scenarij male vjerojatnosti pojavljivanja prema Planu upravljanja vodnim područjima 2022-2027.</Abstract>
+        <KeywordList/>
+        <CRS>EPSG:3765</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>13.145702363371798</westBoundLongitude>
+          <eastBoundLongitude>19.647892491231794</eastBoundLongitude>
+          <southBoundLatitude>42.13458609625906</southBoundLatitude>
+          <northBoundLatitude>46.58116679084286</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="13.145702363371798" miny="42.13458609625906" maxx="19.647892491231794" maxy="46.58116679084286"/>
+        <BoundingBox CRS="EPSG:3765" minx="242699.9999978301" miny="4670809.999881012" maxx="741441.9826338722" maxy="5160175.80631312"/>
+        <Style>
+          <Name/>
+          <Title/>
+          <LegendURL width="2" height="1">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://servisi.voda.hr/geoserver/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=poplave_rizici_2019%3Ahr.karta-rizika-od-poplava-mala-vjerojatnost_2019"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0" cascaded="1">
+        <Name>poplave_rizici_2019:hr.karta-rizika-od-poplava-srednja-vjerojatnost_2019</Name>
+        <Title>Karta rizika od poplava, srednja vjerojatnost pojavljivanja 2019</Title>
+        <Abstract>Potencijalne štetne posljedice na područjima koja su prethodno određena kartama opasnosti od poplava za scenarij srednje vjerojatnosti pojavljivanja prema Planu upravljanja vodnim područjima 2022-2027.</Abstract>
+        <KeywordList/>
+        <CRS>EPSG:3765</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>13.145702363371795</westBoundLongitude>
+          <eastBoundLongitude>19.647892491231794</eastBoundLongitude>
+          <southBoundLatitude>42.13458605596294</southBoundLatitude>
+          <northBoundLatitude>46.58116675008628</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="13.145702363371795" miny="42.13458605596294" maxx="19.647892491231794" maxy="46.58116675008628"/>
+        <BoundingBox CRS="EPSG:3765" minx="242699.9999978301" miny="4670809.999881012" maxx="741441.9826338722" maxy="5160175.80631312"/>
+        <Style>
+          <Name/>
+          <Title/>
+          <LegendURL width="2" height="1">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://servisi.voda.hr/geoserver/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=poplave_rizici_2019%3Ahr.karta-rizika-od-poplava-srednja-vjerojatnost_2019"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0" cascaded="1">
+        <Name>poplave_rizici_2019:hr.karta-rizika-od-poplava-velika-vjerojatnost_2019</Name>
+        <Title>Karta rizika od poplava, velika vjerojatnost pojavljivanja 2019</Title>
+        <Abstract>Potencijalne štetne posljedice na područjima koja su prethodno određena kartama opasnosti od poplava za scenarij velike vjerojatnosti pojavljivanja prema Planu upravljanja vodnim područjima 2022-2027.</Abstract>
+        <KeywordList/>
+        <CRS>EPSG:3765</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>13.145702363371795</westBoundLongitude>
+          <eastBoundLongitude>19.647892491231794</eastBoundLongitude>
+          <southBoundLatitude>42.13458605596294</southBoundLatitude>
+          <northBoundLatitude>46.58116675008628</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="13.145702363371795" miny="42.13458605596294" maxx="19.647892491231794" maxy="46.58116675008628"/>
+        <BoundingBox CRS="EPSG:3765" minx="242699.9999978301" miny="4670809.999881012" maxx="741441.9826338722" maxy="5160175.80631312"/>
+        <Style>
+          <Name/>
+          <Title/>
+          <LegendURL width="2" height="1">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://servisi.voda.hr/geoserver/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=poplave_rizici_2019%3Ahr.karta-rizika-od-poplava-velika-vjerojatnost_2019"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>zasticena_podrucja:hr.rzp.a_podrucja-namijenjena-zahvacanju-vode-za-ljudsku-potrosnju</Name>
+        <Title>A. Područja namijenjena zahvaćanju vode za ljudsku potrošnju</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>hr.rzp.a_podrucja-namijenjena-zahvacanju-vode-za-ljudsku-potrosnju</Keyword>
+          <Keyword>Područja namijenjena zahvaćanju vode za ljudsku potrošnju</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3765</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>13.483609766953542</westBoundLongitude>
+          <eastBoundLongitude>18.64740450689183</eastBoundLongitude>
+          <southBoundLatitude>42.374577861578736</southBoundLatitude>
+          <northBoundLatitude>45.64291170731783</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="13.483609766953542" miny="42.374577861578736" maxx="18.64740450689183" maxy="45.64291170731783"/>
+        <BoundingBox CRS="EPSG:3765" minx="264704.3300000001" miny="4696730.0199" maxx="667452.0599999996" maxy="5055978.940099999"/>
+        <Style>
+          <Name>podrucja-namijenjena-zahvacanju-vode-za-ljudsku-potrosnju</Name>
+          <Title>Područja namijenjena zahvaćanju vode za ljudsku potrošnju</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://servisi.voda.hr/geoserver/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=zasticena_podrucja%3Ahr.rzp.a_podrucja-namijenjena-zahvacanju-vode-za-ljudsku-potrosnju"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>zasticena_podrucja:hr.rzp.a_podrucja-podzemnih-voda</Name>
+        <Title>A. Područja podzemnih voda</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>hr.rzp.a_podrucja-podzemnih-voda</Keyword>
+          <Keyword>Područja podzemnih voda</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3765</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>13.497808514458278</westBoundLongitude>
+          <eastBoundLongitude>19.49903520519871</eastBoundLongitude>
+          <southBoundLatitude>42.88700330363427</southBoundLatitude>
+          <northBoundLatitude>46.405394781000105</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="13.497808514458278" miny="42.88700330363427" maxx="19.49903520519871" maxy="46.405394781000105"/>
+        <BoundingBox CRS="EPSG:3765" minx="269006.3716000002" miny="4753572.976600001" maxx="730750.4400000004" maxy="5140633.5824"/>
+        <Style>
+          <Name>podrucja-vodnih-tijela-podzemnih-voda</Name>
+          <Title>Područja vodnih tijela podzemnih voda</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://servisi.voda.hr/geoserver/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=zasticena_podrucja%3Ahr.rzp.a_podrucja-podzemnih-voda"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>zasticena_podrucja:hr.rzp.a_podrucja-povrsinskih-voda-poly</Name>
+        <Title>A. Područja površinskih voda - Poligoni</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>podrucja_vodnih_tijela_povrsinskih_voda_p_v</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3765</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>13.9175953789593</westBoundLongitude>
+          <eastBoundLongitude>15.127476784006664</eastBoundLongitude>
+          <southBoundLatitude>44.82281980190738</southBoundLatitude>
+          <northBoundLatitude>45.35693060226273</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="13.9175953789593" miny="44.82281980190738" maxx="15.127476784006664" maxy="45.35693060226273"/>
+        <BoundingBox CRS="EPSG:3765" minx="297600.5312000001" miny="4967945.479499999" maxx="391497.01910000015" maxy="5025042.5755"/>
+        <Style>
+          <Name>podrucja-vodnih-tijela-povrsinskih-voda_poligoni</Name>
+          <Title>Područja vodnih tijela površinskih voda - Poligoni</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://servisi.voda.hr/geoserver/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=zasticena_podrucja%3Ahr.rzp.a_podrucja-povrsinskih-voda-poly"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>zasticena_podrucja:hr.rzp.a_podrucja-povrsinskih-voda_linije</Name>
+        <Title>A. Područja površinskih voda - Linije</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>podrucja_vodnih_tijela_povrsinskih_voda_v</Keyword>
+          <Keyword>features</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3765</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>13.903481769125007</westBoundLongitude>
+          <eastBoundLongitude>19.121849466293096</eastBoundLongitude>
+          <southBoundLatitude>43.413688064351014</southBoundLatitude>
+          <northBoundLatitude>45.9817952481084</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="13.903481769125007" miny="43.413688064351014" maxx="19.121849466293096" maxy="45.9817952481084"/>
+        <BoundingBox CRS="EPSG:3765" minx="298714.66199999955" miny="4811258.7875" maxx="703251.1199000003" maxy="5093553.1195"/>
+        <Style>
+          <Name>podrucja-vodnih-tijela-povrsinskih-voda_linije</Name>
+          <Title>Područja vodnih tijela površinskih voda - Linije</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://servisi.voda.hr/geoserver/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=zasticena_podrucja%3Ahr.rzp.a_podrucja-povrsinskih-voda_linije"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>zasticena_podrucja:hr.rzp.a_zone-sanitarne-zastite-izvorista</Name>
+        <Title>A. Zone sanitarne zaštite izvorišta</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>hr.rzp.a_zone-sanitarne-zastite-izvorista</Keyword>
+          <Keyword>Zone sanitarne zaštite izvorišta</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3765</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>13.497808514458278</westBoundLongitude>
+          <eastBoundLongitude>19.501816678270533</eastBoundLongitude>
+          <southBoundLatitude>42.88700330363427</southBoundLatitude>
+          <northBoundLatitude>46.40539479178027</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="13.497808514458278" miny="42.88700330363427" maxx="19.501816678270533" maxy="46.40539479178027"/>
+        <BoundingBox CRS="EPSG:3765" minx="269006.3716000002" miny="4753572.976600001" maxx="730964.7498000003" maxy="5140633.5824"/>
+        <Style>
+          <Name>zone_sanitarne_zastite_izvorista</Name>
+          <Title>Zone sanitarne zaštite izvorišta</Title>
+          <LegendURL width="65" height="80">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://servisi.voda.hr/geoserver/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=zasticena_podrucja%3Ahr.rzp.a_zone-sanitarne-zastite-izvorista"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>zasticena_podrucja:hr.rzp.b_podrucja-voda-pogodnih-za-zivot-i-rast-skoljkasa</Name>
+        <Title>B. Područja voda pogodnih za život i rast školjkaša</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>podrucjavoda_pogodnih_za_zivot_i_rast_skoljkasa_v</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3765</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>13.203004478753732</westBoundLongitude>
+          <eastBoundLongitude>17.805351745048604</eastBoundLongitude>
+          <southBoundLatitude>42.7054505879849</southBoundLatitude>
+          <northBoundLatitude>45.628602342907605</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="13.203004478753732" miny="42.7054505879849" maxx="17.805351745048604" maxy="45.628602342907605"/>
+        <BoundingBox CRS="EPSG:3765" minx="242711.88999999966" miny="4734310.377800001" maxx="601794.2000000002" maxy="5054312.0199"/>
+        <Style>
+          <Name>podrucjavoda-pogodnih-za-zivot-i-rast-skoljkasa</Name>
+          <Title>Područja voda pogodnih za život i rast školjkaša</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://servisi.voda.hr/geoserver/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=zasticena_podrucja%3Ahr.rzp.b_podrucja-voda-pogodnih-za-zivot-i-rast-skoljkasa"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>zasticena_podrucja:hr.rzp.b_podrucja-voda-pogodnih-za-zivot-slatkovodnih-riba-linije</Name>
+        <Title>B. Područja voda pogodnih za život slatkovodnih riba - Linije</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>podrucja_voda_pogodnih_za_zivot_slatkovodnih_riba_v</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3765</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>13.201931145701122</westBoundLongitude>
+          <eastBoundLongitude>19.647892491231794</eastBoundLongitude>
+          <southBoundLatitude>42.29896018706104</southBoundLatitude>
+          <northBoundLatitude>46.581188766952785</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="13.201931145701122" miny="42.29896018706104" maxx="19.647892491231794" maxy="46.581188766952785"/>
+        <BoundingBox CRS="EPSG:3765" minx="247020.5267134084" miny="4688936.351599621" maxx="741441.9826338722" maxy="5160175.80631312"/>
+        <Style>
+          <Name>podrucja-voda-pogodnih-za-zivot-slatkovodnih-riba-linije</Name>
+          <Title>Područja voda pogodnih za život slatkovodnih riba</Title>
+          <LegendURL width="132" height="40">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://servisi.voda.hr/geoserver/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=zasticena_podrucja%3Ahr.rzp.b_podrucja-voda-pogodnih-za-zivot-slatkovodnih-riba-linije"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>zasticena_podrucja:hr.rzp.b_podrucja-voda-pogodnih-za-zivot-slatkovodnih-riba-poligoni</Name>
+        <Title>B. Područja voda pogodnih za život slatkovodnih riba - Poligoni</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>podrucja_voda_pogodnih_za_zivot_slatkovodnih_riba_p_v</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3765</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>13.983435986331598</westBoundLongitude>
+          <eastBoundLongitude>17.730817525237804</eastBoundLongitude>
+          <southBoundLatitude>43.0090231242866</southBoundLatitude>
+          <northBoundLatitude>46.40369590670216</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="13.983435986331598" miny="43.0090231242866" maxx="17.730817525237804" maxy="46.40369590670216"/>
+        <BoundingBox CRS="EPSG:3765" minx="306405.58829999994" miny="4765983.3364" maxx="594649.0652999999" maxy="5140444.9231"/>
+        <Style>
+          <Name>podrucja-voda-pogodnih-za-zivot-slatkovodnih-riba-poligoni</Name>
+          <Title>Područja voda pogodnih za život slatkovodnih riba</Title>
+          <LegendURL width="132" height="40">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://servisi.voda.hr/geoserver/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=zasticena_podrucja%3Ahr.rzp.b_podrucja-voda-pogodnih-za-zivot-slatkovodnih-riba-poligoni"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>zasticena_podrucja:hr.rzp.c_kupalista-na-kopnenim-povrsinskim-vodama</Name>
+        <Title>C. Kupališta na kopnenim površinskim vodama</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>kupalista_na_povrsinskim_vodama_v</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3765</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>15.55458972565617</westBoundLongitude>
+          <eastBoundLongitude>18.0579422281839</eastBoundLongitude>
+          <southBoundLatitude>45.12829999927817</southBoundLatitude>
+          <northBoundLatitude>45.78680140513092</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="15.55458972565617" miny="45.12829999927817" maxx="18.0579422281839" maxy="45.78680140513092"/>
+        <BoundingBox CRS="EPSG:3765" minx="426487.0049989999" miny="4999857.019199001" maxx="621156.4078010002" maxy="5071887.808501"/>
+        <Style>
+          <Name>kupalista-na-povrsinskim-vodama</Name>
+          <Title>Kupališta na površinskim vodama</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://servisi.voda.hr/geoserver/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=zasticena_podrucja%3Ahr.rzp.c_kupalista-na-kopnenim-povrsinskim-vodama"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>zasticena_podrucja:hr.rzp.c_morske-plaze</Name>
+        <Title>C. Morske plaže</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>hr.rzp.c_morske-plaze</Keyword>
+          <Keyword>Morske plaže</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3765</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>13.487954535321107</westBoundLongitude>
+          <eastBoundLongitude>18.61904396600662</eastBoundLongitude>
+          <southBoundLatitude>42.388683960691885</southBoundLatitude>
+          <northBoundLatitude>45.53679775656336</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="13.487954535321107" miny="42.388683960691885" maxx="18.61904396600662" maxy="45.53679775656336"/>
+        <BoundingBox CRS="EPSG:3765" minx="264600.48369899974" miny="4698302.228099" maxx="665550.7904010003" maxy="5044179.178001"/>
+        <Style>
+          <Name>morske_plaze</Name>
+          <Title>Morske plaže</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://servisi.voda.hr/geoserver/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=zasticena_podrucja%3Ahr.rzp.c_morske-plaze"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>zasticena_podrucja:hr.rzp.d_eutrofna_podrucja</Name>
+        <Title>D. Eutrofna područja</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>hr.rzp.d_eutrofna_podrucja</Keyword>
+          <Keyword>Eutrofna područja</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3765</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>13.203004478753732</westBoundLongitude>
+          <eastBoundLongitude>17.805351745048604</eastBoundLongitude>
+          <southBoundLatitude>42.79635476120054</southBoundLatitude>
+          <northBoundLatitude>45.628602342907605</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="13.203004478753732" miny="42.79635476120054" maxx="17.805351745048604" maxy="45.628602342907605"/>
+        <BoundingBox CRS="EPSG:3765" minx="242711.88999999966" miny="4744422.959899999" maxx="601794.2000000002" maxy="5054312.0199"/>
+        <Style>
+          <Name>eutrofna-podrucja</Name>
+          <Title>Eutrofna područja</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://servisi.voda.hr/geoserver/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=zasticena_podrucja%3Ahr.rzp.d_eutrofna_podrucja"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>zasticena_podrucja:hr.rzp.d_podrucja-ranjiva-na-nitrate-poljoprivrednog-porijekla</Name>
+        <Title>D. Područja ranjiva na nitrate poljoprivrednog porijekla</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>podrucja_podlozna_oneciscenju_nitratima_poljoprivrednog_porijekla_v</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3765</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>13.4335929177217</westBoundLongitude>
+          <eastBoundLongitude>19.517814748816384</eastBoundLongitude>
+          <southBoundLatitude>44.931803165220586</southBoundLatitude>
+          <northBoundLatitude>46.55509809432245</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="13.4335929177217" miny="44.931803165220586" maxx="19.517814748816384" maxy="46.55509809432245"/>
+        <BoundingBox CRS="EPSG:3765" minx="264704.3300000001" miny="4981192.8299" maxx="731561.7000000002" maxy="5157273.3299"/>
+        <Style>
+          <Name>podrucja-podlozna-oneciscenju-nitratima-poljoprivrednog-porijekla</Name>
+          <Title><![CDATA[Područja ranjiva na nitrate poljoprivrednog porijekla ]]></Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://servisi.voda.hr/geoserver/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=zasticena_podrucja%3Ahr.rzp.d_podrucja-ranjiva-na-nitrate-poljoprivrednog-porijekla"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>zasticena_podrucja:hr.rzp.d_sliv-osjetljivog-podrucja</Name>
+        <Title>D. Sliv osjetljivog područja</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>hr.rzp.d_sliv-osjetljivog-podrucja</Keyword>
+          <Keyword>Sliv osjetljivog područja</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3765</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>13.4335929177217</westBoundLongitude>
+          <eastBoundLongitude>19.517814748816384</eastBoundLongitude>
+          <southBoundLatitude>42.525007832786116</southBoundLatitude>
+          <northBoundLatitude>46.55509809432245</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="13.4335929177217" miny="42.525007832786116" maxx="19.517814748816384" maxy="46.55509809432245"/>
+        <BoundingBox CRS="EPSG:3765" minx="264704.3300000001" miny="4713459.299699999" maxx="731561.7000000002" maxy="5157273.3299"/>
+        <Style>
+          <Name>sliv-osjetljivog-podrucja</Name>
+          <Title>Sliv osjetljivog područja</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://servisi.voda.hr/geoserver/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=zasticena_podrucja%3Ahr.rzp.d_sliv-osjetljivog-podrucja"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>zasticena_podrucja:hr.rzp.e_ekoloska-mreza-NATURA-2000-podrucja-ocuvanja-znacajna-za-ptice</Name>
+        <Title>E. Ekološka mreža (NATURA 2000)-područja očuvanja značajna za ptice</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>hr.rzp.e_ekoloska-mreza-NATURA-2000-podrucja-ocuvanja-znacajna-za-ptice</Keyword>
+          <Keyword>Ekološka mreža (NATURA 2000)-područja očuvanja značajna za ptice</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3765</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>13.473367886116643</westBoundLongitude>
+          <eastBoundLongitude>19.223185393285554</eastBoundLongitude>
+          <southBoundLatitude>42.90799304628178</southBoundLatitude>
+          <northBoundLatitude>46.40586531094516</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="13.473367886116643" miny="42.90799304628178" maxx="19.223185393285554" maxy="46.40586531094516"/>
+        <BoundingBox CRS="EPSG:3765" minx="267125.63910000026" miny="4755970.8871" maxx="709498.2966" maxy="5140697.109200001"/>
+        <Style>
+          <Name>ekoloska_mreza_NATURA_2000_podrucja_ocuvanja_znacajna_za_ptice</Name>
+          <Title>Ekološka mreža (NATURA 2000)-područja očuvanja značajna za ptice</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://servisi.voda.hr/geoserver/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=zasticena_podrucja%3Ahr.rzp.e_ekoloska-mreza-NATURA-2000-podrucja-ocuvanja-znacajna-za-ptice"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>zasticena_podrucja:hr.rzp.e_ekoloska-mreza-NATURA2000-podrucja-ocuvanja-znacajna-za-vrste-i-stanisne-tipove</Name>
+        <Title>E. Ekološka mreža (NATURA 2000)-područja očuvanja značajna za vrste i stanišne tipove</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>ekoloska_mreza_NATURA2000_podrucja_ocuvanja_znacajna za_vrste_i_stanisne_tipove_v</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3765</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>13.403486297417716</westBoundLongitude>
+          <eastBoundLongitude>19.447466224165552</eastBoundLongitude>
+          <southBoundLatitude>42.34151252290057</southBoundLatitude>
+          <northBoundLatitude>46.55507461089608</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="13.403486297417716" miny="42.34151252290057" maxx="19.447466224165552" maxy="46.55507461089608"/>
+        <BoundingBox CRS="EPSG:3765" minx="262390.71640000027" miny="4693131.0152" maxx="726156.3816999998" maxy="5157273.1413"/>
+        <Style>
+          <Name>ekoloska-mreza-NATURA2000-podrucja-ocuvanja-znacajna-za-vrste-i-stanisne-tipove</Name>
+          <Title><![CDATA[Ekološka mreža (NATURA 2000)-područja očuvanja značajna za vrste i stanišne tipove ]]></Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://servisi.voda.hr/geoserver/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=zasticena_podrucja%3Ahr.rzp.e_ekoloska-mreza-NATURA2000-podrucja-ocuvanja-znacajna-za-vrste-i-stanisne-tipove"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>zasticena_podrucja:hr.rzp.e_zasticena-podrucja-prirode</Name>
+        <Title>E. Zaštićena područja prirode</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>zasticena_podrucja_prirode_v</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3765</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>13.709622653923725</westBoundLongitude>
+          <eastBoundLongitude>17.484486135780546</eastBoundLongitude>
+          <southBoundLatitude>42.68756077807956</southBoundLatitude>
+          <northBoundLatitude>44.98255566997285</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="13.709622653923725" miny="42.68756077807956" maxx="17.484486135780546" maxy="44.98255566997285"/>
+        <BoundingBox CRS="EPSG:3765" minx="279812.17339999974" miny="4731040.147" maxx="577645.1283" maxy="4982508.2554"/>
+        <Style>
+          <Name>zasticena-podrucja-prirode</Name>
+          <Title>Zaštićena područja prirode</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://servisi.voda.hr/geoserver/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=zasticena_podrucja%3Ahr.rzp.e_zasticena-podrucja-prirode"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>zasticena_podrucja:hr.rzp.e_zasticene-prirodne-vrijednosti-poligoni</Name>
+        <Title>E. Zaštićene prirodne vrijednosti - Poligoni</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>hr.rzp.e_zasticene-prirodne-vrijednosti-poligoni</Keyword>
+          <Keyword>Zaštićene prirodne vrijednosti - Poligoni</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3765</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>13.536415555914827</westBoundLongitude>
+          <eastBoundLongitude>19.280629607289622</eastBoundLongitude>
+          <southBoundLatitude>42.497082319786884</southBoundLatitude>
+          <northBoundLatitude>46.555061962356305</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="13.536415555914827" miny="42.497082319786884" maxx="19.280629607289622" maxy="46.555061962356305"/>
+        <BoundingBox CRS="EPSG:3765" minx="272605.19799999986" miny="4710091.2689" maxx="713339.3267999999" maxy="5157273.106799999"/>
+        <Style>
+          <Name>zasticene-prirodne-vrijednosti-poligoni</Name>
+          <Title>Zaštićene prirodne vrijednosti</Title>
+          <LegendURL width="222" height="180">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://servisi.voda.hr/geoserver/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=zasticena_podrucja%3Ahr.rzp.e_zasticene-prirodne-vrijednosti-poligoni"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>zasticena_podrucja:hr.rzp.e_zasticene-prirodne-vrijednosti_tocke</Name>
+        <Title>E. Zaštićene prirodne vrijednosti - Točke</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>zasticene_prirodne_vrijednosti_v</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3765</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>13.58321763270145</westBoundLongitude>
+          <eastBoundLongitude>18.916370732817576</eastBoundLongitude>
+          <southBoundLatitude>42.56482860455326</southBoundLatitude>
+          <northBoundLatitude>46.32993044105368</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="13.58321763270145" miny="42.56482860455326" maxx="18.916370732817576" maxy="46.32993044105368"/>
+        <BoundingBox CRS="EPSG:3765" minx="275278.6849989996" miny="4717537.859998999" maxx="686128.9928010001" maxy="5132276.443201"/>
+        <Style>
+          <Name>zasticene-prirodne-vrijednosti-tocke</Name>
+          <Title>Zaštićene prirodne vrijednosti</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://servisi.voda.hr/geoserver/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=zasticena_podrucja%3Ahr.rzp.e_zasticene-prirodne-vrijednosti_tocke"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>zasticena_podrucja:hr.rzp.f_eutrofno-podrucje</Name>
+        <Title>F. Eutrofno područje</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>hr.rzp.f_eutrofno-podrucje</Keyword>
+          <Keyword>Eutrofno područje</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3765</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>13.867212444941531</westBoundLongitude>
+          <eastBoundLongitude>18.532739086411883</eastBoundLongitude>
+          <southBoundLatitude>42.43207240035235</southBoundLatitude>
+          <northBoundLatitude>45.18653511755279</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="13.867212444941531" miny="42.43207240035235" maxx="18.532739086411883" maxy="45.18653511755279"/>
+        <BoundingBox CRS="EPSG:3765" minx="293000.1900000004" miny="4702227.6821" maxx="659787.5091000004" maxy="5005218.0298999995"/>
+        <Style>
+          <Name>eutrofno_podrucje</Name>
+          <Title>Eutrofno područje</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://servisi.voda.hr/geoserver/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=zasticena_podrucja%3Ahr.rzp.f_eutrofno-podrucje"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>zasticena_podrucja:hr.rzp.f_sliv-osjetljivog-podrucja-2</Name>
+        <Title>F. Sliv osjetljivog područja</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>hr.rzp.f_sliv-osjetljivog-podrucja-2</Keyword>
+          <Keyword>Sliv osjetljivog područja</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3765</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>13.847639572218107</westBoundLongitude>
+          <eastBoundLongitude>18.553117418613905</eastBoundLongitude>
+          <southBoundLatitude>42.43112513980718</southBoundLatitude>
+          <northBoundLatitude>45.41080568043354</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="13.847639572218107" miny="42.43112513980718" maxx="18.553117418613905" maxy="45.41080568043354"/>
+        <BoundingBox CRS="EPSG:3765" minx="292279.84389999975" miny="4702143.758400001" maxx="660755.5713999998" maxy="5030140.314099999"/>
+        <Style>
+          <Name>sliv_osjetljivog_podrucja</Name>
+          <Title>Sliv osjetljivog područja</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://servisi.voda.hr/geoserver/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=zasticena_podrucja%3Ahr.rzp.f_sliv-osjetljivog-podrucja-2"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>zasticena_podrucja:hr.rzp.g_podrucja-kulturne-bastine</Name>
+        <Title>G. Kulturno dobro</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>hr.rzp.g_podrucja-kulturne-bastine</Keyword>
+          <Keyword>Kulturno dobro</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3765</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>13.978950419876968</westBoundLongitude>
+          <eastBoundLongitude>19.427441805336485</eastBoundLongitude>
+          <southBoundLatitude>42.59919991006466</southBoundLatitude>
+          <northBoundLatitude>46.165846085899666</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="13.978950419876968" miny="42.59919991006466" maxx="19.427441805336485" maxy="46.165846085899666"/>
+        <BoundingBox CRS="EPSG:3765" minx="305219.9199999996" miny="4721408.560000004" maxx="726217.2799999991" maxy="5114028.889999999"/>
+        <Style>
+          <Name>kulturno_dobro</Name>
+          <Title>Kulturno dobro</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://servisi.voda.hr/geoserver/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=zasticena_podrucja%3Ahr.rzp.g_podrucja-kulturne-bastine"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>public_ows:hr.rzp.osjetljiva-podrucja</Name>
+        <Title>Osjetljiva područja</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>osjetljiva_podrucja_v</Keyword>
+          <Keyword>osjetljiva područja</Keyword>
+          <Keyword vocabulary="GEMET - INSPIRE themes, version 1.0">Area management/restriction/regulation zones and reporting units</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3765</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>13.202126705284087</westBoundLongitude>
+          <eastBoundLongitude>18.64740450689183</eastBoundLongitude>
+          <southBoundLatitude>42.36761651622967</southBoundLatitude>
+          <northBoundLatitude>45.64322361941979</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="13.202126705284087" miny="42.36761651622967" maxx="18.64740450689183" maxy="45.64322361941979"/>
+        <BoundingBox CRS="EPSG:3765" minx="242711.88999999966" miny="4696730.0199" maxx="667452.0599999996" maxy="5055978.940099999"/>
+        <MetadataURL type="ISO19115:2003">
+          <Format>text/plain</Format>
+          <OnlineResource xlink:type="simple" xlink:href="http://geoportal.nipp.hr/geonetwork/srv/en/csw?service=CSW&amp;request=GetRecordById&amp;version=2.0.2&amp;outputSchema=http://www.isotc211.org/2005/gmd&amp;elementSetName=full&amp;id=868715ee-84d5-4a68-ae07-e27452b655aa"/>
+        </MetadataURL>
+        <Style>
+          <Name>osjetljiva-podrucja</Name>
+          <Title>Osjetljiva područja</Title>
+          <LegendURL width="396" height="60">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://servisi.voda.hr/geoserver/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=public_ows%3Ahr.rzp.osjetljiva-podrucja"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>public_ows:hr.rzp.sliv-osjetljivog-podrucja-zp</Name>
+        <Title>Sliv osjetljivog područja</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>sliv_osjetljivog_podrucja_D_F_v</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3765</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>13.4335929177217</westBoundLongitude>
+          <eastBoundLongitude>19.517814748816384</eastBoundLongitude>
+          <southBoundLatitude>42.42325882285748</southBoundLatitude>
+          <northBoundLatitude>46.55509809432245</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="13.4335929177217" miny="42.42325882285748" maxx="19.517814748816384" maxy="46.55509809432245"/>
+        <BoundingBox CRS="EPSG:3765" minx="264704.3300000001" miny="4702143.758400001" maxx="731561.7000000002" maxy="5157273.3299"/>
+        <MetadataURL type="ISO19115:2003">
+          <Format>text/plain</Format>
+          <OnlineResource xlink:type="simple" xlink:href="http://geoportal.nipp.hr/geonetwork/srv/en/csw?service=CSW&amp;request=GetRecordById&amp;version=2.0.2&amp;outputSchema=http://www.isotc211.org/2005/gmd&amp;elementSetName=full&amp;id=868715ee-84d5-4a68-ae07-e27452b655aa"/>
+        </MetadataURL>
+        <Style>
+          <Name>sliv_osjetljivog_podrucja</Name>
+          <Title>Sliv osjetljivog područja</Title>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://servisi.voda.hr/geoserver/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=public_ows%3Ahr.rzp.sliv-osjetljivog-podrucja-zp"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>WFD_Reporting:hr.wfd-podzemna-vodna-tijela</Name>
+        <Title>Podzemna vodna tijela</Title>
+        <Abstract>Prostorni podaci podzemnih vodnih tijela za potrebe reportinga po WFD 2016</Abstract>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>v_podzemna_vodna_tijela</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3765</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>13.4335929177217</westBoundLongitude>
+          <eastBoundLongitude>19.517814748816384</eastBoundLongitude>
+          <southBoundLatitude>42.374577861578736</southBoundLatitude>
+          <northBoundLatitude>46.55509809432245</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="13.4335929177217" miny="42.374577861578736" maxx="19.517814748816384" maxy="46.55509809432245"/>
+        <BoundingBox CRS="EPSG:3765" minx="264704.3300000001" miny="4696730.0199" maxx="731561.7000000002" maxy="5157273.3299"/>
+        <Style>
+          <Name>WFD_Reporting:wfd_podzemna_vodna_tijela</Name>
+          <Title>WFD_Reporting:wfd_podzemna_vodna_tijela</Title>
+          <LegendURL width="96" height="680">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://servisi.voda.hr/geoserver/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=WFD_Reporting%3Ahr.wfd-podzemna-vodna-tijela"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1" opaque="0">
+        <Name>aglomeracije:hr.zv.registar-aglo</Name>
+        <Title>Registar aglomeracija</Title>
+        <Abstract/>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>v_zv_registar_aglo</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3765</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>13.201931145701117</westBoundLongitude>
+          <eastBoundLongitude>19.647892491231794</eastBoundLongitude>
+          <southBoundLatitude>42.29896022836616</southBoundLatitude>
+          <northBoundLatitude>46.58118880865105</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="13.201931145701117" miny="42.29896022836616" maxx="19.647892491231794" maxy="46.58118880865105"/>
+        <BoundingBox CRS="EPSG:3765" minx="247020.52671340803" miny="4688936.351599621" maxx="741441.982633872" maxy="5160175.80631312"/>
+        <Style>
+          <Name>zv-registar-aglo</Name>
+          <Title>Aglomeracije</Title>
+          <LegendURL width="229" height="100">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://servisi.voda.hr/geoserver/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=aglomeracije%3Ahr.zv.registar-aglo"/>
+          </LegendURL>
+        </Style>
+      </Layer>
+    </Layer>
+  </Capability>
+</WMS_Capabilities>

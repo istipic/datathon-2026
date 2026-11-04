@@ -1,0 +1,238 @@
+{
+    "lau-2011": {
+        "date": "01/01/2011",
+        "documentation": "lau-2011-release-notes.txt",
+        "files": "lau-2011-files.json",
+        "hashtag": "lau11",
+        "metadata": {
+            "pdf": "lau-2011-metadata.pdf",
+            "url": "https://gisco-services.ec.europa.eu/inspire-sdi/srv/eng/catalog.search#/metadata/83d5375b-14cf-47b1-8dfc-16d488ea6dcb",
+            "xml": "lau-2011-metadata.xml"
+        },
+        "packages": "lau-2011-packages.json",
+        "title": "LAU 2011",
+        "titleMultilingual": {
+            "de": "LAU 2011",
+            "en": "LAU 2011",
+            "fr": "LAU 2011"
+        }
+    },
+    "lau-2012": {
+        "date": "01/01/2012",
+        "documentation": "lau-2012-release-notes.txt",
+        "files": "lau-2012-files.json",
+        "hashtag": "lau12",
+        "metadata": {
+            "pdf": "lau-2012-metadata.pdf",
+            "url": "https://gisco-services.ec.europa.eu/inspire-sdi/srv/eng/catalog.search#/metadata/03d0304e-0cdd-4bc3-a3c8-6fffc25d9fcf",
+            "xml": "lau-2012-metadata.xml"
+        },
+        "packages": "lau-2012-packages.json",
+        "title": "LAU 2012",
+        "titleMultilingual": {
+            "de": "LAU 2012",
+            "en": "LAU 2012",
+            "fr": "LAU 2012"
+        }
+    },
+    "lau-2013": {
+        "date": "01/01/2013",
+        "documentation": "lau-2013-release-notes.txt",
+        "files": "lau-2013-files.json",
+        "hashtag": "lau13",
+        "metadata": {
+            "pdf": "lau-2013-metadata.pdf",
+            "url": "https://gisco-services.ec.europa.eu/inspire-sdi/srv/eng/catalog.search#/metadata/8c1dd2d5-a603-4670-be07-2f6cbd751e35",
+            "xml": "lau-2013-metadata.xml"
+        },
+        "packages": "lau-2013-packages.json",
+        "title": "LAU 2013",
+        "titleMultilingual": {
+            "de": "LAU 2013",
+            "en": "LAU 2013",
+            "fr": "LAU 2013"
+        }
+    },
+    "lau-2014": {
+        "date": "01/01/2014",
+        "documentation": "lau-2014-release-notes.txt",
+        "files": "lau-2014-files.json",
+        "hashtag": "lau14",
+        "metadata": {
+            "pdf": "lau-2014-metadata.pdf",
+            "url": "https://gisco-services.ec.europa.eu/inspire-sdi/srv/eng/catalog.search#/metadata/dc217d33-9dcf-4965-a714-289412f16154",
+            "xml": "lau-2014-metadata.xml"
+        },
+        "packages": "lau-2014-packages.json",
+        "title": "LAU 2014",
+        "titleMultilingual": {
+            "de": "LAU 2014",
+            "en": "LAU 2014",
+            "fr": "LAU 2014"
+        }
+    },
+    "lau-2015": {
+        "date": "01/01/2015",
+        "documentation": "lau-2015-release-notes.txt",
+        "files": "lau-2015-files.json",
+        "hashtag": "lau15",
+        "metadata": {
+            "pdf": "lau-2015-metadata.pdf",
+            "url": "https://gisco-services.ec.europa.eu/inspire-sdi/srv/eng/catalog.search#/metadata/63fcd8f9-6ac5-4f95-b51b-2547b642b07a",
+            "xml": "lau-2015-metadata.xml"
+        },
+        "packages": "lau-2015-packages.json",
+        "title": "LAU 2015",
+        "titleMultilingual": {
+            "de": "LAU 2015",
+            "en": "LAU 2015",
+            "fr": "LAU 2015"
+        }
+    },
+    "lau-2016": {
+        "date": "01/01/2016",
+        "documentation": "lau-2016-release-notes.txt",
+        "files": "lau-2016-files.json",
+        "hashtag": "lau16",
+        "metadata": {
+            "pdf": "lau-2016-metadata.pdf",
+            "url": "https://gisco-services.ec.europa.eu/inspire-sdi/srv/eng/catalog.search#/metadata/8884132b-d360-415c-9f89-d1dddf776c02",
+            "xml": "lau-2016-metadata.xml"
+        },
+        "packages": "lau-2016-packages.json",
+        "title": "LAU 2016",
+        "titleMultilingual": {
+            "de": "LAU 2016",
+            "en": "LAU 2016",
+            "fr": "LAU 2016"
+        }
+    },
+    "lau-2017": {
+        "date": "01/01/2017",
+        "documentation": "lau-2017-release-notes.txt",
+        "files": "lau-2017-files.json",
+        "hashtag": "lau17",
+        "metadata": {
+            "pdf": "lau-2017-metadata.pdf",
+            "url": "https://gisco-services.ec.europa.eu/inspire-sdi/srv/eng/catalog.search#/metadata/3cf523c6-1d0c-4a95-b730-a29da559f7ab",
+            "xml": "lau-2017-metadata.xml"
+        },
+        "packages": "lau-2017-packages.json",
+        "title": "LAU 2017",
+        "titleMultilingual": {
+            "de": "LAU 2017",
+            "en": "LAU 2017",
+            "fr": "LAU 2017"
+        }
+    },
+    "lau-2018": {
+        "date": "01/01/2018",
+        "documentation": "lau-2018-release-notes.txt",
+        "files": "lau-2018-files.json",
+        "hashtag": "lau18",
+        "metadata": {
+            "pdf": "lau-2018-metadata.pdf",
+            "url": "https://gisco-services.ec.europa.eu/inspire-sdi/srv/eng/catalog.search#/metadata/0191e0af-1786-4411-b856-ab859df622a5",
+            "xml": "lau-2018-metadata.xml"
+        },
+        "packages": "lau-2018-packages.json",
+        "title": "LAU 2018",
+        "titleMultilingual": {
+            "de": "LAU 2018",
+            "en": "LAU 2018",
+            "fr": "LAU 2018"
+        }
+    },
+    "lau-2019": {
+        "date": "01/01/2019",
+        "documentation": "lau-2019-release-notes.txt",
+        "files": "lau-2019-files.json",
+        "hashtag": "lau19",
+        "metadata": {
+            "pdf": "lau-2019-metadata.pdf",
+            "url": "https://gisco-services.ec.europa.eu/inspire-sdi/srv/eng/catalog.search#/metadata/f9d285b1-29b8-4101-99c9-ad13f9f97726",
+            "xml": "lau-2019-metadata.xml"
+        },
+        "packages": "lau-2019-packages.json",
+        "title": "LAU 2019",
+        "titleMultilingual": {
+            "de": "LAU 2019",
+            "en": "LAU 2019",
+            "fr": "LAU 2019"
+        }
+    },
+    "lau-2020": {
+        "date": "01/01/2020",
+        "documentation": "lau-2020-release-notes.txt",
+        "files": "lau-2020-files.json",
+        "hashtag": "lau20",
+        "metadata": {
+            "pdf": "lau-2020-metadata.pdf",
+            "url": "https://gisco-services.ec.europa.eu/inspire-sdi/srv/eng/catalog.search#/metadata/e68edcbc-4a82-462c-a318-7bf471dbaf6c",
+            "xml": "lau-2020-metadata.xml"
+        },
+        "packages": "lau-2020-packages.json",
+        "title": "LAU 2020",
+        "titleMultilingual": {
+            "de": "LAU 2020",
+            "en": "LAU 2020",
+            "fr": "LAU 2020"
+        }
+    },
+    "lau-2021": {
+        "date": "01/01/2021",
+        "documentation": "lau-2021-release-notes.txt",
+        "files": "lau-2021-files.json",
+        "hashtag": "lau21",
+        "metadata": {},
+        "packages": "lau-2021-packages.json",
+        "title": "LAU 2021",
+        "titleMultilingual": {
+            "de": "LAU 2021",
+            "en": "LAU 2021",
+            "fr": "LAU 2021"
+        }
+    },
+    "lau-2022": {
+        "date": "01/01/2022",
+        "documentation": "lau-2022-release-notes.txt",
+        "files": "lau-2022-files.json",
+        "hashtag": "lau22",
+        "metadata": {},
+        "packages": "lau-2022-packages.json",
+        "title": "LAU 2022",
+        "titleMultilingual": {
+            "de": "LAU 2022",
+            "en": "LAU 2022",
+            "fr": "LAU 2022"
+        }
+    },
+    "lau-2023": {
+        "date": "01/01/2023",
+        "documentation": "lau-2023-release-notes.txt",
+        "files": "lau-2023-files.json",
+        "hashtag": "lau23",
+        "metadata": {},
+        "packages": "lau-2023-packages.json",
+        "title": "LAU 2023",
+        "titleMultilingual": {
+            "de": "LAU 2023",
+            "en": "LAU 2023",
+            "fr": "LAU 2023"
+        }
+    },
+    "lau-2024": {
+        "date": "01/01/2024",
+        "documentation": "lau-2024-release-notes.txt",
+        "files": "lau-2024-files.json",
+        "hashtag": "lau24",
+        "metadata": {},
+        "packages": "lau-2024-packages.json",
+        "title": "LAU 2024",
+        "titleMultilingual": {
+            "de": "LAU 2024",
+            "en": "LAU 2024",
+            "fr": "LAU 2024"
+        }
+    }
+}

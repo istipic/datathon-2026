@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?><WMS_Capabilities xmlns:inspire_vs="http://inspire.ec.europa.eu/schemas/inspire_vs/1.0" xmlns:inspire_common="http://inspire.ec.europa.eu/schemas/common/1.0" version="1.3.0" updateSequence="10307" xmlns="http://www.opengis.net/wms" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengis.net/wms https://servisi.voda.hr/schemas/wms/1.3.0/capabilities_1_3_0.xsd http://inspire.ec.europa.eu/schemas/inspire_vs/1.0 https://inspire.ec.europa.eu/schemas/inspire_vs/1.0/inspire_vs.xsd">
+  <Service>
+    <Name>WMS</Name>
+    <Title>Prostorne usluge Hrvatskih voda</Title>
+    <Abstract>WMS usluge (INSPIRE usluge pogleda) Hrvatskih voda prema NIPP-u.</Abstract>
+    <KeywordList>
+      <Keyword>WFS</Keyword>
+      <Keyword>WMS</Keyword>
+      <Keyword>Hrvatske vode</Keyword>
+    </KeywordList>
+    <OnlineResource xlink:type="simple" xlink:href="http://www.voda.hr"/>
+    <ContactInformation>
+      <ContactPersonPrimary>
+        <ContactPerson>Tijana Rosandić</ContactPerson>
+        <ContactOrganization>Hrvatske vode</ContactOrganization>
+      </ContactPersonPrimary>
+      <ContactPosition>GIS Technical Architect</ContactPosition>
+      <ContactAddress>
+        <AddressType>Work</AddressType>
+        <Address>Ulica grada Vukovara 220</Address>
+        <City>Zagreb</City>
+        <StateOrProvince>Zagrebačka županija</StateOrProvince>
+        <PostCode>10000</PostCode>
+        <Country>Hrvatska</Country>
+      </ContactAddress>
+      <ContactVoiceTelephone>+385 1 6307 446</ContactVoiceTelephone>
+      <ContactFacsimileTelephone>+385 1 6307 446</ContactFacsimileTelephone>
+      <ContactElectronicMailAddress>tijana.rosandic@voda.hr</ContactElectronicMailAddress>
+    </ContactInformation>
+    <Fees>NONE</Fees>
+    <AccessConstraints>NONE</AccessConstraints>
+  </Service>
+  <Capability>
+    <Request>
+      <GetCapabilities>
+        <Format>text/xml</Format>
+        <DCPType>
+          <HTTP>
+            <Get>
+              <OnlineResource xlink:type="simple" xlink:href="https://servisi.voda.hr/poplave_opasnosti/ows?SERVICE=WMS&amp;"/>
+            </Get>
+            <Post>
+              <OnlineResource xlink:type="simple" xlink:href="https://servisi.voda.hr/poplave_opasnosti/ows?SERVICE=WMS&amp;"/>
+            </Post>
+          </HTTP>
+        </DCPType>
+      </GetCapabilities>
+      <GetMap>
+        <Format>image/png</Format>
+        <Format>application/atom+xml</Format>
+        <Format>application/json;type=utfgrid</Format>
+        <Format>application/pdf</Format>
+        <Format>application/rss+xml</Format>
+        <Format>application/vnd.google-earth.kml+xml</Format>
+        <Format>application/vnd.google-earth.kml+xml;mode=networklink</Format>
+        <Format>application/vnd.google-earth.kmz</Format>
+        <Format>image/geotiff</Format>
+        <Format>image/geotiff8</Format>
+        <Format>image/gif</Format>
+        <Format>image/jpeg</Format>
+        <Format>image/png; mode=8bit</Format>
+        <Format>image/svg+xml</Format>
+        <Format>image/tiff</Format>
+        <Format>image/tiff8</Format>
+        <Format>image/vnd.jpeg-png</Format>
+        <Format>image/vnd.jpeg-png8</Format>
+        <Format>text/html; subtype=openlayers</Format>
+        <Format>text/html; subtype=openlayers2</Format>
+        <Format>text/html; subtype=openlayers3</Format>
+        <DCPType>
+          <HTTP>
+            <Get>
+              <OnlineResource xlink:type="simple" xlink:href="https://servisi.voda.hr/poplave_opasnosti/ows?SERVICE=WMS&amp;"/>
+            </Get>
+          </HTTP>
+        </DCPType>
+      </GetMap>
+      <GetFeatureInfo>
+        <Format>text/plain</Format>
+        <Format>application/vnd.ogc.gml</Format>
+        <Format>text/xml</Format>
+        <Format>application/vnd.ogc.gml/3.1.1</Format>
+        <Format>text/xml; subtype=gml/3.1.1</Format>
+        <Format>text/html</Format>
+        <Format>application/json</Format>
+        <DCPType>
+          <HTTP>
+            <Get>
+              <OnlineResource xlink:type="simple" xlink:href="https://servisi.voda.hr/poplave_opasnosti/ows?SERVICE=WMS&amp;"/>
+            </Get>
+          </HTTP>
+        </DCPType>
+      </GetFeatureInfo>
+    </Request>
+    <Exception>
+      <Format>XML</Format>
+      <Format>INIMAGE</Format>
+      <Format>BLANK</Format>
+      <Format>JSON</Format>
+    </Exception>
+    <inspire_vs:ExtendedCapabilities>
+      <inspire_common:MetadataUrl>
+        <inspire_common:URL>http://geoportal.nipp.hr/geonetwork/srv/hrv/csw</inspire_common:URL>
+        <inspire_common:MediaType>application/vnd.ogc.csw.GetRecordByIdResponse_xml</inspire_common:MediaType>
+      </inspire_common:MetadataUrl>
+      <inspire_common:SupportedLanguages>
+        <inspire_common:DefaultLanguage>
+          <inspire_common:Language>hrv</inspire_common:Language>
+        </inspire_common:DefaultLanguage>
+      </inspire_common:SupportedLanguages>
+      <inspire_common:ResponseLanguage>
+        <inspire_common:Language>hrv</inspire_common:Language>
+      </inspire_common:ResponseLanguage>
+    </inspire_vs:ExtendedCapabilities>
+    <Layer>
+      <Title>Prostorne usluge Hrvatskih voda</Title>
+      <Abstract>WMS usluge (INSPIRE usluge pogleda) Hrvatskih voda prema NIPP-u.</Abstract>
+      <!--Limited list of EPSG projections:-->
+      <CRS>EPSG:3765</CRS>
+      <CRS>EPSG:4326</CRS>
+      <CRS>EPSG:3857</CRS>
+      <CRS>EPSG:3035</CRS>
+      <CRS>EPSG:900913</CRS>
+      <CRS>CRS:84</CRS>
+      <EX_GeographicBoundingBox>
+        <westBoundLongitude>13.433953935306455</westBoundLongitude>
+        <eastBoundLongitude>19.491087047825907</eastBoundLongitude>
+        <southBoundLatitude>42.474262526670856</southBoundLatitude>
+        <northBoundLatitude>46.55461472288262</northBoundLatitude>
+      </EX_GeographicBoundingBox>
+      <BoundingBox CRS="CRS:84" minx="13.433953935306455" miny="42.474262526670856" maxx="19.491087047825907" maxy="46.55461472288262"/>
+      <Layer queryable="0" opaque="0">
+        <Name>hr.fd.opasnost-od-poplave-mala-vjerojatnost</Name>
+        <Title>Opasnosti od poplava, mala vjerojatnost pojavljivanja</Title>
+        <Abstract>Obuhvat i dubinu poplava za scenarij male vjerojatnosti pojavljivanja prema Planu upravljanja vodnim područjima 2016.-2021.</Abstract>
+        <KeywordList>
+          <Keyword>Flood risk</Keyword>
+          <Keyword>Rizici od poplava</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3765</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>13.433953935306455</westBoundLongitude>
+          <eastBoundLongitude>19.491087047825907</eastBoundLongitude>
+          <southBoundLatitude>42.474262526670856</southBoundLatitude>
+          <northBoundLatitude>46.55461472288262</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="13.433953935306455" miny="42.474262526670856" maxx="19.491087047825907" maxy="46.55461472288262"/>
+        <BoundingBox CRS="EPSG:3765" minx="264729.99999746133" miny="4707814.999999652" maxx="729510.0000022559" maxy="5157219.999999999"/>
+        <MetadataURL type="ISO19115:2003">
+          <Format>text/plain</Format>
+          <OnlineResource xlink:type="simple" xlink:href="http://geoportal.nipp.hr/geonetwork/srv/eng/csw?service=CSW&amp;request=GetRecordById&amp;version=2.0.2&amp;outputSchema=http://www.isotc211.org/2005/gmd&amp;elementSetName=full&amp;id=9119600a-fb7f-42e3-ad16-d9d10402eca5"/>
+        </MetadataURL>
+        <Style>
+          <Name>opasnosti_od_poplava_MV</Name>
+          <Title>Opasnosti od poplava, mala vjerojatnost pojavljivanja</Title>
+          <LegendURL width="155" height="80">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://servisi.voda.hr/poplave_opasnosti/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=hr.fd.opasnost-od-poplave-mala-vjerojatnost"/>
+          </LegendURL>
+        </Style>
+        <MinScaleDenominator>20000.0</MinScaleDenominator>
+        <MaxScaleDenominator>5000000.0</MaxScaleDenominator>
+      </Layer>
+      <Layer queryable="0" opaque="0">
+        <Name>hr.fd.opasnost-od-poplave-srednja-vjerojatnost</Name>
+        <Title>Opasnosti od poplava, srednja vjerojatnost pojavljivanja</Title>
+        <Abstract>Obuhvat i dubinu poplava za scenarij srednje vjerojatnosti pojavljivanja prema Planu upravljanja vodnim područjima 2016.-2021.</Abstract>
+        <KeywordList>
+          <Keyword vocabulary="GEMET - INSPIRE themes, version 1.0">Human health and safety</Keyword>
+          <Keyword vocabulary="GEMET - INSPIRE themes, version 1.0">Hydrography</Keyword>
+          <Keyword vocabulary="GEMET - INSPIRE themes, version 1.0">Natural risk zones</Keyword>
+          <Keyword vocabulary="GEMET - INSPIRE themes, version 1.0">Area management/restriction/regulation zones and reporting units</Keyword>
+          <Keyword>Područja prirodnih opasnosti</Keyword>
+          <Keyword>Poplave</Keyword>
+          <Keyword>Karte opasnosti</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3765</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>13.434464589550602</westBoundLongitude>
+          <eastBoundLongitude>19.490588832152028</eastBoundLongitude>
+          <southBoundLatitude>42.474262526670856</southBoundLatitude>
+          <northBoundLatitude>46.54552798248853</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="13.434464589550602" miny="42.474262526670856" maxx="19.490588832152028" maxy="46.54552798248853"/>
+        <BoundingBox CRS="EPSG:3765" minx="264729.99999746133" miny="4707814.999999652" maxx="729510.0000022559" maxy="5156209.999999999"/>
+        <MetadataURL type="ISO19115:2003">
+          <Format>text/plain</Format>
+          <OnlineResource xlink:type="simple" xlink:href="http://geoportal.nipp.hr/geonetwork/srv/eng/csw?service=CSW&amp;request=GetRecordById&amp;version=2.0.2&amp;outputSchema=http://www.isotc211.org/2005/gmd&amp;elementSetName=full&amp;id=9119600a-fb7f-42e3-ad16-d9d10402eca5"/>
+        </MetadataURL>
+        <Style>
+          <Name>opasnosti_od_poplava_SV</Name>
+          <Title>Opasnosti od poplava, srednja vjerojatnost pojavljivanja</Title>
+          <LegendURL width="155" height="80">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://servisi.voda.hr/poplave_opasnosti/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=hr.fd.opasnost-od-poplave-srednja-vjerojatnost"/>
+          </LegendURL>
+        </Style>
+        <MinScaleDenominator>20000.0</MinScaleDenominator>
+        <MaxScaleDenominator>5000000.0</MaxScaleDenominator>
+      </Layer>
+      <Layer queryable="0" opaque="0">
+        <Name>hr.fd.opasnost-od-poplave-velika-vjerojatnost</Name>
+        <Title>Opasnosti od poplava, velika vjerojatnost pojavljivanja</Title>
+        <Abstract>Obuhvat i dubinu poplava za scenarij velike vjerojatnosti pojavljivanja prema Planu upravljanja vodnim područjima 2016.-2021.</Abstract>
+        <KeywordList>
+          <Keyword>Flood risk</Keyword>
+          <Keyword>Rizici od poplava</Keyword>
+          <Keyword vocabulary="GEMET - INSPIRE themes, version 1.0">Hydrography</Keyword>
+          <Keyword vocabulary="GEMET - INSPIRE themes, version 1.0">Human health and safety</Keyword>
+          <Keyword vocabulary="GEMET - INSPIRE themes, version 1.0">Natural risk zones</Keyword>
+          <Keyword vocabulary="GEMET - INSPIRE themes, version 1.0">Area management/restriction/regulation zones and reporting units</Keyword>
+          <Keyword>Područja prirodnih opasnosti</Keyword>
+          <Keyword>Poplave</Keyword>
+          <Keyword>Karte opasnosti</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3765</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>13.434469644300108</westBoundLongitude>
+          <eastBoundLongitude>19.49058390052676</eastBoundLongitude>
+          <southBoundLatitude>42.474262526670856</southBoundLatitude>
+          <northBoundLatitude>46.545438014689374</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="13.434469644300108" miny="42.474262526670856" maxx="19.49058390052676" maxy="46.545438014689374"/>
+        <BoundingBox CRS="EPSG:3765" minx="264729.99999746133" miny="4707814.999999652" maxx="729510.0000022559" maxy="5156199.999999999"/>
+        <MetadataURL type="ISO19115:2003">
+          <Format>text/plain</Format>
+          <OnlineResource xlink:type="simple" xlink:href="http://geoportal.nipp.hr/geonetwork/srv/eng/csw?service=CSW&amp;request=GetRecordById&amp;version=2.0.2&amp;outputSchema=http://www.isotc211.org/2005/gmd&amp;elementSetName=full&amp;id=9119600a-fb7f-42e3-ad16-d9d10402eca5"/>
+        </MetadataURL>
+        <Style>
+          <Name>opasnosti_od_poplava_VV</Name>
+          <Title>Opasnosti od poplava, velika vjerojatnost pojavljivanja</Title>
+          <LegendURL width="155" height="80">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://servisi.voda.hr/poplave_opasnosti/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=hr.fd.opasnost-od-poplave-velika-vjerojatnost"/>
+          </LegendURL>
+        </Style>
+        <MinScaleDenominator>20000.0</MinScaleDenominator>
+        <MaxScaleDenominator>5000000.0</MaxScaleDenominator>
+      </Layer>
+      <Layer queryable="0" opaque="0">
+        <Name>hr.fd.vjerojatnost-pojavljivanja</Name>
+        <Title>Opasnost od poplava, tri scenarija plavljenja</Title>
+        <Abstract>Obuhvat poplava za tri scenarija plavljenja prema Planu upravljanja vodnim područjima 2016.-2021.</Abstract>
+        <KeywordList>
+          <Keyword>Flood risk</Keyword>
+          <Keyword>Rizici od poplava</Keyword>
+          <Keyword vocabulary="GEMET - INSPIRE themes, version 1.0">Hydrography</Keyword>
+          <Keyword vocabulary="GEMET - INSPIRE themes, version 1.0">Human health and safety</Keyword>
+          <Keyword vocabulary="GEMET - INSPIRE themes, version 1.0">Natural risk zones</Keyword>
+          <Keyword vocabulary="GEMET - INSPIRE themes, version 1.0">Area management/restriction/regulation zones and reporting units</Keyword>
+          <Keyword>Područja prirodnih opasnosti</Keyword>
+          <Keyword>Poplave</Keyword>
+          <Keyword>Karte opasnosti</Keyword>
+        </KeywordList>
+        <CRS>EPSG:3765</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>13.433953935339488</westBoundLongitude>
+          <eastBoundLongitude>19.4910454004025</eastBoundLongitude>
+          <southBoundLatitude>42.47426252667477</southBoundLatitude>
+          <northBoundLatitude>46.55461471602942</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="13.433953935339488" miny="42.47426252667477" maxx="19.4910454004025" maxy="46.55461471602942"/>
+        <BoundingBox CRS="EPSG:3765" minx="264730.0" miny="4707815.0" maxx="729506.7999" maxy="5157220.0"/>
+        <MetadataURL type="ISO19115:2003">
+          <Format>text/plain</Format>
+          <OnlineResource xlink:type="simple" xlink:href="http://geoportal.nipp.hr/geonetwork/srv/eng/csw?service=CSW&amp;request=GetRecordById&amp;version=2.0.2&amp;outputSchema=http://www.isotc211.org/2005/gmd&amp;elementSetName=full&amp;id=9119600a-fb7f-42e3-ad16-d9d10402eca5"/>
+        </MetadataURL>
+        <Style>
+          <Name>vjerojatnost_pojavljivanja</Name>
+          <Title>Opasnost od poplava, tri scenarija plavljenja</Title>
+          <LegendURL width="151" height="60">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://servisi.voda.hr/poplave_opasnosti/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=hr.fd.vjerojatnost-pojavljivanja"/>
+          </LegendURL>
+        </Style>
+        <MinScaleDenominator>20000.0</MinScaleDenominator>
+        <MaxScaleDenominator>5000000.0</MaxScaleDenominator>
+      </Layer>
+    </Layer>
+  </Capability>
+</WMS_Capabilities>

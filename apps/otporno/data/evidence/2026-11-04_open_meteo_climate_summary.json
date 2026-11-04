@@ -1,0 +1,44 @@
+{
+ "retrieved": "2026-11-04",
+ "docs": "https://open-meteo.com/en/docs/climate-api",
+ "endpoint": "https://climate-api.open-meteo.com/v1/climate",
+ "models_listed_in_docs": {
+  "CMCC_CM2_VHR4": "30 km, Italy",
+  "FGOALS_f3_H": "28 km, China",
+  "HiRAM_SIT_HR": "25 km, Taiwan",
+  "MRI_AGCM3_2_S": "20 km, Japan",
+  "EC_Earth3P_HR": "29 km, Europe",
+  "MPI_ESM1_2_XR": "51 km, Germany",
+  "NICAM16_8S": "31 km, Japan"
+ },
+ "models_chosen": [
+  "CMCC_CM2_VHR4",
+  "EC_Earth3P_HR",
+  "MRI_AGCM3_2_S"
+ ],
+ "why_these_three": "Three of the seven listed models, from three different modelling groups (Europe, Italy, Japan); all return data for 1991-2050 at the probe location (EC_Earth3P_HR has 364 null days, i.e. one year, which the parser tolerates).",
+ "daily_variables_used": [
+  "temperature_2m_max",
+  "temperature_2m_min"
+ ],
+ "date_range": "docs: data from 1950-01-01 until 2050-01-01 (examples use 2050-12-31; the probe returned data to 2050-12-31)",
+ "free_limits_per_pricing_page": {
+  "per_minute": 600,
+  "per_hour": 5000,
+  "per_day": 10000,
+  "per_month": 300000,
+  "monthly_not_enforced": true
+ },
+ "observed_cost": {
+  "request": "lat 45.5 lon 15.5, 1991-01-01..2050-12-31, 3 models x (tmax,tmin)",
+  "x-ratelimit-cost": 939.21436,
+  "x-ratelimit-limit": 600.0,
+  "x-ratelimit-remaining_after": 0.0,
+  "x-ratelimit-window_s": 60,
+  "derived_formula": "cost = series x days / 140 (6 x 21915 / 140 = 939.2)",
+  "consequence": "about 10 full requests per day on the free tier; national 0.25 degree precompute must be spread over days"
+ },
+ "attribution": "Open-Meteo.com, CC BY 4.0 (data: CMIP6, bias-corrected onto ERA5-Land)",
+ "bias_correction": "enabled by default (disable_bias_correction=false); not changed",
+ "response_file": "2026-11-04_open_meteo_climate_response_45.5_15.5.json (real response, 3 models, 21 915 days)"
+}
