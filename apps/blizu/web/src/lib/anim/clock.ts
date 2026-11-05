@@ -76,8 +76,10 @@ export function createClock(env?: Partial<ClockEnv>, expose = false): Clock {
     frames += 1;
     for (const fn of [...subs]) fn(t, dt);
     // keep the previous timestamp across consecutive frames; update() would reset it
-    if (handle === null && shouldRun({ subscribers: subs.size, ...state })) handle = raf(frame);
-    else update();
+    if (handle === null && shouldRun({ subscribers: subs.size, ...state })) {
+      handle = raf(frame);
+      publish();
+    } else update();
   }
 
   publish();

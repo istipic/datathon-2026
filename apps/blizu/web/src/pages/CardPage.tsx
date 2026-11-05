@@ -1,11 +1,15 @@
 import { EmptyState, ErrorState, LoadingSkeleton } from '@dt/ui';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
+import type { Map as MapLibreMap } from 'maplibre-gl';
 import { Suspense, lazy, useMemo, useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { AccessCard } from '../components/AccessCard';
 import { LazyMount } from '../components/LazyMount';
 import { PersonaControl } from '../components/PersonaControl';
 import type { MapFocus, MapPlace } from '../components/MapPanel';
+import { ResultsScenes } from '../components/ResultsScenes';
+import { initialScene, withScene, type ActiveScene } from '../lib/anim/scene';
+import { useIsochrone } from '../lib/useIsochrone';
 import { Button, Icon } from '../components/ui';
 import { ApiError, api } from '../lib/api';
 import { isPersona } from '../lib/labels';
@@ -35,12 +39,16 @@ export function CardPage() {
   const label = params.get('q') ?? `${lat.toFixed(4)}, ${lon.toFixed(4)}`;
   const valid =
     Number.isFinite(lat) && Number.isFinite(lon) && params.has('lat') && params.has('lon');
-  const [focus, setFocus] = useState<MapFocus | null>(null);
+  const [focus] = useState<MapFocus | null>(null); // camera moves are owned by the scenes now
+  const [map, setMap] = useState<MapLibreMap | null>(null);
+  const [fallback, setFallback] = useState(false);
+  const scene = initialScene(params);
   const [selected, setSelected] = useState<CategoryId | null>(null);
   const [sheet, setSheet] = useState<'peek' | 'expanded'>('peek');
 
   // Wait for the sources too: their (late) arrival would lengthen the footnote and shift the layout.
   const sources = useSources();
+  const iso = useIsochrone(lat, lon, persona, valid);
   const query = useQuery({
     queryKey: ['access', lat, lon, persona],
     queryFn: ({ signal }) => api.access(lat, lon, persona, signal),
@@ -69,10 +77,13 @@ export function CardPage() {
     setParams(copy, { replace: true });
   }
 
+  function changeScene(next: ActiveScene) {
+    setParams(withScene(params, next), { replace: true });
+  }
+
   function select(result: CategoryResult) {
     setSelected(result.category);
-    if (result.nearest)
-      setFocus({ lon: result.nearest.lon, lat: result.nearest.lat, key: Date.now() });
+    changeScene('put'); // tapping a tile draws the route to its nearest facility
   }
 
   if (!valid) {
@@ -184,7 +195,22 @@ export function CardPage() {
               places={places}
               focus={focus}
               plannerHref={plannerHref}
-            />
+              onMap={setMap}
+              onFallback={() => setFallback(true)}
+              hidePlaces={scene !== 'put' && iso.isSuccess}
+            >
+              {map ? (
+                <ResultsScenes
+                  map={map}
+                  origin={{ lon, lat }}
+                  persona={persona}
+                  scene={scene}
+                  onScene={changeScene}
+                  category={selected}
+                  fallback={fallback}
+                />
+              ) : null}
+            </MapPanel>
           </Suspense>
         </LazyMount>
       </div>

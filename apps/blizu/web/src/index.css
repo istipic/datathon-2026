@@ -1327,3 +1327,24 @@ button.na-chip[aria-pressed='true'] {
     display: none;
   }
 }
+
+/* floating bars: the call to action sits bottom right, the reach/route bar above it */
+.na-timebar {
+  bottom: 84px;
+  right: 64px;
+}
+.na-cta {
+  bottom: 24px;
+}
+@media (max-width: 860px) {
+  .na-timebar {
+    right: 12px;
+    bottom: 456px;
+  }
+  .na-cta {
+    bottom: 408px;
+  }
+  .na-scenebar {
+    max-width: calc(100% - 72px);
+  }
+}

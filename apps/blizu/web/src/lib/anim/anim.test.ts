@@ -11,6 +11,7 @@ import {
   floodFilter,
   frontFilter,
   isReached,
+  routeGradient,
 } from './flood';
 import { bearingAt, buildRoute, haversine, positionAt, walkProgress, type Coord } from './route';
 import { initialScene, nextScene, parseScene, threeDAvailable, withScene } from './scene';
@@ -329,5 +330,19 @@ describe('scene state and URL sync', () => {
   it('3D is unavailable on the raster fallback', () => {
     expect(threeDAvailable(false)).toBe(true);
     expect(threeDAvailable(true)).toBe(false);
+  });
+});
+
+describe('routeGradient', () => {
+  it('has strictly increasing stops for every progress value', () => {
+    for (const p of [0, 0.00005, 0.001, 0.37, 0.9998, 0.99995, 1]) {
+      const g = routeGradient(p, '#22D3EE') as unknown[];
+      const stops = g.slice(3).filter((_v, i) => i % 2 === 0) as number[];
+      for (let i = 1; i < stops.length; i++)
+        expect(stops[i]).toBeGreaterThan(stops[i - 1] as number);
+    }
+    const mid = routeGradient(0.5, '#fff') as unknown[];
+    expect(mid[5]).toBe(0.5); // solid up to p
+    expect(routeGradient(1, '#fff')[4]).toBe('#fff');
   });
 });

@@ -1,7 +1,15 @@
 import need from '../__fixtures__/2026-11-03_need_vrtic_roditelj_summary.json';
 import problem from '../__fixtures__/2026-11-03_problem_422.json';
 import { ApiError, api } from './api';
-import { formatInt, formatMinutes, formatPercent, GRADE_COLOR, isPersona } from './labels';
+import {
+  countText,
+  formatInt,
+  formatMinutes,
+  formatPercent,
+  GRADE_COLOR,
+  isPersona,
+  minutesWord,
+} from './labels';
 import { legendClasses, NEED_COLORS } from './legend';
 
 // All fixtures are REAL API responses recorded on 2026-11-03.
@@ -117,5 +125,21 @@ describe('api client', () => {
       persona: 'roditelj',
       k: 3,
     });
+  });
+});
+
+describe('Croatian count and minute words', () => {
+  it('declines minutes and counts', () => {
+    expect(minutesWord(1)).toBe('1 minuta');
+    expect(minutesWord(3)).toBe('3 minute');
+    expect(minutesWord(10)).toBe('10 minuta');
+    expect(minutesWord(12)).toBe('12 minuta');
+    expect(minutesWord(22)).toBe('22 minute');
+    expect(countText('ljekarna', 1)).toBe('1 ljekarna');
+    expect(countText('ljekarna', 2)).toBe('2 ljekarne');
+    expect(countText('ljekarna', 5)).toBe('5 ljekarni');
+    expect(countText('skola', 1)).toBe('1 škola');
+    expect(countText('prijevoz', 37)).toBe('37 postaja');
+    expect(countText('park', 11)).toBe('11 parkova');
   });
 });

@@ -37,15 +37,34 @@ export function columnHeight(before: number, after: number, p: number, scale: nu
   return (before * (1 - p) + after * p) * scale;
 }
 
+/** Blend of two feature properties: before * (1 - p) + after * p. */
+export function blendExpression(
+  p: number,
+  before = 'unmet_before',
+  after = 'unmet_after',
+): Expression {
+  return ['+', ['*', ['get', before], round(1 - p, 4)], ['*', ['get', after], round(p, 4)]];
+}
+
 /** The same blend as a MapLibre expression, driven by the clock through `p`. */
-export function columnHeightExpression(p: number, scale: number): Expression {
-  return [
-    '*',
-    [
-      '+',
-      ['*', ['get', 'unmet_before'], round(1 - p, 4)],
-      ['*', ['get', 'unmet_after'], round(p, 4)],
-    ],
-    scale,
-  ];
+export function columnHeightExpression(
+  p: number,
+  scale: number,
+  before = 'unmet_before',
+  after = 'unmet_after',
+): Expression {
+  return ['*', blendExpression(p, before, after), scale];
+}
+
+/**
+ * `line-gradient` of a route drawn up to progress `p` (0..1): solid colour up to p, transparent after.
+ * Stops must strictly increase, so the edge cases are written out.
+ */
+export function routeGradient(p: number, color: string): Expression {
+  const clear = 'rgba(34,211,238,0)';
+  const base: Expression = ['interpolate', ['linear'], ['line-progress']];
+  if (p <= 0.0001) return [...base, 0, clear, 1, clear];
+  if (p >= 0.9999) return [...base, 0, color, 1, color];
+  const edge = round(p, 4);
+  return [...base, 0, color, edge, color, round(edge + 0.0001, 4), clear, 1, clear];
 }

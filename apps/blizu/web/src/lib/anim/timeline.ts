@@ -73,3 +73,15 @@ export function play(
     },
   };
 }
+
+/** Limits how often `fn` runs (default 30 Hz); progress 1 always goes through so the end state is exact. */
+export function throttleApply(fn: (p: number) => void, ms = 33): (p: number) => void {
+  let last = -Infinity;
+  return (p) => {
+    const now = typeof performance !== 'undefined' ? performance.now() : Date.now();
+    if (p >= 1 || p <= 0 || now - last >= ms) {
+      last = now;
+      fn(p);
+    }
+  };
+}

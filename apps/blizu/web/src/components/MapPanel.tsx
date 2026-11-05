@@ -38,6 +38,8 @@ interface Props {
   /** Extra floating buttons below the zoom/locate stack (e.g. 3D). */
   extraControls?: React.ReactNode;
   onFallback?: () => void;
+  /** Hide the nearest-facility markers (the flood scene shows every facility in reach instead). */
+  hidePlaces?: boolean;
 }
 
 function reducedMotion(): boolean {
@@ -87,6 +89,7 @@ export function MapPanel({
   children,
   extraControls,
   onFallback,
+  hidePlaces,
 }: Props) {
   const [map, setMap] = useState<MapLibreMap | null>(null);
   const [showPlaces, setShowPlaces] = useState(true);
@@ -143,9 +146,9 @@ export function MapPanel({
 
   useEffect(() => {
     for (const m of placeMarkers.current) {
-      m.getElement().style.display = showPlaces ? '' : 'none';
+      m.getElement().style.display = showPlaces && !hidePlaces ? '' : 'none';
     }
-  }, [showPlaces, places, map]);
+  }, [showPlaces, hidePlaces, places, map]);
 
   useEffect(() => {
     if (!map || !focus) return;
@@ -162,6 +165,9 @@ export function MapPanel({
         onFallback={onFallback}
         onLoad={(m) => {
           setMap(m);
+          // dev/test hook for the Playwright scenarios (never present in production builds)
+          if (import.meta.env.DEV)
+            (window as unknown as { __blizuMap?: MapLibreMap }).__blizuMap = m;
           onMap?.(m);
         }}
         className="blizu-map"

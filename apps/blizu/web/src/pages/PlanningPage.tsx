@@ -1,11 +1,14 @@
 import { ErrorState, LoadingSkeleton, SourceBadge } from '@dt/ui';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { Suspense, lazy, useEffect, useMemo, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { CountUp } from '../components/CountUp';
 import { LazyMount } from '../components/LazyMount';
 import { PersonaControl } from '../components/PersonaControl';
 import { NO_NEED_COLOR, legendClasses } from '../lib/legend';
 import { api } from '../lib/api';
-import { formatInt, formatPercent } from '../lib/labels';
+import { formatInt, formatPercent, isPersona } from '../lib/labels';
+import { topChangedCells } from '../lib/planner3d';
 import { useSources } from '../lib/useSources';
 import {
   CATEGORY_IDS,
@@ -77,8 +80,23 @@ export function downloadGeoJson(need: NeedCollection, optimise: OptimiseResult |
 
 /** Planner view: where is the unmet need, and where would 1-5 new facilities help most people. */
 export function PlanningPage() {
+  const [params] = useSearchParams();
+  const focusLat = Number(params.get('lat'));
+  const focusLon = Number(params.get('lon'));
+  const focus = useMemo(
+    () =>
+      params.has('lat') &&
+      params.has('lon') &&
+      Number.isFinite(focusLat) &&
+      Number.isFinite(focusLon)
+        ? { lat: focusLat, lon: focusLon }
+        : null,
+    [params, focusLat, focusLon],
+  );
   const [category, setCategory] = useState<CategoryId>('vrtic');
-  const [persona, setPersona] = useState<PersonaId>('roditelj');
+  const [persona, setPersona] = useState<PersonaId>(
+    isPersona(params.get('persona')) ? (params.get('persona') as PersonaId) : 'roditelj',
+  );
   const [k, setK] = useState(3);
   const { byId } = useSources();
 
@@ -235,6 +253,19 @@ export function PlanningPage() {
             ) : null}
             {optimise.data ? (
               <div data-testid="optimise-result">
+                <p
+                  className="na-counter"
+                  data-testid="optimise-headline"
+                  style={{ margin: '0 0 0.75rem' }}
+                >
+                  Nove lokacije donose doseg za{' '}
+                  <CountUp
+                    value={optimise.data.total_newly_covered}
+                    prefix="+"
+                    suffix=" osoba"
+                    testId="headline-count"
+                  />
+                </p>
                 <div className="grid gap-3 sm:grid-cols-2">
                   <Kpi
                     label="Prije (unutar granice)"
@@ -260,6 +291,47 @@ export function PlanningPage() {
                     ))}
                   </ol>
                 )}
+                {optimise.data.sites.length > 0 ? (
+                  <div className="dt-table-wrap mt-4" data-testid="optimise-table">
+                    <table className="na-table">
+                      <caption className="dt-sr-only">
+                        Isti brojevi kao na karti: predložene lokacije i ćelije s najvećom promjenom
+                      </caption>
+                      <thead>
+                        <tr>
+                          <th scope="col">Lokacija</th>
+                          <th scope="col">Nove osobe u dosegu</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {optimise.data.sites.map((s, i) => (
+                          <tr key={`s${i}`}>
+                            <th scope="row">{s.street ?? 'ulica nepoznata'}</th>
+                            <td className="dt-num">+{formatInt(s.newly_covered)}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                      <thead>
+                        <tr>
+                          <th scope="col">Ćelija 1 km² (najveći pad)</th>
+                          <th scope="col">Osoba izvan dosega prije → poslije</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {topChangedCells(optimise.data.cells).map((c) => (
+                          <tr key={c.cell_id}>
+                            <th scope="row" className="dt-num">
+                              {c.cell_id.replace(/^CRS3035RES1000m/, '')}
+                            </th>
+                            <td className="dt-num">
+                              {formatInt(c.unmet_before)} → {formatInt(c.unmet_after)}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                ) : null}
               </div>
             ) : null}
           </div>
@@ -297,7 +369,7 @@ export function PlanningPage() {
       <div className="na-mapcol">
         <LazyMount placeholder={<LoadingSkeleton lines={6} label="Karta će se učitati…" />}>
           <Suspense fallback={<LoadingSkeleton lines={6} label="Učitavam kartu…" />}>
-            <PlanMap need={need.data} sites={sites} />
+            <PlanMap need={need.data} optimise={optimise.data} sites={sites} focus={focus} />
           </Suspense>
         </LazyMount>
       </div>

@@ -58,3 +58,40 @@ export function formatPercent(share: number | null | undefined): string {
 export function formatInt(n: number): string {
   return new Intl.NumberFormat('hr-HR').format(Math.round(n));
 }
+
+/** "minuta" / "minute" for a number of minutes (1 minuta, 2-4 minute, 5-20 minuta ...). */
+export function minutesWord(n: number): string {
+  const r = Math.round(n);
+  const last = r % 10;
+  const lastTwo = r % 100;
+  if (last === 1 && lastTwo !== 11) return `${r} minuta`;
+  if (last >= 2 && last <= 4 && (lastTwo < 12 || lastTwo > 14)) return `${r} minute`;
+  return `${r} minuta`;
+}
+
+/** Croatian forms of what a category counts as: [1, 2-4, 5+]. */
+const COUNT_FORMS: Record<CategoryId, [string, string, string]> = {
+  lijecnik: ['liječnik', 'liječnika', 'liječnika'],
+  ljekarna: ['ljekarna', 'ljekarne', 'ljekarni'],
+  vrtic: ['vrtić', 'vrtića', 'vrtića'],
+  skola: ['škola', 'škole', 'škola'],
+  knjiznica: ['knjižnica', 'knjižnice', 'knjižnica'],
+  posta: ['pošta', 'pošte', 'pošta'],
+  prijevoz: ['postaja', 'postaje', 'postaja'],
+  park: ['park', 'parka', 'parkova'],
+  namirnice: ['trgovina', 'trgovine', 'trgovina'],
+};
+
+/** "2 ljekarne", "1 škola", "37 postaja". */
+export function countText(category: CategoryId, n: number): string {
+  const last = n % 10;
+  const lastTwo = n % 100;
+  const forms = COUNT_FORMS[category];
+  const form =
+    last === 1 && lastTwo !== 11
+      ? forms[0]
+      : last >= 2 && last <= 4 && (lastTwo < 12 || lastTwo > 14)
+        ? forms[1]
+        : forms[2];
+  return `${n} ${form}`;
+}
