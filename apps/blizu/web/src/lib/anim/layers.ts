@@ -3,9 +3,9 @@ import type { GeoJSONSource, Map as MapLibreMap } from 'maplibre-gl';
 import { floodFilter, frontFilter, routeGradient, timeRamp } from './flood';
 import type { Coord } from './route';
 
-/** Map colours: Google blue near the address, green far away, orange for the moving front. */
-export const NEAR = '#1A73E8';
-export const FAR = '#188038';
+/** Map colours chosen for contrast on the light map (green parks, grey blocks): navy near the address, vivid cyan-blue far away, orange moving front, white casing under every line. */
+export const NEAR = '#0B2F8A';
+export const FAR = '#009BD6';
 export const FRONT = '#E8710A';
 
 /** Layers go below the first symbol layer so that street and place labels stay on top. */
@@ -20,7 +20,7 @@ function removeAll(map: MapLibreMap, layers: string[], source: string) {
 
 /** Walking-time flood: glow + crisp line + bright front, all driven by a clock in minutes. */
 export class FloodLayer {
-  private readonly ids = ['flood-glow', 'flood-line', 'flood-front'];
+  private readonly ids = ['flood-casing', 'flood-glow', 'flood-line', 'flood-front'];
   private clockMin = 0;
 
   constructor(
@@ -33,6 +33,20 @@ export class FloodLayer {
     map.addSource('flood', { type: 'geojson', data });
     map.addLayer(
       {
+        id: 'flood-casing',
+        type: 'line',
+        source: 'flood',
+        layout: { 'line-cap': 'round', 'line-join': 'round' },
+        paint: {
+          'line-color': '#FFFFFF',
+          'line-width': ['interpolate', ['linear'], ['zoom'], 11, 3.4, 16, 8.6] as never,
+          'line-opacity': 0.92,
+        },
+      },
+      before,
+    );
+    map.addLayer(
+      {
         id: 'flood-glow',
         type: 'line',
         source: 'flood',
@@ -41,7 +55,7 @@ export class FloodLayer {
           'line-color': ramp,
           'line-width': ['interpolate', ['linear'], ['zoom'], 11, 4, 16, 16] as never,
           'line-blur': 8,
-          'line-opacity': 0.4,
+          'line-opacity': 0.22,
         },
       },
       before,
@@ -54,8 +68,8 @@ export class FloodLayer {
         layout: { 'line-cap': 'round', 'line-join': 'round' },
         paint: {
           'line-color': ramp,
-          'line-width': ['interpolate', ['linear'], ['zoom'], 11, 1.1, 16, 3.5] as never,
-          'line-opacity': 0.95,
+          'line-width': ['interpolate', ['linear'], ['zoom'], 11, 1.6, 16, 4.6] as never,
+          'line-opacity': 1,
         },
       },
       before,
@@ -83,6 +97,7 @@ export class FloodLayer {
     this.clockMin = min;
     const m = this.map;
     const all = floodFilter(min) as never;
+    if (m.getLayer('flood-casing')) m.setFilter('flood-casing', all);
     if (m.getLayer('flood-glow')) m.setFilter('flood-glow', all);
     if (m.getLayer('flood-line')) m.setFilter('flood-line', all);
     // the front is only visible while the flood is moving
@@ -97,12 +112,22 @@ export class FloodLayer {
 
   /** Dims the flood to ground light (used while a route is shown). */
   setDim(dim: boolean) {
-    for (const id of ['flood-glow', 'flood-line'])
+    for (const id of ['flood-casing', 'flood-glow', 'flood-line'])
       if (this.map.getLayer(id))
         this.map.setPaintProperty(
           id,
           'line-opacity',
-          id === 'flood-glow' ? (dim ? 0.15 : 0.4) : dim ? 0.45 : 0.95,
+          id === 'flood-casing'
+            ? dim
+              ? 0.4
+              : 0.92
+            : id === 'flood-glow'
+              ? dim
+                ? 0.1
+                : 0.22
+              : dim
+                ? 0.5
+                : 1,
         );
   }
 
