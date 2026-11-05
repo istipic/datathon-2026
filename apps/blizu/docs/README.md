@@ -170,7 +170,7 @@ kategorije; `404` za `/route` kad objekt ne postoji, kategorija nema podataka il
 
 ## Karta i animacije („Night Atlas”)
 
-Tamno sučelje (Inter Variable, tokeni u `web/src/index.css`, provjera kontrasta `web/scripts/contrast.mjs`) i četiri
+Svijetlo sučelje u stilu Google Karata (Inter Variable, tokeni u `web/src/index.css`, provjera kontrasta `web/scripts/contrast.mjs`) i četiri
 scene na karti. Sve brojke dolaze iz API-ja (`/isochrone`, `/route`, `/plan/optimise`), ukrasno kretanje ne nosi podatke.
 
 | Scena                                      | Gdje                        | Što se događa                                                                                                                                                 | Podaci                                           |
@@ -232,7 +232,7 @@ funkcije (`snap_facilities`, `nearest_facility_distances`, `compute_cell_access`
   `/planiranje` 88 / 100; `/kartica` pristupačnost 100, performanse 43–50 (prije redizajna 85–88: karta je tada bila
   ispod pregiba i u testu se nije učitavala, sada je glavni sadržaj). Profil pod 4× usporenim CPU-om pokazuje da gotovo
   sve vrijeme odlazi na softversko WebGL iscrtavanje (SwiftShader) i MapLibre, vlastiti kôd je ≈ 100 ms.
-- Karta se prikazuje kroz OpenFreeMap („dark”), uz OSM raster kao pričuvu i uvijek vidljivu atribuciju
+- Karta se prikazuje kroz OpenFreeMap („liberty”, svijetla), uz OSM raster kao pričuvu i uvijek vidljivu atribuciju
   „© OpenStreetMap contributors”.
 
 ## Produkcija

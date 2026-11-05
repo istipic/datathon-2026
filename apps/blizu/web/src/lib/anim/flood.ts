@@ -61,7 +61,7 @@ export function columnHeightExpression(
  * Stops must strictly increase, so the edge cases are written out.
  */
 export function routeGradient(p: number, color: string): Expression {
-  const clear = 'rgba(34,211,238,0)';
+  const clear = 'rgba(26,115,232,0)';
   const base: Expression = ['interpolate', ['linear'], ['line-progress']];
   if (p <= 0.0001) return [...base, 0, clear, 1, clear];
   if (p >= 0.9999) return [...base, 0, color, 1, color];

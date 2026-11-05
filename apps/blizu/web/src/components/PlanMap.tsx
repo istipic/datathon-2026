@@ -210,7 +210,7 @@ export function PlanMap({ need, optimise, sites, focus }: Props) {
     <>
       <MapView
         ariaLabel="Karta nezadovoljene potrebe po ćelijama od 1 km"
-        styleUrl="https://tiles.openfreemap.org/styles/dark"
+        styleUrl="https://tiles.openfreemap.org/styles/liberty"
         navigationControl={false}
         onLoad={(m) => {
           setMap(m);

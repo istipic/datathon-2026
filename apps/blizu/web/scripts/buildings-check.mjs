@@ -19,7 +19,9 @@ await page.waitForSelector('[data-testid="reach-bar"]', { timeout: 60000 });
 await page.waitForTimeout(9000);
 const result = await page.evaluate(() => {
   const map = window.__blizuMap;
-  const feats = map.queryRenderedFeatures({ layers: ['na-buildings'] });
+  const feats = map.queryRenderedFeatures({
+    layers: [map.getLayer('building-3d') ? 'building-3d' : 'na-buildings'],
+  });
   const withHeight = feats.filter((f) => typeof f.properties.render_height === 'number');
   const heights = withHeight.map((f) => f.properties.render_height).sort((a, b) => a - b);
   const withMin = feats.filter((f) => typeof f.properties.render_min_height === 'number');

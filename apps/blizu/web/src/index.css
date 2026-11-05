@@ -36,67 +36,68 @@
 }
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 
   /* Night Atlas palette (space separated RGB channels like the @dt/ui tokens) */
-  --na-bg: 7 9 13; /* #07090D page canvas */
-  --na-surface-1: 13 17 23; /* #0D1117 sidebar, panels */
-  --na-surface-2: 20 26 35; /* #141A23 tiles, inputs */
-  --na-text: 243 245 248; /* #F3F5F8 */
-  --na-muted: 154 164 178; /* #9AA4B2 */
-  --na-accent: 34 211 238; /* #22D3EE */
-  --na-accent-2: 167 139 250; /* #A78BFA */
-  --na-edge: 98 110 126; /* #626E7E: borders of controls, >= 3:1 on every surface */
-  --na-line: rgb(255 255 255 / 0.09);
-  --na-glass: rgb(255 255 255 / 0.04);
-  --na-grade-a: 52 211 153;
-  --na-grade-b: 163 230 53;
-  --na-grade-c: 250 204 21;
-  --na-grade-d: 251 146 60;
-  --na-grade-e: 248 113 113;
+  --na-bg: 248 249 250; /* #F8F9FA page canvas */
+  --na-surface-1: 255 255 255; /* panels, cards */
+  --na-surface-2: 241 243 244; /* #F1F3F4 tiles, inputs */
+  --na-text: 32 33 36; /* #202124 */
+  --na-muted: 95 99 104; /* #5F6368 */
+  --na-accent: 25 103 210; /* #1967D2 Google blue (links, focus, primary) */
+  --na-accent-2: 24 128 56; /* #188038 green: the "far" end of the walking-time ramp */
+  --na-site: 217 48 37; /* #D93025 suggested new sites and the address pin */
+  --na-edge: 128 134 139; /* #80868B borders of controls, >= 3:1 on every surface */
+  --na-line: rgb(60 64 67 / 0.16);
+  --na-glass: rgb(255 255 255 / 1);
+  --na-grade-a: 24 128 56;
+  --na-grade-b: 78 127 10;
+  --na-grade-c: 154 98 0;
+  --na-grade-d: 196 84 10;
+  --na-grade-e: 197 34 31;
 
   /* @dt/ui slots mapped onto the dark palette */
-  --white: 20 26 35; /* "white" = raised surface */
-  --neutral-50: 13 17 23;
-  --neutral-100: 20 26 35;
-  --neutral-200: 30 38 50;
-  --neutral-300: 98 110 126;
-  --neutral-400: 118 130 146;
-  --neutral-500: 138 149 163;
-  --neutral-600: 154 164 178;
-  --neutral-700: 190 198 209;
-  --neutral-800: 222 227 234;
-  --neutral-900: 243 245 248;
-  --brand-600: 14 116 144; /* white text >= 4.5:1 */
-  --brand-700: 21 94 117;
+  --white: 255 255 255;
+  --neutral-50: 248 249 250;
+  --neutral-100: 241 243 244;
+  --neutral-200: 232 234 237;
+  --neutral-300: 218 220 224;
+  --neutral-400: 128 134 139;
+  --neutral-500: 95 99 104;
+  --neutral-600: 95 99 104;
+  --neutral-700: 60 64 67;
+  --neutral-800: 48 49 52;
+  --neutral-900: 32 33 36;
+  --brand-600: 25 103 210; /* white text >= 4.5:1 */
+  --brand-700: 23 78 166;
   --accent-600: 180 83 9;
-  --success-bg: 6 44 32;
-  --success-fg: 167 243 208;
-  --success-border: 52 211 153;
-  --warning-bg: 56 40 6;
-  --warning-fg: 253 224 138;
-  --warning-border: 250 204 21;
-  --danger-bg: 62 14 14;
-  --danger-fg: 254 202 202;
-  --danger-border: 248 113 113;
+  --success-bg: 230 244 234;
+  --success-fg: 14 101 40;
+  --success-border: 24 128 56;
+  --warning-bg: 254 247 224;
+  --warning-fg: 124 72 0;
+  --warning-border: 154 98 0;
+  --danger-bg: 252 232 230;
+  --danger-fg: 165 14 14;
+  --danger-border: 197 34 31;
   --bg: var(--na-bg);
   --bg-subtle: var(--na-surface-1);
   --fg: var(--na-text);
   --fg-muted: var(--na-muted);
   --border: var(--na-edge);
   --link: var(--na-accent);
-  --focus-color: 34 211 238;
+  --focus-color: 26 115 232;
 
   /* Type */
   --font-sans: 'Inter Variable', Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'Inter Variable', Inter, system-ui, sans-serif;
 
   /* Shape, depth, motion */
-  --na-r1: 10px;
-  --na-r2: 16px;
-  --na-r3: 24px;
-  --na-inner: inset 0 1px 0 rgb(255 255 255 / 0.06);
-  --na-ambient: 0 24px 48px -24px rgb(0 0 0 / 0.6);
+  --na-r1: 8px;
+  --na-r2: 8px;
+  --na-r3: 12px;
+  --na-inner: 0 0 0 0 transparent;
+  --na-ambient: 0 1px 2px rgb(60 64 67 / 0.3), 0 2px 6px 2px rgb(60 64 67 / 0.15);
   --dur-1: 120ms;
   --dur-2: 220ms;
   --dur-3: 420ms;
@@ -737,7 +738,7 @@ button.na-chip[aria-pressed='true'] {
 /* ---------------------------------------------------------------- map screens */
 .na-screen {
   display: grid;
-  grid-template-columns: 360px minmax(0, 1fr);
+  grid-template-columns: min(540px, 50vw) minmax(0, 1fr);
   height: calc(100dvh - var(--na-header-h));
   min-height: 32rem;
   overflow: hidden;
@@ -754,7 +755,7 @@ button.na-chip[aria-pressed='true'] {
   border-right: 1px solid var(--na-line);
 }
 .na-panel--wide {
-  grid-template-columns: 420px minmax(0, 1fr);
+  grid-template-columns: min(630px, 55vw) minmax(0, 1fr);
 }
 .na-mapcol {
   position: relative;
@@ -1286,7 +1287,7 @@ button.na-chip[aria-pressed='true'] {
 
 /* planner screen: wider panel; on phones the panel and the map simply stack */
 .na-screen--plan {
-  grid-template-columns: 420px minmax(0, 1fr);
+  grid-template-columns: min(630px, 55vw) minmax(0, 1fr);
 }
 @media (max-width: 860px) {
   .na-screen--plan {
@@ -1417,4 +1418,364 @@ button.na-chip[aria-pressed='true'] {
   border-style: dashed;
   border-color: rgb(var(--na-edge));
   background: transparent;
+}
+
+/* =====================================================================================================
+   Light "map" look (Google-Maps-like): white surfaces, hairline borders, small radii, flat blue buttons.
+   Placed last so it wins over the earlier component rules; animations are untouched.
+   ===================================================================================================== */
+html,
+body {
+  background: rgb(var(--na-bg));
+}
+body {
+  background-image: none;
+}
+body::before {
+  display: none;
+}
+::selection {
+  background: rgb(var(--na-accent) / 0.2);
+}
+h1,
+h2,
+h3 {
+  letter-spacing: -0.015em;
+  font-weight: 600;
+}
+.na-display {
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+.na-gradient-text {
+  background: none;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  color: rgb(var(--na-accent));
+}
+.na-overline {
+  letter-spacing: 0.08em;
+}
+
+/* surfaces */
+.na-card,
+.na-glass {
+  background: #fff;
+  border: 1px solid var(--na-line);
+  border-radius: 12px;
+  box-shadow: var(--na-ambient);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+.na-tile-surface {
+  background: rgb(var(--na-surface-2));
+  border: 1px solid transparent;
+  border-radius: 8px;
+  box-shadow: none;
+}
+.na-header {
+  background: #fff;
+  border-bottom: 1px solid var(--na-line);
+  box-shadow: 0 1px 2px rgb(60 64 67 / 0.08);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+.na-brand__mark {
+  background: rgb(var(--na-accent));
+  color: #fff;
+  border-radius: 8px;
+}
+.na-nav a {
+  border-radius: 8px;
+}
+.na-nav a:hover,
+.na-nav a[aria-current='page'] {
+  background: rgb(var(--na-accent) / 0.1);
+  color: rgb(var(--na-accent));
+}
+.na-iconbtn {
+  border-radius: 8px;
+  background: #fff;
+  border-color: rgb(var(--na-edge) / 0.6);
+}
+.na-iconbtn:hover {
+  background: rgb(var(--na-surface-2));
+}
+
+/* buttons: flat Google blue, 8 px radius, no glow */
+.na-btn,
+.dt-button {
+  border-radius: 8px;
+  background: rgb(var(--na-accent));
+  color: #fff;
+  font-weight: 500;
+  letter-spacing: 0;
+  box-shadow: none;
+}
+.na-btn:hover,
+.dt-button:hover {
+  background: rgb(23 78 166);
+  box-shadow:
+    0 1px 2px rgb(60 64 67 / 0.3),
+    0 1px 3px 1px rgb(60 64 67 / 0.15);
+}
+.na-btn[disabled],
+.na-btn[aria-disabled='true'] {
+  background: rgb(var(--na-surface-2));
+  color: rgb(95 99 104 / 0.7);
+  box-shadow: none;
+}
+.na-btn--ghost {
+  background: #fff;
+  color: rgb(var(--na-accent));
+  border-color: rgb(var(--na-edge) / 0.7);
+}
+.na-btn--ghost:hover {
+  background: rgb(var(--na-accent) / 0.06);
+  box-shadow: none;
+}
+.na-btn--ghost[disabled] {
+  background: #fff;
+  border-color: var(--na-line);
+}
+.na-btn--accent {
+  background: rgb(var(--na-accent));
+  color: #fff;
+  box-shadow:
+    0 1px 2px rgb(60 64 67 / 0.3),
+    0 2px 6px 2px rgb(60 64 67 / 0.15);
+}
+
+/* form controls */
+.na-input {
+  background: #fff;
+  border-radius: 8px;
+}
+.na-input:focus-visible {
+  box-shadow: 0 0 0 1px rgb(var(--na-accent));
+  border-color: rgb(var(--na-accent));
+}
+.na-select {
+  background: #fff;
+  border-radius: 8px;
+}
+.na-listbox {
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: var(--na-ambient);
+}
+.na-option[aria-selected='true'],
+.na-option:hover {
+  background: rgb(var(--na-accent) / 0.08);
+}
+
+/* segmented control: selected = light blue with blue text (as in Google Maps) */
+.na-seg {
+  border-radius: 8px;
+  background: rgb(var(--na-surface-2));
+  border-color: transparent;
+}
+.na-seg__item {
+  border-radius: 6px;
+  letter-spacing: 0.04em;
+}
+.na-seg__item:hover {
+  background: rgb(60 64 67 / 0.06);
+}
+.na-seg__item[aria-checked='true'] {
+  background: #fff;
+  color: rgb(var(--na-accent));
+  box-shadow: 0 1px 2px rgb(60 64 67 / 0.3);
+}
+
+/* chips */
+.na-chip {
+  border-radius: 8px;
+  background: #fff;
+  border-color: rgb(var(--na-edge) / 0.6);
+  color: rgb(var(--na-text));
+  font-weight: 500;
+}
+button.na-chip:hover {
+  background: rgb(var(--na-surface-2));
+}
+button.na-chip[aria-pressed='true'] {
+  background: rgb(var(--na-accent) / 0.12);
+  border-color: rgb(var(--na-accent) / 0.5);
+  color: rgb(var(--na-accent));
+}
+.na-chip--warn {
+  border-color: rgb(var(--warning-border) / 0.5);
+}
+
+/* grade: flat ring and chip, no glow */
+.na-grade {
+  color: #fff;
+  border-radius: 6px;
+}
+.na-ring {
+  box-shadow: none;
+  border-width: 5px;
+}
+
+/* category tiles */
+.na-tile {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: none;
+}
+.na-tile:hover {
+  transform: none;
+  border-color: rgb(var(--na-edge));
+  box-shadow:
+    0 1px 2px rgb(60 64 67 / 0.3),
+    0 1px 3px 1px rgb(60 64 67 / 0.15);
+}
+.na-tile[aria-pressed='true'] {
+  border-color: rgb(var(--na-accent));
+  background: rgb(var(--na-accent) / 0.08);
+}
+.na-tile--muted {
+  background: transparent;
+}
+.na-skel {
+  background: linear-gradient(
+    90deg,
+    rgb(60 64 67 / 0.06) 25%,
+    rgb(60 64 67 / 0.12) 50%,
+    rgb(60 64 67 / 0.06) 75%
+  );
+  background-size: 200% 100%;
+}
+
+/* panel and floating map controls: white with the Google shadow */
+.na-panel {
+  background: #fff;
+}
+.na-sheet-handle::before {
+  background: rgb(60 64 67 / 0.3);
+}
+.na-mapctl button {
+  border-radius: 8px;
+  background: #fff;
+  color: rgb(var(--na-text));
+  border: 0;
+  box-shadow:
+    0 1px 2px rgb(60 64 67 / 0.3),
+    0 1px 3px 1px rgb(60 64 67 / 0.15);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+.na-mapctl button:hover {
+  background: rgb(var(--na-surface-2));
+}
+.na-mapctl button[aria-pressed='true'] {
+  background: rgb(var(--na-accent) / 0.12);
+  color: rgb(var(--na-accent));
+}
+.na-tip::after {
+  background: rgb(60 64 67);
+  color: #fff;
+  border: 0;
+  border-radius: 4px;
+}
+.na-pillbar {
+  border-radius: 8px;
+  background: #fff;
+  border: 0;
+  box-shadow:
+    0 1px 2px rgb(60 64 67 / 0.3),
+    0 2px 6px 2px rgb(60 64 67 / 0.15);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+.na-timebar {
+  border-radius: 12px;
+}
+.na-maperr {
+  background: #fff;
+}
+
+/* map furniture */
+.na-pin {
+  filter: drop-shadow(0 2px 3px rgb(60 64 67 / 0.5));
+}
+.na-pinlabel {
+  background: #fff;
+  color: rgb(var(--na-text));
+  border: 0;
+  border-radius: 4px;
+  box-shadow:
+    0 1px 2px rgb(60 64 67 / 0.3),
+    0 1px 3px 1px rgb(60 64 67 / 0.15);
+  font-weight: 500;
+}
+.blizu-marker {
+  background: #fff;
+  border: 2px solid rgb(var(--na-accent));
+  color: rgb(var(--na-accent));
+  box-shadow: 0 1px 3px rgb(60 64 67 / 0.5);
+}
+.blizu-marker:hover {
+  background: rgb(var(--na-accent) / 0.08);
+}
+.blizu-site {
+  background: rgb(var(--na-site));
+  color: #fff;
+  border: 2px solid #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgb(60 64 67 / 0.5);
+}
+.na-shockwave::after {
+  border-color: rgb(var(--na-site));
+}
+.na-dot {
+  background: rgb(var(--na-accent));
+  border: 3px solid #fff;
+  box-shadow:
+    0 0 0 1px rgb(var(--na-accent) / 0.4),
+    0 1px 4px rgb(60 64 67 / 0.5);
+}
+.maplibregl-ctrl-attrib {
+  background: rgb(255 255 255 / 0.8) !important;
+  color: rgb(var(--na-muted)) !important;
+}
+.maplibregl-ctrl-attrib a {
+  color: rgb(var(--na-text)) !important;
+}
+.maplibregl-popup-content {
+  background: #fff;
+  color: rgb(var(--na-text));
+  border: 0;
+  border-radius: 8px;
+  box-shadow: var(--na-ambient);
+}
+.maplibregl-popup-anchor-bottom .maplibregl-popup-tip {
+  border-top-color: #fff;
+}
+.maplibregl-popup-anchor-top .maplibregl-popup-tip {
+  border-bottom-color: #fff;
+}
+.maplibregl-popup-close-button {
+  color: rgb(var(--na-text));
+}
+.maplibregl-ctrl-group {
+  background: #fff !important;
+  border: 0;
+  border-radius: 8px;
+}
+.maplibregl-ctrl-group button .maplibregl-ctrl-icon {
+  filter: none;
+}
+.dt-map__notice {
+  border-radius: 4px;
+}
+
+/* wider sidebar (+50 %): children may shrink, nothing scrolls sideways */
+.na-panel {
+  overflow-x: hidden;
+}
+.na-panel > *,
+.na-panel .blizu-card > * {
+  min-width: 0;
 }

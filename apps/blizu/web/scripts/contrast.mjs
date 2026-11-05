@@ -40,6 +40,7 @@ const t = Object.fromEntries(
     'na-muted',
     'na-accent',
     'na-accent-2',
+    'na-site',
     'na-edge',
     'na-grade-a',
     'na-grade-b',
@@ -65,22 +66,22 @@ export function pairs() {
   const rows = [];
   for (const s of surfaces) {
     rows.push([`text on ${s}`, t['na-text'], t[s], 7]);
-    rows.push([`muted text on ${s}`, t['na-muted'], t[s], s === 'na-bg' ? 7 : 4.5]);
+    rows.push([`muted text on ${s}`, t['na-muted'], t[s], 4.5]);
     rows.push([`accent (links, focus) on ${s}`, t['na-accent'], t[s], 4.5]);
     rows.push([`accent-2 on ${s}`, t['na-accent-2'], t[s], 4.5]);
     rows.push([`control border on ${s}`, t['na-edge'], t[s], 3]);
     for (const g of ['a', 'b', 'c', 'd', 'e']) {
       rows.push([`grade ${g.toUpperCase()} on ${s}`, t[`na-grade-${g}`], t[s], 3]);
-      rows.push([`bg text on grade ${g.toUpperCase()} chip`, t['na-bg'], t[`na-grade-${g}`], 4.5]);
+      rows.push([`white text on grade ${g.toUpperCase()} chip`, white, t[`na-grade-${g}`], 4.5]);
     }
   }
-  // glass: 4 % white over the canvas, with text on top
-  const glass = over(white, t['na-bg'], 0.04);
+  // cards are plain white now; keep the check for text on white
+  const glass = over(white, t['na-bg'], 1);
   rows.push(['text on glass', t['na-text'], glass, 7]);
   rows.push(['muted text on glass', t['na-muted'], glass, 4.5]);
-  // primary button: dark text on the white pill; accent pill; selected tile
-  rows.push(['dark text on white pill', t['na-bg'], white, 7]);
-  rows.push(['dark text on accent pill', t['na-bg'], t['na-accent'], 7]);
+  // primary button: white text on the Google-blue fill; selected segment: blue text on white; site pin
+  rows.push(['white text on blue button', white, t['na-accent'], 4.5]);
+  rows.push(['white text on site pin', white, t['na-site'], 4.5]);
   // shared @dt/ui slots that still render in the app
   rows.push(['white on brand-600', white, t['brand-600'], 4.5]);
   rows.push(['white on brand-700', white, t['brand-700'], 4.5]);

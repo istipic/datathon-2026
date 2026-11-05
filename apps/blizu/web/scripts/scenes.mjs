@@ -26,7 +26,7 @@ const shot = async (name) => {
 await page.goto(base + URL, { waitUntil: 'load' });
 await page.waitForTimeout(1400);
 await shot('flood-mid');
-await page.waitForTimeout(3500);
+await page.waitForTimeout(9000);
 await shot('flood-rest');
 await page
   .getByRole('button', { name: /Ljekarna/ })

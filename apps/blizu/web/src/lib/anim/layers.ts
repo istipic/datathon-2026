@@ -3,10 +3,10 @@ import type { GeoJSONSource, Map as MapLibreMap } from 'maplibre-gl';
 import { floodFilter, frontFilter, routeGradient, timeRamp } from './flood';
 import type { Coord } from './route';
 
-/** Night Atlas map colours (same values as --na-accent / --na-accent-2 in index.css). */
-export const NEAR = '#22D3EE';
-export const FAR = '#A78BFA';
-export const FRONT = '#CFFAFE';
+/** Map colours: Google blue near the address, green far away, orange for the moving front. */
+export const NEAR = '#1A73E8';
+export const FAR = '#188038';
+export const FRONT = '#E8710A';
 
 /** Layers go below the first symbol layer so that street and place labels stay on top. */
 export function firstSymbolId(map: MapLibreMap): string | undefined {
@@ -146,7 +146,7 @@ export class RouteLayer {
         paint: {
           'line-width': ['interpolate', ['linear'], ['zoom'], 12, 6, 17, 18] as never,
           'line-blur': 6,
-          'line-gradient': routeGradient(0, 'rgba(34,211,238,0.35)') as never,
+          'line-gradient': routeGradient(0, 'rgba(26,115,232,0.35)') as never,
           'line-opacity-transition': { duration: 500, delay: 0 },
         },
       },
@@ -183,7 +183,7 @@ export class RouteLayer {
     this.map.setPaintProperty(
       `${this.id}-trail`,
       'line-gradient',
-      routeGradient(p, 'rgba(34,211,238,0.35)') as never,
+      routeGradient(p, 'rgba(26,115,232,0.35)') as never,
     );
   }
 
@@ -197,22 +197,47 @@ export class RouteLayer {
   }
 }
 
-/** Real building footprints extruded with the tiles' own `render_height` / `render_min_height`. */
+/**
+ * Real building footprints extruded with the tiles' own `render_height` / `render_min_height`.
+ * The "liberty" style already ships an extrusion layer (`building-3d`); it is reused and faded in. If a style
+ * has none, an equivalent layer is added below the first symbol layer.
+ */
 export class BuildingsLayer {
-  static readonly ID = 'na-buildings';
+  static readonly OWN_ID = 'na-buildings';
+  private readonly id: string;
+  private readonly own: boolean;
+  private readonly shownOpacity: number;
 
   constructor(private readonly map: MapLibreMap) {
-    if (map.getLayer(BuildingsLayer.ID)) return;
+    const existing = map.getLayer('building-3d');
+    this.own = !existing;
+    this.id = existing ? 'building-3d' : BuildingsLayer.OWN_ID;
+    if (existing) {
+      const current = map.getPaintProperty('building-3d', 'fill-extrusion-opacity');
+      this.shownOpacity = typeof current === 'number' ? current : 0.8;
+      map.setPaintProperty(
+        'building-3d',
+        'fill-extrusion-opacity-transition' as never,
+        {
+          duration: 900,
+          delay: 0,
+        } as never,
+      );
+      map.setPaintProperty('building-3d', 'fill-extrusion-opacity', 0);
+      return;
+    }
+    this.shownOpacity = 0.85;
+    if (map.getLayer(BuildingsLayer.OWN_ID)) return;
     map.addLayer(
       {
-        id: BuildingsLayer.ID,
+        id: BuildingsLayer.OWN_ID,
         type: 'fill-extrusion',
         source: 'openmaptiles',
         'source-layer': 'building',
         minzoom: 14,
         filter: ['!=', ['get', 'hide_3d'], true] as never, // parts of buildings drawn elsewhere
         paint: {
-          'fill-extrusion-color': '#2A3446',
+          'fill-extrusion-color': '#DADCE0',
           'fill-extrusion-height': ['coalesce', ['get', 'render_height'], 0] as never,
           'fill-extrusion-base': ['coalesce', ['get', 'render_min_height'], 0] as never,
           'fill-extrusion-opacity': 0,
@@ -226,11 +251,13 @@ export class BuildingsLayer {
 
   /** Fades the buildings in or out with the native paint transition (constant opacity, not data driven). */
   setVisible(visible: boolean) {
-    if (this.map.getLayer(BuildingsLayer.ID))
-      this.map.setPaintProperty(BuildingsLayer.ID, 'fill-extrusion-opacity', visible ? 0.82 : 0);
+    if (this.map.getLayer(this.id))
+      this.map.setPaintProperty(this.id, 'fill-extrusion-opacity', visible ? this.shownOpacity : 0);
   }
 
   destroy() {
-    if (this.map.getLayer(BuildingsLayer.ID)) this.map.removeLayer(BuildingsLayer.ID);
+    if (this.own && this.map.getLayer(this.id)) this.map.removeLayer(this.id);
+    else if (!this.own && this.map.getLayer(this.id))
+      this.map.setPaintProperty(this.id, 'fill-extrusion-opacity', this.shownOpacity);
   }
 }

@@ -66,3 +66,16 @@ The results page now puts the map above the fold. Lighthouse (mobile, 4x CPU thr
 performance 43-50 there (home 94, planner 88; accessibility 100 on all three). A CPU profile shows the time is native
 rendering and MapLibre; the application's own scripting is about 100 ms. With a GPU the scenes run at about 177-180 fps
 (`apps/blizu/data/evidence/2026-11-05_blizu_fps_gpu.json`).
+
+## Revision (2026-11-05, after review): light, Google-Maps-like look
+
+The first version was dark with a cyan/violet accent. After review the UI was switched to a light, professional look
+close to Google Maps (palette: white surfaces, `#F8F9FA` canvas, text `#202124`, muted `#5F6368`, blue `#1967D2`,
+green far-end `#188038`, red pin and sites `#D93025`; 8 px radii, flat blue buttons, hairline borders, the Google
+elevation shadow; no gradients, glows or purple). The base map is now OpenFreeMap `liberty`
+(`2026-11-05_openfreemap_liberty_style*.json`, HTTP 200, 111 layers), which already contains the `building-3d`
+extrusion layer, so the 3D scene fades that layer in instead of adding its own (our own layer remains as a fallback
+for styles without one). The walking-time ramp is now blue near the address and green far away, the moving front is
+orange; the planner ramp is a five-step blue scale. Animations, API contracts and behaviour are unchanged; the contrast
+script checks the new palette (55 pairs). The sidebar of the results page is 540 px (planner 630 px), narrowing
+proportionally on small windows. The "dark" sections above describe the first version.

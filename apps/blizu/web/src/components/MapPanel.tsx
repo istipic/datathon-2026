@@ -8,8 +8,8 @@ import type { CategoryId } from '../lib/types';
 import { CategoryIcon } from './CategoryIcon';
 import { Icon } from './ui';
 
-/** OpenFreeMap dark style (verified 2026-11-05, see apps/blizu/data/evidence). */
-export const DARK_STYLE_URL = 'https://tiles.openfreemap.org/styles/dark';
+/** OpenFreeMap "liberty" style: light, Google-Maps-like colours (verified 2026-11-05, see apps/blizu/data/evidence). */
+export const BASE_STYLE_URL = 'https://tiles.openfreemap.org/styles/liberty';
 
 export interface MapPlace {
   category: CategoryId;
@@ -65,7 +65,7 @@ function pinElement(label: string): HTMLElement {
   svg.setAttribute('viewBox', '0 0 34 44');
   svg.setAttribute('aria-hidden', 'true');
   svg.innerHTML =
-    '<path d="M17 1C8.7 1 2 7.5 2 15.7 2 26.5 17 43 17 43s15-16.5 15-27.3C32 7.5 25.3 1 17 1z" fill="#22D3EE" stroke="#07090D" stroke-width="2"/><circle cx="17" cy="16" r="5.500" fill="#07090D"/>';
+    '<path d="M17 1C8.7 1 2 7.5 2 15.7 2 26.5 17 43 17 43s15-16.5 15-27.3C32 7.5 25.3 1 17 1z" fill="#EA4335" stroke="#B31412" stroke-width="1.5"/><circle cx="17" cy="16" r="5.500" fill="#fff"/>';
   el.append(svg);
   return el;
 }
@@ -167,7 +167,7 @@ export function MapPanel({
     <>
       <MapView
         ariaLabel="Karta s adresom i najbližim objektima"
-        styleUrl={DARK_STYLE_URL}
+        styleUrl={BASE_STYLE_URL}
         center={[origin.lon, origin.lat]}
         zoom={14}
         navigationControl={false}
