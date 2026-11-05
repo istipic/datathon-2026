@@ -228,6 +228,7 @@ class Planner:
                 }
             )
         denom = total_people if total_people > 0 else 1.0
+        cells = self._cell_changes(state, already, covered)
         return {
             "category": category,
             "persona": persona,
@@ -240,4 +241,45 @@ class Planner:
             "share_before": before / denom,
             "share_after": (before + newly_total) / denom,
             "candidates": int(len(self.candidates)),
+            "cells": cells,
         }
+
+    def _cell_changes(
+        self, state: dict[str, Any], already: np.ndarray, covered: np.ndarray
+    ) -> list[dict[str, Any]]:
+        """Per-cell values before and after the chosen sites, from the optimiser's node coverage.
+
+        ``unmet_before`` / ``unmet_after``: people of the target group in the cell whose nearest
+        facility is farther than ``good_min`` walking minutes (nodes not ``already`` covered /
+        not ``covered`` after the sites). Summed over cells, ``before - after`` is exactly the
+        people newly covered, i.e. ``total_newly_covered`` (up to rounding).
+
+        ``need_before`` / ``need_after``: the same in the units of ``/plan/need``'s ``unmet``
+        (``P * (1 - s)``): ``need_before`` equals that value, ``need_after`` subtracts the demand
+        of the newly covered nodes of the cell (the optimiser's objective).
+        """
+        store = self.store
+        node_cell = store.node_cell
+        valid = node_cell >= 0
+        n_cells = len(store.cells)
+
+        def per_cell(mask: np.ndarray, weights: np.ndarray) -> np.ndarray:
+            use = valid & mask
+            return np.bincount(node_cell[use], weights=weights[use], minlength=n_cells)
+
+        people = state["people"]
+        people_before = per_cell(~already, people)
+        people_after = np.minimum(per_cell(~covered, people), people_before)
+        need_before = state["unmet_cell"]
+        need_after = np.maximum(need_before - per_cell(covered & ~already, state["demand"]), 0.0)
+        grd_ids = store.cells["grd_id"].tolist()
+        return [
+            {
+                "cell_id": grd_ids[i],
+                "unmet_before": round(float(people_before[i]), 3),
+                "unmet_after": round(float(min(people_after[i], people_before[i])), 3),
+                "need_before": round(float(need_before[i]), 3),
+                "need_after": round(float(min(need_after[i], need_before[i])), 3),
+            }
+            for i in range(n_cells)
+        ]

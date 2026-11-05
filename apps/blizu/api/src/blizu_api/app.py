@@ -15,6 +15,7 @@ from blizu_api.planner import Planner
 from blizu_api.search import CategorySearch
 from blizu_api.settings import BlizuSettings
 from blizu_api.store import DataStore
+from blizu_api.walk_service import WalkService
 from opendata_core.app_factory import create_app
 
 log = structlog.get_logger(__name__)
@@ -31,6 +32,7 @@ def create_blizu_app(
     async def lifespan(app: FastAPI) -> AsyncIterator[None]:
         app.state.store = None
         app.state.planner = None
+        app.state.walk = None
         app.state.search = CategorySearch(use_semantic=settings.semantic_search)
         try:
             store = store_loader()
@@ -41,6 +43,7 @@ def create_blizu_app(
         else:
             app.state.store = store
             app.state.planner = Planner(store)
+            app.state.walk = WalkService(store)
             log.info("blizu_ready", candidates=len(app.state.planner.candidates))
             if settings.semantic_search:
                 # load the (optional) semantic model in the background: the first /search is fast

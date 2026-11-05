@@ -4,26 +4,18 @@ the real facilities/cells/source metadata of the same area (recorded 2026-11-03)
 from __future__ import annotations
 
 import json
-from collections.abc import Iterator
 from pathlib import Path
 
 import pytest
 import respx
-import sqlalchemy as sa
 from conftest import TRG, build_store
 from fastapi.testclient import TestClient
-from sqlalchemy.orm import Session
-from sqlalchemy.pool import StaticPool
 
-import opendata_core.db as core_db
-import opendata_core.geocode  # noqa: F401  (registers geocode_cache)
 from blizu_api import service
-from blizu_api.app import create_blizu_app
 from blizu_api.constants import CATEGORIES
 from blizu_api.ingest.graph import GraphData
 from blizu_api.planner import Planner
 from blizu_api.scoring import minutes, renormalised_index
-from blizu_api.settings import BlizuSettings
 from blizu_api.store import DataStore, check_access_consistency
 
 LAT, LON = TRG
@@ -208,41 +200,7 @@ def test_need_and_optimise_share_the_same_definition(planner: Planner) -> None:
 
 
 # ---------------------------------------------------------------------------------- HTTP API
-@pytest.fixture
-def client_factory():  # type: ignore[no-untyped-def]
-    """Build a TestClient around any store loader (real store or a failing one)."""
-
-    def make(loader):  # type: ignore[no-untyped-def]
-        engine = sa.create_engine(
-            "sqlite://", connect_args={"check_same_thread": False}, poolclass=StaticPool
-        )
-        wanted = {"geocode_cache", "data_source", "ingestion_run"}
-        tables = [t for name, t in core_db.Base.metadata.tables.items() if name in wanted]
-        core_db.Base.metadata.create_all(engine, tables=tables)
-
-        def get_session() -> Iterator[Session]:
-            with Session(engine) as s:
-                yield s
-
-        settings = BlizuSettings(  # type: ignore[call-arg]
-            _env_file=None,
-            contact_email="test@example.org",
-            rate_limit="1000/minute",
-            semantic_search=False,  # tests stay offline and deterministic
-        )
-        return TestClient(
-            create_blizu_app(settings, get_session, loader), raise_server_exceptions=False
-        )
-
-    return make
-
-
-@pytest.fixture
-def client(store: DataStore, client_factory) -> Iterator[TestClient]:  # type: ignore[no-untyped-def]
-    with client_factory(lambda: store) as c:
-        yield c
-
-
+# (the `client_factory` and `client` fixtures live in conftest.py)
 def test_api_access_contract(client: TestClient) -> None:
     r = client.get("/api/v1/access", params={"lat": LAT, "lon": LON, "persona": "opce"})
     assert r.status_code == 200

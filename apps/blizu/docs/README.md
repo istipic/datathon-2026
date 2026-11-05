@@ -96,22 +96,77 @@ nedostupan Overpass: **466 s (7,8 min)**, izlaz 0, sedam izvora s uspješnim `in
 
 ## API (`/api/v1`)
 
-| Ruta                                 | Opis                                                                                                |
-| ------------------------------------ | --------------------------------------------------------------------------------------------------- |
-| `GET /geocode?q=`                    | Nominatim (ograničen na Zagreb), 1 zahtjev/s, cache 30 dana; vraća `title`, `label`, koordinate     |
-| `GET /access?lat&lon&persona`        | indeks, ocjena, pouzdanost, 9 kategorija (minute, ocjena, težina, najbliži objekt, razina, starost) |
-| `GET /compare?a=lat,lon&b=…`         | dvije adrese, razlike po kategorijama                                                               |
-| `GET /facilities?category&bbox`      | GeoJSON (najviše 2000 značajki)                                                                     |
-| `GET /plan/need?category&persona`    | GeoJSON ćelija (`pop_group`, `mean_minutes`, `unmet`) + sažetak i kvantilni pragovi                 |
-| `POST /plan/optimise`                | `{category, persona, k: 1..5}` → lokacije, `+N osoba`, udio prije/poslije                           |
-| `GET /search?q=`                     | top 3 kategorije (semantički `multilingual-e5-small`; inače ključne riječi); `method` u odgovoru    |
-| `GET /kindergartens/free-places`     | slobodna mjesta spojena s registrom; nespojeni redovi posebno                                       |
-| `GET /scoring`                       | `scoring.yaml` (verzionirana konfiguracija bodovanja)                                               |
-| `GET /health`, `GET /api/v1/sources` | iz jezgre; izvori s datumom dohvaćanja i starošću podataka                                          |
+| Ruta                                                        | Opis                                                                                                             |
+| ----------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| `GET /geocode?q=`                                           | Nominatim (ograničen na Zagreb), 1 zahtjev/s, cache 30 dana; vraća `title`, `label`, koordinate                  |
+| `GET /access?lat&lon&persona`                               | indeks, ocjena, pouzdanost, 9 kategorija (minute, ocjena, težina, najbliži objekt, razina, starost)              |
+| `GET /compare?a=lat,lon&b=…`                                | dvije adrese, razlike po kategorijama                                                                            |
+| `GET /facilities?category&bbox`                             | GeoJSON (najviše 2000 značajki)                                                                                  |
+| `GET /plan/need?category&persona`                           | GeoJSON ćelija (`pop_group`, `mean_minutes`, `unmet`) + sažetak i kvantilni pragovi                              |
+| `GET /isochrone?lat&lon&persona&max_min=15`                 | ulice u dosegu pješice po vremenskim kantama od 15 s, objekti u dosegu i brojevi 5/10/15/20 min (`max_min` 5–20) |
+| `GET /route?lat&lon&persona&category` (ili `&facility_id=`) | najkraći pješački put do najbližeg objekta kategorije: `minutes`, `distance_m`, `facility`, `coordinates`        |
+| `POST /plan/optimise`                                       | `{category, persona, k: 1..5}` → lokacije, `+N osoba`, udio prije/poslije, `cells` (po ćeliji prije/poslije)     |
+| `GET /search?q=`                                            | top 3 kategorije (semantički `multilingual-e5-small`; inače ključne riječi); `method` u odgovoru                 |
+| `GET /kindergartens/free-places`                            | slobodna mjesta spojena s registrom; nespojeni redovi posebno                                                    |
+| `GET /scoring`                                              | `scoring.yaml` (verzionirana konfiguracija bodovanja)                                                            |
+| `GET /health`, `GET /api/v1/sources`                        | iz jezgre; izvori s datumom dohvaćanja i starošću podataka                                                       |
 
 Greške su `application/problem+json`. Adresa izvan Grada Zagreba ili dalja od 300 m od pješačke mreže → 422.
 Granica „60/min po IP-u” iz jezgre je podesiva (`RATE_LIMIT`; produkcijski `docker-compose.prod.yml` koristi 300/min).
 Ako podaci još nisu učitani, API radi i vraća 503 „Podaci se još učitavaju.”.
+
+### Ugovori za animaciju karte (v2)
+
+Tri odgovora daju karti samo stvarne brojeve (isti graf, ista snimka objekata i isti `snap` kao `/access`).
+Snimljeni odgovori za Trg bana Jelačića su u `web/src/__fixtures__/2026-11-05_*.json`; OpenAPI (`/openapi.json`)
+opisuje parametre i oblik odgovora.
+
+**`GET /isochrone?lat&lon&persona&max_min=15`** (`max_min` cijeli broj 5–20). Jedan Dijkstra
+(`scipy.sparse.csgraph.dijkstra`, `limit = max_min·60·brzina − udaljenost_snapa`) na grafu persone (kolica: graf bez
+stepenica). Vrijeme čvora je `(udaljenost snapa + mrežna udaljenost) / brzina`, dakle isto kao u `/access`. Brid (u, v)
+ulazi u kantu `ceil(min(t_u, t_v) / 0,25) · 0,25` i crta se kao ravna dužina između čvorova (graf pamti jedan brid po
+paru čvorova); bridovi čiji je dalji kraj izvan granice se izostavljaju; koordinate imaju 5 decimala; najmanja kanta je
+0,25 pa je kanti najviše `4·max_min` (≤ 80).
+
+```json
+{
+  "origin": {"lon": 15.9772, "lat": 45.8131, "snapped_m": 8.9},
+  "persona": "starija", "speed_mps": 0.9, "max_min": 15, "bucket_min": 0.25,
+  "buckets": {"type": "FeatureCollection", "features": [
+    {"type": "Feature", "properties": {"t": 0.25}, "geometry": {"type": "MultiLineString", "coordinates": [[[lon, lat], [lon, lat]], ...]}}
+  ]},
+  "facilities": [{"id": 7527, "category": "ljekarna", "name": "…", "t": 1.4, "lon": 15.97785, "lat": 45.81362}],
+  "counts": {"5": {"ljekarna": 2}, "10": {"ljekarna": 4, "skola": 1}, "15": {}}
+}
+```
+
+- `facilities[].id` je **cijeli broj** (isti id kao u `/facilities`); `t` su minute hoda zaokružene na 0,1 kao `minutes` u
+  `/access` (park se doseže preko najbližeg pristupnog čvora). Popis uključuje sve objekte svih kategorija s `t ≤ max_min`,
+  poredane po `t`. Objekti se na čvorove vežu istom funkcijom i udaljenošću (≤ 200 m) kao polja `access_*.npz`.
+- `counts` je kumulativan po kategoriji za pragove 5/10/15/20 koji su ≤ `max_min`; kategorije bez objekata u dosegu
+  se izostavljaju (`{}` znači „ništa u dosegu”). Najbliži objekt kategorije ima `t` jednak minutama iz `/access` (±0,1;
+  provjereno na 221 paru adresa × kategorija iz stvarnih podataka bez razlike).
+- Odgovor se sprema u LRU (64 izokrone, ključ = (lat, lon na 5 decimala, persona, `max_min`)) kao već serijalizirani
+  JSON, pa je topli odgovor ≈ 4 ms. Izmjereno na stvarnom grafu (344 tis. čvorova): hladno 35–200 ms, najveći odgovor
+  284 kB (opće, 20 min, centar), 89 kB za starije 15 min.
+
+**`GET /route?lat&lon&persona&category`** (ili `&facility_id=`). Najbliži objekt kategorije (ili zadani objekt) i put
+po Dijkstrinim prethodnicima, uz isti limit od 4 km kao `/access`. Odgovor: `persona`, `category`, `speed_mps`, `origin`,
+`minutes` i `distance_m` (**jednaki** kao u `/access`, uključuju udaljenost snapa), `facility`
+(`id`, `category`, `name`, `address`, `lon`, `lat`, `source_id`, `tier`) i `coordinates` (`[lon, lat]` čvorova puta, od
+čvora adrese do pristupnog čvora objekta; kad su isti čvor, točka se ponavlja da LineString ostane valjan).
+
+**`POST /plan/optimise` → `cells`**. Uz `sites`, `share_before/after` i `total_newly_covered` odgovor sadrži za svaku 1 km
+ćeliju `{cell_id, unmet_before, unmet_after, need_before, need_after}`, računato istom čvornom pokrivenošću kakvu koristi
+optimizator. `unmet_*` su **ljudi** ciljne skupine u ćeliji čiji je najbliži objekt dalji od `good_min` minuta hoda
+(prije / nakon predloženih lokacija): zbroj `unmet_before − unmet_after` je `total_newly_covered` (±1), a svaka
+`unmet_after ≤ unmet_before`. `need_*` su isto u jedinicama `unmet` iz `/plan/need` (`P·(1 − s)`): `need_before` je jednak toj
+vrijednosti, a `need_after` oduzima potražnju novopokrivenih čvorova ćelije.
+
+**Greške:** `422` (`application/problem+json`) za adresu izvan Grada Zagreba, dalju od 300 m od mreže, `max_min`
+izvan 5–20, nepoznatu personu/kategoriju te `/route` bez `category` i `facility_id` ili s `facility_id` druge
+kategorije; `404` za `/route` kad objekt ne postoji, kategorija nema podataka ili je najbliži objekt dalje od 4 km;
+`503` dok se podaci učitavaju.
 
 ## Bodovanje
 
@@ -131,7 +186,7 @@ jednako na čvorove ćelije; čvor je pokriven ako je nova ustanova unutar `g ·
 ## Testovi
 
 ```bash
-uv run pytest apps/blizu/api                        # 190+ testova, bez mreže (stvarni fixturi)
+uv run pytest apps/blizu/api                        # 240+ testova, bez mreže (stvarni fixturi)
 TEST_DATABASE_URL=… uv run pytest apps/blizu/api    # + testovi koji trebaju PostGIS
 uv run --package blizu-api --extra semantic pytest -m slow apps/blizu/api   # pravi e5 model
 pnpm --filter blizu-web test                        # 38 vitest testova (+ 7 Playwright)

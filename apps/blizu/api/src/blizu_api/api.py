@@ -5,17 +5,20 @@ from __future__ import annotations
 from collections.abc import Callable
 from typing import Annotated, Any, Literal
 
-from fastapi import APIRouter, Depends, HTTPException, Query, Request
+from fastapi import APIRouter, Depends, HTTPException, Query, Request, Response
 from pydantic import BaseModel, Field
 from sqlalchemy.orm import Session
 
 from blizu_api import service
 from blizu_api.constants import ZAGREB_VIEWBOX
+from blizu_api.isochrone import MAX_MAX_MIN, MIN_MAX_MIN
 from blizu_api.names import fuzzy_join
 from blizu_api.planner import Planner
 from blizu_api.search import CategorySearch
 from blizu_api.settings import BlizuSettings
 from blizu_api.store import DataStore, clean
+from blizu_api.walk import InvalidRequestError, NotReachableError
+from blizu_api.walk_service import WalkService
 from opendata_core import geocode as core_geocode
 from opendata_core.geo import in_croatia
 
@@ -79,6 +82,83 @@ def get_planner(request: Request) -> Planner:
     if planner is None:
         raise HTTPException(503, "Podaci se još učitavaju.")
     return planner  # type: ignore[no-any-return]
+
+
+def get_walk(request: Request) -> WalkService:
+    """Dependency: the cached isochrone / route service (built with the store)."""
+    walk = getattr(request.app.state, "walk", None)
+    if walk is None:
+        raise HTTPException(503, "Podaci se još učitavaju.")
+    return walk  # type: ignore[no-any-return]
+
+
+def origin_problem(exc: Exception) -> HTTPException | None:
+    """422 for an address outside Zagreb / far from the network (same texts as ``/access``)."""
+    if isinstance(exc, service.OutsideZagrebError):
+        return HTTPException(422, str(exc))
+    if isinstance(exc, service.FarFromNetworkError):
+        return HTTPException(
+            422, f"Adresa daleko od pješačke mreže ({round(exc.snapped_m)} m od najbliže staze)."
+        )
+    return None
+
+
+class OriginModel(BaseModel):
+    """The requested point and its distance to the nearest graph node."""
+
+    lon: float
+    lat: float
+    snapped_m: float = Field(description="distance to the snapped network node (m)")
+
+
+class IsochroneFacility(BaseModel):
+    id: int = Field(description="facility id (integer, as in /facilities)")
+    category: Category
+    name: str
+    t: float = Field(description="walking minutes incl. the snap distance (same as /access)")
+    lon: float
+    lat: float
+
+
+class IsochroneResponse(BaseModel):
+    """Streets reachable on foot grouped by time bucket (``t`` = bucket end, minutes)."""
+
+    origin: OriginModel
+    persona: Persona
+    speed_mps: float
+    max_min: int
+    bucket_min: float
+    buckets: dict[str, Any] = Field(
+        description="GeoJSON FeatureCollection; one MultiLineString per bucket, properties.t"
+    )
+    facilities: list[IsochroneFacility]
+    counts: dict[str, dict[str, int]] = Field(
+        description='cumulative facilities per category within "5"/"10"/"15"/"20" min'
+    )
+
+
+class RouteFacility(BaseModel):
+    id: int
+    category: Category
+    name: str
+    address: str | None
+    lon: float
+    lat: float
+    source_id: str
+    tier: str
+
+
+class RouteResponse(BaseModel):
+    """Shortest walking route to the nearest facility of a category (or to ``facility_id``)."""
+
+    persona: Persona
+    category: Category
+    speed_mps: float
+    origin: OriginModel
+    minutes: float = Field(description="equals /access minutes for the same category")
+    distance_m: int
+    facility: RouteFacility
+    coordinates: list[list[float]] = Field(description="[lon, lat] of the path's graph nodes")
 
 
 def geocode_title(result: dict[str, Any]) -> str:
@@ -226,6 +306,69 @@ def make_router(get_session: Callable[..., Any], settings: BlizuSettings) -> API
                 f"Adresa daleko od pješačke mreže ({round(exc.snapped_m)} m od najbliže staze).",
             ) from exc
 
+    @router.get(
+        "/isochrone",
+        response_model=None,
+        responses={200: {"model": IsochroneResponse}},
+    )
+    def isochrone(
+        lat: Lat,
+        lon: Lon,
+        persona: Persona,
+        max_min: Annotated[
+            int,
+            Query(
+                ge=MIN_MAX_MIN,
+                le=MAX_MAX_MIN,
+                description="walking minutes to cover (5-20); also the Dijkstra limit",
+            ),
+        ] = 15,
+        walk: WalkService = Depends(get_walk),  # noqa: B008
+    ) -> Response:
+        """Walkable streets within ``max_min`` minutes, grouped into 15-second time buckets.
+
+        One Dijkstra on the persona's graph. Edge (u, v) goes to bucket
+        ``ceil(min(t_u, t_v) / 0.25) * 0.25`` and is drawn as a straight segment; edges whose far
+        end is beyond the limit are dropped; coordinates have 5 decimals. ``facilities`` and the
+        cumulative ``counts`` (5/10/15/20 min) come from the same distances and match ``/access``
+        (the origin's snap distance is included). Cached per (lat, lon at 5 decimals, persona,
+        max_min). 422 outside Zagreb or more than 300 m from the network.
+        """
+        try:
+            body = walk.isochrone(lat, lon, persona, max_min)
+        except (service.OutsideZagrebError, service.FarFromNetworkError) as exc:
+            raise origin_problem(exc) or exc from exc
+        return Response(content=body, media_type="application/json")
+
+    @router.get("/route", response_model=None, responses={200: {"model": RouteResponse}})
+    def route(
+        lat: Lat,
+        lon: Lon,
+        persona: Persona,
+        category: Category | None = None,
+        facility_id: Annotated[
+            int | None, Query(ge=0, description="route to this facility instead of the nearest")
+        ] = None,
+        walk: WalkService = Depends(get_walk),  # noqa: B008
+    ) -> Response:
+        """Shortest walking path to the nearest facility of ``category`` (or to ``facility_id``).
+
+        ``minutes`` and ``distance_m`` equal the values of ``/access`` for the same address,
+        persona and category. ``coordinates`` are the ``[lon, lat]`` of the path's graph nodes,
+        from the address's snapped node to the facility's access node (5 decimals). 422 for an
+        address outside Zagreb / far from the network or when neither ``category`` nor
+        ``facility_id`` is given; 404 when the facility does not exist or nothing is within 4 km.
+        """
+        try:
+            body = walk.route(lat, lon, persona, category, facility_id)
+        except (service.OutsideZagrebError, service.FarFromNetworkError) as exc:
+            raise origin_problem(exc) or exc from exc
+        except InvalidRequestError as exc:
+            raise HTTPException(422, str(exc)) from exc
+        except NotReachableError as exc:
+            raise HTTPException(404, str(exc)) from exc
+        return Response(content=body, media_type="application/json")
+
     @router.get("/scoring")
     def scoring(store: DataStore = Depends(get_store)) -> dict[str, Any]:  # noqa: B008
         """The versioned scoring configuration (scoring.yaml) used by every calculation."""
@@ -322,7 +465,13 @@ def make_router(get_session: Callable[..., Any], settings: BlizuSettings) -> API
         body: OptimiseRequest,
         planner: Planner = Depends(get_planner),  # noqa: B008
     ) -> dict[str, Any]:
-        """Best sites for 1-5 new facilities (greedy maximum coverage on the walking network)."""
+        """Best sites for 1-5 new facilities (greedy maximum coverage on the walking network).
+
+        ``cells`` lists every 1 km cell with ``unmet_before`` / ``unmet_after`` (people of the
+        target group beyond ``good_min`` walking minutes from a facility, before and after the
+        sites; their sum of differences is ``total_newly_covered``) and ``need_before`` /
+        ``need_after`` (same, in the units of ``/plan/need``'s ``unmet``).
+        """
         return planner.optimise(body.category, body.persona, body.k)
 
     return router

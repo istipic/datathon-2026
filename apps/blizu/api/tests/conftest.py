@@ -5,17 +5,26 @@ from __future__ import annotations
 import ast
 import json
 import os
+from collections.abc import Iterator
 from pathlib import Path
 
 import pandas as pd
 import pytest
+import sqlalchemy as sa
+from fastapi.testclient import TestClient
 from shapely.geometry import shape
+from sqlalchemy.orm import Session
+from sqlalchemy.pool import StaticPool
 
+import opendata_core.db as core_db
+import opendata_core.geocode  # noqa: F401  (registers geocode_cache)
+from blizu_api.app import create_blizu_app
 from blizu_api.constants import CATEGORIES, VARIANTS
 from blizu_api.ingest.access import nearest_facility_distances, snap_facilities
 from blizu_api.ingest.graph import GraphData, graph_from_edges
 from blizu_api.ingest.grid import compute_cell_access
 from blizu_api.scoring import load_config
+from blizu_api.settings import BlizuSettings
 from blizu_api.store import DataStore
 
 FIXTURES = Path(__file__).parent / "fixtures"
@@ -107,3 +116,39 @@ def build_store(graph: GraphData, drop_category: str | None = None) -> DataStore
 @pytest.fixture(scope="session")
 def store(subgraph: GraphData) -> DataStore:
     return build_store(subgraph)
+
+
+# ----------------------------------------------------------------------------- HTTP clients
+@pytest.fixture
+def client_factory():  # type: ignore[no-untyped-def]
+    """Build a TestClient around any store loader (real store or a failing one)."""
+
+    def make(loader):  # type: ignore[no-untyped-def]
+        engine = sa.create_engine(
+            "sqlite://", connect_args={"check_same_thread": False}, poolclass=StaticPool
+        )
+        wanted = {"geocode_cache", "data_source", "ingestion_run"}
+        tables = [t for name, t in core_db.Base.metadata.tables.items() if name in wanted]
+        core_db.Base.metadata.create_all(engine, tables=tables)
+
+        def get_session() -> Iterator[Session]:
+            with Session(engine) as s:
+                yield s
+
+        settings = BlizuSettings(  # type: ignore[call-arg]
+            _env_file=None,
+            contact_email="test@example.org",
+            rate_limit="1000/minute",
+            semantic_search=False,  # tests stay offline and deterministic
+        )
+        return TestClient(
+            create_blizu_app(settings, get_session, loader), raise_server_exceptions=False
+        )
+
+    return make
+
+
+@pytest.fixture
+def client(store: DataStore, client_factory) -> Iterator[TestClient]:  # type: ignore[no-untyped-def]
+    with client_factory(lambda: store) as c:
+        yield c

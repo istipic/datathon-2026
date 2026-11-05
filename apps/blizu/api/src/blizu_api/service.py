@@ -46,15 +46,25 @@ def display_name(store: DataStore, category: str, name: str | None) -> str:
     return name or f"{store.cfg.categories[category].label} (naziv nije u izvoru)"
 
 
-def compute_access(
-    store: DataStore, lat: float, lon: float, persona: str, now: datetime | None = None
-) -> dict[str, Any]:
-    """Index, grade, confidence and per-category walking minutes for an address."""
+def resolve_origin(store: DataStore, lat: float, lon: float) -> tuple[int, float]:
+    """Graph node and snap distance (m) of an address; the validation shared by every endpoint.
+
+    Raises :class:`OutsideZagrebError` (outside Grad Zagreb) and :class:`FarFromNetworkError`
+    (> 300 m from the walking network).
+    """
     if not store.inside_boundary(lon, lat):
         raise OutsideZagrebError("Adresa nije unutar Grada Zagreba.")
     node, snapped = store.snap(lon, lat)
     if snapped > ADDRESS_SNAP_MAX_M:
         raise FarFromNetworkError(snapped)
+    return node, snapped
+
+
+def compute_access(
+    store: DataStore, lat: float, lon: float, persona: str, now: datetime | None = None
+) -> dict[str, Any]:
+    """Index, grade, confidence and per-category walking minutes for an address."""
+    node, snapped = resolve_origin(store, lat, lon)
 
     cfg = store.cfg
     p = cfg.personas[persona]
