@@ -1,39 +1,20 @@
 @import '@dt/ui/styles.css';
+@import '@fontsource/roboto/latin-400.css';
+@import '@fontsource/roboto/latin-ext-400.css';
+@import '@fontsource/roboto/latin-500.css';
+@import '@fontsource/roboto/latin-ext-500.css';
+@import '@fontsource/roboto/latin-700.css';
+@import '@fontsource/roboto/latin-ext-700.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /*
- * Blizu "Night Atlas": dark, calm, data-first. Only this file overrides @dt/ui tokens (Otporko and
- * Birokratko keep theirs). The neutral scale is inverted so shared components (ErrorState,
- * DataSourcesPage, chips ...) render correctly on the dark canvas. Contrast of every text/background
+ * Blizu "Night Atlas" (now a light, Google-Maps-like theme). Only this file overrides @dt/ui tokens (Otporko and
+ * Birokratko keep theirs). The neutral scale is mapped so shared components (ErrorState,
+ * DataSourcesPage, chips ...) match. Contrast of every text/background
  * pair is checked by scripts/contrast.mjs (run by src/lib/contrast.test.ts).
  */
-
-/* Inter Variable, self-hosted, latin + latin-ext only (covers č ć š ž đ). ADR 0009. */
-@font-face {
-  font-family: 'Inter Variable';
-  font-style: normal;
-  font-display: swap;
-  font-weight: 100 900;
-  src: url('@fontsource-variable/inter/files/inter-latin-ext-wght-normal.woff2')
-    format('woff2-variations');
-  unicode-range:
-    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
-    U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F,
-    U+A720-A7FF;
-}
-@font-face {
-  font-family: 'Inter Variable';
-  font-style: normal;
-  font-display: swap;
-  font-weight: 100 900;
-  src: url('@fontsource-variable/inter/files/inter-latin-wght-normal.woff2')
-    format('woff2-variations');
-  unicode-range:
-    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
-    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
 
 :root {
   color-scheme: light;
@@ -89,8 +70,8 @@
   --focus-color: 26 115 232;
 
   /* Type */
-  --font-sans: 'Inter Variable', Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --font-mono: 'Inter Variable', Inter, system-ui, sans-serif;
+  --font-sans: Roboto, system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+  --font-mono: Roboto, system-ui, sans-serif;
 
   /* Shape, depth, motion */
   --na-r1: 8px;
@@ -109,9 +90,7 @@
 html {
   background: rgb(var(--na-bg));
   color: rgb(var(--na-text));
-  font-feature-settings:
-    'tnum' 1,
-    'cv11' 1;
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
 }
 body {
@@ -1778,4 +1757,313 @@ button.na-chip[aria-pressed='true'] {
 .na-panel > *,
 .na-panel .blizu-card > * {
   min-width: 0;
+}
+
+/* =====================================================================================================
+   Side panel, second pass: a Google-Maps-like place panel instead of a stack of boxes.
+   Sections separated by hairlines, a flat list of nearby services with the facility name, underline tabs
+   for the persona, one grade chip, Roboto, sentence-case labels.
+   ===================================================================================================== */
+.na-overline {
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+h1,
+h2,
+h3,
+.na-display {
+  letter-spacing: 0;
+}
+.na-panel {
+  padding: 0;
+  gap: 0;
+  font-size: 0.875rem;
+}
+.na-panel > .blizu-noprint:first-of-type {
+  padding: 12px 20px 0;
+}
+.na-place {
+  display: block;
+}
+.na-place > * {
+  padding: 0 20px;
+}
+.na-place__title {
+  margin: 8px 0 0;
+  font-size: 1.375rem;
+  line-height: 1.3;
+  font-weight: 500;
+  color: rgb(var(--na-text));
+}
+.na-place__score {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--na-line);
+}
+.na-place__index {
+  margin: 0;
+  font-size: 2.5rem;
+  line-height: 1;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+.na-place__of {
+  font-size: 1rem;
+  color: rgb(var(--na-muted));
+}
+.na-place__caption {
+  margin: 6px 0 0;
+  font-size: 0.8125rem;
+  color: rgb(var(--na-muted));
+}
+.na-place .dt-chip {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: rgb(var(--na-muted));
+  font-size: 0.8125rem;
+}
+.na-place__notes {
+  margin: 0;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--na-line);
+  font-size: 0.8125rem;
+  color: rgb(var(--na-text));
+}
+.na-place__notes-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 4px;
+  font-weight: 500;
+  color: rgb(var(--warning-fg));
+}
+.na-place__notes ul {
+  margin: 0;
+  padding-left: 22px;
+  color: rgb(var(--na-muted));
+}
+.na-place__section {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+.na-place__h {
+  margin: 8px 0 4px;
+  font-size: 1rem;
+  font-weight: 500;
+}
+.na-place__note {
+  margin: 0;
+  padding-top: 12px;
+  padding-bottom: 20px;
+  border-top: 1px solid var(--na-line);
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: rgb(var(--na-muted));
+}
+.na-panel > .blizu-noprint:last-child {
+  padding: 0 20px 20px;
+}
+
+/* persona: underline tabs, text only */
+.na-seg {
+  display: flex;
+  gap: 0;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid var(--na-line);
+  border-radius: 0;
+  background: none;
+  margin: 0 20px;
+  padding: 0;
+  grid-auto-flow: initial;
+}
+.na-place > .na-seg {
+  padding: 0;
+}
+.na-seg__item {
+  flex: 1;
+  min-height: 44px;
+  flex-direction: row;
+  gap: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.na-seg__item svg {
+  display: none;
+}
+.na-seg__item:hover {
+  background: rgb(60 64 67 / 0.05);
+}
+.na-seg__item[aria-checked='true'] {
+  background: none;
+  box-shadow: none;
+  color: rgb(var(--na-accent));
+  border-bottom-color: rgb(var(--na-accent));
+}
+.na-hero__card .na-seg {
+  margin: 0;
+}
+
+/* grade: one flat square with the letter */
+.na-ring {
+  width: 56px;
+  height: 56px;
+  border: 0;
+  border-radius: 8px;
+  background: rgb(var(--grade, var(--na-grade-c)));
+  color: #fff;
+  font-size: 1.75rem;
+  font-weight: 500;
+  box-shadow: none;
+}
+
+/* nearby services: a flat list */
+.na-rows {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.na-rows > li + li {
+  border-top: 1px solid var(--na-line);
+}
+.na-row {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr) auto 20px;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 56px;
+  padding: 8px 4px;
+  border: 0;
+  border-radius: 8px;
+  background: none;
+  color: rgb(var(--na-text));
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.na-row:hover {
+  background: rgb(60 64 67 / 0.05);
+}
+.na-row[aria-pressed='true'] {
+  background: rgb(var(--na-accent) / 0.08);
+}
+.na-row[disabled] {
+  cursor: default;
+}
+.na-row__icon {
+  color: rgb(var(--na-accent));
+  display: grid;
+  place-items: center;
+}
+.na-row--muted .na-row__icon,
+.na-row--muted .na-tile__label {
+  color: rgb(var(--na-muted));
+}
+.na-row__main {
+  display: grid;
+  min-width: 0;
+}
+.na-row .na-tile__label {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: rgb(var(--na-text));
+}
+.na-row__sub {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.8125rem;
+  color: rgb(var(--na-muted));
+}
+.na-row .na-tile__value {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.na-row .na-tile__unit {
+  font-size: 0.8125rem;
+  font-weight: 400;
+}
+/* the per-category letter is plain coloured text, not a filled badge */
+.na-row .na-tile__grade {
+  position: static;
+  width: auto;
+  height: auto;
+  background: none;
+  color: rgb(var(--grade));
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-align: center;
+}
+.na-rows .na-tile-surface {
+  margin: 4px 4px 12px 40px;
+  border-radius: 8px;
+}
+
+/* print: the place panel must still fit one A4 page */
+@media print {
+  .na-place > * {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .na-place__title {
+    margin: 0;
+    font-size: 15pt;
+  }
+  .na-place__score {
+    padding-top: 6pt;
+    padding-bottom: 6pt;
+  }
+  .na-place__index {
+    font-size: 24pt;
+  }
+  .na-ring {
+    width: 44px !important;
+    height: 44px !important;
+    font-size: 24px !important;
+  }
+  .na-place__notes {
+    padding-top: 4pt;
+    padding-bottom: 4pt;
+  }
+  .na-place__section {
+    padding-top: 2pt;
+    padding-bottom: 2pt;
+  }
+  .na-place__h {
+    margin: 2pt 0;
+  }
+  .na-row {
+    min-height: 0;
+    padding: 2pt 0;
+    gap: 8px;
+  }
+  .na-row__sub {
+    font-size: 8.5pt;
+  }
+  .na-panel > .blizu-noprint:first-of-type,
+  .na-panel > .blizu-noprint:last-child {
+    display: none !important;
+  }
+  .na-place__note {
+    padding: 4pt 0 0;
+    font-size: 8pt;
+  }
 }

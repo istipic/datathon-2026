@@ -170,7 +170,7 @@ kategorije; `404` za `/route` kad objekt ne postoji, kategorija nema podataka il
 
 ## Karta i animacije („Night Atlas”)
 
-Svijetlo sučelje u stilu Google Karata (Inter Variable, tokeni u `web/src/index.css`, provjera kontrasta `web/scripts/contrast.mjs`) i četiri
+Svijetlo sučelje u stilu Google Karata (Roboto, tokeni u `web/src/index.css`, provjera kontrasta `web/scripts/contrast.mjs`) i četiri
 scene na karti. Sve brojke dolaze iz API-ja (`/isochrone`, `/route`, `/plan/optimise`), ukrasno kretanje ne nosi podatke.
 
 | Scena                                      | Gdje                        | Što se događa                                                                                                                                                 | Podaci                                           |

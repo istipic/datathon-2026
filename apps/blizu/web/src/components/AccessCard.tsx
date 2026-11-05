@@ -7,6 +7,7 @@ import { PERSONA_LABEL } from '../lib/labels';
 import type { AccessResult, CategoryId, CategoryResult, PersonaId } from '../lib/types';
 import { CategoryDetail, CategoryRow } from './CategoryRow';
 import { GradeBadge } from './GradeBadge';
+import { Icon } from './ui';
 import { PersonaControl } from './PersonaControl';
 
 interface Props {
@@ -39,7 +40,6 @@ export function AccessCard({
   const scoring = useScoring();
   const [localSelected, setLocalSelected] = useState<CategoryId | null>(null);
   const selectedId = selectedCategory === undefined ? localSelected : selectedCategory;
-  const selected = result.categories.find((c) => c.category === selectedId);
   const usedSources = [
     ...new Set(
       result.categories.map((c) => c.nearest?.source_id).filter((s): s is string => Boolean(s)),
@@ -50,46 +50,40 @@ export function AccessCard({
     <article
       aria-labelledby="card-title"
       aria-busy={busy ? 'true' : 'false'}
-      className="blizu-card grid gap-4"
+      className="blizu-card na-place"
     >
       <h1
         id="card-title"
-        className={hideTitle ? 'dt-sr-only' : 'text-xl'}
-        style={{ margin: 0, overflowWrap: 'anywhere' }}
+        className={hideTitle ? 'dt-sr-only' : 'na-place__title'}
+        style={{ overflowWrap: 'anywhere' }}
       >
         {title}
       </h1>
 
-      <section className="na-tile-surface flex items-center gap-4 p-4" aria-label="Ukupna ocjena">
-        <GradeBadge grade={result.grade} size={compact ? 76 : 84} />
+      <section className="na-place__score" aria-label="Ukupna ocjena">
         <div className="min-w-0">
-          <p className="na-overline">Dostupnost usluga</p>
-          <p
-            className="dt-num mt-1 text-3xl font-bold leading-none tracking-tight"
-            data-testid="index"
-          >
+          <p className="na-place__index dt-num" data-testid="index">
             {result.index ?? '–'}
-            <span className="na-muted text-base font-medium"> / 100</span>
+            <span className="na-place__of"> / 100</span>
           </p>
-          <p className="na-muted mt-1 text-xs">Blizu indeks · {PERSONA_LABEL[persona]}</p>
+          <p className="na-place__caption">Dostupnost usluga pješice · {PERSONA_LABEL[persona]}</p>
           {result.confidence ? (
-            <div className="mt-2">
+            <div className="mt-1">
               <ConfidenceBadge level={result.confidence.label} />
             </div>
           ) : null}
         </div>
+        <GradeBadge grade={result.grade} size={compact ? 56 : 64} />
       </section>
 
       {onPersona ? <PersonaControl value={persona} onChange={onPersona} compact /> : null}
 
       {result.warnings.length > 0 ? (
-        <div
-          role="status"
-          aria-live="polite"
-          className="rounded-xl border border-warning-border/40 bg-warning-bg p-3 text-sm text-warning-fg"
-        >
-          <p className="mb-1 font-semibold">Napomene</p>
-          <ul className="list-disc pl-5">
+        <div role="status" aria-live="polite" className="na-place__notes">
+          <p className="na-place__notes-title">
+            <Icon name="alert" size={16} /> Napomene
+          </p>
+          <ul>
             {result.warnings.map((w) => (
               <li key={w}>{w}</li>
             ))}
@@ -97,33 +91,34 @@ export function AccessCard({
         </div>
       ) : null}
 
-      <ul
-        className="m-0 grid list-none grid-cols-3 gap-2 p-0"
-        aria-label="Kategorije usluga"
-        data-testid="category-grid"
-      >
-        {result.categories.map((c) => (
-          <CategoryRow
-            key={c.category}
-            result={c}
-            grade={gradeOfScore(c.score, scoring.data?.grades)}
-            selected={c.category === selectedId}
-            onSelect={(r) => {
-              setLocalSelected(r.category);
-              onSelectCategory?.(r);
-            }}
-          />
-        ))}
-      </ul>
+      <section aria-labelledby="near-title" className="na-place__section">
+        <h2 id="near-title" className="na-place__h">
+          Najbliže usluge
+        </h2>
+        <ul className="na-rows" aria-label="Kategorije usluga" data-testid="category-grid">
+          {result.categories.map((c) => (
+            <CategoryRow
+              key={c.category}
+              result={c}
+              grade={gradeOfScore(c.score, scoring.data?.grades)}
+              selected={c.category === selectedId}
+              onSelect={(r) => {
+                setLocalSelected(r.category);
+                onSelectCategory?.(r);
+              }}
+            >
+              {c.category === selectedId ? (
+                <CategoryDetail
+                  result={c}
+                  source={c.nearest ? byId.get(c.nearest.source_id) : undefined}
+                />
+              ) : null}
+            </CategoryRow>
+          ))}
+        </ul>
+      </section>
 
-      {selected ? (
-        <CategoryDetail
-          result={selected}
-          source={selected.nearest ? byId.get(selected.nearest.source_id) : undefined}
-        />
-      ) : null}
-
-      <p className="na-muted text-xs leading-relaxed" data-testid="data-note">
+      <p className="na-place__note" data-testid="data-note">
         Vrijeme hoda računa se po pješačkoj mreži OpenStreetMapa (© OpenStreetMap contributors), a
         adresa je udaljena {Math.round(result.snapped_distance_m)} m od najbliže staze. Izračunato:{' '}
         {formatDateTimeHr(result.computed_at)}.{' '}

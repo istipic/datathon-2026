@@ -79,3 +79,14 @@ for styles without one). The walking-time ramp is now blue near the address and 
 orange; the planner ramp is a five-step blue scale. Animations, API contracts and behaviour are unchanged; the contrast
 script checks the new palette (55 pairs). The sidebar of the results page is 540 px (planner 630 px), narrowing
 proportionally on small windows. The "dark" sections above describe the first version.
+
+## Revision 2 (2026-11-05): Roboto instead of Inter, place-panel layout
+
+Decision 1 above (Inter) is superseded: the font is now **Roboto** (`@fontsource/roboto`, SIL OFL 1.1, weights 400/500/700,
+`latin` + `latin-ext` files only, self-hosted by Vite; covers č ć š ž đ), the typeface Google Maps itself uses.
+`@fontsource-variable/inter` was removed. Reason: after review the panel looked machine-made. Causes found and fixed:
+every element was a rounded box of the same radius and fill; the grade was shown three times (ring, badge, nine
+corner badges); tiny letter-spaced uppercase labels everywhere; a yellow warning box; tiles hid the nearest facility's
+name, which the API already returns. The results panel is now a place panel in the style of Google Maps: sections
+separated by hairlines, underline tabs for the persona, one grade square next to the index, a flat list "Najbliže
+usluge" with the facility name and minutes per row, plain-text warnings. IDs, test hooks and behaviour are unchanged.
