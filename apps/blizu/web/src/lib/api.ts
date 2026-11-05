@@ -4,9 +4,11 @@ import type {
   CompareResult,
   FacilityCollection,
   GeocodeResponse,
+  IsochroneResult,
   NeedCollection,
   OptimiseResult,
   PersonaId,
+  RouteResult,
   ScoringConfigJson,
 } from './types';
 
@@ -69,5 +71,16 @@ export const api = {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ category, persona, k }),
     }),
+  isochrone: (lat: number, lon: number, persona: PersonaId, maxMin = 15, signal?: AbortSignal) =>
+    request<IsochroneResult>(`/isochrone?${qs({ lat, lon, persona, max_min: maxMin })}`, {
+      signal,
+    }),
+  route: (
+    lat: number,
+    lon: number,
+    persona: PersonaId,
+    category: CategoryId,
+    signal?: AbortSignal,
+  ) => request<RouteResult>(`/route?${qs({ lat, lon, persona, category })}`, { signal }),
   scoring: () => request<ScoringConfigJson>('/scoring'),
 };

@@ -1,4 +1,4 @@
-import type { Feature, Point, Polygon } from 'geojson';
+import type { Feature, FeatureCollection, MultiLineString, Point, Polygon } from 'geojson';
 
 /** Types of the Blizu API responses (see apps/blizu/api/src/blizu_api/service.py, planner.py). */
 
@@ -132,6 +132,7 @@ export interface OptimiseResult {
   total_newly_covered: number;
   share_before: number;
   share_after: number;
+  cells: OptimiseCell[];
 }
 
 export interface FacilityCollection {
@@ -172,4 +173,57 @@ export interface ScoringConfigJson {
     freshness: { max_months: number | null; factor: number }[];
     labels: Record<string, number>;
   };
+}
+
+/** `GET /api/v1/isochrone`: streets grouped in 0.25-minute buckets plus the facilities in reach. */
+export interface IsochroneFacility {
+  id: number;
+  category: CategoryId;
+  name: string;
+  t: number;
+  lon: number;
+  lat: number;
+}
+export interface IsochroneResult {
+  origin: { lon: number; lat: number; snapped_m: number };
+  persona: PersonaId;
+  speed_mps: number;
+  max_min: number;
+  bucket_min: number;
+  buckets: FeatureCollection<MultiLineString, { t: number }>;
+  facilities: IsochroneFacility[];
+  /** Cumulative counts per threshold in minutes ("5", "10", ...), categories with zero omitted. */
+  counts: Record<string, Partial<Record<CategoryId, number>>>;
+}
+
+/** `GET /api/v1/route`: shortest walking path to the nearest facility of a category. */
+export interface RouteResult {
+  persona: PersonaId;
+  category: CategoryId;
+  speed_mps: number;
+  origin: { lon: number; lat: number; snapped_m: number };
+  minutes: number;
+  distance_m: number;
+  facility: {
+    id: number;
+    category: CategoryId;
+    name: string;
+    address: string | null;
+    lon: number;
+    lat: number;
+    source_id: string;
+    tier: string;
+  };
+  coordinates: [number, number][];
+}
+
+/** One 1 km cell before/after the suggested sites (`cells` of `POST /plan/optimise`). */
+export interface OptimiseCell {
+  cell_id: string;
+  /** People of the target group beyond the good limit; sums to `total_newly_covered`. */
+  unmet_before: number;
+  unmet_after: number;
+  /** Same units as `/plan/need` `unmet` (the legend thresholds apply to these). */
+  need_before: number;
+  need_after: number;
 }
