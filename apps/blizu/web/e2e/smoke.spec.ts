@@ -11,6 +11,7 @@ test('home -> type address -> pick result -> card shows grade and 9 category row
   const first = page.getByRole('option').first();
   await expect(first).toBeVisible({ timeout: 30_000 }); // debounce 400 ms + live geocode
   await first.click();
+  await page.getByRole('button', { name: 'Provjeri dostupnost' }).click();
 
   await expect(page).toHaveURL(/\/kartica\?lat=.*&lon=.*&persona=opce/);
   const grade = page.locator('[data-grade]').first();
@@ -49,6 +50,10 @@ test('card shows the map with an attribution and a source on demand', async ({ p
   );
   await page.waitForTimeout(3000);
   await expect(page.getByText(/pričuvna OpenStreetMap karta/)).toHaveCount(0);
+  await page
+    .getByRole('button', { name: /Ljekarna/ })
+    .first()
+    .click(); // select the tile: details + source
   await page.getByRole('button', { name: 'Izvor podataka: Ljekarna' }).click();
   await expect(page.getByTestId('source-ljekarna')).toContainText('OpenStreetMap');
 });
@@ -92,7 +97,7 @@ test('compare page shows per-category differences for two addresses', async ({ p
   const table = page.getByRole('table');
   await expect(table.locator('tbody tr')).toHaveCount(9);
   await expect(table).toContainText('dalje'); // B (Novi Zagreb) is farther from most services
-  await expect(page.locator('[data-grade]')).toHaveCount(2);
+  await expect(page.locator('[role="img"][data-grade]')).toHaveCount(2);
 });
 
 test('the card prints on one A4 page without map and navigation', async ({ page }) => {

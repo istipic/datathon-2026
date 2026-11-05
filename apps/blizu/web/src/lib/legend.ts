@@ -1,8 +1,8 @@
 /** Legend helpers for the unmet-need choropleth (no map library imported here). */
 
-/** Sequential 5-class ramp (single hue, light to dark) + "no unmet need". */
-export const NEED_COLORS = ['#CCE7E2', '#8FCFC4', '#4FB0A3', '#1F8579', '#0A5750'];
-export const NO_NEED_COLOR = '#E2E8F0';
+/** Sequential 5-class ramp for the dark map (dim to bright cyan) + "no unmet need". */
+export const NEED_COLORS = ['#16384A', '#1E6A85', '#1F9DBB', '#22D3EE', '#CFFAFE'];
+export const NO_NEED_COLOR = '#1A222D';
 
 /** Grad Zagreb: [west, south], [east, north]. */
 export const ZAGREB_BOUNDS: [[number, number], [number, number]] = [

@@ -1,74 +1,106 @@
 import { FreshnessChip, SourceBadge, type SourceSummary } from '@dt/ui';
 import { useState } from 'react';
 import { TIER_LABEL, formatMinutes } from '../lib/labels';
-import type { CategoryResult } from '../lib/types';
+import type { CategoryResult, Grade } from '../lib/types';
 import { CategoryIcon } from './CategoryIcon';
 
-interface Props {
+interface TileProps {
   result: CategoryResult;
-  source: SourceSummary | undefined;
   onSelect: (result: CategoryResult) => void;
+  /** Letter of the category score on the API's A–E scale (omitted until `/scoring` arrives). */
+  grade?: Grade | null;
+  selected?: boolean;
 }
 
-function minutesText(r: CategoryResult): string {
+export function minutesText(r: CategoryResult): string {
   if (!r.has_data) return 'nema podataka';
   if (r.minutes === null) return '> 50 min';
   return formatMinutes(r.minutes);
 }
 
-/** One category: icon, label, walking minutes (mono), score bar, nearest facility, source on demand. */
-export function CategoryRow({ result, source, onSelect }: Props) {
+/** One category as a tile: icon, label, big tabular minutes and a grade chip; tapping shows it on the map. */
+export function CategoryRow({ result, onSelect, grade, selected }: TileProps) {
+  const irrelevant = result.weight === 0;
+  const text = minutesText(result);
+  const numeric = result.has_data && result.minutes !== null;
+  return (
+    <li className="min-w-0" data-category={result.category}>
+      <button
+        type="button"
+        className="na-tile w-full"
+        onClick={() => onSelect(result)}
+        disabled={!result.nearest}
+        aria-pressed={selected ?? false}
+        style={irrelevant ? { opacity: 0.6 } : undefined}
+      >
+        <span className="na-muted">
+          <CategoryIcon category={result.category} size={20} />
+        </span>
+        <span className="na-tile__label">{result.label}</span>
+        <span className="na-tile__value dt-num" data-testid={`minutes-${result.category}`}>
+          {numeric ? (
+            <>
+              {Math.round(result.minutes ?? 0)} <span className="na-tile__unit">min</span>
+            </>
+          ) : (
+            <span className="text-sm font-medium">{text}</span>
+          )}
+        </span>
+        {grade && numeric ? (
+          <span className="na-tile__grade na-grade" data-grade={grade} aria-hidden="true">
+            {grade}
+          </span>
+        ) : null}
+        {result.nearest ? (
+          <span className="dt-sr-only">{result.nearest.name}. Prikaži na karti.</span>
+        ) : (
+          <span className="dt-sr-only">Nema objekta u dometu od 4 km hoda</span>
+        )}
+        <span className="dt-sr-only">
+          Ocjena {Math.round(result.score * 100)} %
+          {irrelevant ? ' · ne ulazi u indeks za ovu osobu' : ''}
+        </span>
+      </button>
+    </li>
+  );
+}
+
+interface DetailProps {
+  result: CategoryResult;
+  source: SourceSummary | undefined;
+}
+
+/** Details of the selected category: nearest facility, score, weight and the source on demand. */
+export function CategoryDetail({ result, source }: DetailProps) {
   const [open, setOpen] = useState(false);
   const irrelevant = result.weight === 0;
   const percent = Math.round(result.score * 100);
-
   return (
-    <li className="group relative border-b border-neutral-200 py-3" data-category={result.category}>
-      <div className="flex items-start gap-3">
-        <span className="mt-1 text-brand-700">
-          <CategoryIcon category={result.category} />
-        </span>
-        <button
-          type="button"
-          className="min-h-[44px] flex-1 text-left"
-          onClick={() => onSelect(result)}
-          disabled={!result.nearest}
-        >
-          <span className="flex items-baseline justify-between gap-3">
-            <span className="text-base font-medium text-neutral-900">{result.label}</span>
-            <span
-              className="dt-num text-lg font-medium text-neutral-900"
-              data-testid={`minutes-${result.category}`}
-            >
-              {minutesText(result)}
-            </span>
-          </span>
-          <span className="block text-sm text-neutral-600">
+    <div
+      className="na-tile-surface p-3 text-sm"
+      data-testid={`detail-${result.category}`}
+      aria-live="polite"
+    >
+      <div className="flex items-start justify-between gap-3">
+        <div className="min-w-0">
+          <p className="font-semibold">
+            {result.label}
+            <span className="na-muted dt-num"> · {minutesText(result)}</span>
+          </p>
+          <p className="na-muted mt-0.5">
             {result.nearest ? result.nearest.name : 'Nema objekta u dometu od 4 km hoda'}
             {result.nearest?.address ? ` · ${result.nearest.address}` : ''}
-            {result.nearest ? <span className="dt-sr-only"> Prikaži na karti.</span> : null}
-          </span>
-          <span
-            className="blizu-row-bar mt-2 block h-2 w-full overflow-hidden rounded-full bg-neutral-200"
-            aria-hidden="true"
-          >
-            <span
-              className="block h-full rounded-full bg-brand-600"
-              style={{ width: `${percent}%`, opacity: irrelevant ? 0.35 : 1 }}
-            />
-          </span>
-          <span className="blizu-row-score mt-1 flex justify-between text-xs text-neutral-600">
-            <span>
-              Ocjena {percent} %{irrelevant ? ' · ne ulazi u indeks za ovu osobu' : ''}
-            </span>
+          </p>
+          <p className="na-muted mt-1 text-xs">
+            Ocjena {percent} %{irrelevant ? ' · ne ulazi u indeks za ovu osobu' : ''}
             {!irrelevant ? (
-              <span className="dt-num">težina {Math.round(result.weight * 100)} %</span>
+              <span className="dt-num"> · težina {Math.round(result.weight * 100)} %</span>
             ) : null}
-          </span>
-        </button>
+          </p>
+        </div>
         <button
           type="button"
-          className="blizu-row-source-toggle min-h-[44px] min-w-[44px] rounded-md px-2 text-sm text-brand-700 underline"
+          className="na-chip blizu-row-source-toggle"
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
           aria-label={`Izvor podataka: ${result.label}`}
@@ -77,10 +109,7 @@ export function CategoryRow({ result, source, onSelect }: Props) {
         </button>
       </div>
       <div
-        className={[
-          'ml-9 mt-2 rounded-md border border-neutral-300 bg-neutral-50 p-3 text-sm',
-          open ? 'block' : 'hidden group-hover:block group-focus-within:block',
-        ].join(' ')}
+        className={open ? 'mt-2 border-t border-white/10 pt-2' : 'hidden'}
         data-testid={`source-${result.category}`}
       >
         {source ? (
@@ -94,16 +123,14 @@ export function CategoryRow({ result, source, onSelect }: Props) {
             <div className="mt-2 flex flex-wrap items-center gap-2">
               <FreshnessChip days={result.freshness_days} />
               {result.tier ? (
-                <span className="text-neutral-600">
-                  Razina: {TIER_LABEL[result.tier] ?? result.tier}
-                </span>
+                <span className="na-muted">Razina: {TIER_LABEL[result.tier] ?? result.tier}</span>
               ) : null}
             </div>
           </>
         ) : (
-          <span className="text-neutral-600">Izvor nije poznat.</span>
+          <span className="na-muted">Izvor nije poznat.</span>
         )}
       </div>
-    </li>
+    </div>
   );
 }

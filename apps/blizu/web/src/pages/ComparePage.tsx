@@ -41,9 +41,9 @@ export function ComparePage() {
     });
 
   return (
-    <div>
+    <div className="na-wrap">
       <h1 className="mb-4 text-2xl font-semibold text-neutral-900">Usporedi dvije adrese</h1>
-      <div className="mb-6 grid gap-4 rounded-xl border border-neutral-300 bg-white p-5 md:grid-cols-2">
+      <div className="mb-6 grid gap-4 na-card p-5 md:grid-cols-2">
         <AddressSearch
           label="Adresa A"
           initialValue={params.get('aq') ?? ''}
@@ -75,10 +75,7 @@ export function ComparePage() {
         />
       ) : (
         <>
-          <section
-            aria-labelledby="diff-title"
-            className="mb-6 rounded-xl border border-neutral-300 bg-white p-5"
-          >
+          <section aria-labelledby="diff-title" className="mb-6 na-card p-5">
             <h2 id="diff-title" className="mb-2 text-lg font-semibold">
               Razlika (B u odnosu na A)
             </h2>

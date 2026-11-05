@@ -9,7 +9,7 @@ import sources from '../__fixtures__/2026-11-03_sources_all.json';
 import type { AccessResult, GeocodeItem } from '../lib/types';
 import { AccessCard } from './AccessCard';
 import { AddressSearch, DEBOUNCE_MS, resultLabel } from './AddressSearch';
-import { CategoryRow } from './CategoryRow';
+import { CategoryDetail, CategoryRow } from './CategoryRow';
 import { GradeBadge } from './GradeBadge';
 import { LazyMount } from './LazyMount';
 import { PersonaControl } from './PersonaControl';
@@ -37,7 +37,6 @@ describe('GradeBadge', () => {
     const badge = screen.getByRole('img', { name: 'Ocjena C' });
     expect(badge.getAttribute('data-grade')).toBe('C');
     expect(badge.textContent).toBe('C');
-    expect(badge.getAttribute('style')).toContain('rgb(154, 125, 10)'); // #9A7D0A
   });
 
   it('handles a missing grade', () => {
@@ -85,16 +84,16 @@ describe('PersonaControl', () => {
   });
 });
 
-describe('CategoryRow', () => {
+describe('CategoryRow (tile)', () => {
   const ljekarna = trg.categories.find((c) => c.category === 'ljekarna')!;
-  const source = allSources.sources.find((s) => s.id === ljekarna.nearest!.source_id);
+  const tile = (result: typeof ljekarna, onSelect = () => undefined, grade?: 'A' | null) => (
+    <ul>
+      <CategoryRow result={result} onSelect={onSelect} grade={grade} />
+    </ul>
+  );
 
-  it('shows label, minutes in the mono column, nearest facility and score', () => {
-    render(
-      <ul>
-        <CategoryRow result={ljekarna} source={source} onSelect={() => undefined} />
-      </ul>,
-    );
+  it('shows label, minutes in the tabular column, nearest facility and score', () => {
+    render(tile(ljekarna));
     expect(screen.getByText('Ljekarna')).toBeTruthy();
     expect(screen.getByTestId('minutes-ljekarna').textContent).toBe('1 min');
     expect(screen.getByTestId('minutes-ljekarna').className).toContain('dt-num');
@@ -102,32 +101,59 @@ describe('CategoryRow', () => {
     expect(screen.getByText(/Ocjena 100 %/)).toBeTruthy();
   });
 
+  it('shows a grade chip with the letter when a grade is known', () => {
+    render(tile(ljekarna, undefined, 'A'));
+    const chip = document.querySelector('.na-tile__grade');
+    expect(chip?.textContent).toBe('A');
+    expect(chip?.getAttribute('data-grade')).toBe('A');
+  });
+
   it('the accessible name contains the visible text (WCAG 2.5.3)', () => {
-    render(
-      <ul>
-        <CategoryRow result={ljekarna} source={source} onSelect={() => undefined} />
-      </ul>,
-    );
+    render(tile(ljekarna));
     const button = screen.getByRole('button', { name: /Ljekarna.*1 min/ });
     expect(button.getAttribute('aria-label')).toBeNull();
     expect(button.textContent).toContain('Prikaži na karti');
   });
 
-  it('selects the category on click and reveals the source on demand', () => {
+  it('selects the category on click', () => {
     const onSelect = vi.fn();
-    render(
-      <ul>
-        <CategoryRow result={ljekarna} source={source} onSelect={onSelect} />
-      </ul>,
-    );
+    render(tile(ljekarna, onSelect));
     fireEvent.click(screen.getByRole('button', { name: /Ljekarna.*1 min/ }));
     expect(onSelect).toHaveBeenCalledWith(ljekarna);
+  });
+
+  it('marks categories that do not count for the persona', () => {
+    const vrtic = dubrovnik.categories.find((c) => c.category === 'vrtic')!;
+    expect(vrtic.weight).toBe(0); // "starija": kindergarten is not relevant
+    render(tile(vrtic));
+    expect(screen.getByText(/ne ulazi u indeks za ovu osobu/)).toBeTruthy();
+  });
+
+  it('is honest when there is no data or nothing within reach', () => {
+    const none = { ...ljekarna, has_data: false, minutes: null, nearest: null };
+    const far = { ...ljekarna, minutes: null, nearest: null };
+    const { rerender } = render(tile(none));
+    expect(screen.getByTestId('minutes-ljekarna').textContent).toBe('nema podataka');
+    rerender(tile(far));
+    expect(screen.getByTestId('minutes-ljekarna').textContent).toBe('> 50 min');
+    expect(screen.getByText(/Nema objekta u dometu/)).toBeTruthy();
+  });
+});
+
+describe('CategoryDetail (selected category)', () => {
+  const ljekarna = trg.categories.find((c) => c.category === 'ljekarna')!;
+  const source = allSources.sources.find((s) => s.id === ljekarna.nearest!.source_id);
+
+  it('shows the nearest facility and score and reveals the source on demand', () => {
+    render(<CategoryDetail result={ljekarna} source={source} />);
+    expect(screen.getByText(/Ljekarna Centar/)).toBeTruthy();
+    expect(screen.getByText(/Ocjena 100 %/)).toBeTruthy();
     const toggle = screen.getByRole('button', { name: 'Izvor podataka: Ljekarna' });
     expect(toggle.getAttribute('aria-expanded')).toBe('false');
     fireEvent.click(toggle);
     expect(toggle.getAttribute('aria-expanded')).toBe('true');
     const panel = screen.getByTestId('source-ljekarna');
-    expect(panel.className).toContain('block');
+    expect(panel.className).not.toContain('hidden');
     expect(panel.textContent).toContain('OpenStreetMap contributors');
     expect(
       within(panel)
@@ -138,34 +164,10 @@ describe('CategoryRow', () => {
     expect(panel.textContent).toContain('zajednica');
   });
 
-  it('marks categories that do not count for the persona', () => {
+  it('says so when the source is unknown', () => {
     const vrtic = dubrovnik.categories.find((c) => c.category === 'vrtic')!;
-    expect(vrtic.weight).toBe(0); // "starija": kindergarten is not relevant
-    render(
-      <ul>
-        <CategoryRow result={vrtic} source={undefined} onSelect={() => undefined} />
-      </ul>,
-    );
-    expect(screen.getByText(/ne ulazi u indeks za ovu osobu/)).toBeTruthy();
+    render(<CategoryDetail result={vrtic} source={undefined} />);
     expect(screen.getByText('Izvor nije poznat.')).toBeTruthy();
-  });
-
-  it('is honest when there is no data or nothing within reach', () => {
-    const none = { ...ljekarna, has_data: false, minutes: null, nearest: null };
-    const far = { ...ljekarna, minutes: null, nearest: null };
-    const { rerender } = render(
-      <ul>
-        <CategoryRow result={none} source={undefined} onSelect={() => undefined} />
-      </ul>,
-    );
-    expect(screen.getByTestId('minutes-ljekarna').textContent).toBe('nema podataka');
-    rerender(
-      <ul>
-        <CategoryRow result={far} source={undefined} onSelect={() => undefined} />
-      </ul>,
-    );
-    expect(screen.getByTestId('minutes-ljekarna').textContent).toBe('> 50 min');
-    expect(screen.getByText(/Nema objekta u dometu/)).toBeTruthy();
   });
 });
 

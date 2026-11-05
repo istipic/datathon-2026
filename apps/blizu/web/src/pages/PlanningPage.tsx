@@ -27,9 +27,9 @@ function Kpi({
   testId?: string;
 }) {
   return (
-    <div className="rounded-xl border border-neutral-300 bg-white p-4">
-      <p className="text-sm text-neutral-600">{label}</p>
-      <p className="dt-num text-2xl font-semibold text-neutral-900" data-testid={testId}>
+    <div className="na-tile-surface na-kpi">
+      <p className="na-muted text-xs">{label}</p>
+      <p className="na-kpi__value dt-num" data-testid={testId}>
         {value}
       </p>
       {hint ? <p className="text-xs text-neutral-600">{hint}</p> : null}
@@ -107,22 +107,24 @@ export function PlanningPage() {
   const sites = optimise.data?.sites ?? [];
 
   return (
-    <div className="grid gap-6 lg:grid-cols-[minmax(0,26rem)_1fr]">
-      <div>
-        <h1 className="mb-2 text-2xl font-semibold text-neutral-900">Planiranje usluga</h1>
+    <div className="na-screen na-screen--plan">
+      <div className="na-panel">
+        <h1 className="text-2xl" style={{ margin: 0 }}>
+          Planiranje usluga
+        </h1>
         <p className="mb-4 text-neutral-700">
           Gdje su stanovnici najdalje od usluge i gdje bi nova ustanova koristila najviše ljudi.
         </p>
 
         <div className="mb-4">
-          <label htmlFor="category" className="mb-1 block text-sm font-medium text-neutral-700">
+          <label htmlFor="category" className="na-overline mb-1 block">
             Kategorija usluge
           </label>
           <select
             id="category"
             value={category}
             onChange={(e) => setCategory(e.target.value as CategoryId)}
-            className="min-h-[44px] w-full rounded-lg border border-neutral-400 bg-white px-3 text-base"
+            className="na-select w-full"
           >
             {CATEGORY_IDS.map((id) => (
               <option key={id} value={id}>
@@ -200,10 +202,7 @@ export function PlanningPage() {
           </section>
         ) : null}
 
-        <section
-          className="mt-6 rounded-xl border border-neutral-300 bg-white p-4"
-          aria-labelledby="opt-title"
-        >
+        <section className="na-tile-surface mt-2 p-4" aria-labelledby="opt-title">
           <h2 id="opt-title" className="mb-2 text-lg font-semibold">
             Predloži lokacije
           </h2>
@@ -223,7 +222,7 @@ export function PlanningPage() {
           />
           <button
             type="button"
-            className="dt-button"
+            className="na-btn"
             disabled={optimise.isPending || !summary}
             onClick={() => optimise.mutate()}
           >
@@ -269,7 +268,7 @@ export function PlanningPage() {
         <div className="mt-4 flex flex-wrap items-center gap-3">
           <button
             type="button"
-            className="min-h-[44px] rounded-md border border-neutral-400 bg-white px-4 font-semibold"
+            className="na-btn na-btn--ghost na-btn--sm"
             disabled={!need.data}
             onClick={() => need.data && downloadGeoJson(need.data, optimise.data)}
           >
@@ -295,7 +294,7 @@ export function PlanningPage() {
         ) : null}
       </div>
 
-      <div className="min-h-[28rem] lg:sticky lg:top-4 lg:h-[calc(100vh-6rem)]">
+      <div className="na-mapcol">
         <LazyMount placeholder={<LoadingSkeleton lines={6} label="Karta će se učitati…" />}>
           <Suspense fallback={<LoadingSkeleton lines={6} label="Učitavam kartu…" />}>
             <PlanMap need={need.data} sites={sites} />

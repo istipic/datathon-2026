@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useEffect, useId, useState, type KeyboardEvent } from 'react';
 import { api } from '../lib/api';
 import type { GeocodeItem } from '../lib/types';
+import { Icon } from './ui';
 
 export const DEBOUNCE_MS = 400;
 const MIN_CHARS = 3;
@@ -84,31 +85,39 @@ export function AddressSearch({
   const listId = `${id}-list`;
   return (
     <div className="relative w-full">
-      <label htmlFor={`${id}-input`} className="mb-1 block text-sm font-medium text-neutral-700">
+      <label htmlFor={`${id}-input`} className="na-overline mb-2 block">
         {label}
       </label>
-      <input
-        id={`${id}-input`}
-        type="text"
-        role="combobox"
-        aria-expanded={showPanel && results.length > 0}
-        aria-controls={listId}
-        aria-autocomplete="list"
-        aria-activedescendant={active >= 0 ? `${id}-opt-${active}` : undefined}
-        autoComplete="off"
-        autoFocus={autoFocus}
-        maxLength={120}
-        placeholder={placeholder}
-        value={text}
-        onChange={(e) => {
-          setText(e.target.value);
-          setOpen(true);
-          setActive(-1);
-        }}
-        onFocus={() => setOpen(true)}
-        onKeyDown={onKeyDown}
-        className="w-full min-h-[48px] rounded-lg border border-neutral-400 bg-white px-4 py-2 text-lg text-neutral-900 placeholder:text-neutral-500"
-      />
+      <span className="relative block">
+        <span
+          className="na-muted"
+          style={{ position: 'absolute', left: 14, top: '50%', transform: 'translateY(-50%)' }}
+        >
+          <Icon name="search" size={20} />
+        </span>
+        <input
+          id={`${id}-input`}
+          type="text"
+          role="combobox"
+          aria-expanded={showPanel && results.length > 0}
+          aria-controls={listId}
+          aria-autocomplete="list"
+          aria-activedescendant={active >= 0 ? `${id}-opt-${active}` : undefined}
+          autoComplete="off"
+          autoFocus={autoFocus}
+          maxLength={120}
+          placeholder={placeholder}
+          value={text}
+          onChange={(e) => {
+            setText(e.target.value);
+            setOpen(true);
+            setActive(-1);
+          }}
+          onFocus={() => setOpen(true)}
+          onKeyDown={onKeyDown}
+          className="na-input"
+        />
+      </span>
       <p className="dt-sr-only" aria-live="polite">
         {showPanel && query.isSuccess
           ? results.length > 0
@@ -137,7 +146,8 @@ export function AddressSearch({
             <ul
               role="listbox"
               aria-label="Prijedlozi adresa"
-              className="overflow-hidden rounded-lg border border-neutral-300 bg-white shadow-md"
+              className="na-listbox"
+              style={{ position: 'static' }}
             >
               {results.map((item, i) => (
                 <li
@@ -150,25 +160,14 @@ export function AddressSearch({
                     choose(item);
                   }}
                   onMouseEnter={() => setActive(i)}
-                  className={[
-                    'min-h-[44px] cursor-pointer px-4 py-3 text-base',
-                    i === active
-                      ? 'bg-brand-700 text-white'
-                      : 'text-neutral-900 hover:bg-neutral-100',
-                  ].join(' ')}
+                  className="na-option"
                 >
                   {item.title}
-                  <span
-                    className={
-                      i === active ? 'block text-sm text-white' : 'block text-sm text-neutral-600'
-                    }
-                  >
-                    {item.label}
-                  </span>
+                  <span className="na-muted block text-sm">{item.label}</span>
                 </li>
               ))}
             </ul>
-            <p className="mt-1 text-xs text-neutral-600">{query.data?.attribution}</p>
+            <p className="na-muted mt-1 text-xs">{query.data?.attribution}</p>
           </>
         ) : null}
       </div>

@@ -31,6 +31,10 @@ export interface MapViewProps {
   className?: string;
   /** Called once with the MapLibre instance when the map (or its fallback) is ready. */
   onLoad?: (map: MapLibreMap) => void;
+  /** Built-in zoom buttons (default true); apps with their own floating controls turn them off. */
+  navigationControl?: boolean;
+  /** Called when the vector style failed and the raster fallback is shown (e.g. to disable 3D). */
+  onFallback?: () => void;
 }
 
 /** MapLibre style that renders plain OSM raster tiles. */
@@ -69,10 +73,14 @@ export function MapView({
   ariaLabel = 'Karta',
   className,
   onLoad,
+  navigationControl = true,
+  onFallback,
 }: MapViewProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const onLoadRef = useRef(onLoad);
   onLoadRef.current = onLoad;
+  const onFallbackRef = useRef(onFallback);
+  onFallbackRef.current = onFallback;
   const [usingFallback, setUsingFallback] = useState(false);
 
   useEffect(() => {
@@ -91,7 +99,8 @@ export function MapView({
       new AttributionControl({ compact: false, customAttribution: OSM_ATTRIBUTION }),
       'bottom-right',
     );
-    map.addControl(new NavigationControl({ showCompass: false }), 'top-right');
+    if (navigationControl)
+      map.addControl(new NavigationControl({ showCompass: false }), 'top-right');
 
     let ready = false;
     let fellBack = false;
@@ -108,6 +117,7 @@ export function MapView({
       if (ready || fellBack || sourceId) return;
       fellBack = true;
       setUsingFallback(true);
+      onFallbackRef.current?.();
       map.setStyle(rasterFallbackStyle(fallbackRasterUrl));
       map.once('idle', notifyReady);
     });

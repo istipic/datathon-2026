@@ -6,15 +6,24 @@ import { AccessCard } from '../components/AccessCard';
 import { LazyMount } from '../components/LazyMount';
 import { PersonaControl } from '../components/PersonaControl';
 import type { MapFocus, MapPlace } from '../components/MapPanel';
+import { Button, Icon } from '../components/ui';
 import { ApiError, api } from '../lib/api';
 import { isPersona } from '../lib/labels';
 import { useSources } from '../lib/useSources';
-import type { CategoryResult, PersonaId } from '../lib/types';
+import type { CategoryId, CategoryResult, PersonaId } from '../lib/types';
 
 // The map library is large: load it in its own chunk so the card text renders first.
 const MapPanel = lazy(() =>
   import('../components/MapPanel').then((m) => ({ default: m.MapPanel })),
 );
+
+function MapPlaceholder({ label }: { label: string }) {
+  return (
+    <div className="na-skel" style={{ position: 'absolute', inset: 0, borderRadius: 0 }}>
+      <p className="dt-sr-only">{label}</p>
+    </div>
+  );
+}
 
 export function CardPage() {
   const [params, setParams] = useSearchParams();
@@ -27,6 +36,8 @@ export function CardPage() {
   const valid =
     Number.isFinite(lat) && Number.isFinite(lon) && params.has('lat') && params.has('lon');
   const [focus, setFocus] = useState<MapFocus | null>(null);
+  const [selected, setSelected] = useState<CategoryId | null>(null);
+  const [sheet, setSheet] = useState<'peek' | 'expanded'>('peek');
 
   // Wait for the sources too: their (late) arrival would lengthen the footnote and shift the layout.
   const sources = useSources();
@@ -59,50 +70,48 @@ export function CardPage() {
   }
 
   function select(result: CategoryResult) {
+    setSelected(result.category);
     if (result.nearest)
       setFocus({ lon: result.nearest.lon, lat: result.nearest.lat, key: Date.now() });
   }
 
   if (!valid) {
     return (
-      <EmptyState
-        title="Nedostaje adresa"
-        body="Odaberite adresu na početnoj stranici."
-        action={
-          <Link className="dt-button" to="/">
-            Odaberi adresu
-          </Link>
-        }
-      />
+      <div className="na-wrap">
+        <EmptyState
+          title="Nedostaje adresa"
+          body="Odaberite adresu na početnoj stranici."
+          action={
+            <Link className="na-btn" to="/">
+              Odaberi adresu
+            </Link>
+          }
+        />
+      </div>
     );
   }
 
+  const backLink = (
+    <Link to="/" className="na-muted inline-flex items-center gap-2 text-sm no-underline">
+      <Icon name="back" size={16} /> Nova pretraga
+    </Link>
+  );
+
   if (query.isPending || sources.isPending) {
-    // Same structure and heights as the loaded card, so the persona buttons do not jump.
+    // Same structure as the loaded screen, so nothing jumps when the result arrives.
     return (
-      <div key="pending" className="grid gap-6 lg:grid-cols-2" style={{ minHeight: '100vh' }}>
-        <div>
-          <h1 className="mb-4 text-xl font-semibold text-neutral-900">{label}</h1>
-          <div
-            className="flex flex-wrap items-center gap-5"
-            style={{ minHeight: 112 }}
-            aria-hidden="true"
-          >
-            <div
-              className="dt-skeleton__line"
-              style={{ width: 112, height: 112, borderRadius: '50%', margin: 0 }}
-            />
-            <div style={{ width: 160 }}>
-              <div className="dt-skeleton__line" style={{ width: '80%' }} />
-              <div className="dt-skeleton__line" style={{ height: '2rem' }} />
-            </div>
-          </div>
-          <div className="mt-5">
-            <PersonaControl value={persona} onChange={setPersona} />
-          </div>
-          <div className="mt-4">
-            <LoadingSkeleton lines={9} label="Računam dostupnost usluga…" />
-          </div>
+      <div key="pending" className="na-screen">
+        <div className="na-panel" data-state="expanded">
+          {backLink}
+          <h1 className="text-xl" style={{ margin: 0, overflowWrap: 'anywhere' }}>
+            {label}
+          </h1>
+          <div aria-hidden="true" className="na-skel" style={{ height: 112 }} />
+          <PersonaControl value={persona} onChange={setPersona} compact />
+          <LoadingSkeleton lines={9} label="Računam dostupnost usluga…" />
+        </div>
+        <div className="na-mapcol">
+          <MapPlaceholder label="Karta će se učitati…" />
         </div>
       </div>
     );
@@ -111,7 +120,7 @@ export function CardPage() {
   if (query.isError) {
     const outside = query.error instanceof ApiError && query.error.status === 422;
     return (
-      <div className="mx-auto max-w-2xl">
+      <div className="na-wrap" style={{ maxWidth: '42rem' }}>
         <ErrorState
           message={query.error.message}
           onRetry={outside ? undefined : () => void query.refetch()}
@@ -126,21 +135,34 @@ export function CardPage() {
   }
 
   const result = query.data;
+  const plannerHref = `/planiranje?lat=${lat.toFixed(6)}&lon=${lon.toFixed(6)}&persona=${persona}`;
   return (
-    <div key="loaded" className="grid gap-6 lg:grid-cols-2">
-      <div>
+    <div key="loaded" className="na-screen">
+      <div className="na-panel" data-state={sheet} id="results-panel">
+        <button
+          type="button"
+          className="na-sheet-handle"
+          aria-expanded={sheet === 'expanded'}
+          aria-controls="results-panel"
+          onClick={() => setSheet((s) => (s === 'peek' ? 'expanded' : 'peek'))}
+        >
+          {sheet === 'peek' ? 'Prikaži sve' : 'Sažmi'}
+        </button>
+        <div className="blizu-noprint">{backLink}</div>
         <AccessCard
           title={label}
           result={result}
           persona={persona}
           onPersona={setPersona}
           onSelectCategory={select}
+          selectedCategory={selected}
           busy={query.isFetching}
+          compact
         />
-        <div className="blizu-noprint mt-6 flex flex-wrap gap-3">
-          <button
-            type="button"
-            className="dt-button"
+        <div className="blizu-noprint flex flex-wrap gap-2">
+          <Button
+            variant="ghost"
+            size="sm"
             onClick={() =>
               navigate(
                 `/usporedi?a=${lat.toFixed(6)},${lon.toFixed(6)}&persona=${persona}&aq=${encodeURIComponent(label)}`,
@@ -148,20 +170,21 @@ export function CardPage() {
             }
           >
             Usporedi s drugom adresom
-          </button>
-          <button
-            type="button"
-            className="min-h-[40px] rounded-md border border-neutral-400 bg-white px-4 py-2 font-semibold"
-            onClick={() => window.print()}
-          >
+          </Button>
+          <Button variant="ghost" size="sm" onClick={() => window.print()}>
             Ispiši karticu
-          </button>
+          </Button>
         </div>
       </div>
-      <div className="blizu-mapcol lg:sticky lg:top-4 lg:h-[calc(100vh-6rem)]">
-        <LazyMount placeholder={<LoadingSkeleton lines={6} label="Karta će se učitati…" />}>
-          <Suspense fallback={<LoadingSkeleton lines={6} label="Učitavam kartu…" />}>
-            <MapPanel origin={{ lon, lat, label }} places={places} focus={focus} />
+      <div className="na-mapcol blizu-mapcol">
+        <LazyMount placeholder={<MapPlaceholder label="Karta će se učitati…" />}>
+          <Suspense fallback={<MapPlaceholder label="Učitavam kartu…" />}>
+            <MapPanel
+              origin={{ lon, lat, label }}
+              places={places}
+              focus={focus}
+              plannerHref={plannerHref}
+            />
           </Suspense>
         </LazyMount>
       </div>

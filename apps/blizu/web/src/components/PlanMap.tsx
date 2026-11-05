@@ -51,13 +51,13 @@ export function PlanMap({ need, sites }: Props) {
           id: 'need-fill',
           type: 'fill',
           source: 'need',
-          paint: { 'fill-color': fill as never, 'fill-opacity': 0.72 },
+          paint: { 'fill-color': fill as never, 'fill-opacity': 0.78 },
         });
         map.addLayer({
           id: 'need-line',
           type: 'line',
           source: 'need',
-          paint: { 'line-color': '#475569', 'line-width': 0.5, 'line-opacity': 0.6 },
+          paint: { 'line-color': '#9AA4B2', 'line-width': 0.5, 'line-opacity': 0.25 },
         });
       }
       if (map.getLayer('need-fill')) map.setPaintProperty('need-fill', 'fill-color', fill as never);
@@ -89,6 +89,7 @@ export function PlanMap({ need, sites }: Props) {
   return (
     <MapView
       ariaLabel="Karta nezadovoljene potrebe po ćelijama od 1 km"
+      styleUrl="https://tiles.openfreemap.org/styles/dark"
       onLoad={setMap}
       className="blizu-map"
     />

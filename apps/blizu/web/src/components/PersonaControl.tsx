@@ -1,6 +1,7 @@
 import { useRef, type KeyboardEvent } from 'react';
 import { PERSONAS } from '../lib/labels';
 import type { PersonaId } from '../lib/types';
+import { Icon, type IconName } from './ui';
 
 interface Props {
   value: PersonaId;
@@ -8,10 +9,32 @@ interface Props {
   /** Accessible name of the group. */
   label?: string;
   disabled?: boolean;
+  /** Compact single-row variant (results panel, planner). */
+  compact?: boolean;
 }
 
-/** Segmented control (radio group) with arrow-key navigation. */
-export function PersonaControl({ value, onChange, label = 'Za koga računamo', disabled }: Props) {
+const ICON: Record<PersonaId, IconName> = {
+  opce: 'person',
+  starija: 'elder',
+  roditelj: 'parent',
+  kolica: 'wheelchair',
+};
+/** Short uppercase labels of the segmented tiles (the full names stay in the accessible name). */
+const SHORT: Record<PersonaId, string> = {
+  opce: 'Opće',
+  starija: 'Stariji',
+  roditelj: 'Roditelj',
+  kolica: 'Kolica',
+};
+
+/** Segmented control (radio group) with arrow-key navigation; the selected tile is solid white. */
+export function PersonaControl({
+  value,
+  onChange,
+  label = 'Za koga računamo',
+  disabled,
+  compact,
+}: Props) {
   const refs = useRef<(HTMLButtonElement | null)[]>([]);
 
   function onKeyDown(event: KeyboardEvent<HTMLButtonElement>, index: number) {
@@ -33,7 +56,7 @@ export function PersonaControl({ value, onChange, label = 'Za koga računamo', d
   }
 
   return (
-    <div role="radiogroup" aria-label={label} className="flex flex-wrap gap-2">
+    <div role="radiogroup" aria-label={label} className={compact ? 'na-seg na-seg--sm' : 'na-seg'}>
       {PERSONAS.map((p, i) => {
         const checked = p.id === value;
         return (
@@ -45,20 +68,16 @@ export function PersonaControl({ value, onChange, label = 'Za koga računamo', d
             type="button"
             role="radio"
             aria-checked={checked}
+            aria-label={p.label}
             tabIndex={checked ? 0 : -1}
             disabled={disabled}
-            title={p.hint}
+            title={`${p.label}: ${p.hint}`}
             onClick={() => onChange(p.id)}
             onKeyDown={(e) => onKeyDown(e, i)}
-            className={[
-              'min-h-[44px] rounded-full border px-4 py-2 text-base font-medium transition-colors',
-              checked
-                ? 'border-brand-700 bg-brand-700 text-white'
-                : 'border-neutral-400 bg-white text-neutral-900 hover:bg-neutral-100',
-            ].join(' ')}
+            className="na-seg__item"
           >
-            {checked ? <span aria-hidden="true">✓ </span> : null}
-            {p.label}
+            <Icon name={ICON[p.id]} size={compact ? 16 : 20} />
+            <span aria-hidden="true">{SHORT[p.id]}</span>
           </button>
         );
       })}
