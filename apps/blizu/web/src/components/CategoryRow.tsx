@@ -10,8 +10,6 @@ interface TileProps {
   /** Letter of the category score on the API's A–E scale (omitted until `/scoring` arrives). */
   grade?: Grade | null;
   selected?: boolean;
-  /** Rendered under the row (the details of the selected category). */
-  children?: React.ReactNode;
 }
 
 export function minutesText(r: CategoryResult): string {
@@ -20,29 +18,32 @@ export function minutesText(r: CategoryResult): string {
   return formatMinutes(r.minutes);
 }
 
-/** One category as a list row: icon, label, nearest facility, walking minutes and the grade letter. */
-export function CategoryRow({ result, onSelect, grade, selected, children }: TileProps) {
+/** One category as a tile: icon, grade, big minutes, nearest facility and a bar with the service score. */
+export function CategoryRow({ result, onSelect, grade, selected }: TileProps) {
   const irrelevant = result.weight === 0;
   const text = minutesText(result);
   const numeric = result.has_data && result.minutes !== null;
+  const percent = Math.round(result.score * 100);
   return (
     <li className="min-w-0" data-category={result.category}>
       <button
         type="button"
-        className={irrelevant ? 'na-row na-row--muted' : 'na-row'}
+        className={irrelevant ? 'na-ct na-ct--muted' : 'na-ct'}
         onClick={() => onSelect(result)}
         disabled={!result.nearest}
         aria-pressed={selected ?? false}
       >
-        <span className="na-row__icon">
-          <CategoryIcon category={result.category} size={20} />
-        </span>
-        <span className="na-row__main">
-          <span className="na-tile__label">{result.label}</span>
-          <span className="na-row__sub">
-            {result.nearest ? result.nearest.name : 'Nema objekta u dometu od 4 km hoda'}
+        <span className="na-ct__top">
+          <span className="na-ct__icon">
+            <CategoryIcon category={result.category} size={20} />
           </span>
+          {grade && numeric ? (
+            <span className="na-tile__grade na-grade" data-grade={grade} aria-hidden="true">
+              {grade}
+            </span>
+          ) : null}
         </span>
+        <span className="na-tile__label">{result.label}</span>
         <span className="na-tile__value dt-num" data-testid={`minutes-${result.category}`}>
           {numeric ? (
             <>
@@ -52,20 +53,17 @@ export function CategoryRow({ result, onSelect, grade, selected, children }: Til
             <span className="text-sm font-medium">{text}</span>
           )}
         </span>
-        {grade && numeric ? (
-          <span className="na-tile__grade na-grade" data-grade={grade} aria-hidden="true">
-            {grade}
-          </span>
-        ) : (
-          <span className="na-tile__grade" aria-hidden="true" />
-        )}
+        <span className="na-row__sub">
+          {result.nearest ? result.nearest.name : 'Nema objekta u dometu od 4 km hoda'}
+        </span>
+        <span className="na-ct__bar" data-grade={grade ?? undefined} aria-hidden="true">
+          <span style={{ width: `${percent}%` }} />
+        </span>
         {result.nearest ? <span className="dt-sr-only">Prikaži na karti.</span> : null}
         <span className="dt-sr-only">
-          Ocjena {Math.round(result.score * 100)} %
-          {irrelevant ? ' · ne ulazi u indeks za ovu osobu' : ''}
+          Ocjena {percent} %{irrelevant ? ' · ne ulazi u indeks za ovu osobu' : ''}
         </span>
       </button>
-      {children}
     </li>
   );
 }

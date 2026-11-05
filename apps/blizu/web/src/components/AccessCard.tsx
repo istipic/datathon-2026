@@ -96,25 +96,39 @@ export function AccessCard({
           Najbliže usluge
         </h2>
         <ul className="na-rows" aria-label="Kategorije usluga" data-testid="category-grid">
-          {result.categories.map((c) => (
-            <CategoryRow
-              key={c.category}
-              result={c}
-              grade={gradeOfScore(c.score, scoring.data?.grades)}
-              selected={c.category === selectedId}
-              onSelect={(r) => {
-                setLocalSelected(r.category);
-                onSelectCategory?.(r);
-              }}
-            >
-              {c.category === selectedId ? (
-                <CategoryDetail
-                  result={c}
-                  source={c.nearest ? byId.get(c.nearest.source_id) : undefined}
-                />
-              ) : null}
-            </CategoryRow>
-          ))}
+          {result.categories.flatMap((c, i, all) => {
+            const items = [
+              <CategoryRow
+                key={c.category}
+                result={c}
+                grade={gradeOfScore(c.score, scoring.data?.grades)}
+                selected={c.category === selectedId}
+                onSelect={(r) => {
+                  setLocalSelected(r.category);
+                  onSelectCategory?.(r);
+                }}
+              />,
+            ];
+            // the details of the selected tile open as a full-width row below its grid row
+            const selectedIndex = all.findIndex((x) => x.category === selectedId);
+            const endOfRow = i % 3 === 2 || i === all.length - 1;
+            if (
+              endOfRow &&
+              selectedIndex >= 0 &&
+              Math.floor(selectedIndex / 3) === Math.floor(i / 3)
+            ) {
+              const sel = all[selectedIndex] as (typeof all)[number];
+              items.push(
+                <li key={`detail-${sel.category}`} className="na-rows__detail">
+                  <CategoryDetail
+                    result={sel}
+                    source={sel.nearest ? byId.get(sel.nearest.source_id) : undefined}
+                  />
+                </li>,
+              );
+            }
+            return items;
+          })}
         </ul>
       </section>
 
