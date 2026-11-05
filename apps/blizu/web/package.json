@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@dt/ui": "workspace:^",
+    "@fontsource-variable/inter": "^5.3.0",
     "@tanstack/react-query": "^5.105.3",
     "maplibre-gl": "^6.16.0",
     "react": "^18.3.1",

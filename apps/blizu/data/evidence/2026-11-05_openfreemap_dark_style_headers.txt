@@ -1,0 +1,22 @@
+HTTP/1.1 200 OK
+Date: Thu, 05 Nov 2026 09:33:26 GMT
+Content-Type: application/json
+Transfer-Encoding: chunked
+Connection: keep-alive
+Server: cloudflare
+expires: Fri, 06 Nov 2026 03:45:31 GMT
+Cache-Control: max-age=86400
+Cache-Control: public
+access-control-allow-origin: *
+x-robots-tag: noindex, nofollow
+strict-transport-security: max-age=15552000; includeSubDomains; preload
+Report-To: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=rrqUEgxrAWcNTeiK7h9XO8gN5Ovx4%2FZdVCfTFrKxe2lxJtuq0XndsVpcn232djnrU9g2PWKjxwTuCSNB%2BA9VxHBrfcyhsU0xXJSdOzrLr2b1cAiV9GRpTPHJZgrR4QpEVwtXH3k%2Fyg%3D%3D"}]}
+Nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+vary: accept-encoding
+Age: 20874
+last-modified: Thu, 05 Nov 2026 03:46:02 GMT
+cf-cache-status: HIT
+X-Content-Type-Options: nosniff
+CF-RAY: a55adb5e7eebe1a5-VIE
+alt-svc: h3=":443"; ma=86400
+
