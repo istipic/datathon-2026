@@ -1709,10 +1709,10 @@ button.na-chip[aria-pressed='true'] {
   border-color: rgb(var(--na-site));
 }
 .na-dot {
-  background: rgb(var(--na-accent));
+  background: rgb(var(--na-site));
   border: 3px solid #fff;
   box-shadow:
-    0 0 0 1px rgb(var(--na-accent) / 0.4),
+    0 0 0 1px rgb(var(--na-site) / 0.45),
     0 1px 4px rgb(60 64 67 / 0.5);
 }
 .maplibregl-ctrl-attrib {
