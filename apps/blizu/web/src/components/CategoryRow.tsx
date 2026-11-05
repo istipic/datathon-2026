@@ -27,11 +27,10 @@ export function CategoryRow({ result, onSelect, grade, selected }: TileProps) {
     <li className="min-w-0" data-category={result.category}>
       <button
         type="button"
-        className="na-tile w-full"
+        className={irrelevant ? 'na-tile na-tile--muted w-full' : 'na-tile w-full'}
         onClick={() => onSelect(result)}
         disabled={!result.nearest}
         aria-pressed={selected ?? false}
-        style={irrelevant ? { opacity: 0.6 } : undefined}
       >
         <span className="na-muted">
           <CategoryIcon category={result.category} size={20} />

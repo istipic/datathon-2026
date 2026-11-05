@@ -7,7 +7,6 @@ import { AccessCard } from '../components/AccessCard';
 import { LazyMount } from '../components/LazyMount';
 import { PersonaControl } from '../components/PersonaControl';
 import type { MapFocus, MapPlace } from '../components/MapPanel';
-import { ResultsScenes } from '../components/ResultsScenes';
 import { initialScene, withScene, type ActiveScene } from '../lib/anim/scene';
 import { useIsochrone } from '../lib/useIsochrone';
 import { Button, Icon } from '../components/ui';
@@ -16,6 +15,9 @@ import { isPersona } from '../lib/labels';
 import { useSources } from '../lib/useSources';
 import type { CategoryId, CategoryResult, PersonaId } from '../lib/types';
 
+const ResultsScenes = lazy(() =>
+  import('../components/ResultsScenes').then((m) => ({ default: m.ResultsScenes })),
+);
 // The map library is large: load it in its own chunk so the card text renders first.
 const MapPanel = lazy(() =>
   import('../components/MapPanel').then((m) => ({ default: m.MapPanel })),
@@ -182,6 +184,9 @@ export function CardPage() {
           >
             Usporedi s drugom adresom
           </Button>
+          <Link to={plannerHref} className="na-btn na-btn--accent na-btn--sm na-cta-inline">
+            Vidi analizu potreba kvarta
+          </Link>
           <Button variant="ghost" size="sm" onClick={() => window.print()}>
             Ispiši karticu
           </Button>
@@ -200,15 +205,17 @@ export function CardPage() {
               hidePlaces={scene !== 'put' && iso.isSuccess}
             >
               {map ? (
-                <ResultsScenes
-                  map={map}
-                  origin={{ lon, lat }}
-                  persona={persona}
-                  scene={scene}
-                  onScene={changeScene}
-                  category={selected}
-                  fallback={fallback}
-                />
+                <Suspense fallback={null}>
+                  <ResultsScenes
+                    map={map}
+                    origin={{ lon, lat }}
+                    persona={persona}
+                    scene={scene}
+                    onScene={changeScene}
+                    category={selected}
+                    fallback={fallback}
+                  />
+                </Suspense>
               ) : null}
             </MapPanel>
           </Suspense>

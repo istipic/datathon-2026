@@ -210,6 +210,7 @@ export class BuildingsLayer {
         source: 'openmaptiles',
         'source-layer': 'building',
         minzoom: 14,
+        filter: ['!=', ['get', 'hide_3d'], true] as never, // parts of buildings drawn elsewhere
         paint: {
           'fill-extrusion-color': '#2A3446',
           'fill-extrusion-height': ['coalesce', ['get', 'render_height'], 0] as never,

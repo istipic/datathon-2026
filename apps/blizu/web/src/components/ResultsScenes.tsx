@@ -43,6 +43,15 @@ interface Props {
   fallback: boolean;
 }
 
+/** Camera padding that keeps the subject clear of the floating bars (and of the bottom sheet on phones). */
+function viewPadding(bottom: number) {
+  const phone =
+    typeof window.matchMedia === 'function' && window.matchMedia('(max-width: 860px)').matches;
+  return phone
+    ? { top: 70, bottom: 470, left: 24, right: 64 }
+    : { top: 90, bottom, left: 70, right: 90 };
+}
+
 function whenReady(map: MapLibreMap, fn: () => void): () => void {
   if (map.isStyleLoaded()) {
     fn();
@@ -60,18 +69,27 @@ function boundsOf(iso: IsochroneResult): LngLatBounds {
   return b;
 }
 
+const ICON_HTML = new Map<CategoryId, string>();
+/** Icon markup is rendered once per category (not once per marker): 100+ markers would block the main thread. */
+function iconHtml(category: CategoryId): string {
+  let html = ICON_HTML.get(category);
+  if (html === undefined) {
+    html = renderToStaticMarkup(<CategoryIcon category={category} size={12} />);
+    ICON_HTML.set(category, html);
+  }
+  return html;
+}
+
 function facilityElement(f: IsochroneFacility): HTMLElement {
   // outer element is positioned by MapLibre (it owns its transform); the inner one pops in
   const outer = document.createElement('div');
   outer.style.display = 'none';
   const el = document.createElement('div');
   el.className = 'blizu-marker na-reach';
-  el.style.width = '22px';
-  el.style.height = '22px';
   el.setAttribute('role', 'img');
   el.setAttribute('aria-label', `${CATEGORY_SHORT[f.category]}: ${f.name}, ${formatMinutes(f.t)}`);
   el.title = `${f.name} · ${formatMinutes(f.t)}`;
-  el.innerHTML = renderToStaticMarkup(<CategoryIcon category={f.category} size={12} />);
+  el.innerHTML = iconHtml(f.category);
   outer.append(el);
   return outer;
 }
@@ -110,7 +128,8 @@ export function ResultsScenes({ map, origin, persona, scene, onScene, category, 
   });
 
   const flood = useRef<FloodLayer | null>(null);
-  const markers = useRef<{ marker: MarkerType; t: number; el: HTMLElement }[]>([]);
+  // facility markers are created when the front first reaches them (100+ DOM markers upfront block the main thread)
+  const markers = useRef<{ f: IsochroneFacility; t: number; marker: MarkerType | null }[]>([]);
   const player = useRef<PlayHandle | null>(null);
   const slider = useRef<HTMLInputElement | null>(null);
   const sceneRef = useRef(scene);
@@ -135,29 +154,36 @@ export function ResultsScenes({ map, origin, persona, scene, onScene, category, 
 
   // ------------------------------------------------------------------ flood
   /** Moves the flood to `min` minutes: filters, markers, slider and counter (text changes rarely). */
-  const applyClock = useCallback((min: number, data: IsochroneResult) => {
-    flood.current?.setClock(min);
-    for (const m of markers.current) {
-      const reached = m.t <= min + 1e-9;
-      const shown = m.el.style.display !== 'none';
-      if (reached && !shown) {
-        m.el.style.display = '';
-        if (!prefersReducedMotion()) {
-          // display:none -> '' restarts the CSS animation by itself (no layout read needed)
-          const inner = m.el.firstElementChild as HTMLElement | null;
-          inner?.classList.add('na-pop');
+  const applyClock = useCallback(
+    (min: number, data: IsochroneResult) => {
+      flood.current?.setClock(min);
+      for (const m of markers.current) {
+        const reached = m.t <= min + 1e-9;
+        if (reached) {
+          if (!m.marker) {
+            const el = facilityElement(m.f);
+            el.style.visibility = sceneRef.current === 'put' ? 'hidden' : 'visible';
+            m.marker = new Marker({ element: el }).setLngLat([m.f.lon, m.f.lat]).addTo(map);
+            el.style.display = '';
+            if (!prefersReducedMotion()) el.firstElementChild?.classList.add('na-pop');
+          } else if (m.marker.getElement().style.display === 'none') {
+            const el = m.marker.getElement();
+            el.style.display = ''; // display:none -> '' restarts the CSS animation by itself
+            if (!prefersReducedMotion()) el.firstElementChild?.classList.add('na-pop');
+          }
+        } else if (m.marker && m.marker.getElement().style.display !== 'none') {
+          m.marker.getElement().style.display = 'none';
         }
-      } else if (!reached && shown) {
-        m.el.style.display = 'none';
       }
-    }
-    if (slider.current) {
-      slider.current.value = String(min);
-      slider.current.setAttribute('aria-valuetext', minutesWord(Math.round(min)));
-    }
-    const next = summarise(data, Math.floor(min));
-    setSummary((prev) => (prev && prev.text === next.text ? prev : next));
-  }, []);
+      if (slider.current) {
+        slider.current.value = String(min);
+        slider.current.setAttribute('aria-valuetext', minutesWord(Math.round(min)));
+      }
+      const next = summarise(data, Math.floor(min));
+      setSummary((prev) => (prev && prev.text === next.text ? prev : next));
+    },
+    [map],
+  );
 
   const playFlood = useCallback(
     (data: IsochroneResult, from: number, to: number, ms: number) => {
@@ -195,25 +221,18 @@ export function ResultsScenes({ map, origin, persona, scene, onScene, category, 
     if (!data) return;
     let cancelled = false;
     let layer: FloodLayer | null = null;
-    const markerList: { marker: MarkerType; t: number; el: HTMLElement }[] = [];
+    const markerList: { f: IsochroneFacility; t: number; marker: MarkerType | null }[] =
+      data.facilities.map((f) => ({ f, t: f.t, marker: null }));
     const dispose = whenReady(map, () => {
       if (cancelled) return;
       layer = new FloodLayer(map, data.buckets, data.max_min);
       flood.current = layer;
-      for (const f of data.facilities) {
-        const el = facilityElement(f);
-        markerList.push({
-          marker: new Marker({ element: el }).setLngLat([f.lon, f.lat]).addTo(map),
-          t: f.t,
-          el,
-        });
-      }
       markers.current = markerList;
       if (sceneRef.current !== 'put') {
         const reduced = prefersReducedMotion();
         const box = boundsOf(data);
         map.fitBounds(box as LngLatBoundsLike, {
-          padding: { top: 90, bottom: 150, left: 60, right: 80 },
+          padding: viewPadding(150),
           maxZoom: 17,
           duration: reduced ? 0 : 900,
           essential: false,
@@ -231,7 +250,7 @@ export function ResultsScenes({ map, origin, persona, scene, onScene, category, 
       player.current?.cancel();
       layer?.destroy();
       flood.current = null;
-      markerList.forEach((m) => m.marker.remove());
+      markerList.forEach((m) => m.marker?.remove());
       markers.current = [];
     };
   }, [iso.data, map, applyClock, playFlood]);
@@ -258,7 +277,7 @@ export function ResultsScenes({ map, origin, persona, scene, onScene, category, 
   // the flood's facility markers belong to the flood scenes; the route scene shows the nearest ones
   useEffect(() => {
     for (const m of markers.current)
-      m.marker.getElement().style.visibility = scene === 'put' ? 'hidden' : 'visible';
+      if (m.marker) m.marker.getElement().style.visibility = scene === 'put' ? 'hidden' : 'visible';
   }, [scene, iso.data]);
 
   // ------------------------------------------------------------------ route
@@ -328,7 +347,7 @@ export function ResultsScenes({ map, origin, persona, scene, onScene, category, 
     );
     routeData.coordinates.forEach((c) => bounds.extend(c));
     map.fitBounds(bounds, {
-      padding: { top: 90, bottom: 170, left: 70, right: 90 },
+      padding: viewPadding(170),
       maxZoom: 17,
       duration: reduced ? 0 : 1100,
       essential: false,

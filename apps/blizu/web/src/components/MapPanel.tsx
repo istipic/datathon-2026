@@ -97,6 +97,7 @@ export function MapPanel({
   const placeMarkers = useRef<Marker[]>([]);
   const popup = useRef<Popup | null>(null);
   const bounds = useRef<LngLatBounds | null>(null);
+  const firstFit = useRef(true);
 
   useEffect(() => {
     if (!map) return;
@@ -135,7 +136,13 @@ export function MapPanel({
       box.extend([place.lon, place.lat]);
     }
     bounds.current = box;
-    map.fitBounds(box, { padding: 90, maxZoom: 16, duration: reducedMotion() ? 0 : 600 });
+    // the very first fit is a jump: the map already starts at the address, so no low-zoom tiles are fetched
+    map.fitBounds(box, {
+      padding: 90,
+      maxZoom: 16,
+      duration: reducedMotion() || firstFit.current ? 0 : 600,
+    });
+    firstFit.current = false;
     return () => {
       markers.current.forEach((m) => m.remove());
       placeMarkers.current.forEach((m) => m.remove());
@@ -161,6 +168,8 @@ export function MapPanel({
       <MapView
         ariaLabel="Karta s adresom i najbližim objektima"
         styleUrl={DARK_STYLE_URL}
+        center={[origin.lon, origin.lat]}
+        zoom={14}
         navigationControl={false}
         onFallback={onFallback}
         onLoad={(m) => {

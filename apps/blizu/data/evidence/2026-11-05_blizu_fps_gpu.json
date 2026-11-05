@@ -1,0 +1,35 @@
+{
+  "measured_at": "2026-11-05T09:51:31.706Z",
+  "renderer": "headed Chromium with the machine GPU",
+  "viewport": "1360x850",
+  "results": [
+    {
+      "name": "flood replay (2.5 s of animation)",
+      "frames": 532,
+      "seconds": 2.9540999999996274,
+      "fps": 180.08869029486718,
+      "worstFrameMs": 5.799999999999272
+    },
+    {
+      "name": "route draw and walk",
+      "frames": 894,
+      "seconds": 5.0605,
+      "fps": 176.66238513980832,
+      "worstFrameMs": 33.399999999999636
+    },
+    {
+      "name": "3D orbit",
+      "frames": 2150,
+      "seconds": 6.079899999999907,
+      "fps": 353.6242372407495,
+      "worstFrameMs": 33.30000000000109
+    },
+    {
+      "name": "planner columns before -> after (idle map, then 0.9 s animation)",
+      "frames": 455,
+      "seconds": 2.5323999999999067,
+      "fps": 179.67145790555077,
+      "worstFrameMs": 11
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "checked_at": "2026-11-05T09:57:47.546Z",
+  "style": "https://tiles.openfreemap.org/styles/dark",
+  "source": "openmaptiles / building (OpenFreeMap planet tiles)",
+  "origin": "Trg bana Jelačića, Zagreb (45.8131, 15.9772)",
+  "zoom": 16,
+  "pitch": 60,
+  "rendered_features": 136,
+  "with_render_height": 136,
+  "with_render_min_height": 136,
+  "height_min_m": 0,
+  "height_median_m": 11,
+  "height_max_m": 108,
+  "sample_properties": [
+    {
+      "render_height": 5,
+      "render_min_height": 0,
+      "hide_3d": true
+    },
+    {
+      "render_height": 22,
+      "render_min_height": 0
+    },
+    {
+      "render_height": 15,
+      "render_min_height": 0
+    },
+    {
+      "render_height": 11,
+      "render_min_height": 0
+    },
+    {
+      "render_height": 5,
+      "render_min_height": 0
+    }
+  ]
+}

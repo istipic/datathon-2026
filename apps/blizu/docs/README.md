@@ -168,6 +168,30 @@ izvan 5–20, nepoznatu personu/kategoriju te `/route` bez `category` i `facilit
 kategorije; `404` za `/route` kad objekt ne postoji, kategorija nema podataka ili je najbliži objekt dalje od 4 km;
 `503` dok se podaci učitavaju.
 
+## Karta i animacije („Night Atlas”)
+
+Tamno sučelje (Inter Variable, tokeni u `web/src/index.css`, provjera kontrasta `web/scripts/contrast.mjs`) i četiri
+scene na karti. Sve brojke dolaze iz API-ja (`/isochrone`, `/route`, `/plan/optimise`), ukrasno kretanje ne nosi podatke.
+
+| Scena                                      | Gdje                        | Što se događa                                                                                                                                                 | Podaci                                           |
+| ------------------------------------------ | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------ |
+| **Doseg pješice** (`?scena=doseg`, zadano) | `/kartica`                  | Ulice se pale od adrese, ciljevi „iskaču” kad ih fronta dosegne; klizač 0–15 min, čipovi 5/10/15, brojač „U dosegu 10 minuta: 2 ljekarne, 1 škola”            | `/isochrone` (`buckets`, `facilities`, `counts`) |
+| **Put do…** (`?scena=put`)                 | `/kartica`, klik na pločicu | Ruta se crta sama (`line-gradient` + `line-progress`), točka hoda stvarnom brzinom osobe uz konstantno ubrzanje ×30                                           | `/route`                                         |
+| **3D** (`?scena=3d`)                       | `/kartica`                  | Nagib 60°, spora orbita (4°/s, staje na bilo koji dodir), zgrade iz pločica (`render_height`)                                                                 | pločice OpenFreeMap                              |
+| **Planer**                                 | `/planiranje`               | Stupci potrebe „tonu” iz stanja prije u stanje poslije (900 ms), lokacije padaju uz val, naslov broji do `total_newly_covered`; tablica ispod ima iste brojke | `/plan/need`, `/plan/optimise` (`cells`)         |
+
+- **Motor** (`web/src/lib/anim/`): jedan `requestAnimationFrame` sat temeljen na vremenu (isto na 60 i 144 Hz), staje kad je
+  kartica skrivena ili karta izvan ekrana i ne radi uz `prefers-reduced-motion`; easing, vremenske crte, kamera, geometrija
+  rute, stroj stanja scena sinkroniziran s URL-om. Vrijednosti po kadru ne idu u React state.
+- **Smanjeno kretanje:** bez letova (`jumpTo`), bez orbite, bez rasta fronte, bez točke hoda i vala; odmah se vidi završno
+  stanje, a klizač i svi gumbi rade.
+- **Pogreške:** bez dosega (API greška) ostaje poruka s „Pokušaj ponovno” preko karte, a popis usluga u lijevom
+  izborniku i dalje vrijedi; ako se vektorski stil ne učita, `MapView` prelazi na OSM raster i 3D se isključuje uz napomenu.
+- **Dev kuke za testove** (samo u razvojnom buildu): `window.__blizuAnim = { frames, running }`, `window.__blizuMap`.
+- **Mjerenje** (`web/scripts/measure-fps.mjs`, dokazi `data/evidence/2026-11-05_blizu_fps*.json`): s GPU-om ≈ 177–180 fps
+  u svim scenama; bez GPU-a (SwiftShader) 22 / 39 / 22 / 52 fps, što je jednako ili iznad čistog MapLibre okretanja karte
+  u istom okruženju (19 fps).
+
 ## Bodovanje
 
 `api/src/blizu_api/config/scoring.yaml` (verzija 1) sadrži brzine, pragove g/m i težine po personi; stranica
@@ -204,8 +228,11 @@ funkcije (`snap_facilities`, `nearest_facility_distances`, `compute_cell_access`
   90 % unutar ±20 % — [validation.md](validation.md).
 - **API:** `/access` p95 3,8–4,6 ms (100 zahtjeva nakon zagrijavanja, oba grafa); `/plan/optimise` k=3: 3,5 s hladno
   (graf od 344 tis. čvorova, 4 niti), ≈ 20–30 ms iz cachea.
-- **Lighthouse (mobilni), `/kartica`:** performanse 85–88, pristupačnost 100, CLS ≈ 0, TBT ≤ 20 ms.
-- Karta se prikazuje kroz OpenFreeMap („liberty”), uz OSM raster kao pričuvu i uvijek vidljivu atribuciju
+- **Lighthouse (mobilni, produkcijski build, 2026-11-05; JSON u `data/evidence/`):** `/` performanse 94, pristupačnost 100;
+  `/planiranje` 88 / 100; `/kartica` pristupačnost 100, performanse 43–50 (prije redizajna 85–88: karta je tada bila
+  ispod pregiba i u testu se nije učitavala, sada je glavni sadržaj). Profil pod 4× usporenim CPU-om pokazuje da gotovo
+  sve vrijeme odlazi na softversko WebGL iscrtavanje (SwiftShader) i MapLibre, vlastiti kôd je ≈ 100 ms.
+- Karta se prikazuje kroz OpenFreeMap („dark”), uz OSM raster kao pričuvu i uvijek vidljivu atribuciju
   „© OpenStreetMap contributors”.
 
 ## Produkcija

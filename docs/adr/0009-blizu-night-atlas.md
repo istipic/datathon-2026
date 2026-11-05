@@ -32,7 +32,7 @@ Print stays a light A4 card: the `@media print` block restores the light tokens.
   `https://tiles.openfreemap.org/planet`; evidence `apps/blizu/data/evidence/2026-11-05_openfreemap_dark_style*.json`).
   It has no `fill-extrusion` layer. It is passed through `MapView`'s existing `styleUrl`; if the vector style fails,
   `MapView` falls back to OSM raster tiles (new optional `onFallback` callback lets Blizu disable 3D and show a notice).
-- 3D: see the section "3D buildings" at the end of this file (filled in after the tile check).
+- 3D: see the section "3D buildings" below.
 
 ## Decision 4: animation engine of our own (no animation libraries)
 
@@ -47,3 +47,22 @@ animated by an expression driven by the clock.
 `GET /api/v1/isochrone`, `GET /api/v1/route` and `cells` in `POST /api/v1/plan/optimise` are documented in
 `apps/blizu/docs/README.md`. Every animated number (flood front, facility minutes, route length, column heights) comes
 from these responses; decorative motion carries no data and is commented `// decorative`.
+
+## 3D buildings
+
+The dark style has no `fill-extrusion` layer, so Blizu adds one (`BuildingsLayer` in `lib/anim/layers.ts`) on the
+style's own vector source `openmaptiles`, source-layer `building`, below the first symbol layer. Height and base come
+from the tiles' `render_height` / `render_min_height`; features with `hide_3d: true` (parts drawn elsewhere) are skipped.
+
+Verified on 2026-11-05 in the real tiles over Trg bana Jelačića (`scripts/buildings-check.mjs`, evidence
+`apps/blizu/data/evidence/2026-11-05_openfreemap_building_heights.json`): all 136 rendered building features carry both
+attributes (median 11 m, maximum 108 m). The opacity is a constant paint property, so the native paint transition fades
+the buildings in (data-driven properties do not transition in MapLibre; the planner columns are animated by an expression
+driven by the clock instead). On the raster fallback there are no buildings and the 3D scene is disabled with a notice.
+
+## Known limitation: mobile Lighthouse performance of `/kartica`
+
+The results page now puts the map above the fold. Lighthouse (mobile, 4x CPU throttling, software WebGL) scores
+performance 43-50 there (home 94, planner 88; accessibility 100 on all three). A CPU profile shows the time is native
+rendering and MapLibre; the application's own scripting is about 100 ms. With a GPU the scenes run at about 177-180 fps
+(`apps/blizu/data/evidence/2026-11-05_blizu_fps_gpu.json`).
